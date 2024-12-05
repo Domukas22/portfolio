@@ -1,0 +1,39 @@
+/*  */
+/*  */
+/*  */
+
+.tag {
+  padding: 0.4rem 1.4rem;
+  font-weight: 500;
+  color: blue;
+  border-radius: 30rem;
+
+  &[data-tag-type="website"] {
+    background-color: var(--website-tag-bg);
+    color: var(--website-tag-text);
+  }
+  &[data-tag-type="app"] {
+    background-color: var(--app-tag-bg);
+    color: var(--app-tag-text);
+  }
+  &[data-tag-type="logo"] {
+    background-color: var(--logo-tag-bg);
+    color: var(--logo-tag-text);
+  }
+  &[data-tag-type="images"] {
+    background-color: var(--images-tag-bg);
+    color: var(--images-tag-text);
+  }
+  &[data-tag-type="video"] {
+    background-color: var(--video-tag-bg);
+    color: var(--video-tag-text);
+  }
+  &[data-tag-type="coding"] {
+    background-color: var(--coding-tag-bg);
+    color: var(--coding-tag-text);
+  }
+  &[data-tag-type="in-progress"] {
+    background-color: var(--in-progress-tag-bg);
+    color: var(--in-progress-tag-text);
+  }
+}

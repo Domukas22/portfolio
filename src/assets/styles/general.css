@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background-color: var(--fill-bg);
+  color: var(--text-white);
+  font-weight: 300;
+}
+
+html {
+  scroll-behavior: smooth;
+  @media (prefers-reduced-motion) {
+    scroll-behavior: auto;
+  }
+
+  /* Set up for "1rem === 10px" */
+  font-size: 62.5%;
+  @media (max-width: 740px) {
+    font-size: 67.5%;
+  }
+}
+
+body {
+  overflow-x: hidden !important;
+  font-family: "Nunito" !important;
+  font-size: var(--user-font-size, 1.6rem);
+  min-height: 110vh;
+
+  @media (max-width: 740px) {
+    font-size: calc(var(--user-font-size, 1.6rem) + 0.2rem);
+  }
+}
+
+/* ------------------------------------------------------------------------------------------------ */
+
+section {
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  padding: 4rem 8rem;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 990px) {
+    padding: 4rem 4rem;
+  }
+  @media (max-width: 740px) {
+    padding: 4vmin;
+  }
+}
+
+p {
+  text-wrap: auto;
+}

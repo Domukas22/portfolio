@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Nunito";
+  src: url(../fonts/Nunito-Light.ttf);
+  font-weight: 300;
+
+  font-style: light;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url(../fonts/Nunito-Regular.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url(../fonts/Nunito-Medium.ttf);
+  font-weight: 500;
+  font-style: medium;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url(../fonts/Nunito-SemiBold.ttf);
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url(../fonts/Nunito-Bold.ttf);
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url(../fonts/Nunito-Black.ttf);
+  font-weight: 800;
+}
+
+.weight-700 {
+  font-weight: 700;
+}
+.weight-600 {
+  font-weight: 600;
+}
+.weight-500 {
+  font-weight: 500;
+}
+.weight-400 {
+  font-weight: 400;
+}
+.weight-300 {
+  font-weight: 300;
+}
+
+/* base 18px, 1.250 major third */
+.size-h1 {
+  font-size: 5.5rem;
+}
+.size-h2 {
+  font-size: 4.4rem;
+}
+.size-h3 {
+  font-size: 3.5rem;
+}
+.size-h4 {
+  font-size: 2.8rem;
+}
+.size-h5 {
+  font-size: 2.2rem;
+}
+.size-16 {
+  font-size: 1.6rem;
+}
+.size-14 {
+  font-size: 1.4rem;
+}
+p {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--text-white-dimm);
+}
+
+@media (max-width: 600px) {
+  .size-h1 {
+    font-size: 5.5rem;
+  }
+  .size-h2 {
+    font-size: 4.4rem;
+  }
+  .size-h3 {
+    font-size: 3.5rem;
+  }
+  .size-h4 {
+    font-size: 2.8rem;
+  }
+  .size-h5 {
+    font-size: 2.2rem;
+  }
+  p {
+    font-size: 1.8rem;
+  }
+}

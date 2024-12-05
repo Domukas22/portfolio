@@ -1,3 +1,7 @@
+//
+//
+//
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -12,7 +16,31 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      screens: {
+        tablet: { max: "990px" },
+        mobile: { max: "740px" },
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }: { addUtilities: Function }) {
+      const newUtilities = {
+        // ".formEndBtn_WRAP": {
+        //   "@apply flex gap-3 screenUnder800:flex-col": {},
+        // },
+        // ".container": {
+        //   display: "flex",
+        //   flexDirection: "column",
+        //   rowGap: "0.6rem",
+        //   padding: "1.4rem",
+        //   borderBottom: "var(--border-black-01)",
+        // },
+        ".border-bottom-light": {
+          borderBottom: "0.1rem solid var(--border-white-10)",
+        },
+      };
+
+      addUtilities(newUtilities, ["responsive"]);
+    },
+  ],
 } satisfies Config;
