@@ -5,7 +5,6 @@
 "use client";
 
 import { Button, PressEvent } from "react-aria-components";
-import css from "./Btn.module.css";
 
 interface Btn_PROPS {
   text?: string;

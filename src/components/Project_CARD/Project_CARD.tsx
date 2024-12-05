@@ -6,7 +6,6 @@
 
 import { Link } from "react-aria-components";
 import ProjectTag_LIST from "../ProjectTag_LIST/ProjectTag_LIST";
-import css from "./style.module.css";
 import { ProjectIntro_TYPE } from "@/projects/types";
 import Image from "next/image";
 
