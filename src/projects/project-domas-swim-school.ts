@@ -10,6 +10,7 @@ export function DomasSwimSchool_INTRO() {
     title: "Domas Swim School",
     subtitle: "A logo design for my private swimming lessons",
     tags: ["logo"],
+    slug: "domas-swim-school",
   };
   return intro;
 }

@@ -1,0 +1,49 @@
+/*  */
+/*  */
+/*  */
+
+.nav {
+  top: 0;
+  z-index: 30;
+  height: 7rem;
+  position: sticky;
+  background-color: var(--dark-light);
+  border-bottom: 1px solid var(--border-white-10);
+  align-items: center;
+
+  & div[data-project-page-container="true"] {
+    max-width: none;
+  }
+
+  & .logo {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    border: 1px solid transparent;
+    background-color: transparent;
+    height: 100%;
+
+    & .logo_IMG {
+      width: 3.6rem;
+      height: 3.6rem;
+      border-radius: 10rem;
+
+      border: 0.1rem solid var(--border-white-10);
+      background: center no-repeat url("/domas.jpg");
+      background-size: cover;
+    }
+  }
+
+  & li[data-menu-btn] {
+    display: none;
+  }
+
+  @media (max-width: 740px) {
+    & li[data-not-menu-btn] {
+      display: none;
+    }
+    & li[data-menu-btn] {
+      display: flex;
+    }
+  }
+}

@@ -4,10 +4,10 @@
 
 "use client";
 
-import { Link } from "react-aria-components";
 import ProjectTag_LIST from "../ProjectTag_LIST/ProjectTag_LIST";
 import { ProjectIntro_TYPE } from "@/projects/types";
 import Image from "next/image";
+import Link from "next/link";
 
 // import exampleHeaderImg from "@/assets/images/project-headers/header_localmore.png"
 
@@ -16,7 +16,8 @@ export default function Project_CARD(intro: ProjectIntro_TYPE) {
 
   //
   return (
-    <Link className="p-0 block btn">
+    <Link href="" className="p-0 block btn">
+      <div />
       <Image
         width={1200}
         height={500}

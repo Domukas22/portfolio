@@ -24,7 +24,7 @@ html {
 body {
   overflow-x: hidden !important;
   font-family: "Nunito" !important;
-  font-size: var(--user-font-size, 1.6rem);
+  font-size: var(--user-font-size, 1.8rem); /* 18px base for desktop */
   min-height: 110vh;
 
   @media (max-width: 740px) {

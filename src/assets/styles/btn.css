@@ -14,7 +14,7 @@
 
   background-color: var(--dark-light);
   padding: 1rem 2rem;
-  color: white;
+  color: var(--text-white);
 
   transition: background-color 100ms, border-color 100ms, color 100ms,
     box-shadow 100ms;
@@ -29,16 +29,47 @@
   position: relative;
   outline: 0.2rem solid transparent;
 
+  &:hover,
+  &:focus,
   &[data-hovered],
   &[data-focused] {
     background: var(--dark-lightest);
     box-shadow: 1px 2px 18px 5px #ffffff0d;
   }
+
+  &:active,
   &[data-pressed] {
     box-shadow: 1px 2px 18px 5px #ffffff26;
-    border-color: white;
+    border-color: var(--text-white);
   }
+
+  &:focus-visible,
   &[data-focus-visible] {
-    outline: 0.2rem solid white;
+    outline: 0.2rem solid var(--text-white);
+  }
+
+  &.navlink {
+    color: var(--text-white-dimm);
+    border-color: transparent;
+    box-shadow: none;
+    border-radius: 30rem;
+    font-weight: 500;
+
+    &:active,
+    &[data-pressed] {
+      color: var(--text-white);
+      border-color: white;
+    }
+  }
+
+  &.menuBtn {
+    box-shadow: none;
+    border-radius: 30rem;
+    font-weight: 500;
+
+    &:active,
+    &[data-pressed] {
+      border-color: white;
+    }
   }
 }

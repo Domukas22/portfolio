@@ -17,6 +17,7 @@ export default {
         foreground: "var(--foreground)",
       },
       screens: {
+        small_deskop: { max: "1200px" },
         tablet: { max: "990px" },
         mobile: { max: "740px" },
       },

@@ -16,4 +16,5 @@ export interface ProjectIntro_TYPE {
   title: string;
   subtitle: string;
   tags: ProjectTag_TYPE[];
+  slug: string;
 }

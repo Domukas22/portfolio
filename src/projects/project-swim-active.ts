@@ -10,6 +10,7 @@ export function SwimActive_INTRO() {
     title: "Swim Active",
     subtitle: "A website for a swimming school",
     tags: ["website", "images", "coding", "in-progress", "video"],
+    slug: "swim-active",
   };
   return intro;
 }

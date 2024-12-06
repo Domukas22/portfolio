@@ -1,0 +1,60 @@
+/*  */
+/*  */
+/*  */
+
+.ICON_dropDownArrow {
+  width: 1.6rem;
+  height: 1.6rem;
+  justify-content: center;
+  align-content: center;
+  padding: 0.15rem 0.42rem 0 0.42rem;
+
+  &[data-color="white"] {
+    & path {
+      fill: white;
+    }
+  }
+}
+
+.ICON_x {
+  width: 1.6rem;
+  height: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 100ms;
+  position: relative;
+
+  &[data-big="true"] {
+    width: 2rem;
+    height: 2rem;
+    min-width: 2rem;
+    min-height: 2rem;
+  }
+
+  &::before,
+  &::after {
+    transition: 100ms;
+    content: "";
+    position: absolute;
+    width: 0.2rem;
+    height: 100%;
+    background-color: white;
+    border-radius: 5rem;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+
+  &[data-color="white"] {
+    &::before,
+    &::after {
+      background-color: white;
+    }
+  }
+}

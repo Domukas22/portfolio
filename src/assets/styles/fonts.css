@@ -53,7 +53,8 @@
   font-weight: 300;
 }
 
-/* base 18px, 1.250 major third */
+/* ======================================================================== */
+/* Font sizes - base 18px, 1.250 major third */
 .size-h1 {
   font-size: 5.5rem;
 }
@@ -68,17 +69,6 @@
 }
 .size-h5 {
   font-size: 2.2rem;
-}
-.size-16 {
-  font-size: 1.6rem;
-}
-.size-14 {
-  font-size: 1.4rem;
-}
-p {
-  font-size: 1.8rem;
-  font-weight: 400;
-  color: var(--text-white-dimm);
 }
 
 @media (max-width: 600px) {
@@ -97,7 +87,13 @@ p {
   .size-h5 {
     font-size: 2.2rem;
   }
-  p {
-    font-size: 1.8rem;
-  }
+}
+/* ======================================================================== */
+
+p,
+a,
+span,
+.btn {
+  font-weight: 400;
+  color: var(--text-white-dimm);
 }

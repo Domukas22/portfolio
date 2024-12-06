@@ -10,6 +10,7 @@ export function SanfteMetzger_INTRO() {
     title: "Sanfte Metzger",
     subtitle: "A hypothetical corporate design for a unique butchers shop",
     tags: ["logo"],
+    slug: "sanfte-metzger",
   };
   return intro;
 }
