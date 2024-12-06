@@ -2,7 +2,6 @@
 //
 //
 
-import { HTMLProps } from "react";
 import css from "./Icons.module.css";
 
 export function ICON_dropDownArrow() {

@@ -28,6 +28,22 @@ export default function SideNav() {
       </div>
 
       <ul>
+        {/* <li>
+          <Link href="/">
+            <div className={css.linkTextWrap}>
+              <span data-link-span-title>Learn about me</span>
+            </div>
+            {<Arrow />}
+          </Link>
+        </li> */}
+        <li>
+          <Link href="/">
+            <div className={css.linkTextWrap}>
+              <span data-link-span-title>Reach out to me</span>
+            </div>
+            {<Arrow />}
+          </Link>
+        </li>
         <li>
           <Link href="/">
             <div className={css.linkTextWrap}>
@@ -39,22 +55,16 @@ export default function SideNav() {
             {<Arrow />}
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link href="/">
             <div className={css.linkTextWrap}>
-              <span data-link-span-title>Learn about me</span>
+              <span data-link-span-title>Daily notes</span>
+              <span data-link-span-subtitle>45 notes total</span>
             </div>
             {<Arrow />}
           </Link>
-        </li>
-        <li>
-          <Link href="/">
-            <div className={css.linkTextWrap}>
-              <span data-link-span-title>Reach out to me</span>
-            </div>
-            {<Arrow />}
-          </Link>
-        </li>
+        </li> */}
+
         {projects.map((project) => (
           <li key={project.title}>
             <Link href="/">

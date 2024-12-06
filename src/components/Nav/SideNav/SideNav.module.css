@@ -17,6 +17,10 @@
   border-right: var(--light-border);
   align-items: center;
 
+  @media (max-width: 990px) {
+    display: none;
+  }
+
   & .top {
     width: 100%;
     height: var(--tiny-nav-height);

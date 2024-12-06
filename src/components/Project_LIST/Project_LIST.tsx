@@ -12,12 +12,28 @@ export default function Project_LIST() {
     <section className="border-bottom-light">
       <div className="container flex flex-col gap-[5rem] tablet:gap-[4rem] mobile:gap-[8vmin] ">
         {intros.map((intro) => {
-          const { title, header_IMG, subtitle, tags } = intro;
+          const {
+            title,
+            header_IMG,
+            subtitle,
+            tags,
+            shortSubtitle,
+            emoji,
+            slug,
+          } = intro;
 
           return (
             <Project_CARD
               key={intro.title}
-              {...{ title, header_IMG, subtitle, tags }}
+              {...{
+                title,
+                header_IMG,
+                subtitle,
+                tags,
+                shortSubtitle,
+                emoji,
+                slug,
+              }}
             />
           );
         })}
