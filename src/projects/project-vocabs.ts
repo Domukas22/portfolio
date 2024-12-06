@@ -9,7 +9,9 @@ export function Vocabs_INTRO() {
     header_IMG: "header-vocabs.png",
     title: "Vocabs",
     subtitle: "A vocabulary app for mobile devices",
+    shortSubtitle: "Mobile app",
     tags: ["app", "coding", "in-progress"],
+    emoji: "✍️",
     slug: "vocabs",
   };
   return intro;

@@ -53,39 +53,56 @@
   font-weight: 300;
 }
 
+:root {
+  --h1-desk: 5.5rem;
+  --h1-mob: 5.5rem;
+
+  --h2-desk: 4.4rem;
+  --h2-mob: 4.4rem;
+
+  --h3-desk: 3.5rem;
+  --h3-mob: 3.5rem;
+
+  --h4-desk: 2.8rem;
+  --h4-mob: 2.8rem;
+
+  --h5-desk: 2.2rem;
+  --h5-mob: 2.2rem;
+}
+
 /* ======================================================================== */
 /* Font sizes - base 18px, 1.250 major third */
 .size-h1 {
-  font-size: 5.5rem;
+  font-size: var(--h1-desk);
 }
 .size-h2 {
-  font-size: 4.4rem;
+  font-size: var(--h2-desk);
 }
 .size-h3 {
-  font-size: 3.5rem;
+  font-size: var(--h3-desk);
 }
 .size-h4 {
-  font-size: 2.8rem;
+  font-size: var(--h4-desk);
 }
 .size-h5 {
-  font-size: 2.2rem;
+  font-size: var(--h5-desk);
 }
 
 @media (max-width: 600px) {
   .size-h1 {
-    font-size: 5.5rem;
+    font-size: var(--h1-mob);
   }
   .size-h2 {
-    font-size: 4.4rem;
+    font-size: var(--h2-mob);
   }
   .size-h3 {
-    font-size: 3.5rem;
+    font-size: var(--h3-mob);
   }
   .size-h4 {
-    font-size: 2.8rem;
+    font-size: var(--h4-mob);
   }
   .size-h5 {
-    font-size: 2.2rem;
+    font-size: var(--h5-mob);
   }
 }
 /* ======================================================================== */

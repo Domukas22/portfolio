@@ -58,3 +58,19 @@
     }
   }
 }
+.ICON_arrow {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & path {
+    &[data-color="white"] {
+      fill: var(--text-white);
+    }
+    &[data-color="white-dimm"] {
+      fill: var(--text-white-dimm);
+    }
+  }
+}

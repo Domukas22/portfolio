@@ -47,29 +47,4 @@
   &[data-focus-visible] {
     outline: 0.2rem solid var(--text-white);
   }
-
-  &.navlink {
-    color: var(--text-white-dimm);
-    border-color: transparent;
-    box-shadow: none;
-    border-radius: 30rem;
-    font-weight: 500;
-
-    &:active,
-    &[data-pressed] {
-      color: var(--text-white);
-      border-color: white;
-    }
-  }
-
-  &.menuBtn {
-    box-shadow: none;
-    border-radius: 30rem;
-    font-weight: 500;
-
-    &:active,
-    &[data-pressed] {
-      border-color: white;
-    }
-  }
 }

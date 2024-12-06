@@ -2,14 +2,8 @@
 //
 //
 
-import Nav from "@/components/Nav/Nav";
-import Project_LIST from "@/components/Project_LIST/Project_LIST";
+import HomePage_CONTENT from "@/components/Page_CONTENTS/HomePage_CONTENT/HomePage_CONTENT";
 
 export default async function Home_PAGE() {
-  return (
-    <>
-      <Nav />
-      <Project_LIST />
-    </>
-  );
+  return <HomePage_CONTENT />;
 }

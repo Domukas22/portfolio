@@ -1,0 +1,13 @@
+/*  */
+/*  */
+/*  */
+
+.nav {
+  position: sticky;
+  top: 0;
+  background-color: var(--dark-light);
+  z-index: 10;
+
+  height: var(--tiny-nav-height);
+  border-bottom: var(--light-border);
+}
