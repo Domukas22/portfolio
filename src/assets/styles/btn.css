@@ -2,7 +2,7 @@
 /*  */
 /*  */
 
-.btn {
+@define-mixin BTN-DEFAULT {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,11 +13,23 @@
 
   font-weight: 400;
   color: var(--text-white);
-
-  border: var(--light-border);
-  border-radius: 1.2rem;
   outline: 0.2rem solid transparent;
 
+  &[data-focus-visible] {
+    outline: 0.2rem solid var(--text-white);
+  }
+  &[data-native-reactions] {
+    &:focus-visible {
+      outline: 0.2rem solid var(--text-white);
+    }
+  }
+  &[data-light-left-border-color] {
+    border-left-color: var(--border-white-10);
+  }
+}
+@define-mixin btn {
+  border: var(--light-border);
+  border-radius: 1.2rem;
   background-color: var(--dark-light);
   box-shadow: 1px 2px 12px 3px #ffffff0d;
 
@@ -31,13 +43,8 @@
     border-color: var(--text-white);
   }
 
-  &[data-focus-visible] {
-    outline: 0.2rem solid var(--text-white);
-  }
-
   &[data-native-reactions] {
-    &:hover,
-    &:focus {
+    &:hover {
       background: var(--dark-lightest);
       box-shadow: 1px 2px 18px 5px #ffffff0d;
     }
@@ -46,27 +53,53 @@
       box-shadow: 1px 2px 18px 5px #ffffff26;
       border-color: var(--text-white);
     }
-    &:focus-visible {
-      outline: 0.2rem solid var(--text-white);
+  }
+}
+@define-mixin btn-square {
+  border: 1px solid transparent;
+  background-color: transparent;
+
+  &[data-hovered] {
+    background: var(--dark-light);
+  }
+
+  &[data-pressed] {
+    border-color: var(--border-white-max);
+  }
+
+  &[data-native-reactions] {
+    &:hover,
+    &:focus {
+      background: var(--dark-light);
+    }
+    &:active {
+      border-color: var(--border-white-max);
+    }
+  }
+}
+@define-mixin btn-square-light-add-ons {
+  &[data-hovered] {
+    background: var(--dark-lightest);
+  }
+  &[data-native-reactions] {
+    &:hover {
+      background: var(--dark-lightest);
     }
   }
 }
 
-.squareBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.btn {
+  @mixin BTN-DEFAULT;
+  @mixin btn;
+}
 
-  padding: 1rem 2rem;
-  column-gap: 0.8rem;
-  transition: 100ms;
+.btn-square {
+  @mixin BTN-DEFAULT;
+  @mixin btn-square;
+}
 
-  font-weight: 400;
-  color: var(--text-white);
-
-  border: 1px solid transparent;
-  border-radius: 1.2rem;
-  outline: 0.2rem solid transparent;
-
-  background-color: var(--dark);
+.btn-square-light {
+  @mixin BTN-DEFAULT;
+  @mixin btn-square;
+  @mixin btn-square-light-add-ons;
 }

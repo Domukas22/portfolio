@@ -27,12 +27,22 @@ export default function MobileNav({
         </Link>
 
         <li data-btn-projects>
-          <Link href="/" className="squareBtn light">
+          <Link
+            href="/"
+            className="btn-square-light"
+            data-native-reactions
+            data-light-left-border-color
+          >
             My projects
           </Link>
         </li>
         <li data-btn-contact>
-          <Link href="/" className="squareBtn light">
+          <Link
+            href="/"
+            className="btn-square-light"
+            data-native-reactions
+            data-light-left-border-color
+          >
             React out to me
           </Link>
         </li>
@@ -40,7 +50,8 @@ export default function MobileNav({
           <Btn
             text="Menu"
             onClick={TOGGLE_mobileMenu}
-            className="squareBtn light"
+            btnType="btn-square-light"
+            extraAttributes={[{ "data-light-left-border-color": "" }]}
             right_ICON={<ICON_dropDownArrow />}
             FIRE_clickEvent
           />

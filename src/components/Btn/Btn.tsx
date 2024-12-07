@@ -13,6 +13,8 @@ interface Btn_PROPS {
   className?: ClassValue;
   FIRE_clickEvent?: boolean;
   right_ICON?: React.ReactNode;
+  btnType: "btn" | "btn-square" | "btn-square-light";
+  extraAttributes?: { [key: string]: string | number | boolean }[];
   //   left_ICON?: React.ReactNode;
   //   aria_LABEL?: string;
   //   _ref?: React.RefObject<HTMLButtonElement> | null;
@@ -23,14 +25,20 @@ interface Btn_PROPS {
 
 export default function Btn({
   text,
+  btnType,
   className,
   onClick,
   FIRE_clickEvent,
   right_ICON,
+  extraAttributes = [],
 }: Btn_PROPS) {
+  const mergedAttributes = extraAttributes.reduce((acc, curr) => {
+    return { ...acc, ...curr };
+  }, {});
+
   return (
     <Button
-      className={clsx("btn", className)}
+      className={clsx(btnType || "btn", className)}
       onPress={(e) => {
         // the 'react-aria-components' button componenet does not fire a click even by defualt
         if (onClick) onClick(e);
@@ -38,6 +46,7 @@ export default function Btn({
           document.dispatchEvent(new Event("click"));
         }
       }}
+      {...mergedAttributes}
     >
       {text}
       {right_ICON}
