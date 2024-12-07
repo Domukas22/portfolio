@@ -9,6 +9,7 @@ import SideNav from "@/components/Nav/SideNav/SideNav";
 import { useState } from "react";
 import Custom_MODAL from "@/components/Modal/Custom_MODAL";
 import MobileNav from "@/components/Nav/MobileNav/MobileNav";
+import Btn from "@/components/Btn/Btn";
 
 export default function HomePage_CONTENT() {
   const [IS_mobileMenuOpen, SET_mobileMenuOpen] = useState(false);
@@ -20,6 +21,7 @@ export default function HomePage_CONTENT() {
         <MobileNav
           TOGGLE_mobileMenu={() => SET_mobileMenuOpen(!IS_mobileMenuOpen)}
         />
+        <Btn text="Btn" />
         <Project_LIST />
       </div>
 

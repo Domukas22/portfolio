@@ -49,6 +49,12 @@ export default function Custom_MODAL({
             />
           </div>
         )}
+        <Btn
+          //   styling={["btn-40", "round", "grey"]}
+          right_ICON={<ICON_x color="dark" />}
+          onClick={TOGGLE_open}
+          className="tinyNavBtn"
+        />
         {children}
       </Dialog>
     </Modal>

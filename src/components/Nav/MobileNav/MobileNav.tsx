@@ -27,12 +27,12 @@ export default function MobileNav({
         </Link>
 
         <li data-btn-projects>
-          <Link href="/" className="btn squareBtn">
+          <Link href="/" className="squareBtn light">
             My projects
           </Link>
         </li>
         <li data-btn-contact>
-          <Link href="/" className="btn squareBtn">
+          <Link href="/" className="squareBtn light">
             React out to me
           </Link>
         </li>
@@ -40,8 +40,9 @@ export default function MobileNav({
           <Btn
             text="Menu"
             onClick={TOGGLE_mobileMenu}
-            className="squareBtn"
+            className="squareBtn light"
             right_ICON={<ICON_dropDownArrow />}
+            FIRE_clickEvent
           />
         </li>
       </ul>

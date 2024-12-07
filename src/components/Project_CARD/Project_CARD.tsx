@@ -16,7 +16,11 @@ export default function Project_CARD(intro: ProjectIntro_TYPE) {
 
   //
   return (
-    <Link href="" className="p-0 block btn">
+    <Link
+      href=""
+      className="p-0 block btn overflow-hidden rounded-[1.6rem]"
+      data-native-reactions
+    >
       <div />
       <Image
         width={1200}

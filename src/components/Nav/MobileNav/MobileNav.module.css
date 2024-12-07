@@ -11,9 +11,9 @@
   border-bottom: var(--light-border);
   background-color: var(--dark-light);
 
-  @media (min-width: 990px) {
+  /* @media (min-width: 990px) {
     display: none;
-  }
+  } */
 
   & ul {
     display: flex;
