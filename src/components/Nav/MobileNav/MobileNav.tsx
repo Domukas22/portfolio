@@ -51,9 +51,8 @@ export default function MobileNav({
             text="Menu"
             onClick={TOGGLE_mobileMenu}
             btnType="btn-square-light"
-            extraAttributes={[{ "data-light-left-border-color": "" }]}
+            extraAttributes={["data-light-left-border-color"]}
             right_ICON={<ICON_dropDownArrow />}
-            FIRE_clickEvent
           />
         </li>
       </ul>

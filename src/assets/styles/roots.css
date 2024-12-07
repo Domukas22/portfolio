@@ -16,8 +16,6 @@
   --fill-bg: #141414;
   --text-white: var(--white-95);
   --text-white-dimm: var(--white-75);
-  --border-white-10: var(--white-10);
-  --border-white-max: var(--white-95);
 
   --main-text: var(--brown-text);
   --main-bg: var(--brown-bg);
@@ -39,13 +37,26 @@
 
   /* ------------------------------------------------------------------------------- */
   /* Sizing */
-  --tiny-nav-height: 4.8rem;
+  --tiny-nav-height: 5.5rem;
   --side-nav-width: 30rem;
   --mobile-padding: 4vmin;
+  --btn-transition: 150ms;
+
   /* ------------------------------------------------------------------------------- */
   --test: 600px;
-  --light-border: 0.1rem solid var(--border-white-10);
-  /* ------------------------------------------------------------------------------- */
 
+  /* ------------------------------------------------------------------------------- */
+  /* Borders */
+  --border-transparent: 0.1rem solid transparent;
+  --border-light: 0.1rem solid var(--white-10);
+  --border-white: 0.1rem solid var(--white-95);
+
+  --outline-hide: 0.2rem solid transparent;
+  --outline-show: 0.2rem solid var(--text-white);
+  /* ------------------------------------------------------------------------------- */
+  /* Shadows */
+  --btn-shadow: 1px 2px 12px 3px rgba(255, 255, 255, 0.05098);
+  --btn-shadow-hover: 1px 2px 18px 5px #ffffff0d;
+  --btn-shadow-press: 1px 2px 18px 5px #ffffff26;
   /* ------------------------------------------------------------------------------- */
 }

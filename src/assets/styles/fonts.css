@@ -54,20 +54,20 @@
 }
 
 :root {
-  --h1-desk: 5.5rem;
-  --h1-mob: 5.5rem;
+  --h1-desk: 4rem;
+  --h1-mob: 4rem;
 
-  --h2-desk: 4.4rem;
-  --h2-mob: 4.4rem;
+  --h2-desk: 3rem;
+  --h2-mob: 3rem;
 
-  --h3-desk: 3.5rem;
-  --h3-mob: 3.5rem;
+  --h3-desk: 2.6rem;
+  --h3-mob: 2.6rem;
 
-  --h4-desk: 2.8rem;
-  --h4-mob: 2.8rem;
+  --h4-desk: 2.2rem;
+  --h4-mob: 2.2rem;
 
-  --h5-desk: 2.2rem;
-  --h5-mob: 2.2rem;
+  --h5-desk: 1.8rem;
+  --h5-mob: 1.8rem;
 }
 
 /* ======================================================================== */

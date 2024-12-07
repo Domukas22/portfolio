@@ -37,7 +37,7 @@ export default {
         //   borderBottom: "var(--border-black-01)",
         // },
         ".border-bottom-light": {
-          borderBottom: "0.1rem solid var(--border-white-10)",
+          borderBottom: "0.1rem solid var(--border-light)",
         },
       };
 

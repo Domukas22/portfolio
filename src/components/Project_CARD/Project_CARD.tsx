@@ -30,7 +30,7 @@ export default function Project_CARD(intro: ProjectIntro_TYPE) {
         alt=""
       />
       <div className="px-[2rem] pt-[1.2rem] pb-[1.6rem]">
-        <h3 className="size-h5 weight-700">{title}</h3>
+        <h3>{title}</h3>
         <p className="weight-400 mb-[1.4rem]">{subtitle}</p>
         <ProjectTag_LIST {...{ tags }} />
       </div>

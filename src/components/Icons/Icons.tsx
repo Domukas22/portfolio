@@ -2,11 +2,24 @@
 //
 //
 
+import MERGE_htmlElementAttributes from "@/utils/MERGE_htmlElementAttributes";
 import css from "./Icons.module.css";
 
-export function ICON_dropDownArrow() {
+export function ICON_dropDownArrow({
+  color = "white",
+  extraAttributes,
+  ...props
+}: {
+  color?: "white";
+  extraAttributes?: string[];
+} & React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={css.ICON_dropDownArrow} data-color="white">
+    <div
+      className={css.ICON_dropDownArrow}
+      data-color={color}
+      {...props}
+      {...MERGE_htmlElementAttributes(extraAttributes)}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 7 6"
@@ -21,16 +34,35 @@ export function ICON_dropDownArrow() {
     </div>
   );
 }
-export function ICON_x({ color = "dark", big = false }) {
-  return <div className={css.ICON_x} data-color={color} data-big={big}></div>;
+export function ICON_x({
+  color = "dark",
+  big = false,
+  extraAttributes,
+  ...props
+}: {
+  color?: "dark";
+  big?: boolean;
+  extraAttributes?: string[];
+} & React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      className={css.ICON_x}
+      data-color={color}
+      data-big={big}
+      {...props}
+      {...MERGE_htmlElementAttributes(extraAttributes)}
+    ></div>
+  );
 }
 export function ICON_arrow({
   direction = "right",
   color = "white",
+  extraAttributes,
   ...props
 }: {
   direction: "up" | "right" | "down" | "left";
   color?: "white" | "white-dimm";
+  extraAttributes?: string[];
 } & React.HTMLAttributes<HTMLDivElement>) {
   const rotationAngle = {
     right: "0deg",
@@ -40,7 +72,7 @@ export function ICON_arrow({
   }[direction];
 
   return (
-    <div {...props} data-icon data-icon-arrow>
+    <div {...props} {...MERGE_htmlElementAttributes(extraAttributes)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"

@@ -9,5 +9,5 @@
   z-index: 10;
 
   height: var(--tiny-nav-height);
-  border-bottom: var(--light-border);
+  border-bottom: var(--border-light);
 }
