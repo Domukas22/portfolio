@@ -15,7 +15,7 @@ export function SideNav_BTN({
   link: string;
 }) {
   return (
-    <Link href={link || "/"} className="btn-menu">
+    <Link href={link || "/"} className="native-link-nav">
       <div data-text-wrap>
         <span data-title>{title}</span>
         {subtitle && <span data-subtitle>{subtitle}</span>}

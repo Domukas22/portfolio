@@ -6,10 +6,9 @@
   --right-side-padding: 1.6rem;
   padding-left: var(--right-side-padding);
   width: inherit;
-  position: absolute;
 
   position: sticky;
-  top: 0;
+  top: var(--tiny-nav-height);
   z-index: 10;
 
   border-bottom: var(--border-light);

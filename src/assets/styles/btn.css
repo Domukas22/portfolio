@@ -2,6 +2,11 @@
 /*  */
 /*  */
 
+@import "./roots.css";
+
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop (min-width: 991px);
+
 @define-mixin BTN-DEFAULT {
   display: flex;
   align-items: center;
@@ -13,82 +18,77 @@
 
   font-weight: 400;
   color: var(--text-white);
-  outline: 0.2rem solid transparent;
+  outline: var(--outline-hide);
 
-  &[data-focus-visible] {
-    outline: 0.2rem solid var(--text-white);
+  &[data-light-left-border-color] {
+    border-left: var(--border-light);
   }
-  &[data-native-reactions] {
-    &:focus-visible {
-      outline: 0.2rem solid var(--text-white);
+
+  /* Focus visible triggers on mobile tap */
+  /* should I find a workaround? */
+  /* for now, only desktop has focus visible styling */
+
+  @media (--desktop) {
+    &:focus-visible,
+    &[data-focus-visible] {
+      border: var(--border-white) !important;
+      outline: var(--outline-show) !important;
+      background: var(--dark-lightest) !important;
     }
   }
-  &[data-light-left-border-color] {
-    border-left-color: var(--border-light);
-  }
 }
+
 @define-mixin btn {
   border: var(--border-light);
   border-radius: 1.2rem;
-  background-color: var(--dark-light);
+  background: var(--dark-light);
   box-shadow: var(--btn-shadow);
 
-  &[data-hovered] {
-    background: var(--dark-lightest);
-    box-shadow: var(--btn-shadow-hover);
-  }
-
+  &:active,
   &[data-pressed] {
     box-shadow: var(--btn-shadow-press);
-    border-color: var(--text-white);
+    border: var(--border-white);
+    background: var(--dark-lightest);
   }
 
-  &[data-native-reactions] {
-    &:hover {
+  @media (--desktop) {
+    &:hover,
+    &[data-hovered] {
       background: var(--dark-lightest);
       box-shadow: var(--btn-shadow-hover);
     }
-
-    &:active {
-      box-shadow: var(--btn-shadow-press);
-      border-color: var(--text-white);
-    }
   }
 }
+
 @define-mixin btn-square {
   border: 1px solid transparent;
-  background-color: var(--dark);
+  background: var(--dark);
 
-  &[data-hovered] {
-    background: var(--dark-light);
-  }
-
+  &:active,
   &[data-pressed] {
-    border-color: var(--border-white);
+    background: var(--dark-lightest);
+    border: var(--border-white);
   }
 
-  &[data-native-reactions] {
+  @media (--desktop) {
     &:hover,
-    &:focus {
+    &[data-hovered] {
       background: var(--dark-light);
-    }
-    &:active {
-      border-color: var(--border-white);
     }
   }
 }
 @define-mixin btn-square-light-add-ons {
   background: var(--dark-light);
-  &[data-hovered] {
-    background: var(--dark-lightest);
-  }
-  &[data-native-reactions] {
-    &:hover {
+
+  @media (--desktop) {
+    &:hover,
+    &[data-hovered] {
       background: var(--dark-lightest);
     }
   }
 }
-@define-mixin link-sidenav {
+
+@define-mixin native-link-nav {
   transition: var(--btn-transition);
 
   display: flex;
@@ -120,23 +120,32 @@
     opacity: 0;
   }
 
-  &:hover {
+  &:active,
+  &[data-pressed] {
     background: var(--dark-light);
-    & div[data-arrow] {
-      opacity: 1;
-      transform: translateX(0.4rem);
-    }
-  }
-  &:active {
-    background: var(--dark-lightest);
     border: var(--border-white);
   }
-  &:focus-visible {
-    background: var(--dark-light);
-    outline: var(--outline-show);
+
+  @media (--desktop) {
+    &:hover,
+    &[data-hovered] {
+      background: var(--dark-light);
+      & div[data-arrow] {
+        opacity: 1;
+        transform: translateX(0.4rem);
+      }
+    }
+  }
+
+  @media (--tablet) {
     & div[data-arrow] {
       opacity: 1;
-      transform: translateX(0.4rem);
+    }
+  }
+
+  &:focus-visible {
+    & div[data-arrow] {
+      opacity: 1;
     }
   }
 }
@@ -156,6 +165,6 @@
   @mixin btn-square;
   @mixin btn-square-light-add-ons;
 }
-.btn-menu {
-  @mixin link-sidenav;
+.native-link-nav {
+  @mixin native-link-nav;
 }

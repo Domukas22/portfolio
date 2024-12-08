@@ -16,6 +16,10 @@
   height: var(--tiny-nav-height);
   min-height: var(--tiny-nav-height);
 
+  &[data-flex="true"] {
+    flex: 1;
+  }
+
   & [data-logo-img] {
     width: calc(var(--tiny-nav-height) - 2rem);
     height: calc(var(--tiny-nav-height) - 2rem);

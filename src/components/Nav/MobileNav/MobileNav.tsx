@@ -8,6 +8,7 @@ import Link from "next/link";
 import css from "./MobileNav.module.css";
 import Btn from "@/components/Btn/Btn";
 import { ICON_dropDownArrow } from "@/components/Icons/Icons";
+import LogoCorner_BTN from "@/components/LogoCorner_BTN/LogoCorner_BTN";
 
 interface MobileNav_PROPS {
   TOGGLE_mobileMenu: () => void;
@@ -19,18 +20,12 @@ export default function MobileNav({
   return (
     <nav className={css.mobileNav}>
       <ul>
-        <Link href="/" className={css.logo}>
-          <div className={css.logo_IMG} />
-          <span className="weight-600 text-[var(--text-white)]">
-            Domas Sirbike
-          </span>
-        </Link>
+        <LogoCorner_BTN flex />
 
         <li data-btn-projects>
           <Link
             href="/"
             className="btn-square-light"
-            data-native-reactions
             data-light-left-border-color
           >
             My projects
@@ -40,7 +35,6 @@ export default function MobileNav({
           <Link
             href="/"
             className="btn-square-light"
-            data-native-reactions
             data-light-left-border-color
           >
             React out to me

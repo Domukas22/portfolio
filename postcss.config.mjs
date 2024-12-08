@@ -12,7 +12,9 @@
 /** @type {import('postcss-load-config').Config} */
 const config = {
   plugins: {
+    "postcss-import": {}, // This allows importing other CSS files
     "postcss-mixins": {}, // First, resolve mixins
+    "postcss-custom-media": {}, // Resolve custom media queries next
     "postcss-nested": {}, // Then process nested rules
     "postcss-nesting": {}, // Follow CSS nesting spec (optional, but usually before Tailwind)
     tailwindcss: {}, // TailwindCSS needs to process after nesting
