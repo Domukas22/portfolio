@@ -37,7 +37,8 @@
 
   /* ------------------------------------------------------------------------------- */
   /* Sizing */
-  --tiny-nav-height: 5.5rem;
+  --nav-height: 6rem;
+  --tiny-nav-height: 4rem;
   --side-nav-width: 30rem;
   --mobile-padding: 4vmin;
   --btn-transition: 150ms;

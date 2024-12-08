@@ -1,0 +1,21 @@
+/*  */
+/*  */
+/*  */
+
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop (min-width: 991px);
+
+.projectDesktopNav {
+  & li {
+    display: flex;
+    align-items: center;
+    padding: 0 0.6rem;
+  }
+  & li:first-child {
+    margin-left: 0.8rem;
+  }
+
+  @media (--tablet) {
+    display: none;
+  }
+}

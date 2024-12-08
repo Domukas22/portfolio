@@ -2,6 +2,23 @@
 /*  */
 /*  */
 
+@define-mixin SHOW_longLogo {
+  span[data-logo-text-long] {
+    display: flex;
+  }
+  span[data-logo-text-short] {
+    display: none;
+  }
+}
+@define-mixin SHOW_shortLogo {
+  span[data-logo-text-long] {
+    display: none;
+  }
+  span[data-logo-text-short] {
+    display: flex;
+  }
+}
+
 .logoBtn {
   --right-side-padding: 1.6rem;
 
@@ -9,20 +26,16 @@
   top: 0;
   z-index: 10;
 
-  border-bottom: var(--border-light);
   gap: 1.2rem;
 
   padding: 0 var(--right-side-padding) 0 1.2rem;
-  height: var(--tiny-nav-height);
-  min-height: var(--tiny-nav-height);
-
-  &[data-flex="true"] {
-    flex: 1;
-  }
+  height: var(--nav-height);
+  min-height: var(--nav-height);
+  flex: 1;
 
   & [data-logo-img] {
-    width: calc(var(--tiny-nav-height) - 2rem);
-    height: calc(var(--tiny-nav-height) - 2rem);
+    width: calc(var(--nav-height) - 2rem);
+    height: calc(var(--nav-height) - 2rem);
     border-radius: 10rem;
 
     box-shadow: var(--btn-shadow);
@@ -36,5 +49,13 @@
     font-weight: 600;
     margin-right: auto;
     color: var(--text-white);
+  }
+
+  @media (min-width: 381px) {
+    @mixin SHOW_longLogo;
+  }
+
+  @media (max-width: 380px) {
+    @mixin SHOW_shortLogo;
   }
 }

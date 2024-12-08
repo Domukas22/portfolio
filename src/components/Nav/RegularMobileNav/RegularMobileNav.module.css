@@ -1,0 +1,24 @@
+/*  */
+/*  */
+/*  */
+
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop (min-width: 991px);
+
+.regularMobileNav {
+  @media (max-width: 630px) {
+    & [data-btn-contact] {
+      display: none;
+    }
+  }
+
+  @media (max-width: 520px) {
+    & [data-btn-projects] {
+      display: none;
+    }
+  }
+
+  @media (--desktop) {
+    display: none;
+  }
+}

@@ -7,7 +7,7 @@
 import { Button, PressEvent } from "react-aria-components";
 import clsx, { ClassValue } from "clsx";
 import MERGE_htmlElementAttributes from "@/utils/MERGE_htmlElementAttributes";
-import React from "react";
+import React, { CSSProperties } from "react";
 
 interface Btn_PROPS {
   text?: string;
@@ -24,6 +24,7 @@ interface Btn_PROPS {
   //   disabled?: boolean;
   //   tabIndex?: number;
   children?: React.ReactNode;
+  style?: CSSProperties;
 }
 
 export default function Btn({
@@ -35,6 +36,7 @@ export default function Btn({
   right_ICON,
   extraAttributes,
   children,
+  style,
 }: Btn_PROPS) {
   return (
     <Button
@@ -47,6 +49,7 @@ export default function Btn({
         // }
       }}
       {...MERGE_htmlElementAttributes(extraAttributes)}
+      {...style}
     >
       {text}
       {right_ICON}

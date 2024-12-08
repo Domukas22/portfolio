@@ -6,6 +6,8 @@ import Btn from "@/components/Btn/Btn";
 import { Dialog, Modal } from "react-aria-components";
 import React from "react";
 import { ICON_x } from "../Icons/Icons";
+import StickyTopNav from "../Nav/StickyTopNav/StickyTopNav";
+import Modal_HEADER from "../Modal_HEADER/Modal_HEADER";
 
 interface props {
   IS_open: boolean;
@@ -18,10 +20,10 @@ interface props {
 }
 
 export default function Custom_MODAL({
-  TOGGLE_open,
+  TOGGLE_open = () => {},
   IS_open,
   children,
-  title,
+  title = "Custom modal title",
   withHeader,
   fullscreen,
   ariaLabel = "Modal",
@@ -38,23 +40,7 @@ export default function Custom_MODAL({
         aria-label={ariaLabel}
         data-fullscreen={fullscreen}
       >
-        {withHeader && (
-          <div className={css.header}>
-            <h3 className="fs-18 fw-600">{title || "INSERT TITLE"}</h3>
-            <Btn
-              //   styling={["btn-40", "round", "grey"]}
-              right_ICON={<ICON_x color="dark" />}
-              onClick={TOGGLE_open}
-              className="tinyNavBtn"
-            />
-          </div>
-        )}
-        <Btn
-          //   styling={["btn-40", "round", "grey"]}
-          right_ICON={<ICON_x color="dark" />}
-          onClick={TOGGLE_open}
-          className="tinyNavBtn"
-        />
+        {withHeader && <Modal_HEADER {...{ title, TOGGLE_open }} />}
         {children}
       </Dialog>
     </Modal>

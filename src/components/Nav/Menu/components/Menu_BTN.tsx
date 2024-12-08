@@ -5,7 +5,7 @@
 import { ICON_arrow } from "@/components/Icons/Icons";
 import Link from "next/link";
 
-export function SideNav_BTN({
+export function Menu_BTN({
   title = "Btn title",
   subtitle,
   link = "/",

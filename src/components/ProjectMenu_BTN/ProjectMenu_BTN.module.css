@@ -1,0 +1,53 @@
+/*  */
+/*  */
+/*  */
+
+.projectCorner_BTN {
+  --side-padding: 1.2rem;
+  --extra-space-for-arrow: 0.4rem;
+
+  padding-left: var(--side-padding);
+  padding-right: var(--side-padding);
+
+  width: inherit;
+
+  position: sticky;
+  top: var(--nav-height);
+  z-index: 10;
+  gap: 1.2rem;
+  flex: 1;
+
+  & [data-text-wrap] {
+    flex: 1;
+    text-align: start;
+    width: inherit;
+  }
+
+  gap: 0;
+  height: var(--nav-height);
+
+  & [data-project-name] {
+    color: var(--text-white-dimm);
+    font-weight: 300;
+  }
+  & [data-current-tab-title] {
+    font-weight: 700;
+  }
+
+  & [data-project-name],
+  & [data-current-tab-title] {
+    width: calc(
+      100% - 1.6rem /* dd arrow width */ -
+        calc(var(--side-padding) + var(--extra-space-for-arrow))
+    );
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  & [data-arrow] {
+    display: block;
+    position: absolute;
+    right: calc(var(--side-padding) + var(--extra-space-for-arrow));
+  }
+}

@@ -15,14 +15,14 @@ export const metadata: Metadata = {
   description: "This is the home page",
 };
 
-export default async function LocaleLayout({
+export default async function HomePage_LAYOUT({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="flex">{children}</body>
     </html>
   );
 }
