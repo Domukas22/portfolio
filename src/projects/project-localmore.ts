@@ -74,6 +74,18 @@ export function Localmore_PROJECT() {
           shortTab_TITLE: "Short section 3",
           longTab_TITLE: "This is the title of tab 3, section 3",
         },
+        {
+          type: "type3",
+          slug: "section-4",
+          shortTab_TITLE: "Short section 4",
+          longTab_TITLE: "This is the title of tab 3, section 4",
+        },
+        {
+          type: "type3",
+          slug: "section-5",
+          shortTab_TITLE: "Short section 5",
+          longTab_TITLE: "This is the title of tab 3, section 5",
+        },
       ],
     },
     {

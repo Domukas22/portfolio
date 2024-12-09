@@ -86,6 +86,10 @@
       background: var(--dark-light);
     }
   }
+
+  &[data-active="true"] {
+    background-color: rgb(128, 113, 87) !important;
+  }
 }
 @define-mixin btn-square-light-add-ons {
   background: var(--dark-light);

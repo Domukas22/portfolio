@@ -1,12 +1,8 @@
-///
-//
-//
-
 "use client";
 
 import { Projects } from "@/projects";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import LogoCorner_BTN from "../../LogoCorner_BTN/LogoCorner_BTN";
 import MobileMenu_MODAL from "../../MobileMenu_MODAL/MobileMenu_MODAL";
 
@@ -21,6 +17,7 @@ import Image from "next/image";
 import ProjectDesktopNav from "@/components/Nav/ProjectDesktopNav/ProjectDesktopNav";
 import SET_urlParams from "@/utils/SET_urlParams";
 import ProjectTab_BTNS from "@/components/ProjectTab_BTNS/ProjectTab_BTNS";
+import HANDLE_projectTabsOnLoad from "@/utils/HANDLE_projectTabsOnLoad";
 
 // ===================================================================
 // TODO ==> implement scroll spy: https://blog.maximeheckel.com/posts/scrollspy-demystified/
@@ -51,9 +48,34 @@ export default function ProjectPage_CONTENT() {
   };
 
   useEffect(
-    () => HANDLE_tabsOnLoad({ tab, CHANGE_tab, project, params, router }),
+    () =>
+      HANDLE_projectTabsOnLoad({ tab, CHANGE_tab, project, params, router }),
     []
   );
+
+  // -------------------------------------------------------------------------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------------
+  const [sectionRefs, setSectionRefs] = useState<HTMLElement[]>([]);
+  const [activeSectionIndex, setActiveSectionIndex] = useState(-1);
+
+  // Use the useScrollspy hook
+  const activeIndex = useScrollspy(sectionRefs, { offset: 100 });
+
+  useEffect(() => {
+    // Update the active section index
+    setActiveSectionIndex(activeIndex);
+    console.log("Active section index updated:", activeIndex);
+  }, [activeIndex]);
+
+  useEffect(() => {
+    const sections = tab?.sections?.map((section) =>
+      document.getElementById(section.slug)
+    );
+    setSectionRefs(sections || []); // Store in state
+  }, [tab]);
+
+  // -------------------------------------------------------------------------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------------
 
   return (
     <>
@@ -70,11 +92,12 @@ export default function ProjectPage_CONTENT() {
         <ProjectTab_BTNS
           all_TABS={project?.tabs}
           current_TAB={tab}
+          activeIndex={activeSectionIndex}
           {...{ CHANGE_tab }}
         />
       </SideNav>
 
-      <div className="flex-1">
+      <div className="flex-1 pb-[50rem]">
         <ProjectMobileNav
           project_NAME={project?.name}
           project_TABTITLE={tab?.title}
@@ -97,13 +120,13 @@ export default function ProjectPage_CONTENT() {
             alt=""
           />
         </div>
-        {/* <p
-          dangerouslySetInnerHTML={{
-            __html: tab?.sections?.[0]?.longTab_TITLE,
-          }}
-        /> */}
+
         {tab?.sections?.map((section) => (
-          <section key={section.slug} id={section.slug}>
+          <section
+            key={section.slug}
+            id={section.slug}
+            className="pb-[50rem] border-red-200 border-2"
+          >
             <div className="container">
               <h1
                 dangerouslySetInnerHTML={{
@@ -113,6 +136,8 @@ export default function ProjectPage_CONTENT() {
             </div>
           </section>
         ))}
+
+        <div className="fixed z-50 top-0 w-full bg-gray-500 h-[100px] opacity-45"></div>
       </div>
 
       <MobileMenu_MODAL
@@ -123,30 +148,71 @@ export default function ProjectPage_CONTENT() {
   );
 }
 
-function HANDLE_tabsOnLoad({ tab, CHANGE_tab, project, params, router }) {
-  const tabUrlSlug = params.get("tab");
-  const first_TAB = project?.tabs?.[0];
+// =============================================================================================
+// =============================================================================================
+// =============================================================================================
 
-  if (!tabUrlSlug) {
-    if (!tab) return CHANGE_tab(first_TAB);
-    return SET_urlParams({
-      params,
-      router,
-      toDelete_ARR: ["tab"],
-      toAdd_ARR: [["tab", tab?.slug]],
+function useScrollspy(
+  elements: HTMLElement[],
+  options?: { offset?: number; root?: HTMLElement }
+): number {
+  const [currentIndex, setCurrentIndex] = useState(-1);
+  const rootMargin = `-${options?.offset || 0}px 0px 0px 0px`;
+  const observer = useRef<IntersectionObserver | null>(null);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    if (observer.current) {
+      observer.current.disconnect();
+    }
+
+    observer.current = new IntersectionObserver(
+      (entries) => {
+        // Track scroll direction (down or up)
+        const scrollDirection =
+          window.scrollY > lastScrollY.current ? "down" : "up";
+        lastScrollY.current = window.scrollY;
+
+        // Sort entries based on their position in the viewport
+        const visibleEntries = entries.filter((entry) => entry.isIntersecting);
+
+        if (visibleEntries.length === 0) {
+          return;
+        }
+
+        // Find the entry that is most visible based on scroll direction
+        const mostVisible = visibleEntries.reduce((prev, current) => {
+          if (scrollDirection === "down") {
+            return prev.boundingClientRect.top > current.boundingClientRect.top
+              ? prev
+              : current;
+          } else {
+            return prev.boundingClientRect.top < current.boundingClientRect.top
+              ? prev
+              : current;
+          }
+        });
+
+        const index = elements.findIndex((el) => el === mostVisible.target);
+
+        if (index !== -1) {
+          setCurrentIndex(index);
+        }
+      },
+      { root: options?.root || null, rootMargin }
+    );
+
+    const { current: currentObserver } = observer;
+
+    // Observe the elements
+    elements.forEach((el) => {
+      if (el) {
+        currentObserver.observe(el);
+      }
     });
-  }
 
-  if (!tab) {
-    const targetTab = project?.tabs?.find((tab) => tab.slug === tabUrlSlug);
-    if (!targetTab) return CHANGE_tab(first_TAB);
+    return () => currentObserver.disconnect();
+  }, [elements, rootMargin, options?.root]);
 
-    return CHANGE_tab(targetTab);
-  }
-
-  if (tab?.slug !== tabUrlSlug) {
-    const targetTab = project?.tabs?.find((tab) => tab.slug === tabUrlSlug);
-    if (!targetTab) return CHANGE_tab(first_TAB);
-    return CHANGE_tab(targetTab);
-  }
+  return currentIndex;
 }
