@@ -10,7 +10,7 @@ export function ICON_dropDownArrow({
   extraAttributes,
   ...props
 }: {
-  color?: "white";
+  color?: "white" | "main";
   extraAttributes?: string[];
 } & React.HTMLAttributes<HTMLDivElement>) {
   return (
@@ -35,12 +35,12 @@ export function ICON_dropDownArrow({
   );
 }
 export function ICON_x({
-  color = "dark",
+  color = "white",
   big = false,
   extraAttributes,
   ...props
 }: {
-  color?: "dark";
+  color?: "white" | "main";
   big?: boolean;
   extraAttributes?: string[];
 } & React.HTMLAttributes<HTMLDivElement>) {

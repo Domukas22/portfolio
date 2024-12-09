@@ -30,8 +30,6 @@
   column-gap: 0.8rem;
   transition: 100ms;
 
-  font-weight: 400;
-  color: var(--text-white);
   outline: var(--outline-hide);
 
   & * {
@@ -44,6 +42,15 @@
   }
   &[data-light-bottom-border-color="true"] {
     border-bottom: var(--border-light);
+  }
+  &[data-light-top-border-color="true"] {
+    border-top: var(--border-light);
+  }
+  &[data-text-flex] {
+    & p,
+    & span {
+      margin-right: auto;
+    }
   }
 
   @mixin outline;
@@ -77,7 +84,9 @@
   &[data-pressed] {
     background: var(--dark-lightest);
     border: var(--border-white);
-    color: var(--text-white);
+    & * {
+      color: var(--text-white);
+    }
   }
 
   @media (--desktop) {
@@ -88,7 +97,13 @@
   }
 
   &[data-active="true"] {
-    background-color: rgb(128, 113, 87) !important;
+    background-color: var(--bg-main) !important;
+
+    & span,
+    p,
+    a {
+      color: var(--text-main) !important;
+    }
   }
 }
 @define-mixin btn-square-light-add-ons {

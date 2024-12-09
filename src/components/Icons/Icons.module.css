@@ -5,13 +5,20 @@
 .ICON_dropDownArrow {
   width: 1.6rem;
   height: 1.6rem;
+  min-width: 1.6rem;
+  min-height: 1.6rem;
   justify-content: center;
   align-content: center;
   padding: 0.15rem 0.42rem 0 0.42rem;
 
   &[data-color="white"] {
     & path {
-      fill: white;
+      fill: var(--text-white);
+    }
+  }
+  &[data-color="main"] {
+    & path {
+      fill: var(--text-main);
     }
   }
 }
@@ -19,28 +26,35 @@
 .ICON_x {
   width: 1.6rem;
   height: 1.6rem;
+  min-width: 1.6rem;
+  min-height: 1.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: 100ms;
   position: relative;
 
-  &[data-big="true"] {
-    width: 2rem;
-    height: 2rem;
-    min-width: 2rem;
-    min-height: 2rem;
-  }
-
   &::before,
   &::after {
     transition: 100ms;
     content: "";
     position: absolute;
-    width: 0.2rem;
+    width: 0.24rem;
     height: 100%;
-    background-color: white;
+    background-color: var(--text-white);
     border-radius: 5rem;
+  }
+
+  &[data-big="true"] {
+    width: 2rem;
+    height: 2rem;
+    min-width: 2rem;
+    min-height: 2rem;
+
+    &::before,
+    &::after {
+      width: 0.24rem;
+    }
   }
 
   &::before {
@@ -54,7 +68,13 @@
   &[data-color="white"] {
     &::before,
     &::after {
-      background-color: white;
+      background-color: var(--text-white);
+    }
+  }
+  &[data-color="main"] {
+    &::before,
+    &::after {
+      background-color: var(--text-main);
     }
   }
 }

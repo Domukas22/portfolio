@@ -1,0 +1,131 @@
+/*  */
+/*  */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 100dvh !important;
+  width: 100%;
+  z-index: 60;
+
+  & .dialog {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    background-color: var(--fill-bg);
+    box-shadow: 0 0.6rem 1.2rem rgba(0, 0, 0, 0.8);
+    transition: all 5.2s ease-out;
+
+    height: 100%;
+
+    &[data-fullscreen="true"] {
+      height: 100%;
+      border-radius: 0;
+      animation: fade;
+    }
+
+    & [data-menu-content] {
+      flex: 1;
+      overflow-y: auto;
+
+      & li {
+        width: 100%;
+
+        & button,
+        & a {
+          width: 100%;
+        }
+      }
+    }
+
+    & [data-animate-li] {
+      & li {
+        position: relative;
+
+        &:not([data-modal-header]) {
+          opacity: 0;
+          animation: li_fade 0.3s forwards;
+        }
+
+        &:nth-child(2) {
+          animation-delay: 0.05s;
+        }
+        &:nth-child(3) {
+          animation-delay: 0.1s;
+        }
+        &:nth-child(4) {
+          animation-delay: 0.15s;
+        }
+        &:nth-child(5) {
+          animation-delay: 0.2s;
+        }
+        &:nth-child(6) {
+          animation-delay: 0.25s;
+        }
+        &:nth-child(7) {
+          animation-delay: 0.3s;
+        }
+        &:nth-child(8) {
+          animation-delay: 0.35s;
+        }
+        &:nth-child(9) {
+          animation-delay: 0.4s;
+        }
+        &:nth-child(10) {
+          animation-delay: 0.45s;
+        }
+        &:nth-child(11) {
+          animation-delay: 0.5s;
+        }
+        &:nth-child(12) {
+          animation-delay: 0.55s;
+        }
+        &:nth-child(13) {
+          animation-delay: 0.6s;
+        }
+      }
+    }
+  }
+
+  &[data-entering] {
+    animation: fade 200ms ease-in-out;
+  }
+
+  &[data-exiting] {
+    animation: fade 150ms reverse ease-in;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes grow {
+  from {
+    height: 0%;
+  }
+  to {
+    height: 100%;
+  }
+}
+@keyframes li_fade {
+  from {
+    opacity: 0;
+    /* transform: translateX(-4rem); */
+    transform: translateY(-1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0rem);
+    /* transform: translateX(0rem); */
+  }
+}

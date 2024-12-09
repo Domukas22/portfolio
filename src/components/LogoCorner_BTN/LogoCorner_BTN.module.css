@@ -29,13 +29,13 @@
   gap: 1.2rem;
 
   padding: 0 var(--right-side-padding) 0 1.2rem;
-  height: var(--nav-height);
-  min-height: var(--nav-height);
+  height: calc(var(--tiny-nav-height) + 0.1rem);
+  min-height: calc(var(--tiny-nav-height) + 0.1rem);
   flex: 1;
 
   & [data-logo-img] {
-    width: calc(var(--nav-height) - 2rem);
-    height: calc(var(--nav-height) - 2rem);
+    width: calc(var(--nav-height) - 3rem);
+    height: calc(var(--nav-height) - 3rem);
     border-radius: 10rem;
 
     box-shadow: var(--btn-shadow);

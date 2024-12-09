@@ -17,6 +17,10 @@
   --text-white: var(--white-95);
   --text-white-dimm: var(--white-75);
 
+  --text-main: #fe8c5f;
+  --fill-main: #fe8c5f;
+  --bg-main: rgb(32 28 26);
+
   --main-text: var(--brown-text);
   --main-bg: var(--brown-bg);
   /* ------------------------------------------------------------------------------- */
@@ -39,7 +43,8 @@
   /* Sizing */
   --nav-height: 6rem;
   --tiny-nav-height: 4rem;
-  --side-nav-width: 30rem;
+  --tiny-nav-height-plus-1: 4.1rem;
+  --side-nav-width: 28rem;
   --mobile-padding: 4vmin;
   --btn-transition: 150ms;
 

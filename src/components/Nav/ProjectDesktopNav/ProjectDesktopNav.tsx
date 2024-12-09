@@ -11,11 +11,13 @@ import MobileMenu_BTN from "@/components/MobileMenu_BTN";
 import Btn from "@/components/Btn/Btn";
 import Link from "next/link";
 import SCROLL_toTop from "@/utils/SCROLL_toTop";
+import { ICON_arrow } from "@/components/Icons/Icons";
 
 interface ProjectDesktopNav_PROPS {
   project_NAME: string;
   tab_TITLE: string;
   project_SLUG: string;
+  CHANGE_toFirstTab: () => void;
   OPEN_menu: () => void;
 }
 
@@ -23,6 +25,7 @@ export default function ProjectDesktopNav({
   project_NAME = "Project name",
   tab_TITLE = "Tab title",
   project_SLUG,
+  CHANGE_toFirstTab = () => {},
   OPEN_menu = () => {},
 }: ProjectDesktopNav_PROPS) {
   return (
@@ -37,6 +40,14 @@ export default function ProjectDesktopNav({
       />
       <span className="h-full content-center">{">"}</span>
       <TinyDesktopNav_LINK text={tab_TITLE} last />
+      <Btn
+        btnType="btn-square-light"
+        text="Menu"
+        right_ICON={<ICON_arrow direction="right" />}
+        extraAttributes={['data-light-left-border-color="true"']}
+        className=""
+        onClick={OPEN_menu}
+      />
     </StickyTopNav>
   );
 }
@@ -51,12 +62,12 @@ function TinyDesktopNav_LINK({
   last?: boolean;
 }) {
   return (
-    <li>
+    <li style={{ flex: last ? 1 : 0 }}>
       {last ? (
         <Btn
           btnType="btn-square-light"
           text={text}
-          className="px-[0.8rem] !h-[3.2rem] rounded-full"
+          className="px-[0.8rem] !h-[3.2rem] rounded-full "
           onClick={SCROLL_toTop}
         />
       ) : (

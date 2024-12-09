@@ -1,12 +1,9 @@
 //
 //
 
-import css from "./Custom_MODAL.module.css";
-import Btn from "@/components/Btn/Btn";
+import css from "./Mobile_MODAL.module.css";
 import { Dialog, Modal } from "react-aria-components";
 import React from "react";
-import { ICON_x } from "../Icons/Icons";
-import StickyTopNav from "../Nav/StickyTopNav/StickyTopNav";
 import Modal_HEADER from "../Modal_HEADER/Modal_HEADER";
 
 interface props {
@@ -19,7 +16,7 @@ interface props {
   ariaLabel?: string;
 }
 
-export default function Custom_MODAL({
+export default function Mobile_MODAL({
   TOGGLE_open = () => {},
   IS_open,
   children,

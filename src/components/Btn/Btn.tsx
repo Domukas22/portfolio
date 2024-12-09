@@ -14,6 +14,7 @@ interface Btn_PROPS {
   onClick?: (e: PressEvent) => void;
   className?: ClassValue;
   // FIRE_clickEvent?: boolean;
+  left_ICON?: React.ReactNode;
   right_ICON?: React.ReactNode;
   btnType: "btn" | "btn-square" | "btn-square-light";
   extraAttributes?: string[];
@@ -25,6 +26,7 @@ interface Btn_PROPS {
   //   tabIndex?: number;
   children?: React.ReactNode;
   style?: CSSProperties;
+  text_STYLES?: CSSProperties;
 }
 
 export default function Btn({
@@ -33,10 +35,12 @@ export default function Btn({
   className,
   onClick,
   // FIRE_clickEvent,
+  left_ICON,
   right_ICON,
   extraAttributes,
   children,
   style,
+  text_STYLES,
 }: Btn_PROPS) {
   return (
     <Button
@@ -51,7 +55,8 @@ export default function Btn({
       {...MERGE_htmlElementAttributes(extraAttributes)}
       {...style}
     >
-      {text}
+      {left_ICON}
+      {text && <span style={text_STYLES}>{text}</span>}
       {right_ICON}
       {children}
     </Button>
