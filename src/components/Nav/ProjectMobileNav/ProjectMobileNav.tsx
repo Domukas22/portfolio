@@ -24,9 +24,10 @@ export default function ProjectMobileNav({
   project_TABTITLE = "Current project tab",
   OPEN_mobileMenu = () => {},
   OPEN_mobileProjectMenu,
+  _ref,
 }: ProjectMobileNav_PROPS) {
   return (
-    <StickyTopNav targetClass={css.projectMobileNav}>
+    <StickyTopNav targetClass={css.projectMobileNav} _ref={_ref}>
       <ProjectMenu_BTN
         {...{ project_NAME, project_TABTITLE, OPEN_mobileProjectMenu }}
       />

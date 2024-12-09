@@ -7,6 +7,6 @@
 
 .projectMobileNav {
   @media (--desktop) {
-    display: none;
+    display: none !important;
   }
 }

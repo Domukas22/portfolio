@@ -2,8 +2,10 @@
 //
 //
 
-export function Localmore_PROJECT() {
-  const tabs = [
+import { ProjectTabs_TYPE } from ".";
+
+export function Localmore_PROJECT(): ProjectTabs_TYPE[] {
+  const tabs: ProjectTabs_TYPE[] = [
     {
       title: "Tab 1",
       slug: "tab-1",

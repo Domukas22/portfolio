@@ -1,6 +1,6 @@
 "use client";
 
-import { Projects } from "@/projects";
+import { Projects, ProjectSection_TYPE, ProjectTabs_TYPE } from "@/projects";
 import { useParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import LogoCorner_BTN from "../../LogoCorner_BTN/LogoCorner_BTN";
@@ -17,9 +17,16 @@ import HANDLE_projectTabsOnLoad from "@/utils/HANDLE_projectTabsOnLoad";
 import MobileProjectMenu_MODAL from "@/components/MobileProjectMenu_MODAL/MobileProjectMenu_MODAL";
 import DesktopMenu_MODAL from "@/components/DesktopMenu_MODAL/DesktopMenu_MODAL";
 import Menu_ITEMS from "@/components/Nav/Menu/Menu_ITEMS";
+import HANDLE_stickyNavTop from "@/utils/HANDLE_stickyNavTop";
+import SCROLL_to from "@/utils/SCROLL_to";
 
 // ===================================================================
-// Scroll Spy Implementation
+// Todo: The loading AND the manual tab switching should both worh with same funciton
+// ---> when swtichign manually, we simply change the url.
+// ---> a useEffect hook then adjusts the tab state
+
+// ---> sidenote, the opened/closed tags should be handled here, not in Tab_DD
+// ---> create am array state of currently open tabs
 // ===================================================================
 
 export default function ProjectPage_CONTENT() {
@@ -27,7 +34,17 @@ export default function ProjectPage_CONTENT() {
   const project = { ...Projects[slug], tabs: Projects[slug]?.GET_tabs() };
   const params = useSearchParams();
   const router = useRouter();
-  const [initial, SET_initial] = useState(true);
+
+  const sideNav_REF = useRef<HTMLElement | null>(null);
+  const tinyNavNav_REF = useRef<HTMLElement | null>(null);
+
+  const [hideContent, SET_hideContent] = useState(true);
+  const [hideTabs, SET_hideTabs] = useState(true);
+  const [current_TAB, SET_currentTab] = useState(project?.tabs?.[0]);
+
+  const { activeSectionIndex, sectionRefs } = USE_scrollSpy({
+    tab: current_TAB,
+  });
 
   const { state: IS_menuOpen, SET_state: SET_menuOpen } = USE_Toggle(false);
   const { state: IS_mobileMenuOpen, SET_state: SET_mobileMenuOpen } =
@@ -35,14 +52,7 @@ export default function ProjectPage_CONTENT() {
   const { state: IS_mobileProjectOpen, SET_state: SET_mobileProjectMenuOpen } =
     USE_Toggle(false);
 
-  const [current_TAB, SET_currentTab] = useState(project?.tabs?.[0]);
-  const [hideContent, SET_hideContent] = useState(false);
-
-  const { activeSectionIndex, sectionRefs } = USE_scrollSpy({
-    tab: current_TAB,
-  });
-
-  const CHANGE_tab = (tab) => {
+  const CHANGE_tab = (tab: ProjectTabs_TYPE) => {
     SET_currentTab(tab);
     SET_urlParams({
       params,
@@ -50,23 +60,19 @@ export default function ProjectPage_CONTENT() {
       toDelete_ARR: ["tab"],
       toAdd_ARR: [["tab", tab?.slug]],
     });
-
-    setTimeout(() => {
-      document.getElementById(tab?.slug)?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-    }, 1);
   };
 
-  const navigate = ({ incoming_TAB, section }) => {
+  const navigate = ({
+    incoming_TAB,
+    section,
+  }: {
+    incoming_TAB: ProjectTabs_TYPE;
+    section: ProjectSection_TYPE;
+  }) => {
     if (hideContent) return;
 
     if (current_TAB?.slug === incoming_TAB?.slug) {
-      document.getElementById(section?.slug)?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
+      SCROLL_to({ target_ID: section?.slug });
       return;
     }
 
@@ -74,20 +80,10 @@ export default function ProjectPage_CONTENT() {
     SET_hideContent(true);
 
     setTimeout(() => {
-      SET_currentTab(incoming_TAB);
-      SET_urlParams({
-        params,
-        router,
-        toDelete_ARR: ["tab"],
-        toAdd_ARR: [["tab", incoming_TAB?.slug]],
-      });
+      CHANGE_tab(incoming_TAB);
 
       setTimeout(() => {
-        document.getElementById(section?.slug)?.scrollIntoView({
-          behavior: "instant",
-          block: "start",
-        });
-
+        SCROLL_to({ target_ID: section?.slug, instant: true });
         setTimeout(() => {
           SET_hideContent(false);
         }, 100);
@@ -103,14 +99,23 @@ export default function ProjectPage_CONTENT() {
       params,
       router,
     });
-    SET_initial(false);
+    SET_hideTabs(false);
+    SET_hideContent(false);
   }, []);
 
-  useEffect(() => console.log(params.get("tab")), [params]);
+  useEffect(
+    () =>
+      // when desktop modal opens, adjust the top value of the refs, sot hey dont disappear
+      HANDLE_stickyNavTop({
+        stickyEls: [sideNav_REF?.current, tinyNavNav_REF?.current],
+        IS_0: !IS_menuOpen,
+      }),
+    [IS_menuOpen]
+  );
 
   return (
     <>
-      <SideNav>
+      <SideNav _ref={sideNav_REF}>
         <LogoCorner_BTN insideTinyNav={false} />
 
         <li>
@@ -122,22 +127,19 @@ export default function ProjectPage_CONTENT() {
             text={`Project: ${project?.name}`}
           />
         </li>
-        {!initial &&
-          project?.tabs?.map((_tab) => (
-            <Tab_DD
-              key={_tab.slug}
-              current_TAB={current_TAB}
-              activeIndex={activeSectionIndex}
-              tab={_tab}
-              {...{
-                navigate,
-                SET_loading: SET_initial,
-                loading: initial,
-                hideContent,
-                SET_mobileProjectMenuOpen,
-              }}
-            />
-          ))}
+        {project?.tabs?.map((_tab) => (
+          <Tab_DD
+            key={_tab.slug}
+            current_TAB={current_TAB}
+            activeIndex={activeSectionIndex}
+            tab={_tab}
+            {...{
+              navigate,
+              hideContent,
+              hideTabs,
+            }}
+          />
+        ))}
       </SideNav>
 
       <div className="flex-1 pb-[50rem]">
@@ -146,30 +148,25 @@ export default function ProjectPage_CONTENT() {
           project_TABTITLE={current_TAB?.title}
           OPEN_mobileMenu={() => SET_mobileMenuOpen(true)}
           OPEN_mobileProjectMenu={() => SET_mobileProjectMenuOpen(true)}
+          // _ref={mobileNav_REF}
         />
         <ProjectDesktopNav
           project_NAME={project?.name}
           project_SLUG={slug}
           tab_TITLE={current_TAB?.title}
           OPEN_menu={() => SET_menuOpen(true)}
+          _ref={tinyNavNav_REF}
+          {...{ hideContent }}
         />
-
-        {/* <div className="container">
-          <Image
-            width={2000}
-            height={450}
-            className="w-full h-[40rem] object-cover rounded-[2.4rem]"
-            src={`/projects/headers/${project.header_IMG}`}
-            alt=""
-          />
-        </div> */}
 
         {/* Render sections */}
         {current_TAB?.sections?.map((section, index) => (
           <section
             key={section.slug}
             id={section.slug}
-            ref={(el) => (sectionRefs.current[index] = el)} // Assign ref to each section
+            ref={(el) => {
+              sectionRefs.current[index] = el;
+            }}
             // className={activeSectionIndex === index ? "bg-gray-700" : ""}
             className="pb-[100rem]"
           >
@@ -206,7 +203,7 @@ export default function ProjectPage_CONTENT() {
           extraAttributes={['data-light-bottom-border-color="true"']}
           text={`Project: ${project?.name}`}
         />
-        {!initial &&
+        {!hideTabs &&
           project?.tabs?.map((_tab) => (
             <Tab_DD
               key={_tab.slug}
@@ -215,8 +212,8 @@ export default function ProjectPage_CONTENT() {
               tab={_tab}
               {...{
                 navigate,
-                SET_loading: SET_initial,
-                loading: initial,
+                SET_loading: SET_hideTabs,
+                hideTabs,
                 hideContent,
                 SET_mobileProjectMenuOpen,
               }}
@@ -241,13 +238,14 @@ export default function ProjectPage_CONTENT() {
   );
 }
 
-function USE_scrollSpy({ tab }) {
+function USE_scrollSpy({ tab }: { tab: ProjectTabs_TYPE }) {
   // Create an array of section IDs for the observer
   const sectionIds = useMemo(
     () => tab?.sections?.map((section) => section.slug),
     [tab]
   );
-  const sectionRefs = useRef([]);
+  const sectionRefs = useRef<(HTMLElement | null)[]>([]); // Explicitly declare the type
+
   const [activeSectionIndex, setActiveSectionIndex] = useState(0);
   // Scroll Spy Logic: IntersectionObserver
   useEffect(() => {

@@ -11,7 +11,7 @@
   bottom: 0;
 
   height: 100vh !important;
-  width: calc(var(--side-nav-width) + 1.4rem);
+  width: calc(var(--side-nav-width) + 1.7rem);
   z-index: 60;
 
   & .dialog {

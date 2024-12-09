@@ -2,21 +2,36 @@
 //
 //
 
-import { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Btn from "../Btn/Btn";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ICON_dropDownArrow, ICON_x } from "../Icons/Icons";
+import { ProjectSection_TYPE, ProjectTabs_TYPE } from "@/projects";
+
+interface Tab_DD {
+  tab: ProjectTabs_TYPE;
+  current_TAB: ProjectTabs_TYPE | undefined;
+  activeIndex: number;
+  hideContent: boolean;
+  hideTabs: boolean;
+  navigate: ({
+    incoming_TAB,
+    section,
+  }: {
+    incoming_TAB: ProjectTabs_TYPE;
+    section: ProjectSection_TYPE;
+  }) => void;
+}
 
 export function Tab_DD({
   tab,
   current_TAB,
-  CHANGE_tab,
   activeIndex,
   hideContent,
+  hideTabs,
   navigate,
-  SET_mobileProjectMenuOpen = () => {},
-}) {
+}: Tab_DD) {
   const IS_current = useMemo(
     () => tab?.slug === current_TAB?.slug && !hideContent,
     [current_TAB, tab, hideContent]
@@ -31,7 +46,7 @@ export function Tab_DD({
     }
   }, [animating]);
 
-  return (
+  return !hideTabs ? (
     <div
       key={tab?.slug}
       style={{
@@ -98,23 +113,7 @@ export function Tab_DD({
                         // 'data-light-bottom-border-color="true"',
                         `data-active="${activeIndex === index && IS_current}"`,
                       ]}
-                      onClick={() => {
-                        if (!IS_current) {
-                          navigate({ incoming_TAB: tab, section });
-                          (async () => {})();
-                          // CHANGE_tab(tab);
-                          return;
-                        }
-                        SET_mobileProjectMenuOpen(false);
-                        setTimeout(() => {
-                          document
-                            .getElementById(section?.slug)
-                            ?.scrollIntoView({
-                              behavior: "smooth",
-                              block: "start",
-                            });
-                        }, 1);
-                      }}
+                      onClick={() => navigate({ incoming_TAB: tab, section })}
                     >
                       <Btn_LINE active={activeIndex === index && IS_current} />
                       {/* <div className="w-[0.3rem] min-w-[0.3rem] h-auto self-stretch bg-[var(--white-10)] mr-[0.4rem] rounded-full" /> */}
@@ -130,6 +129,8 @@ export function Tab_DD({
         )}
       </AnimatePresence>
     </div>
+  ) : (
+    <p>loading...</p>
   );
 }
 

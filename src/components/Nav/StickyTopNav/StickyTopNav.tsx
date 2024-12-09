@@ -9,13 +9,19 @@ export default function StickyTopNav({
   children,
   targetClass,
   tiny = false,
+  _ref,
 }: {
   children: React.ReactNode;
   targetClass?: string;
   tiny?: boolean;
+  _ref?: React.RefObject<HTMLElement>;
 }) {
   return (
-    <nav className={`${css.stickyNav} ${targetClass}`} data-tiny={tiny}>
+    <nav
+      className={`${css.stickyNav} ${targetClass}`}
+      data-tiny={tiny}
+      ref={_ref}
+    >
       <ul>{children}</ul>
     </nav>
   );

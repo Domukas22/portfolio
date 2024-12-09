@@ -4,6 +4,21 @@
 
 import { Localmore_PROJECT } from "./project-localmore";
 
+export type ProjectSectionType_TYPE = "type1" | "type2" | "type3";
+
+export type ProjectSection_TYPE = {
+  type: ProjectSectionType_TYPE;
+  slug: string;
+  shortTab_TITLE: string;
+  longTab_TITLE: string;
+};
+
+export type ProjectTabs_TYPE = {
+  title: string;
+  slug: string;
+  sections: ProjectSection_TYPE[];
+};
+
 export type ProjectTag_TYPE =
   | "website"
   | "app"
@@ -13,7 +28,7 @@ export type ProjectTag_TYPE =
   | "coding"
   | "in-progress";
 
-export interface Project_TYPE {
+export interface ProjectIntro_TYPE {
   header_IMG: string;
   name: string;
   subtitle: string;
@@ -21,10 +36,10 @@ export interface Project_TYPE {
   emoji: string;
   firstTabSlug: string;
   tags: ProjectTag_TYPE[];
-  GET_tabs: () => void;
+  GET_tabs: () => ProjectTabs_TYPE[];
 }
 
-export const Projects: Record<string, Project_TYPE> = {
+export const Projects: Record<string, ProjectIntro_TYPE> = {
   localmore: {
     header_IMG: "header-localmore.png", // Local image path or identifier
     name: "Localmore",
