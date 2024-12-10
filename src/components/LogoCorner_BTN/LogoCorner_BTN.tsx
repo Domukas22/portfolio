@@ -20,9 +20,6 @@ export default function LogoCorner_BTN({
       style={{
         flex: insideTinyNav ? 1 : 0,
         display: "flex",
-        position: "sticky",
-        top: 0,
-        zIndex: 1,
       }}
     >
       <Clickable IS_home={pathname === "/"} {...{ insideTinyNav }}>

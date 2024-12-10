@@ -1,8 +1,13 @@
 "use client";
 
-import { Projects, ProjectSection_TYPE, ProjectTabs_TYPE } from "@/projects";
+import {
+  ProjectIntro_TYPE,
+  Projects,
+  ProjectSection_TYPE,
+  ProjectTabs_TYPE,
+} from "@/projects";
 import { useParams } from "next/navigation";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import LogoCorner_BTN from "../../LogoCorner_BTN/LogoCorner_BTN";
 import MobileMenu_MODAL from "../../MobileMenu_MODAL/MobileMenu_MODAL";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -11,107 +16,78 @@ import ProjectMobileNav from "../../Nav/ProjectMobileNav/ProjectMobileNav";
 import USE_Toggle from "@/hooks/USE_toggle";
 import Btn from "../../Btn/Btn";
 import ProjectDesktopNav from "@/components/Nav/ProjectDesktopNav/ProjectDesktopNav";
-import SET_urlParams from "@/utils/SET_urlParams";
 import { Tab_DD } from "@/components/Tab_DD/Tab_DD";
-import HANDLE_projectTabsOnLoad from "@/utils/HANDLE_projectTabsOnLoad";
 import MobileProjectMenu_MODAL from "@/components/MobileProjectMenu_MODAL/MobileProjectMenu_MODAL";
 import DesktopMenu_MODAL from "@/components/DesktopMenu_MODAL/DesktopMenu_MODAL";
 import Menu_ITEMS from "@/components/Nav/Menu/Menu_ITEMS";
-import HANDLE_stickyNavTop from "@/utils/HANDLE_stickyNavTop";
-import SCROLL_to from "@/utils/SCROLL_to";
+import USE_perserveStickyNavPosition from "@/utils/USE_perserveStickyNavPosition";
+import USE_handleTabParams from "@/hooks/USE_handleTabParams";
+import USE_scrollSpy from "@/hooks/USE_scrollSpy";
+import USE_manageTabs from "@/hooks/USE_manageTab";
+import NAVIGATE_tabs from "@/utils/NAVIGATE_tabs";
+import { ICON_arrow } from "@/components/Icons/Icons";
 
 // ===================================================================
-// Todo: The loading AND the manual tab switching should both worh with same funciton
-// ---> when swtichign manually, we simply change the url.
-// ---> a useEffect hook then adjusts the tab state
-
-// ---> sidenote, the opened/closed tags should be handled here, not in Tab_DD
-// ---> create am array state of currently open tabs
+// Todo: Show/hide the "collapse all" button with framer motion
 // ===================================================================
 
 export default function ProjectPage_CONTENT() {
   const { slug }: { slug: string } = useParams();
   const project = { ...Projects[slug], tabs: Projects[slug]?.GET_tabs() };
+
   const params = useSearchParams();
   const router = useRouter();
 
   const sideNav_REF = useRef<HTMLElement | null>(null);
   const tinyNavNav_REF = useRef<HTMLElement | null>(null);
 
-  const [hideContent, SET_hideContent] = useState(true);
-  const [hideTabs, SET_hideTabs] = useState(true);
-  const [current_TAB, SET_currentTab] = useState(project?.tabs?.[0]);
+  const [loaded, SET_loaded] = useState(false);
+
+  const { opened_TABS, TOGGLE_tab, CLOSE_allTabs } = USE_openedTabs();
+
+  const { state: IS_menuOpen, set: SET_menuOpen } = USE_Toggle(false);
+  const { state: IS_mobileMenuOpen, set: SET_mobileMenuOpen } =
+    USE_Toggle(false);
+  const { state: IS_mobileProjectOpen, set: SET_mobileProjectMenuOpen } =
+    USE_Toggle(false);
+
+  const { HANDLE_tabUrlParams } = USE_handleTabParams({
+    router,
+    params,
+    project,
+  });
+  const { current_TAB, IS_changingTab, CHANGE_tab } = USE_manageTabs({
+    project,
+  });
 
   const { activeSectionIndex, sectionRefs } = USE_scrollSpy({
     tab: current_TAB,
   });
 
-  const { state: IS_menuOpen, SET_state: SET_menuOpen } = USE_Toggle(false);
-  const { state: IS_mobileMenuOpen, SET_state: SET_mobileMenuOpen } =
-    USE_Toggle(false);
-  const { state: IS_mobileProjectOpen, SET_state: SET_mobileProjectMenuOpen } =
-    USE_Toggle(false);
-
-  const CHANGE_tab = (tab: ProjectTabs_TYPE) => {
-    SET_currentTab(tab);
-    SET_urlParams({
-      params,
-      router,
-      toDelete_ARR: ["tab"],
-      toAdd_ARR: [["tab", tab?.slug]],
+  const SELECT_section = (
+    tab_SLUG?: string | null,
+    section_SLUG?: string | null
+  ) => {
+    NAVIGATE_tabs({
+      project,
+      tab_SLUG,
+      section_SLUG,
+      HANDLE_tabUrlParams,
+      CHANGE_tab,
+      OPEN_tab: (tab_SLUG: string) => TOGGLE_tab(tab_SLUG, true),
     });
   };
 
-  const navigate = ({
-    incoming_TAB,
-    section,
-  }: {
-    incoming_TAB: ProjectTabs_TYPE;
-    section: ProjectSection_TYPE;
-  }) => {
-    if (hideContent) return;
-
-    if (current_TAB?.slug === incoming_TAB?.slug) {
-      SCROLL_to({ target_ID: section?.slug });
-      return;
-    }
-
-    SET_mobileProjectMenuOpen(false);
-    SET_hideContent(true);
-
-    setTimeout(() => {
-      CHANGE_tab(incoming_TAB);
-
-      setTimeout(() => {
-        SCROLL_to({ target_ID: section?.slug, instant: true });
-        setTimeout(() => {
-          SET_hideContent(false);
-        }, 100);
-      }, 1);
-    }, 101); // opacity of the content changes in 100ms
-  };
+  USE_perserveStickyNavPosition({
+    stickyEls: [sideNav_REF?.current, tinyNavNav_REF?.current],
+    active: !IS_menuOpen,
+    dependencies: [IS_menuOpen],
+  });
 
   useEffect(() => {
-    HANDLE_projectTabsOnLoad({
-      tab: current_TAB,
-      CHANGE_tab,
-      project,
-      params,
-      router,
-    });
-    SET_hideTabs(false);
-    SET_hideContent(false);
+    SELECT_section(params.get("tab"), params.get("section"));
+    SET_loaded(true);
   }, []);
-
-  useEffect(
-    () =>
-      // when desktop modal opens, adjust the top value of the refs, sot hey dont disappear
-      HANDLE_stickyNavTop({
-        stickyEls: [sideNav_REF?.current, tinyNavNav_REF?.current],
-        IS_0: !IS_menuOpen,
-      }),
-    [IS_menuOpen]
-  );
 
   return (
     <>
@@ -121,25 +97,46 @@ export default function ProjectPage_CONTENT() {
         <li>
           <Btn
             btnType="btn-square"
-            className="px-[1.2rem] py-[0.4rem] sticky top-[var(--tiny-nav-height-plus-1)]  justify-start text-start z-20"
+            className="px-[1.2rem] py-[0.4rem] justify-start text-start z-20 w-full"
             text_STYLES={{ fontWeight: 300, color: "var(--text-white-dimm)" }}
             extraAttributes={['data-light-bottom-border-color="true"']}
             text={`Project: ${project?.name}`}
+            onClick={() =>
+              SELECT_section(
+                project?.tabs?.[0]?.slug,
+                project?.tabs?.[0]?.sections?.[0]?.slug
+              )
+            }
           />
         </li>
-        {project?.tabs?.map((_tab) => (
-          <Tab_DD
-            key={_tab.slug}
-            current_TAB={current_TAB}
-            activeIndex={activeSectionIndex}
-            tab={_tab}
-            {...{
-              navigate,
-              hideContent,
-              hideTabs,
+
+        <Project_TABS
+          {...{
+            project,
+            current_TAB,
+            activeSectionIndex,
+            SELECT_section,
+            opened_TABS,
+            TOGGLE_tab,
+          }}
+          hideContent={IS_changingTab || !loaded}
+        />
+
+        <li>
+          <Btn
+            btnType="btn-square"
+            className="px-[1.2rem] py-[0.4rem] justify-start text-start z-20 w-full"
+            text_STYLES={{
+              fontWeight: 300,
+              color: "var(--text-white-dimm)",
+              flex: 1,
             }}
+            extraAttributes={['data-light-top-border-color="true"']}
+            text="Collapse all"
+            right_ICON={<ICON_arrow direction="up" color="light" small />}
+            onClick={CLOSE_allTabs}
           />
-        ))}
+        </li>
       </SideNav>
 
       <div className="flex-1 pb-[50rem]">
@@ -156,36 +153,13 @@ export default function ProjectPage_CONTENT() {
           tab_TITLE={current_TAB?.title}
           OPEN_menu={() => SET_menuOpen(true)}
           _ref={tinyNavNav_REF}
-          {...{ hideContent }}
+          hideContent={IS_changingTab || !loaded}
         />
 
-        {/* Render sections */}
-        {current_TAB?.sections?.map((section, index) => (
-          <section
-            key={section.slug}
-            id={section.slug}
-            ref={(el) => {
-              sectionRefs.current[index] = el;
-            }}
-            // className={activeSectionIndex === index ? "bg-gray-700" : ""}
-            className="pb-[100rem]"
-          >
-            <div
-              className="container"
-              style={{
-                transition: "100ms",
-                opacity: hideContent ? 0 : 1,
-                pointerEvents: hideContent ? "none" : "auto",
-              }}
-            >
-              <h1
-                dangerouslySetInnerHTML={{
-                  __html: section.longTab_TITLE,
-                }}
-              />
-            </div>
-          </section>
-        ))}
+        <ProjectTab_SECTIONS
+          {...{ current_TAB, sectionRefs }}
+          hideContent={IS_changingTab || !loaded}
+        />
       </div>
 
       <MobileMenu_MODAL
@@ -203,20 +177,15 @@ export default function ProjectPage_CONTENT() {
           extraAttributes={['data-light-bottom-border-color="true"']}
           text={`Project: ${project?.name}`}
         />
-        {!hideTabs &&
+        {loaded &&
           project?.tabs?.map((_tab) => (
             <Tab_DD
               key={_tab.slug}
+              tab={_tab}
               current_TAB={current_TAB}
               activeIndex={activeSectionIndex}
-              tab={_tab}
-              {...{
-                navigate,
-                SET_loading: SET_hideTabs,
-                hideTabs,
-                hideContent,
-                SET_mobileProjectMenuOpen,
-              }}
+              hideContent={IS_changingTab || !loaded}
+              SELECT_section={SELECT_section}
             />
           ))}
       </MobileProjectMenu_MODAL>
@@ -238,53 +207,102 @@ export default function ProjectPage_CONTENT() {
   );
 }
 
-function USE_scrollSpy({ tab }: { tab: ProjectTabs_TYPE }) {
-  // Create an array of section IDs for the observer
-  const sectionIds = useMemo(
-    () => tab?.sections?.map((section) => section.slug),
-    [tab]
+export function ProjectTab_SECTIONS({
+  current_TAB,
+  hideContent,
+  sectionRefs,
+}: {
+  current_TAB: ProjectTabs_TYPE;
+  hideContent: boolean;
+  sectionRefs: MutableRefObject<(HTMLElement | null)[]>;
+}) {
+  return (
+    <>
+      {current_TAB?.sections?.map((section, index) => (
+        <section
+          key={section.slug}
+          id={section.slug}
+          ref={(el) => {
+            sectionRefs.current[index] = el;
+          }}
+          // className={activeSectionIndex === index ? "bg-gray-700" : ""}
+          className="pb-[100rem]"
+        >
+          <div
+            className="container"
+            style={{
+              transition: "100ms",
+              opacity: hideContent ? 0 : 1,
+              pointerEvents: hideContent ? "none" : "auto",
+            }}
+          >
+            <h1
+              dangerouslySetInnerHTML={{
+                __html: section.longTab_TITLE,
+              }}
+            />
+          </div>
+        </section>
+      ))}
+    </>
   );
-  const sectionRefs = useRef<(HTMLElement | null)[]>([]); // Explicitly declare the type
+}
 
-  const [activeSectionIndex, setActiveSectionIndex] = useState(0);
-  // Scroll Spy Logic: IntersectionObserver
-  useEffect(() => {
-    // Check if IntersectionObserver is available
-    if (!("IntersectionObserver" in window)) {
-      console.warn("IntersectionObserver is not supported in this browser.");
-      return;
+export function USE_openedTabs() {
+  const [opened_TABS, SET_openedTabs] = useState<string[]>([]);
+
+  const TOGGLE_tab = (slug: string, val?: boolean) => {
+    if (typeof val === "boolean" && !val) {
+      return SET_openedTabs((prev) => prev.filter((x) => x !== slug));
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleSection = entries.find((entry) => entry.isIntersecting);
-        if (visibleSection) {
-          const index = sectionIds?.indexOf(visibleSection.target.id);
-          if (index !== -1) {
-            setActiveSectionIndex(index); // Update active section index
-          }
-        }
-      },
-      { rootMargin: "-40% 0px -60% 0px" }
+    SET_openedTabs((prev) =>
+      prev.includes(slug) ? prev.filter((x) => x !== slug) : [...prev, slug]
     );
+  };
 
-    // Safely observe only valid elements
-    sectionRefs.current.forEach((section) => {
-      if (section instanceof Element) {
-        observer.observe(section);
-      } else {
-        console.warn("Skipping invalid section:", section);
-      }
-    });
+  const CLOSE_allTabs = () => SET_openedTabs([]);
 
-    return () => {
-      sectionRefs.current.forEach((section) => {
-        if (section instanceof Element) {
-          observer.unobserve(section);
-        }
-      });
-    };
-  }, [sectionIds]);
+  return { opened_TABS, TOGGLE_tab, CLOSE_allTabs };
+}
 
-  return { activeSectionIndex, sectionRefs };
+export function Project_TABS({
+  project,
+  current_TAB,
+  activeSectionIndex,
+  hideContent,
+  SELECT_section,
+  opened_TABS,
+  TOGGLE_tab,
+}: {
+  project: ProjectIntro_TYPE & { tabs: ProjectTabs_TYPE[] };
+  current_TAB: ProjectTabs_TYPE;
+  activeSectionIndex: number;
+  hideContent: boolean;
+  SELECT_section: (
+    tab_SLUG?: string | null,
+    section_SLUG?: string | null
+  ) => void;
+  opened_TABS: string[];
+  TOGGLE_tab: (slug: string, val?: boolean) => void;
+}) {
+  return (
+    <div
+      data-tiny-scrollbar-styles
+      className="flex-1 overflow-y-auto pb-[4rem]"
+    >
+      {project?.tabs?.map((_tab) => (
+        <Tab_DD
+          key={_tab.slug}
+          tab={_tab}
+          current_TAB={current_TAB}
+          activeIndex={activeSectionIndex}
+          hideContent={hideContent}
+          SELECT_section={SELECT_section}
+          open={opened_TABS.some((x) => x === _tab.slug)}
+          toggle={() => TOGGLE_tab(_tab.slug)}
+        />
+      ))}
+    </div>
+  );
 }

@@ -29,6 +29,7 @@ export type ProjectTag_TYPE =
   | "in-progress";
 
 export interface ProjectIntro_TYPE {
+  slug: string;
   header_IMG: string;
   name: string;
   subtitle: string;
@@ -41,6 +42,7 @@ export interface ProjectIntro_TYPE {
 
 export const Projects: Record<string, ProjectIntro_TYPE> = {
   localmore: {
+    slug: "localmore",
     header_IMG: "header-localmore.png", // Local image path or identifier
     name: "Localmore",
     subtitle: "The project that kickstarted my interest in design",
@@ -51,6 +53,7 @@ export const Projects: Record<string, ProjectIntro_TYPE> = {
     GET_tabs: Localmore_PROJECT,
   },
   "sanfte-metzger": {
+    slug: "sanfte-metzger",
     header_IMG: "header-sanfte-metzger.png",
     name: "Sanfte Metzger",
     subtitle: "A hypothetical corporate design for a unique butchers shop",
@@ -61,6 +64,7 @@ export const Projects: Record<string, ProjectIntro_TYPE> = {
     GET_tabs: () => {},
   },
   "domas-swim-school": {
+    slug: "domas-swim-school",
     header_IMG: "header-domas-swim-school.png",
     name: "Domas Swim School",
     subtitle: "A logo design for my private swimming lessons",
@@ -71,6 +75,7 @@ export const Projects: Record<string, ProjectIntro_TYPE> = {
     GET_tabs: () => {},
   },
   vocabs: {
+    slug: "vocabs",
     header_IMG: "header-vocabs.png",
     name: "Vocabs",
     subtitle: "A vocabulary app for mobile devices",
@@ -81,6 +86,7 @@ export const Projects: Record<string, ProjectIntro_TYPE> = {
     GET_tabs: () => {},
   },
   "swim-active": {
+    slug: "swim-active",
     header_IMG: "header-swim-active.png",
     name: "Swim Active",
     subtitle: "A website for a swimming school",

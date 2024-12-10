@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop (min-width: 991px);
+
 :root {
   background-color: var(--fill-bg);
   color: var(--text-white);
@@ -97,4 +100,33 @@ section {
 
 p {
   text-wrap: auto;
+}
+
+div[data-tiny-scrollbar-styles],
+ul[data-tiny-scrollbar-styles] {
+  --sb-track-color: transparent;
+  --sb-thumb-color: rgba(255, 255, 255, 0.356);
+  --sb-size: 0.2rem;
+
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: var(--sb-size);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+  }
+
+  @media (--desktop) {
+    &:hover {
+      &::-webkit-scrollbar-thumb {
+        background: var(--sb-thumb-color);
+      }
+    }
+  }
+
+  @supports not selector(::-webkit-scrollbar) {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
 }

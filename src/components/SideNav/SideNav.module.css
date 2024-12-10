@@ -15,27 +15,16 @@
 
   width: var(--side-nav-width);
   height: 100vh;
-
+  max-height: 100vh;
   border-right: var(--border-light);
-  align-items: center;
 
   & ul {
-    width: 100%;
-    flex: 1;
-
+    height: 100%;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding-bottom: 6rem;
-
-    & li {
-      display: flex;
-      flex-direction: column;
-    }
   }
 
-  --sb-track-color: transparent;
+  /* --sb-track-color: transparent;
   --sb-thumb-color: rgba(255, 255, 255, 0.356);
   --sb-size: 0.2rem;
 
@@ -59,7 +48,7 @@
     & ul {
       scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
     }
-  }
+  } */
 
   @media (--tablet) {
     display: none !important;

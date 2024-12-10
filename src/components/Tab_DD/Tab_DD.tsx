@@ -2,26 +2,21 @@
 //
 //
 
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Btn from "../Btn/Btn";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ICON_dropDownArrow, ICON_x } from "../Icons/Icons";
-import { ProjectSection_TYPE, ProjectTabs_TYPE } from "@/projects";
+import { ProjectTabs_TYPE } from "@/projects";
 
 interface Tab_DD {
   tab: ProjectTabs_TYPE;
   current_TAB: ProjectTabs_TYPE | undefined;
   activeIndex: number;
   hideContent: boolean;
-  hideTabs: boolean;
-  navigate: ({
-    incoming_TAB,
-    section,
-  }: {
-    incoming_TAB: ProjectTabs_TYPE;
-    section: ProjectSection_TYPE;
-  }) => void;
+  SELECT_section: (tab_SLUG: string, section_SLUG: string) => void;
+  open: boolean;
+  toggle: () => void;
 }
 
 export function Tab_DD({
@@ -29,24 +24,26 @@ export function Tab_DD({
   current_TAB,
   activeIndex,
   hideContent,
-  hideTabs,
-  navigate,
+  SELECT_section,
+  open,
+  toggle,
 }: Tab_DD) {
+  // console.log(hideContent);
+
   const IS_current = useMemo(
     () => tab?.slug === current_TAB?.slug && !hideContent,
     [current_TAB, tab, hideContent]
   );
-  const [open, SET_open] = useState(IS_current);
   const [animating, SET_animating] = useState(false);
 
-  const toggle = useCallback(() => {
+  const _toggle = useCallback(() => {
     if (!animating) {
       // Prevent toggling if animating
-      SET_open((prevOpen) => !prevOpen);
+      toggle();
     }
-  }, [animating]);
+  }, [animating, toggle]);
 
-  return !hideTabs ? (
+  return (
     <div
       key={tab?.slug}
       style={{
@@ -61,7 +58,7 @@ export function Tab_DD({
           left_ICON={
             <div
               className={`absolute left-[1.2rem] h-[1rem] min-h-[1rem]
-                } w-[1rem] min-w-[1rem] bg-[var(--fill-main)] rounded-full `}
+            } w-[1rem] min-w-[1rem] bg-[var(--fill-main)] rounded-full `}
               style={{
                 transform: IS_current ? "scale(1)" : "scale(0)",
                 transition: "100ms",
@@ -75,7 +72,7 @@ export function Tab_DD({
               <ICON_dropDownArrow color={IS_current ? "main" : "white"} />
             )
           }
-          className={`px-[1.2rem] text-start font-bold justify-between relative `}
+          className={`px-[1.2rem] text-start font-bold justify-between relative w-full`}
           extraAttributes={[
             `data-light-bottom-border-color="${open}" `,
             "data-text-flex",
@@ -86,7 +83,7 @@ export function Tab_DD({
             transition: "100ms",
             paddingLeft: IS_current ? "1.8rem" : "0rem",
           }}
-          onClick={toggle}
+          onClick={_toggle}
         />
       </li>
       <AnimatePresence>
@@ -108,12 +105,13 @@ export function Tab_DD({
                   <li key={section.shortTab_TITLE}>
                     <Btn
                       btnType="btn-square"
-                      className="px-[1.2rem] justify-start text-start"
+                      className="px-[1.2rem] justify-start text-start w-full"
                       extraAttributes={[
                         // 'data-light-bottom-border-color="true"',
                         `data-active="${activeIndex === index && IS_current}"`,
                       ]}
-                      onClick={() => navigate({ incoming_TAB: tab, section })}
+                      onClick={() => SELECT_section(tab.slug, section.slug)}
+                      // onClick={() => navigate({ incoming_TAB: tab, section })}
                     >
                       <Btn_LINE active={activeIndex === index && IS_current} />
                       {/* <div className="w-[0.3rem] min-w-[0.3rem] h-auto self-stretch bg-[var(--white-10)] mr-[0.4rem] rounded-full" /> */}
@@ -129,8 +127,6 @@ export function Tab_DD({
         )}
       </AnimatePresence>
     </div>
-  ) : (
-    <p>loading...</p>
   );
 }
 
