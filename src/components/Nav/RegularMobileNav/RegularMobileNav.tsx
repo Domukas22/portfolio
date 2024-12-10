@@ -6,8 +6,6 @@
 
 import Link from "next/link";
 
-import Btn from "@/components/Btn/Btn";
-import { ICON_dropDownArrow } from "@/components/Icons/Icons";
 import LogoCorner_BTN from "@/components/LogoCorner_BTN/LogoCorner_BTN";
 import StickyTopNav from "../StickyTopNav/StickyTopNav";
 import css from "./RegularMobileNav.module.css";

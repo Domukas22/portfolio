@@ -50,15 +50,25 @@ export default function ProjectDesktopNav({
         />
       </li>
       <TinyDeskNav_SEPARATOR />
-      <li>
+      <li className="flex-1">
         <Btn
           btnType="btn-tiny-desk-round"
           text={tab_TITLE}
           onClick={() => SCROLL_to({})}
+          className="max-w-full"
           extraAttributes={[`data-hide="${hideContent}"`, "data-last"]}
+          text_STYLES={{
+            width: "100%",
+            whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+          }}
         />
       </li>
-      <li className="ml-auto">
+      <li
+        className="fixed top-0 right-0 !h-[var(--tiny-nav-height)]"
+        style={{ padding: 0 }}
+      >
         <Btn
           btnType="btn-square-light"
           text="Menu"

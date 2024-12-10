@@ -26,10 +26,7 @@ export default function Project_TABS({
   TOGGLE_tab: (slug: string, val?: boolean) => void;
 }) {
   return (
-    <div
-      data-tiny-scrollbar-styles
-      className="flex-1 overflow-y-auto pb-[4rem]"
-    >
+    <>
       {project?.tabs?.map((_tab) => (
         <Tab_DD
           key={_tab.slug}
@@ -42,6 +39,6 @@ export default function Project_TABS({
           toggle={() => TOGGLE_tab(_tab.slug)}
         />
       ))}
-    </div>
+    </>
   );
 }

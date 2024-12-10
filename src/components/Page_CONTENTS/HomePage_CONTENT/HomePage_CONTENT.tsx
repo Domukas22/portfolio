@@ -9,7 +9,6 @@ import Menu_ITEMS from "@/components/Nav/Menu/Menu_ITEMS";
 import { useState } from "react";
 import RegularMobileNav from "@/components/Nav/RegularMobileNav/RegularMobileNav";
 import SideNav from "@/components/SideNav/SideNav";
-import LogoCorner_BTN from "@/components/LogoCorner_BTN/LogoCorner_BTN";
 import Mobile_MODAL from "@/components/Mobile_MODAL/Mobile_MODAL";
 
 export default function HomePage_CONTENT() {
@@ -18,7 +17,6 @@ export default function HomePage_CONTENT() {
   return (
     <>
       <SideNav>
-        <LogoCorner_BTN />
         <Menu_ITEMS />
       </SideNav>
 

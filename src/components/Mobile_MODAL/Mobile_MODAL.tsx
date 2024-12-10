@@ -44,7 +44,6 @@ export default function Mobile_MODAL({
             // data-tiny-scrollbar-styles
             className="overflow-y-auto flex-1 pb-[8rem] relative "
           >
-            <div className="sticky top-0 left-0 w-[20rem] h-[20rem] bg-red-300 z-9990" />
             {children}
           </div>
         </ul>

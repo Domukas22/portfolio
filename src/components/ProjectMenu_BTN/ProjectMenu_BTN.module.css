@@ -36,10 +36,11 @@
 
   & [data-project-name],
   & [data-current-tab-title] {
-    width: calc(
-      100% - 1.6rem /* dd arrow width */ -
-        calc(var(--side-padding) + var(--extra-space-for-arrow))
+    max-width: calc(
+      100vw - 12rem /* Menu btn */ - 2.6rem /* padding */ - 1.8rem
+        /* dd arrow */ - 2rem /* extra */
     );
+
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;

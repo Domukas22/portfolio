@@ -14,6 +14,7 @@ export default function USE_scrollSpy(tab: ProjectTabs_TYPE) {
   const sectionRefs = useRef<(HTMLElement | null)[]>([]); // Explicitly declare the type
 
   const [activeSectionIndex, setActiveSectionIndex] = useState(0);
+
   // Scroll Spy Logic: IntersectionObserver
   useEffect(() => {
     // Check if IntersectionObserver is available
@@ -35,8 +36,11 @@ export default function USE_scrollSpy(tab: ProjectTabs_TYPE) {
       { rootMargin: "-40% 0px -60% 0px" }
     );
 
+    // Capture a snapshot of the current refs to ensure cleanup uses a stable reference
+    const currentRefs = sectionRefs.current;
+
     // Safely observe only valid elements
-    sectionRefs.current.forEach((section) => {
+    currentRefs.forEach((section) => {
       if (section instanceof Element) {
         observer.observe(section);
       } else {
@@ -45,7 +49,7 @@ export default function USE_scrollSpy(tab: ProjectTabs_TYPE) {
     });
 
     return () => {
-      sectionRefs.current.forEach((section) => {
+      currentRefs.forEach((section) => {
         if (section instanceof Element) {
           observer.unobserve(section);
         }

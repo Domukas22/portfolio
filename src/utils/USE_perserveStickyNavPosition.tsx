@@ -7,11 +7,9 @@ import { useEffect } from "react";
 export default function USE_perserveStickyNavPosition({
   active,
   stickyEls,
-  dependencies,
 }: {
   active: boolean;
   stickyEls: (HTMLElement | null)[];
-  dependencies: boolean[];
 }) {
   useEffect(() => {
     if (active) {
@@ -25,5 +23,5 @@ export default function USE_perserveStickyNavPosition({
         if (el?.style) el.style.top = `${scrolled}px`;
       });
     }
-  }, [...dependencies]);
+  }, [active, stickyEls]);
 }

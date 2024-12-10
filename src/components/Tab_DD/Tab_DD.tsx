@@ -8,7 +8,6 @@ import Btn from "../Btn/Btn";
 import { AnimatePresence, motion } from "framer-motion";
 import { ICON_dropDownArrow, ICON_x } from "../Icons/Icons";
 import { ProjectTabs_TYPE } from "@/projects";
-import { relative } from "path";
 
 interface Tab_DD {
   tab: ProjectTabs_TYPE;
