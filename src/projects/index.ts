@@ -61,7 +61,7 @@ export const Projects: Record<string, ProjectIntro_TYPE> = {
     tags: ["logo"],
     emoji: "🐮",
     firstTabSlug: "tab-1",
-    GET_tabs: () => {},
+    GET_tabs: Localmore_PROJECT,
   },
   "domas-swim-school": {
     slug: "domas-swim-school",
@@ -72,7 +72,7 @@ export const Projects: Record<string, ProjectIntro_TYPE> = {
     tags: ["logo"],
     emoji: "🤿",
     firstTabSlug: "tab-1",
-    GET_tabs: () => {},
+    GET_tabs: Localmore_PROJECT,
   },
   vocabs: {
     slug: "vocabs",
@@ -83,7 +83,7 @@ export const Projects: Record<string, ProjectIntro_TYPE> = {
     tags: ["app", "coding", "in-progress"],
     emoji: "✍️",
     firstTabSlug: "tab-1",
-    GET_tabs: () => {},
+    GET_tabs: Localmore_PROJECT,
   },
   "swim-active": {
     slug: "swim-active",
@@ -94,6 +94,6 @@ export const Projects: Record<string, ProjectIntro_TYPE> = {
     tags: ["website", "images", "coding", "in-progress", "video"],
     emoji: "💧",
     firstTabSlug: "tab-1",
-    GET_tabs: () => {},
+    GET_tabs: Localmore_PROJECT,
   },
 };
