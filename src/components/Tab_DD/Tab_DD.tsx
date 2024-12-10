@@ -8,6 +8,7 @@ import Btn from "../Btn/Btn";
 import { AnimatePresence, motion } from "framer-motion";
 import { ICON_dropDownArrow, ICON_x } from "../Icons/Icons";
 import { ProjectTabs_TYPE } from "@/projects";
+import { relative } from "path";
 
 interface Tab_DD {
   tab: ProjectTabs_TYPE;
@@ -48,9 +49,10 @@ export function Tab_DD({
       key={tab?.slug}
       style={{
         borderBottom: "var(--border-light)",
+        position: "relative",
       }}
     >
-      <li>
+      <li className="sticky top-0">
         <Btn
           key={tab.title}
           text={tab.title}
@@ -72,7 +74,7 @@ export function Tab_DD({
               <ICON_dropDownArrow color={IS_current ? "main" : "white"} />
             )
           }
-          className={`px-[1.2rem] text-start font-bold justify-between relative w-full`}
+          className={`px-[1.2rem] text-start font-bold justify-between  w-full `}
           extraAttributes={[
             `data-light-bottom-border-color="${open}" `,
             "data-text-flex",
@@ -115,7 +117,7 @@ export function Tab_DD({
                     >
                       <Btn_LINE active={activeIndex === index && IS_current} />
                       {/* <div className="w-[0.3rem] min-w-[0.3rem] h-auto self-stretch bg-[var(--white-10)] mr-[0.4rem] rounded-full" /> */}
-                      <span className=" text-[var(--text-white-dimm)]">
+                      <span className=" text-[var(--text-white-light)]">
                         {section.shortTab_TITLE}
                       </span>
                     </Btn>

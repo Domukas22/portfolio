@@ -8,17 +8,17 @@
 .regularMobileNav {
   @media (max-width: 630px) {
     & [data-btn-contact] {
-      display: none;
+      display: none !important;
     }
   }
 
   @media (max-width: 520px) {
     & [data-btn-projects] {
-      display: none;
+      display: none !important;
     }
   }
 
   @media (--desktop) {
-    display: none;
+    display: none !important;
   }
 }

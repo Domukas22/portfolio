@@ -27,10 +27,6 @@
       & a {
         height: 100%;
       }
-
-      & span {
-        color: var(--text-white);
-      }
     }
   }
 

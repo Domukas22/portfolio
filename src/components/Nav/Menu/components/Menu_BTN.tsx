@@ -22,7 +22,7 @@ export function Menu_BTN({
       </div>
       <ICON_arrow
         direction="right"
-        color="white-dimm"
+        color="light"
         extraAttributes={["data-arrow"]}
       />
     </Link>

@@ -9,20 +9,22 @@ import { usePathname } from "next/navigation";
 import React from "react";
 
 export default function LogoCorner_BTN({
-  insideTinyNav = false,
+  SHOW_bottomBorder = true,
+  flex = 0,
 }: {
-  insideTinyNav?: boolean;
+  SHOW_bottomBorder?: boolean;
+  flex?: 0 | 1;
 }) {
   const pathname = usePathname();
 
   return (
     <li
       style={{
-        flex: insideTinyNav ? 1 : 0,
+        flex,
         display: "flex",
       }}
     >
-      <Clickable IS_home={pathname === "/"} {...{ insideTinyNav }}>
+      <Clickable IS_home={pathname === "/"} {...{ SHOW_bottomBorder }}>
         <div data-logo-img className={css.logo_IMG} />
         <span data-logo-text data-logo-text-long>
           Domas Sirbike
@@ -38,11 +40,11 @@ export default function LogoCorner_BTN({
 function Clickable({
   children,
   IS_home,
-  insideTinyNav,
+  SHOW_bottomBorder,
 }: {
   children: React.ReactNode;
   IS_home: boolean;
-  insideTinyNav: boolean;
+  SHOW_bottomBorder: boolean;
 }) {
   return IS_home ? (
     <Btn
@@ -50,9 +52,7 @@ function Clickable({
       className={css.logoBtn}
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       extraAttributes={[
-        `data-light-bottom-border-color="${
-          !IS_home ? true : !insideTinyNav ? false : false
-        }"`,
+        `data-light-bottom-border-color="${SHOW_bottomBorder}"`,
       ]}
     >
       {children}
@@ -61,10 +61,7 @@ function Clickable({
     <Link
       className={`btn-square-light ${css.logoBtn}`}
       href="/"
-      data-inside-tiny-nav={!IS_home ? true : !insideTinyNav ? false : false}
-      data-light-bottom-border-color={
-        !IS_home ? true : !insideTinyNav ? false : false
-      }
+      data-light-bottom-border-color={SHOW_bottomBorder}
     >
       {children}
     </Link>

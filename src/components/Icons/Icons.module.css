@@ -90,11 +90,11 @@
       fill: var(--text-white);
     }
     &[data-color="light"] {
-      fill: var(--text-white-dimm);
+      fill: var(--text-white-light);
     }
   }
 
-  &[data-small] {
+  &[data-small="true"] {
     width: 1.6rem;
     height: 1.6rem;
   }

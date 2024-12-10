@@ -5,7 +5,7 @@
 import { ProjectTabs_TYPE } from "@/projects";
 import { useMemo, useRef, useState, useEffect } from "react";
 
-export default function USE_scrollSpy({ tab }: { tab: ProjectTabs_TYPE }) {
+export default function USE_scrollSpy(tab: ProjectTabs_TYPE) {
   // Create an array of section IDs for the observer
   const sectionIds = useMemo(
     () => tab?.sections?.map((section) => section.slug),

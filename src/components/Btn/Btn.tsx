@@ -16,7 +16,7 @@ interface Btn_PROPS {
   // FIRE_clickEvent?: boolean;
   left_ICON?: React.ReactNode;
   right_ICON?: React.ReactNode;
-  btnType: "btn" | "btn-square" | "btn-square-light";
+  btnType: "btn" | "btn-square" | "btn-square-light" | "btn-tiny-desk-round";
   extraAttributes?: string[];
   //   left_ICON?: React.ReactNode;
   //   aria_LABEL?: string;

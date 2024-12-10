@@ -2,8 +2,6 @@
 //
 //
 
-import { HandleTabUrlParams_TYPE } from "@/hooks/USE_handleTabParams";
-import { ChangeTab_TYPE } from "@/hooks/USE_manageTab";
 import { ProjectIntro_TYPE, ProjectTabs_TYPE } from "@/projects";
 import GET_projectTabWithSection from "./GET_projectTabWithSection";
 
@@ -11,21 +9,12 @@ interface NavigateTabs_TYPE {
   project: ProjectIntro_TYPE & { tabs: ProjectTabs_TYPE[] };
   tab_SLUG?: string | null;
   section_SLUG?: string | null;
-  HANDLE_tabUrlParams: ({
-    tab_SLUG,
-    section_SLUG,
-  }: HandleTabUrlParams_TYPE) => void;
-  CHANGE_tab: ({ tab, section_SLUG }: ChangeTab_TYPE) => void;
-  OPEN_tab: (tab_SLUG: string) => void;
 }
 
-export default function NAVIGATE_tabs({
+export default function GET_tabAndSectionToNavigate({
   project,
   tab_SLUG,
   section_SLUG,
-  HANDLE_tabUrlParams,
-  CHANGE_tab,
-  OPEN_tab,
 }: NavigateTabs_TYPE) {
   const { tab, section } = GET_projectTabWithSection({
     project,
@@ -39,15 +28,13 @@ export default function NAVIGATE_tabs({
 
     // first tab of project not found
     if (!firstTab_SLUG) {
-      return console.error(
+      console.error(
         `❌ First tab in project "${project.slug}" was undefined when handling params ❌`
       );
+      return { tab: undefined, section: undefined };
     }
 
-    HANDLE_tabUrlParams({ tab_SLUG: firstTab_SLUG });
-    CHANGE_tab({ tab: project.tabs[0] });
-    OPEN_tab(project.tabs[0].slug);
-    return;
+    return { tab: project.tabs[0] };
   }
 
   // handle section slug if provided
@@ -58,28 +45,17 @@ export default function NAVIGATE_tabs({
 
       // first section of tab not found
       if (!firstSection_SLUG) {
-        return console.error(
+        console.error(
           `❌ First section slug in tab "${tab.slug}", in project "${project.slug}", was undefined when handling params ❌`
         );
+        return { tab: undefined, section: undefined };
       }
 
-      HANDLE_tabUrlParams({
-        tab_SLUG: tab.slug,
-        section_SLUG: firstSection_SLUG,
-      });
-      CHANGE_tab({ tab, section_SLUG: firstSection_SLUG });
-      OPEN_tab(tab.slug);
-      return;
+      return { tab, section: tab?.sections?.[0] };
     }
 
-    HANDLE_tabUrlParams({ tab_SLUG: tab.slug, section_SLUG: section.slug });
-    CHANGE_tab({ tab, section_SLUG: section.slug });
-    OPEN_tab(tab.slug);
-    return;
+    return { tab, section };
   }
 
-  HANDLE_tabUrlParams({ tab_SLUG: tab.slug });
-  CHANGE_tab({ tab });
-  OPEN_tab(tab.slug);
-  return;
+  return { tab };
 }

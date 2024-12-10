@@ -22,7 +22,7 @@ export default function RegularMobileNav({
 }: RegularMobileNav_PROPS) {
   return (
     <StickyTopNav targetClass={css.regularMobileNav}>
-      <LogoCorner_BTN insideTinyNav />
+      <LogoCorner_BTN flex={1} SHOW_bottomBorder={false} />
 
       <li data-btn-projects>
         <Link

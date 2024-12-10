@@ -10,14 +10,14 @@ export default function Project_LIST() {
     <section className="border-bottom-light">
       <div className="container flex flex-col gap-[5rem] tablet:gap-[4rem] mobile:gap-[8vmin] ">
         {Object.entries(Projects).map(([slug, project]) => {
-          const { title, header_IMG, subtitle, tags, shortSubtitle, emoji } =
+          const { name, header_IMG, subtitle, tags, shortSubtitle, emoji } =
             project;
 
           return (
             <Project_CARD
-              key={project.title}
+              key={name}
               {...{
-                title,
+                name,
                 header_IMG,
                 subtitle,
                 tags,

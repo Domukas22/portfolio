@@ -28,6 +28,42 @@ export function Localmore_PROJECT(): ProjectTabs_TYPE[] {
           shortTab_TITLE: "Short section 3",
           longTab_TITLE: "This is the title of tab 1, section 3",
         },
+        {
+          type: "type3",
+          slug: "section-4",
+          shortTab_TITLE: "Short section 4",
+          longTab_TITLE: "This is the title of tab 1, section 4",
+        },
+        {
+          type: "type3",
+          slug: "section-5",
+          shortTab_TITLE: "Short section 5",
+          longTab_TITLE: "This is the title of tab 1, section 5",
+        },
+        {
+          type: "type3",
+          slug: "section-6",
+          shortTab_TITLE: "Short section 6",
+          longTab_TITLE: "This is the title of tab 1, section 6",
+        },
+        {
+          type: "type3",
+          slug: "section-7",
+          shortTab_TITLE: "Short section 7",
+          longTab_TITLE: "This is the title of tab 1, section 7",
+        },
+        {
+          type: "type3",
+          slug: "section-8",
+          shortTab_TITLE: "Short section 8",
+          longTab_TITLE: "This is the title of tab 1, section 8",
+        },
+        {
+          type: "type3",
+          slug: "section-9",
+          shortTab_TITLE: "Short section 9",
+          longTab_TITLE: "This is the title of tab 1, section 9",
+        },
       ],
     },
     {

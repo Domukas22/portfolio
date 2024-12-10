@@ -27,7 +27,7 @@
   height: var(--nav-height);
 
   & [data-project-name] {
-    color: var(--text-white-dimm);
+    color: var(--text-white-light);
     font-weight: 300;
   }
   & [data-current-tab-title] {

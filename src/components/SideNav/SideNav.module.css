@@ -17,38 +17,13 @@
   height: 100vh;
   max-height: 100vh;
   border-right: var(--border-light);
+  overflow: hidden;
 
   & ul {
     height: 100%;
     display: flex;
     flex-direction: column;
   }
-
-  /* --sb-track-color: transparent;
-  --sb-thumb-color: rgba(255, 255, 255, 0.356);
-  --sb-size: 0.2rem;
-
-  & ul::-webkit-scrollbar {
-    width: var(--sb-size);
-  }
-
-  & ul::-webkit-scrollbar-track {
-    background: var(--sb-track-color);
-  }
-
-  @media (--desktop) {
-    & ul:hover {
-      &::-webkit-scrollbar-thumb {
-        background: var(--sb-thumb-color);
-      }
-    }
-  }
-
-  @supports not selector(::-webkit-scrollbar) {
-    & ul {
-      scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-    }
-  } */
 
   @media (--tablet) {
     display: none !important;

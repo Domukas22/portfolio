@@ -8,44 +8,19 @@
   right: 0;
   bottom: 0;
 
-  /* opacity: 0.5; */
-
   height: 100dvh !important;
   width: 100%;
   z-index: 60;
 
   & .dialog {
     width: 100%;
-    display: flex;
-    overflow: hidden;
-    flex-direction: column;
+    height: 100%;
+
     background-color: var(--fill-bg);
     box-shadow: 0 0.6rem 1.2rem rgba(0, 0, 0, 0.8);
     transition: all 5.2s ease-out;
 
-    height: 100%;
-
-    &[data-fullscreen="true"] {
-      height: 100%;
-      border-radius: 0;
-      animation: fade;
-    }
-
-    & [data-menu-content] {
-      flex: 1;
-      overflow-y: auto;
-
-      & li {
-        width: 100%;
-
-        & button,
-        & a {
-          width: 100%;
-        }
-      }
-    }
-
-    & [data-animate-li] {
+    & [data-animate-li="true"] {
       & li {
         position: relative;
 

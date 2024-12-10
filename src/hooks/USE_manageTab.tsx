@@ -11,7 +11,7 @@ interface UseManagaTabs_TYPE {
 }
 
 export interface ChangeTab_TYPE {
-  tab: ProjectTabs_TYPE;
+  tab: ProjectTabs_TYPE | undefined;
   section_SLUG?: string | undefined;
 }
 
@@ -20,9 +20,9 @@ export default function USE_manageTabs({ project }: UseManagaTabs_TYPE) {
   const [current_TAB, SET_currentTab] = useState(project?.tabs?.[0]);
 
   const CHANGE_tab = ({ tab, section_SLUG }: ChangeTab_TYPE) => {
-    if (IS_changingTab) return;
+    if (IS_changingTab || !tab) return;
 
-    if (current_TAB?.slug === tab.slug) {
+    if (current_TAB?.slug === tab?.slug) {
       SCROLL_to({ target_ID: section_SLUG });
       return;
     }

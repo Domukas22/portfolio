@@ -108,8 +108,6 @@ ul[data-tiny-scrollbar-styles] {
   --sb-thumb-color: rgba(255, 255, 255, 0.356);
   --sb-size: 0.2rem;
 
-  overflow-y: auto;
-
   &::-webkit-scrollbar {
     width: var(--sb-size);
   }

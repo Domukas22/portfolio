@@ -7,9 +7,17 @@
 import { Projects } from "@/projects";
 import { Menu_BTN } from "./components/Menu_BTN";
 
-export default function Menu_ITEMS() {
+export default function Menu_ITEMS({ SHOW_homeBtn = false }) {
   return (
-    <>
+    <div
+      data-tiny-scrollbar-styles
+      className="flex-1 overflow-y-auto pb-[4rem]"
+    >
+      {SHOW_homeBtn && (
+        <li>
+          <Menu_BTN title="Home" link="/" />
+        </li>
+      )}
       <li>
         <Menu_BTN title="Reach out to me" link="/" />
       </li>
@@ -22,7 +30,7 @@ export default function Menu_ITEMS() {
       </li>
 
       {Object.entries(Projects).map(([slug, project]) => (
-        <li key={project.name}>
+        <li key={slug + project.name}>
           <Menu_BTN
             title={`${project.emoji} ${project.name}`}
             subtitle={project.shortSubtitle}
@@ -30,6 +38,6 @@ export default function Menu_ITEMS() {
           />
         </li>
       ))}
-    </>
+    </div>
   );
 }
