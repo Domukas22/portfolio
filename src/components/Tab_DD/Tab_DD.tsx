@@ -6,9 +6,10 @@ import { useEffect, useState } from "react";
 import Btn from "../Btn/Btn";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ProjectTabs_TYPE } from "@/projects";
+
 import css from "./Tab_DD.module.css";
 import TabDD_ICON from "../TabDD_ICON";
+import { ProjectTabs_TYPE } from "@/projects/projectTypes";
 
 interface Tab_DD {
   tab: ProjectTabs_TYPE;
@@ -37,12 +38,15 @@ export function Tab_DD({
 }: Tab_DD) {
   const [initialRender, SET_initialRender] = useState(true);
   const [animating, SET_animating] = useState(false);
-  const [current, SET_current] = useState(tab?.slug === current_TAB?.slug);
+  const [current, SET_current] = useState(
+    tab?.tab_SLUG === current_TAB?.tab_SLUG
+  );
 
   useEffect(() => {
     // when content is hidden (because of tab navigation), make sure no section is visibly selected
     // if its mobile, make sure we don't animate the currently active tab, becaus ethe modal will close anyways
-    if (!mobile) SET_current(tab?.slug === current_TAB?.slug && !hideContent);
+    if (!mobile)
+      SET_current(tab?.tab_SLUG === current_TAB?.tab_SLUG && !hideContent);
   }, [current_TAB, tab, hideContent, mobile]);
 
   // don't animate the open tab initially when opening project menu on mobile
@@ -51,29 +55,29 @@ export function Tab_DD({
   }, []);
 
   return (
-    <div key={tab?.slug} className={css.tabDD} data-open={open}>
+    <div key={tab?.tab_SLUG} className={css.tabDD} data-open={open}>
       <div className={css.ddTop_WRAP}>
         <li className="flex-1">
           <Btn
-            key={tab.title}
+            key={tab.tab_NAME}
             btnType="btn-square"
             className={css.mainTab_BTN}
             onClick={() =>
               // don't animate tab opening/closing when selecting a tab on mobile
               SELECT_section(
-                tab.slug,
-                tab.sections?.[0]?.slug,
+                tab.tab_SLUG,
+                tab.sections?.[0]?.section_SLUG,
                 mobile ? true : false
               )
             }
             data-active-tab={current}
-            text={tab.title}
+            text={tab.tab_NAME}
           />
         </li>
 
         <li>
           <Btn
-            key={tab.title + "dd"}
+            key={tab.tab_NAME + "dd"}
             btnType="btn-square"
             right_ICON={
               <TabDD_ICON {...{ open, mobile }} IS_current={current} />
@@ -104,13 +108,15 @@ export function Tab_DD({
           >
             {tab.sections?.map((section, index) => {
               return (
-                <li key={section.shortTab_TITLE}>
+                <li key={section.section_NAME}>
                   <Btn
                     btnType="btn-square"
                     className={css.section_BTN}
                     data-active={activeIndex === index && current}
-                    onClick={() => SELECT_section(tab.slug, section.slug)}
-                    text={section.shortTab_TITLE}
+                    onClick={() =>
+                      SELECT_section(tab.tab_SLUG, section.section_SLUG)
+                    }
+                    text={section.section_NAME}
                     text_STYLES={{ color: "var(--text-white-light)" }}
                   />
                 </li>

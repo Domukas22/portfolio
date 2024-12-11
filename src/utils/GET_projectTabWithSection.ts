@@ -2,7 +2,7 @@
 //
 //
 
-import { ProjectIntro_TYPE, ProjectTabs_TYPE } from "@/projects";
+import { ProjectIntro_TYPE, ProjectTabs_TYPE } from "@/projects/projectTypes";
 
 interface GetProjectTabWithSection_TYPE {
   project: ProjectIntro_TYPE & { tabs: ProjectTabs_TYPE[] };
@@ -16,9 +16,9 @@ export default function GET_projectTabWithSection({
   section_SLUG,
 }: GetProjectTabWithSection_TYPE) {
   return {
-    tab: project.tabs.find((tab) => tab.slug === tab_SLUG),
+    tab: project.tabs.find((tab) => tab.tab_SLUG === tab_SLUG),
     section: project.tabs
-      .find((tab) => tab.slug === tab_SLUG)
-      ?.sections.find((s) => s.slug === section_SLUG),
+      .find((tab) => tab.tab_SLUG === tab_SLUG)
+      ?.sections.find((s) => s.section_SLUG === section_SLUG),
   };
 }

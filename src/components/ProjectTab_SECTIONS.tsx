@@ -2,8 +2,10 @@
 //
 //
 
-import { ProjectTabs_TYPE } from "@/projects";
+import { ProjectSection_TYPE } from "@/projects/projectSection_TYPES";
 import { MutableRefObject } from "react";
+import Introduction_SECTION from "./SECTIONS/Introduction_SECTION";
+import { ProjectTabs_TYPE } from "@/projects/projectTypes";
 
 export function ProjectTab_SECTIONS({
   current_TAB,
@@ -14,34 +16,22 @@ export function ProjectTab_SECTIONS({
   hideContent: boolean;
   sectionRefs: MutableRefObject<(HTMLElement | null)[]>;
 }) {
+  console.log(current_TAB);
   return (
     <>
-      {current_TAB?.sections?.map((section, index) => (
-        <section
-          key={section.slug}
-          id={section.slug}
-          ref={(el) => {
-            sectionRefs.current[index] = el;
-          }}
-          // className={activeSectionIndex === index ? "bg-gray-700" : ""}
-          className="pb-[100rem]"
-        >
-          <div
-            className="container"
-            style={{
-              transition: "100ms",
-              opacity: hideContent ? 0 : 1,
-              pointerEvents: hideContent ? "none" : "auto",
-            }}
-          >
-            <h1
-              dangerouslySetInnerHTML={{
-                __html: section.longTab_TITLE,
-              }}
-            />
-          </div>
-        </section>
-      ))}
+      {current_TAB?.sections?.map(
+        (section_CONTENT: ProjectSection_TYPE, index: number) => {
+          switch (section_CONTENT.type) {
+            case "introduction":
+              return (
+                <Introduction_SECTION
+                  key={section_CONTENT.section_SLUG}
+                  {...{ section_CONTENT, index, sectionRefs, hideContent }}
+                />
+              );
+          }
+        }
+      )}
     </>
   );
 }

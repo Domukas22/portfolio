@@ -2,7 +2,7 @@
 //
 //
 
-import { ProjectIntro_TYPE, ProjectTabs_TYPE } from "@/projects";
+import { ProjectIntro_TYPE, ProjectTabs_TYPE } from "@/projects/projectTypes";
 import SCROLL_to from "@/utils/SCROLL_to";
 import { useState } from "react";
 
@@ -22,7 +22,7 @@ export default function USE_manageTabs({ project }: UseManagaTabs_TYPE) {
   const CHANGE_tab = ({ tab, section_SLUG }: ChangeTab_TYPE) => {
     if (IS_changingTab || !tab) return;
 
-    if (current_TAB?.slug === tab?.slug) {
+    if (current_TAB?.tab_SLUG === tab?.tab_SLUG) {
       SCROLL_to({ target_ID: section_SLUG });
       return;
     }

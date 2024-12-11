@@ -2,7 +2,7 @@
 //
 //
 
-import { ProjectIntro_TYPE, ProjectTabs_TYPE } from "@/projects";
+import { ProjectIntro_TYPE, ProjectTabs_TYPE } from "@/projects/projectTypes";
 
 export function DOES_sectionWithSlugExist({
   project,
@@ -14,6 +14,6 @@ export function DOES_sectionWithSlugExist({
   section_SLUG: string | undefined;
 }) {
   return project.tabs
-    .find((tab) => tab.slug === tab_SLUG)
-    ?.sections.some((section) => section.slug === section_SLUG);
+    .find((tab) => tab.tab_SLUG === tab_SLUG)
+    ?.sections.some((section) => section.section_SLUG === section_SLUG);
 }

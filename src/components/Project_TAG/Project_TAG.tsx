@@ -2,7 +2,7 @@
 //
 //
 
-import { ProjectTag_TYPE } from "@/projects";
+import { ProjectTag_TYPE } from "@/projects/projectTypes";
 import css from "./style.module.css";
 
 export default function Project_TAG({ tag }: { tag: ProjectTag_TYPE }) {

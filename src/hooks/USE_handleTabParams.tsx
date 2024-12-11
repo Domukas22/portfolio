@@ -2,11 +2,8 @@
 //
 //
 
-import {
-  ProjectIntro_TYPE,
-  ProjectTabs_TYPE,
-  ProjectSection_TYPE,
-} from "@/projects";
+import { ProjectSection_TYPE } from "@/projects/projectSection_TYPES";
+import { ProjectIntro_TYPE, ProjectTabs_TYPE } from "@/projects/projectTypes";
 import SET_urlParams from "@/utils/SET_urlParams";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 

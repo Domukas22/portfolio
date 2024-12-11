@@ -2,179 +2,29 @@
 //
 //
 
-import { ProjectTabs_TYPE } from ".";
+import { Project_INTROS } from "./projectIntros";
+import { ProjectTabs_TYPE } from "./projectTypes";
 
-export function Localmore_PROJECT(): ProjectTabs_TYPE[] {
-  const tabs: ProjectTabs_TYPE[] = [
+export function Localmore_TABS(): ProjectTabs_TYPE[] {
+  const intro = Project_INTROS.localmore;
+
+  return [
     {
-      title: "Tab 1",
-      slug: "tab-1",
+      tab_NAME: "Introduction",
+      tab_SLUG: "introduction",
       sections: [
         {
-          type: "type1",
-          slug: "section-1",
-          shortTab_TITLE: "Short section 1",
-          longTab_TITLE: "This <u>is</u> the title of tab 1, section 1",
-        },
-        {
-          type: "type2",
-          slug: "section-2",
-          shortTab_TITLE: "Short section 2 asdasda ssdad asdas dawdaw asd",
-          longTab_TITLE: "This is the title of tab 1, section 2",
-        },
-        {
-          type: "type3",
-          slug: "section-3",
-          shortTab_TITLE: "Short section 3",
-          longTab_TITLE: "This is the title of tab 1, section 3",
-        },
-        {
-          type: "type3",
-          slug: "section-4",
-          shortTab_TITLE: "Short section 4",
-          longTab_TITLE: "This is the title of tab 1, section 4",
-        },
-        {
-          type: "type3",
-          slug: "section-5",
-          shortTab_TITLE: "Short section 5",
-          longTab_TITLE: "This is the title of tab 1, section 5",
-        },
-        {
-          type: "type3",
-          slug: "section-6",
-          shortTab_TITLE: "Short section 6",
-          longTab_TITLE: "This is the title of tab 1, section 6",
-        },
-        {
-          type: "type3",
-          slug: "section-7",
-          shortTab_TITLE: "Short section 7",
-          longTab_TITLE: "This is the title of tab 1, section 7",
-        },
-        {
-          type: "type3",
-          slug: "section-8",
-          shortTab_TITLE: "Short section 8",
-          longTab_TITLE: "This is the title of tab 1, section 8",
-        },
-        {
-          type: "type3",
-          slug: "section-9",
-          shortTab_TITLE: "Short section 9",
-          longTab_TITLE: "This is the title of tab 1, section 9",
-        },
-      ],
-    },
-    {
-      title: "Tab 2",
-      slug: "tab-2",
-      sections: [
-        {
-          type: "type1",
-          slug: "section-1",
-          shortTab_TITLE: "Short section 1",
-          longTab_TITLE: "This is the title of tab 2, section 1",
-        },
-        {
-          type: "type2",
-          slug: "section-2",
-          shortTab_TITLE: "Short section 2",
-          longTab_TITLE: "This is the title of tab 2, section 2",
-        },
-        {
-          type: "type3",
-          slug: "section-3",
-          shortTab_TITLE: "Short section 3",
-          longTab_TITLE: "This is the title of tab 2, section 3",
-        },
-      ],
-    },
-    {
-      title: "Tab 3",
-      slug: "tab-3",
-      sections: [
-        {
-          type: "type1",
-          slug: "section-1",
-          shortTab_TITLE: "Short section 1",
-          longTab_TITLE: "This is the title of tab 3, section 1",
-        },
-        {
-          type: "type2",
-          slug: "section-2",
-          shortTab_TITLE: "Short section 2",
-          longTab_TITLE: "This is the title of tab 3, section 2",
-        },
-        {
-          type: "type3",
-          slug: "section-3",
-          shortTab_TITLE: "Short section 3",
-          longTab_TITLE: "This is the title of tab 3, section 3",
-        },
-        {
-          type: "type3",
-          slug: "section-4",
-          shortTab_TITLE: "Short section 4",
-          longTab_TITLE: "This is the title of tab 3, section 4",
-        },
-        {
-          type: "type3",
-          slug: "section-5",
-          shortTab_TITLE: "Short section 5",
-          longTab_TITLE: "This is the title of tab 3, section 5",
-        },
-      ],
-    },
-    {
-      title: "Tab 4",
-      slug: "tab-4",
-      sections: [
-        {
-          type: "type1",
-          slug: "section-1",
-          shortTab_TITLE: "Short section 1",
-          longTab_TITLE: "This is the title of tab 4, section 1",
-        },
-        {
-          type: "type2",
-          slug: "section-2",
-          shortTab_TITLE: "Short section 2",
-          longTab_TITLE: "This is the title of tab 4, section 2",
-        },
-        {
-          type: "type3",
-          slug: "section-3",
-          shortTab_TITLE: "Short section 3",
-          longTab_TITLE: "This is the title of tab 4, section 3",
-        },
-      ],
-    },
-    {
-      title: "Tab 5",
-      slug: "tab-5",
-      sections: [
-        {
-          type: "type1",
-          slug: "section-1",
-          shortTab_TITLE: "Short section 1",
-          longTab_TITLE: "This is the title of tab 5, section 1",
-        },
-        {
-          type: "type2",
-          slug: "section-2",
-          shortTab_TITLE: "Short section 2",
-          longTab_TITLE: "This is the title of tab 5, section 2",
-        },
-        {
-          type: "type3",
-          slug: "section-3",
-          shortTab_TITLE: "Short section 3",
-          longTab_TITLE: "This is the title of tab 5, section 3",
+          type: "introduction",
+          section_SLUG: "localmore",
+          section_NAME: "Localmore",
+          project_NAME: "Localmore",
+          project_SUBTITLE:
+            "The project that kickstarted my interest in design",
+          headerImg_FILENAME: intro.headerImg_FILENAME,
+          headerImg_COLOR: intro.headerImg_COLOR,
+          tags: intro.tags,
         },
       ],
     },
   ];
-
-  return tabs;
 }

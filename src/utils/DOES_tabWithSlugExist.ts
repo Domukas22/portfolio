@@ -2,7 +2,7 @@
 //
 //
 
-import { ProjectIntro_TYPE, ProjectTabs_TYPE } from "@/projects";
+import { ProjectIntro_TYPE, ProjectTabs_TYPE } from "@/projects/projectTypes";
 
 export function DOES_tabWithSlugExist({
   project,
@@ -11,5 +11,5 @@ export function DOES_tabWithSlugExist({
   project: ProjectIntro_TYPE & { tabs: ProjectTabs_TYPE[] };
   slug: string | undefined | null;
 }) {
-  return project.tabs.some((tab) => tab.slug === slug);
+  return project.tabs.some((tab) => tab.tab_SLUG === slug);
 }

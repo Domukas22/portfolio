@@ -1,6 +1,6 @@
 "use client";
 
-import { Projects } from "@/projects";
+import { Project_INTROS } from "@/projects/projectIntros";
 import { useParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -23,9 +23,10 @@ import MobileProjectTopBtn_WRAP from "@/components/MobileProjectTopBtn_WRAP";
 import DesktopProjectSideNav_BTN from "@/components/DesktopProjectSideNav_BTN";
 import DesktopProjectSideNavCollapse_BTN from "@/components/DesktopProjectSideNavCollapse_BTN";
 import ModalMenu_UNDERLAY from "@/components/ModalMenu_UNDERLAY";
+import { existingProject_SLUGS } from "@/projects/projectTypes";
 
 export default function ProjectPage_CONTENT() {
-  const { slug }: { slug: string } = useParams();
+  const { slug }: { slug: existingProject_SLUGS } = useParams();
   const params = useSearchParams();
   const router = useRouter();
   const sideNav_REF = useRef<HTMLElement | null>(null);
@@ -35,7 +36,7 @@ export default function ProjectPage_CONTENT() {
     USE_openedTabs();
 
   const project = useMemo(
-    () => ({ ...Projects[slug], tabs: Projects[slug]?.GET_tabs() }),
+    () => ({ ...Project_INTROS[slug], tabs: Project_INTROS[slug]?.GET_tabs() }),
     [slug]
   );
 
@@ -70,9 +71,12 @@ export default function ProjectPage_CONTENT() {
       if (IS_mobileProjectOpen) {
         SET_mobileProjectMenuOpen(false);
       }
-      HANDLE_tabUrlParams({ tab_SLUG: tab?.slug, section_SLUG: section?.slug });
-      CHANGE_tab({ tab, section_SLUG: section?.slug });
-      TOGGLE_tab(tab?.slug, dontToggleTab ? false : true);
+      HANDLE_tabUrlParams({
+        tab_SLUG: tab?.tab_SLUG,
+        section_SLUG: section?.section_SLUG,
+      });
+      CHANGE_tab({ tab, section_SLUG: section?.section_SLUG });
+      TOGGLE_tab(tab?.tab_SLUG, dontToggleTab ? false : true);
     },
     [
       CHANGE_tab,
@@ -86,10 +90,10 @@ export default function ProjectPage_CONTENT() {
 
   const RESET_tabs = useCallback(() => {
     SELECT_section(
-      project?.tabs?.[0]?.slug,
-      project?.tabs?.[0]?.sections?.[0]?.slug
+      project?.tabs?.[0]?.tab_SLUG,
+      project?.tabs?.[0]?.sections?.[0]?.section_SLUG
     );
-    OPEN_singleTab(project?.tabs?.[0]?.slug);
+    OPEN_singleTab(project?.tabs?.[0]?.tab_SLUG);
   }, [SELECT_section, project, OPEN_singleTab]);
 
   USE_perserveStickyNavPosition({
@@ -125,14 +129,14 @@ export default function ProjectPage_CONTENT() {
       >
         {project?.tabs?.map((_tab) => (
           <Tab_DD
-            key={_tab.slug}
+            key={_tab.tab_SLUG}
             tab={_tab}
             current_TAB={current_TAB}
             activeIndex={activeSectionIndex}
             hideContent={IS_changingTab || !loaded}
             SELECT_section={SELECT_section}
-            open={opened_TABS.some((x) => x === _tab.slug)}
-            toggle={() => TOGGLE_tab(_tab.slug)}
+            open={opened_TABS.some((x) => x === _tab.tab_SLUG)}
+            toggle={() => TOGGLE_tab(_tab.tab_SLUG)}
           />
         ))}
       </SideNav>
@@ -141,16 +145,16 @@ export default function ProjectPage_CONTENT() {
       <div className="flex-1 pb-[50rem]">
         <ProjectMobileNav
           project_NAME={project?.name}
-          project_TABTITLE={current_TAB?.title}
+          project_TABTITLE={current_TAB?.tab_NAME}
           OPEN_mobileMenu={() => SET_mobileMenuOpen(true)}
           OPEN_mobileProjectMenu={() => {
             SET_mobileProjectMenuOpen(true);
-            OPEN_singleTab(current_TAB.slug);
+            OPEN_singleTab(current_TAB.tab_SLUG);
           }}
         />
         <ProjectDesktop_NAV
           project_NAME={project?.name}
-          tab_TITLE={current_TAB?.title}
+          tab_TITLE={current_TAB?.tab_NAME}
           OPEN_menu={() => SET_menuOpen(true)}
           _ref={tinyNavNav_REF}
           hideContent={IS_changingTab || !loaded}
@@ -190,14 +194,14 @@ export default function ProjectPage_CONTENT() {
         <>
           {project?.tabs?.map((_tab) => (
             <Tab_DD
-              key={_tab.slug}
+              key={_tab.tab_SLUG}
               tab={_tab}
               current_TAB={current_TAB}
               activeIndex={activeSectionIndex}
               hideContent={IS_changingTab || !loaded}
               SELECT_section={SELECT_section}
-              open={opened_TABS.some((x) => x === _tab.slug)}
-              toggle={() => TOGGLE_tab(_tab.slug)}
+              open={opened_TABS.some((x) => x === _tab.tab_SLUG)}
+              toggle={() => TOGGLE_tab(_tab.tab_SLUG)}
               mobile
             />
           ))}

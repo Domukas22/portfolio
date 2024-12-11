@@ -54,7 +54,7 @@
         }
 
         & span {
-          color: var(--text-main);
+          color: var(--text-main) !important;
           padding-left: 1.8rem;
         }
       }

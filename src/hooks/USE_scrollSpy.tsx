@@ -2,13 +2,13 @@
 //
 //
 
-import { ProjectTabs_TYPE } from "@/projects";
+import { ProjectTabs_TYPE } from "@/projects/projectTypes";
 import { useMemo, useRef, useState, useEffect } from "react";
 
 export default function USE_scrollSpy(tab: ProjectTabs_TYPE) {
   // Create an array of section IDs for the observer
   const sectionIds = useMemo(
-    () => tab?.sections?.map((section) => section.slug),
+    () => tab?.sections?.map((section) => section.section_SLUG),
     [tab]
   );
   const sectionRefs = useRef<(HTMLElement | null)[]>([]); // Explicitly declare the type

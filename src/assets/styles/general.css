@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 @custom-media --tablet (max-width: 990px);
-@custom-media --desktop (min-width: 991px);
+@custom-media --desktop-small (min-width: 991px) and (max-width: 1300px);
+@custom-media --desktop-big (min-width: 1301px);
 
 :root {
   background-color: var(--fill-bg);
@@ -81,20 +82,33 @@ body {
 
 section {
   width: 100%;
+  padding: 4rem 8rem;
+
+  @media (--desktop-small) {
+    padding: 4rem 4rem;
+  }
+
+  @media (--desktop-big) {
+    padding: 4rem 6rem;
+  }
+
+  @media (--tablet) {
+    padding: 4vmin;
+  }
 }
 
 .container {
   width: 100%;
-  padding: 4rem 8rem;
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 1300px;
+  margin: 0 auto;
+}
 
-  @media (max-width: 990px) {
-    padding: 4rem 4rem;
-  }
-  @media (max-width: 740px) {
-    padding: 4vmin;
+div[data-project-section-container] {
+  transition: 100ms;
+
+  &[data-hide="true"] {
+    opacity: 0;
+    pointer-events: none;
   }
 }
 

@@ -2,7 +2,7 @@
 //
 //
 
-import { ProjectIntro_TYPE, ProjectTabs_TYPE } from "@/projects";
+import { ProjectIntro_TYPE, ProjectTabs_TYPE } from "@/projects/projectTypes";
 import { Tab_DD } from "./Tab_DD/Tab_DD";
 
 export default function Project_TABS({
@@ -29,14 +29,14 @@ export default function Project_TABS({
     <>
       {project?.tabs?.map((_tab) => (
         <Tab_DD
-          key={_tab.slug}
+          key={_tab.tab_SLUG}
           tab={_tab}
           current_TAB={current_TAB}
           activeIndex={activeSectionIndex}
           hideContent={hideContent}
           SELECT_section={SELECT_section}
-          open={opened_TABS.some((x) => x === _tab.slug)}
-          toggle={() => TOGGLE_tab(_tab.slug)}
+          open={opened_TABS.some((x) => x === _tab.tab_SLUG)}
+          toggle={() => TOGGLE_tab(_tab.tab_SLUG)}
         />
       ))}
     </>

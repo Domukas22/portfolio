@@ -4,7 +4,7 @@
 
 "use client";
 
-import { ProjectIntro_TYPE } from "@/projects";
+import { ProjectIntro_TYPE } from "@/projects/projectTypes";
 import ProjectTag_LIST from "../ProjectTag_LIST/ProjectTag_LIST";
 
 import Image from "next/image";
@@ -13,7 +13,7 @@ import Link from "next/link";
 // import exampleHeaderImg from "@/assets/images/project-headers/header_localmore.png"
 
 export default function Project_CARD(intro: ProjectIntro_TYPE) {
-  const { name, header_IMG, subtitle, tags, slug } = intro;
+  const { name, headerImg_FILENAME, subtitle, tags, slug } = intro;
 
   //
   return (
@@ -25,7 +25,7 @@ export default function Project_CARD(intro: ProjectIntro_TYPE) {
       <Image
         width={1200}
         height={500}
-        src={`/projects/headers/${header_IMG}`}
+        src={`/projects/headers/${headerImg_FILENAME}`}
         className="object-cover h-[36rem] mobile:h-[26rem] w-full border-bottom-light"
         alt=""
       />

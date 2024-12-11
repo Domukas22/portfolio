@@ -2,7 +2,7 @@
 //
 //
 
-import { ProjectTag_TYPE } from "@/projects";
+import { ProjectTag_TYPE } from "@/projects/projectTypes";
 import Project_TAG from "../Project_TAG/Project_TAG";
 
 export default function ProjectTag_LIST({ tags }: { tags: ProjectTag_TYPE[] }) {

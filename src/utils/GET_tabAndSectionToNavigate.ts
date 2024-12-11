@@ -2,7 +2,7 @@
 //
 //
 
-import { ProjectIntro_TYPE, ProjectTabs_TYPE } from "@/projects";
+import { ProjectIntro_TYPE, ProjectTabs_TYPE } from "@/projects/projectTypes";
 import GET_projectTabWithSection from "./GET_projectTabWithSection";
 
 interface NavigateTabs_TYPE {
@@ -24,7 +24,7 @@ export default function GET_tabAndSectionToNavigate({
 
   // if tab does not exist or is not defined, select first tab of the project
   if (!tab_SLUG || !tab) {
-    const firstTab_SLUG = project.tabs[0]?.slug;
+    const firstTab_SLUG = project.tabs[0]?.tab_SLUG;
 
     // first tab of project not found
     if (!firstTab_SLUG) {
@@ -41,12 +41,12 @@ export default function GET_tabAndSectionToNavigate({
   if (section_SLUG) {
     // if section does not exist in tab, select the first section of the tab
     if (!section) {
-      const firstSection_SLUG = tab?.sections?.[0].slug;
+      const firstSection_SLUG = tab?.sections?.[0].section_SLUG;
 
       // first section of tab not found
       if (!firstSection_SLUG) {
         console.error(
-          `❌ First section slug in tab "${tab.slug}", in project "${project.slug}", was undefined when handling params ❌`
+          `❌ First section slug in tab "${tab.tab_SLUG}", in project "${project.slug}", was undefined when handling params ❌`
         );
         return { tab: undefined, section: undefined };
       }
