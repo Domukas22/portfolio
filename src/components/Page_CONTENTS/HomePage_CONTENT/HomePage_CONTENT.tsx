@@ -32,6 +32,7 @@ export default function HomePage_CONTENT() {
         IS_open={IS_mobileMenuOpen}
         CLOSE_modal={() => SET_mobileMenuOpen(false)}
         animate_LI
+        title="Menu"
       >
         <Menu_ITEMS SHOW_homeBtn />
       </Mobile_MODAL>

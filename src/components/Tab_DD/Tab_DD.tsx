@@ -2,21 +2,27 @@
 //
 //
 
-import { useCallback, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Btn from "../Btn/Btn";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ICON_dropDownArrow, ICON_x } from "../Icons/Icons";
 import { ProjectTabs_TYPE } from "@/projects";
+import css from "./Tab_DD.module.css";
+import TabDD_ICON from "../TabDD_ICON";
 
 interface Tab_DD {
   tab: ProjectTabs_TYPE;
   current_TAB: ProjectTabs_TYPE | undefined;
   activeIndex: number;
   hideContent: boolean;
-  SELECT_section: (tab_SLUG: string, section_SLUG: string) => void;
+  SELECT_section: (
+    tab_SLUG: string,
+    section_SLUG: string,
+    dontToggleTab?: boolean
+  ) => void;
   open: boolean;
   toggle: () => void;
+  mobile?: boolean;
 }
 
 export function Tab_DD({
@@ -27,71 +33,68 @@ export function Tab_DD({
   SELECT_section,
   open,
   toggle,
+  mobile = false,
 }: Tab_DD) {
-  // console.log(hideContent);
-
-  const IS_current = useMemo(
-    () => tab?.slug === current_TAB?.slug && !hideContent,
-    [current_TAB, tab, hideContent]
-  );
+  const [initialRender, SET_initialRender] = useState(true);
   const [animating, SET_animating] = useState(false);
+  const [current, SET_current] = useState(tab?.slug === current_TAB?.slug);
 
-  const _toggle = useCallback(() => {
-    if (!animating) {
-      // Prevent toggling if animating
-      toggle();
-    }
-  }, [animating, toggle]);
+  useEffect(() => {
+    // when content is hidden (because of tab navigation), make sure no section is visibly selected
+    // if its mobile, make sure we don't animate the currently active tab, becaus ethe modal will close anyways
+    if (!mobile) SET_current(tab?.slug === current_TAB?.slug && !hideContent);
+  }, [current_TAB, tab, hideContent, mobile]);
+
+  // don't animate the open tab initially when opening project menu on mobile
+  useEffect(() => {
+    SET_initialRender(false);
+  }, []);
 
   return (
-    <div
-      key={tab?.slug}
-      style={{
-        borderBottom: "var(--border-light)",
-        position: "relative",
-      }}
-    >
-      <li className="sticky top-0">
-        <Btn
-          key={tab.title}
-          text={tab.title}
-          btnType="btn-square"
-          left_ICON={
-            <div
-              className={`absolute left-[1.2rem] h-[1rem] min-h-[1rem]
-            } w-[1rem] min-w-[1rem] bg-[var(--fill-main)] rounded-full `}
-              style={{
-                transform: IS_current ? "scale(1)" : "scale(0)",
-                transition: "100ms",
-              }}
-            />
-          }
-          right_ICON={
-            open ? (
-              <ICON_x color={IS_current ? "main" : "white"} />
-            ) : (
-              <ICON_dropDownArrow color={IS_current ? "main" : "white"} />
-            )
-          }
-          className={`px-[1.2rem] text-start font-bold justify-between  w-full `}
-          extraAttributes={[
-            `data-light-bottom-border-color="${open}" `,
-            "data-text-flex",
-          ]}
-          text_STYLES={{
-            fontWeight: 700,
-            color: IS_current ? "var(--fill-main)" : "var(--text-white)",
-            transition: "100ms",
-            paddingLeft: IS_current ? "1.8rem" : "0rem",
-          }}
-          onClick={_toggle}
-        />
-      </li>
+    <div key={tab?.slug} className={css.tabDD} data-open={open}>
+      <div className={css.ddTop_WRAP}>
+        <li className="flex-1">
+          <Btn
+            key={tab.title}
+            btnType="btn-square"
+            className={css.mainTab_BTN}
+            onClick={() =>
+              // don't animate tab opening/closing when selecting a tab on mobile
+              SELECT_section(
+                tab.slug,
+                tab.sections?.[0]?.slug,
+                mobile ? true : false
+              )
+            }
+            data-active-tab={current}
+            text={tab.title}
+          />
+        </li>
+
+        <li>
+          <Btn
+            key={tab.title + "dd"}
+            btnType="btn-square"
+            right_ICON={
+              <TabDD_ICON {...{ open, mobile }} IS_current={current} />
+            }
+            className={css.ddArrow_BTN}
+            onClick={() => {
+              if (!animating) toggle();
+            }}
+          />
+        </li>
+      </div>
       <AnimatePresence>
         {open && (
           <motion.div
-            style={{ overflow: "hidden" }}
-            initial={{ height: 0, opacity: 0 }}
+            className={css.ddContent_WRAP}
+            // initial={{ height: 0, opacity: 0 }}
+            initial={
+              initialRender
+                ? { height: "auto", opacity: 1 }
+                : { height: 0, opacity: 0 }
+            }
             animate={{ height: "auto", opacity: 1 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             exit={{ height: 0, opacity: 0 }}
@@ -99,42 +102,23 @@ export function Tab_DD({
             onAnimationStart={() => SET_animating(true)}
             onAnimationComplete={() => SET_animating(false)}
           >
-            {
-              // tab.title === current_TAB.title &&
-              tab.sections?.map((section, index) => {
-                return (
-                  <li key={section.shortTab_TITLE}>
-                    <Btn
-                      btnType="btn-square"
-                      className="px-[1.2rem] justify-start text-start w-full"
-                      extraAttributes={[
-                        // 'data-light-bottom-border-color="true"',
-                        `data-active="${activeIndex === index && IS_current}"`,
-                      ]}
-                      onClick={() => SELECT_section(tab.slug, section.slug)}
-                      // onClick={() => navigate({ incoming_TAB: tab, section })}
-                    >
-                      <Btn_LINE active={activeIndex === index && IS_current} />
-                      {/* <div className="w-[0.3rem] min-w-[0.3rem] h-auto self-stretch bg-[var(--white-10)] mr-[0.4rem] rounded-full" /> */}
-                      <span className=" text-[var(--text-white-light)]">
-                        {section.shortTab_TITLE}
-                      </span>
-                    </Btn>
-                  </li>
-                );
-              })
-            }
+            {tab.sections?.map((section, index) => {
+              return (
+                <li key={section.shortTab_TITLE}>
+                  <Btn
+                    btnType="btn-square"
+                    className={css.section_BTN}
+                    data-active={activeIndex === index && current}
+                    onClick={() => SELECT_section(tab.slug, section.slug)}
+                    text={section.shortTab_TITLE}
+                    text_STYLES={{ color: "var(--text-white-light)" }}
+                  />
+                </li>
+              );
+            })}
           </motion.div>
         )}
       </AnimatePresence>
     </div>
-  );
-}
-
-function Btn_LINE({ active = false }) {
-  return active ? (
-    <div className="w-[0.3rem] min-w-[0.3rem] h-auto self-stretch bg-[#fe8c5f] mr-[0.4rem] rounded-full" />
-  ) : (
-    <div className="w-[0.3rem] min-w-[0.3rem] h-auto self-stretch bg-[var(--white-10)] mr-[0.4rem] rounded-full" />
   );
 }

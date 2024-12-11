@@ -16,7 +16,7 @@ export default function MobileMenu_BTN({
         text="Menu"
         onClick={OPEN_mobileMenu}
         btnType="btn-square-light"
-        extraAttributes={['data-light-left-border-color="true"']}
+        data-light-left-border-color="true"
         right_ICON={<ICON_dropDownArrow />}
         className="font-bold"
       />

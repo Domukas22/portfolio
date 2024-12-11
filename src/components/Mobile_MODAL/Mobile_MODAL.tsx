@@ -7,7 +7,7 @@ import React from "react";
 import Modal_HEADER from "../Modal_HEADER/Modal_HEADER";
 
 interface props {
-  title?: string;
+  title: string;
   ariaLabel?: string;
   IS_open: boolean;
   children: React.ReactElement;
@@ -42,7 +42,7 @@ export default function Mobile_MODAL({
 
           <div
             // data-tiny-scrollbar-styles
-            className="overflow-y-auto flex-1 pb-[8rem] relative "
+            className="overflow-y-auto flex-1 pb-[12rem] relative "
           >
             {children}
           </div>

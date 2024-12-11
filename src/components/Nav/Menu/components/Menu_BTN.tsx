@@ -20,11 +20,7 @@ export function Menu_BTN({
         <span data-title>{title}</span>
         {subtitle && <span data-subtitle>{subtitle}</span>}
       </div>
-      <ICON_arrow
-        direction="right"
-        color="light"
-        extraAttributes={["data-arrow"]}
-      />
+      <ICON_arrow direction="right" color="light" data-arrow />
     </Link>
   );
 }

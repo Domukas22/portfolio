@@ -18,10 +18,10 @@ export default function Modal_HEADER({
         btnType="btn-square-light"
         onClick={TOGGLE_open}
         className="flex-1 justify-between pl-[1.2rem] text-left"
-        extraAttributes={['data-light-bottom-border-color="true"']}
+        data-light-bottom-border-color="true"
         text={title}
         text_STYLES={{ fontWeight: 700, fontSize: "var(--h3-mob)" }}
-        right_ICON={<ICON_x big />}
+        right_ICON={<ICON_x size="big" />}
       />
     </li>
   );

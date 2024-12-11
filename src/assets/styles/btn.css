@@ -24,12 +24,12 @@
 @define-mixin BTN-DEFAULT {
   display: flex;
   align-items: center;
-  justify-content: center;
 
   padding: 1rem 2rem;
   column-gap: 0.8rem;
   transition: 100ms;
 
+  border: var(--border-transparent);
   outline: var(--outline-hide);
 
   & * {
@@ -46,56 +46,49 @@
   &[data-light-top-border-color="true"] {
     border-top: var(--border-light);
   }
-  &[data-text-flex] {
-    & p,
-    & span {
-      margin-right: auto;
-    }
-  }
 
   @mixin outline;
 }
 @define-mixin btn {
   @mixin BTN-DEFAULT;
-  border: var(--border-light);
+
   border-radius: 1.2rem;
   background: var(--dark-light);
   box-shadow: var(--btn-shadow);
 
   &:active,
   &[data-pressed] {
-    box-shadow: var(--btn-shadow-press);
-    border: var(--border-white);
-    background: var(--dark-lightest);
+    box-shadow: var(--btn-shadow-press) !important;
+    border: var(--border-white) !important;
+    background: var(--dark-lightest) !important;
   }
 
   @media (--desktop) {
     &:hover,
     &[data-hovered] {
-      background: var(--dark-lightest);
-      box-shadow: var(--btn-shadow-hover);
+      background: var(--dark-lightest) !important;
+      box-shadow: var(--btn-shadow-hover) !important;
     }
   }
 }
 
 @define-mixin btn-square {
   @mixin BTN-DEFAULT;
-  border: 1px solid transparent;
   background: var(--dark);
 
   &:active,
   &[data-pressed] {
     background: var(--dark-lightest);
-    border: var(--border-white);
+    border: var(--border-white) !important;
     & * {
-      color: var(--text-white);
+      color: var(--text-white) !important;
     }
   }
 
   @media (--desktop) {
     &:hover,
     &[data-hovered] {
-      background: var(--dark-light);
+      background: var(--dark-light) !important;
     }
   }
 
@@ -116,7 +109,7 @@
   @media (--desktop) {
     &:hover,
     &[data-hovered] {
-      background: var(--dark-lightest);
+      background: var(--dark-lightest) !important;
     }
   }
 }
@@ -128,7 +121,6 @@
   padding: 1.6rem 2.2rem 1.6rem 1.2rem;
   gap: 1.2rem;
 
-  border: var(--border-transparent);
   border-bottom: var(--border-light);
   outline: var(--outline-hide);
 
@@ -154,14 +146,14 @@
 
   &:active,
   &[data-pressed] {
-    background: var(--dark-light);
-    border: var(--border-white);
+    background: var(--dark-light) !important;
+    border: var(--border-white) !important;
   }
 
   @media (--desktop) {
     &:hover,
     &[data-hovered] {
-      background: var(--dark-light);
+      background: var(--dark-light) !important;
       & div[data-arrow] {
         opacity: 1;
         transform: translateX(0.4rem);

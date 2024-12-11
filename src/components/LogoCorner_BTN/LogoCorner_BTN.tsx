@@ -51,9 +51,7 @@ function Clickable({
       btnType="btn-square-light"
       className={css.logoBtn}
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      extraAttributes={[
-        `data-light-bottom-border-color="${SHOW_bottomBorder}"`,
-      ]}
+      data-light-bottom-border-color={SHOW_bottomBorder}
     >
       {children}
     </Btn>

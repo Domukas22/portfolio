@@ -5,7 +5,7 @@
 "use client";
 
 import StickyTopNav from "../StickyTopNav/StickyTopNav";
-import css from "./ProjectDesktopNav.module.css";
+import css from "./ProjectDesktop_NAV.module.css";
 import Btn from "@/components/Btn/Btn";
 import Link from "next/link";
 import SCROLL_to from "@/utils/SCROLL_to";
@@ -18,13 +18,15 @@ interface ProjectDesktopNav_PROPS {
   RESET_tabs: () => void;
   _ref?: React.RefObject<HTMLElement>;
   hideContent: boolean;
+  IS_desktopMenuOpen: boolean;
 }
 
-export default function ProjectDesktopNav({
+export default function ProjectDesktop_NAV({
   project_NAME = "Project name",
   tab_TITLE = "Tab title",
   _ref,
   hideContent,
+  IS_desktopMenuOpen = false,
   OPEN_menu = () => {},
   RESET_tabs = () => {},
 }: ProjectDesktopNav_PROPS) {
@@ -56,7 +58,8 @@ export default function ProjectDesktopNav({
           text={tab_TITLE}
           onClick={() => SCROLL_to({})}
           className="max-w-full"
-          extraAttributes={[`data-hide="${hideContent}"`, "data-last"]}
+          data-last
+          data-hide={hideContent}
           text_STYLES={{
             width: "100%",
             whiteSpace: "nowrap",
@@ -66,14 +69,17 @@ export default function ProjectDesktopNav({
         />
       </li>
       <li
-        className="fixed top-0 right-0 !h-[var(--tiny-nav-height)]"
-        style={{ padding: 0 }}
+        className="fixed top-0  !h-[var(--tiny-nav-height)]"
+        style={{
+          padding: 0,
+          right: IS_desktopMenuOpen ? "var(--scrollbar-width)" : "0px",
+        }}
       >
         <Btn
           btnType="btn-square-light"
           text="Menu"
           right_ICON={<ICON_arrow direction="right" />}
-          extraAttributes={['data-light-left-border-color="true"']}
+          data-light-left-border-color="true"
           onClick={OPEN_menu}
         />
       </li>

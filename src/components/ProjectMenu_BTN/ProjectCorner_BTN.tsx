@@ -36,7 +36,7 @@ export default function ProjectMenu_BTN({
           <h5 data-current-tab-title>{project_TABTITLE}</h5>
         </div>
 
-        <ICON_dropDownArrow extraAttributes={["data-arrow"]} />
+        <ICON_dropDownArrow data-arrow />
       </Btn>
     </li>
   );

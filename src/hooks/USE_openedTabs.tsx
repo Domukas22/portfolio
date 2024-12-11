@@ -28,12 +28,12 @@ export default function USE_openedTabs() {
     });
   }, []);
 
-  const CLOSE_allTabs = useCallback(() => SET_openedTabs([]), []);
+  const COLLAPSE_tabs = useCallback(() => SET_openedTabs([]), []);
 
   const OPEN_singleTab = useCallback((tab_SLUG: string) => {
     SET_openedTabs([tab_SLUG]);
     console.log(tab_SLUG);
   }, []);
 
-  return { opened_TABS, TOGGLE_tab, CLOSE_allTabs, OPEN_singleTab };
+  return { opened_TABS, TOGGLE_tab, COLLAPSE_tabs, OPEN_singleTab };
 }

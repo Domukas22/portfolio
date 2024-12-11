@@ -7,8 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import SideNav from "../../SideNav/SideNav";
 import ProjectMobileNav from "../../Nav/ProjectMobileNav/ProjectMobileNav";
 import USE_Toggle from "@/hooks/USE_toggle";
-import Btn from "../../Btn/Btn";
-import ProjectDesktopNav from "@/components/Nav/ProjectDesktopNav/ProjectDesktopNav";
+import ProjectDesktop_NAV from "@/components/Nav/ProjectDesktop_NAV/ProjectDesktop_NAV";
 import DesktopMenu_MODAL from "@/components/DesktopMenu_MODAL/DesktopMenu_MODAL";
 import Menu_ITEMS from "@/components/Nav/Menu/Menu_ITEMS";
 import USE_perserveStickyNavPosition from "@/utils/USE_perserveStickyNavPosition";
@@ -16,29 +15,29 @@ import USE_handleTabParams from "@/hooks/USE_handleTabParams";
 import USE_scrollSpy from "@/hooks/USE_scrollSpy";
 import USE_manageTabs from "@/hooks/USE_manageTab";
 import GET_tabAndSectionToNavigate from "@/utils/GET_tabAndSectionToNavigate";
-import { ICON_arrow } from "@/components/Icons/Icons";
-import { AnimatePresence, motion } from "framer-motion";
 import { ProjectTab_SECTIONS } from "@/components/ProjectTab_SECTIONS";
 import USE_openedTabs from "@/hooks/USE_openedTabs";
 import Mobile_MODAL from "@/components/Mobile_MODAL/Mobile_MODAL";
 import { Tab_DD } from "@/components/Tab_DD/Tab_DD";
+import MobileProjectTopBtn_WRAP from "@/components/MobileProjectTopBtn_WRAP";
+import DesktopProjectSideNav_BTN from "@/components/DesktopProjectSideNav_BTN";
+import DesktopProjectSideNavCollapse_BTN from "@/components/DesktopProjectSideNavCollapse_BTN";
+import ModalMenu_UNDERLAY from "@/components/ModalMenu_UNDERLAY";
 
 export default function ProjectPage_CONTENT() {
   const { slug }: { slug: string } = useParams();
+  const params = useSearchParams();
+  const router = useRouter();
+  const sideNav_REF = useRef<HTMLElement | null>(null);
+  const tinyNavNav_REF = useRef<HTMLElement | null>(null);
+  const [loaded, SET_loaded] = useState(false);
+  const { opened_TABS, TOGGLE_tab, COLLAPSE_tabs, OPEN_singleTab } =
+    USE_openedTabs();
+
   const project = useMemo(
     () => ({ ...Projects[slug], tabs: Projects[slug]?.GET_tabs() }),
     [slug]
   );
-
-  const params = useSearchParams();
-  const router = useRouter();
-
-  const sideNav_REF = useRef<HTMLElement | null>(null);
-  const tinyNavNav_REF = useRef<HTMLElement | null>(null);
-
-  const [loaded, SET_loaded] = useState(false);
-  const { opened_TABS, TOGGLE_tab, CLOSE_allTabs, OPEN_singleTab } =
-    USE_openedTabs();
 
   const { state: IS_menuOpen, set: SET_menuOpen } = USE_Toggle(false);
   const { state: IS_mobileMenuOpen, set: SET_mobileMenuOpen } =
@@ -58,19 +57,22 @@ export default function ProjectPage_CONTENT() {
   const { activeSectionIndex, sectionRefs } = USE_scrollSpy(current_TAB);
 
   const SELECT_section = useCallback(
-    (tab_SLUG?: string | null, section_SLUG?: string | null) => {
+    (
+      tab_SLUG?: string | null,
+      section_SLUG?: string | null,
+      dontToggleTab?: boolean
+    ) => {
       const { tab, section } = GET_tabAndSectionToNavigate({
         project,
         tab_SLUG,
         section_SLUG,
       });
-
-      HANDLE_tabUrlParams({ tab_SLUG: tab?.slug, section_SLUG: section?.slug });
-      CHANGE_tab({ tab, section_SLUG: section?.slug });
-      TOGGLE_tab(tab?.slug, true);
       if (IS_mobileProjectOpen) {
         SET_mobileProjectMenuOpen(false);
       }
+      HANDLE_tabUrlParams({ tab_SLUG: tab?.slug, section_SLUG: section?.slug });
+      CHANGE_tab({ tab, section_SLUG: section?.slug });
+      TOGGLE_tab(tab?.slug, dontToggleTab ? false : true);
     },
     [
       CHANGE_tab,
@@ -95,6 +97,7 @@ export default function ProjectPage_CONTENT() {
     active: !IS_menuOpen,
   });
 
+  // initial tab selection
   useEffect(() => {
     if (!loaded) {
       SELECT_section(params.get("tab"), params.get("section"));
@@ -104,54 +107,20 @@ export default function ProjectPage_CONTENT() {
 
   return (
     <>
+      {/* Side nav */}
       <SideNav
         _ref={sideNav_REF}
         extraElsAboveScrollable={
-          <li>
-            <Btn
-              btnType="btn-square"
-              className="px-[1.2rem] py-[0.4rem] justify-start text-start z-20 w-full"
-              text_STYLES={{
-                fontWeight: 300,
-                color: "var(--text-white-light)",
-              }}
-              extraAttributes={['data-light-bottom-border-color="true"']}
-              text={`Project: ${project?.name}`}
-              onClick={RESET_tabs}
-            />
-          </li>
+          <DesktopProjectSideNav_BTN
+            projet_NAME={project?.name}
+            {...{ RESET_tabs }}
+          />
         }
         extraElsUnderScrollable={
-          <AnimatePresence>
-            {opened_TABS?.length > 0 && (
-              <motion.div
-                style={{ overflow: "hidden" }}
-                initial={{ opacity: 0, translateY: "5rem" }}
-                animate={{ opacity: 1, translateY: "0rem" }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                exit={{ opacity: 0, translateY: "5rem" }}
-                key={"collapse-all-button"}
-              >
-                <li>
-                  <Btn
-                    btnType="btn-square"
-                    className="px-[1.2rem] py-[0.4rem] justify-start text-start z-20 w-full"
-                    text_STYLES={{
-                      fontWeight: 300,
-                      color: "var(--text-white-light)",
-                      flex: 1,
-                    }}
-                    extraAttributes={['data-light-top-border-color="true"']}
-                    text="Collapse all"
-                    right_ICON={
-                      <ICON_arrow direction="up" color="light" small />
-                    }
-                    onClick={CLOSE_allTabs}
-                  />
-                </li>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <DesktopProjectSideNavCollapse_BTN
+            show={opened_TABS?.length > 0}
+            {...{ COLLAPSE_tabs }}
+          />
         }
       >
         {project?.tabs?.map((_tab) => (
@@ -168,6 +137,7 @@ export default function ProjectPage_CONTENT() {
         ))}
       </SideNav>
 
+      {/* Main content */}
       <div className="flex-1 pb-[50rem]">
         <ProjectMobileNav
           project_NAME={project?.name}
@@ -177,15 +147,15 @@ export default function ProjectPage_CONTENT() {
             SET_mobileProjectMenuOpen(true);
             OPEN_singleTab(current_TAB.slug);
           }}
-          // _ref={mobileNav_REF}
         />
-        <ProjectDesktopNav
+        <ProjectDesktop_NAV
           project_NAME={project?.name}
           tab_TITLE={current_TAB?.title}
           OPEN_menu={() => SET_menuOpen(true)}
           _ref={tinyNavNav_REF}
           hideContent={IS_changingTab || !loaded}
           RESET_tabs={RESET_tabs}
+          IS_desktopMenuOpen={IS_menuOpen}
         />
 
         <ProjectTab_SECTIONS
@@ -196,6 +166,7 @@ export default function ProjectPage_CONTENT() {
 
       {/* Mobile menu modal */}
       <Mobile_MODAL
+        title="Menu"
         IS_open={IS_mobileMenuOpen}
         CLOSE_modal={() => SET_mobileMenuOpen(false)}
         animate_LI
@@ -203,55 +174,17 @@ export default function ProjectPage_CONTENT() {
         <Menu_ITEMS SHOW_homeBtn />
       </Mobile_MODAL>
 
-      {/* Project menu modal */}
+      {/* Mobile project menu modal */}
       <Mobile_MODAL
+        title="Project Menu"
         IS_open={IS_mobileProjectOpen}
         CLOSE_modal={() => SET_mobileProjectMenuOpen(false)}
         extraElsAboveScrollable={
-          <div
-            className="flex w-full h-[5rem]"
-            style={{
-              borderBottom: "var(--border-light)",
-            }}
-          >
-            <li className="flex-1 h-full">
-              <Btn
-                btnType="btn-square"
-                className="px-[1.2rem] justify-start text-start z-20 w-full h-full"
-                text_STYLES={{ color: "var(--text-white-light)" }}
-                // extraAttributes={['data-light-bottom-border-color="true"']}
-                text={`Project: ${project.name}`}
-                onClick={() => {
-                  SELECT_section(
-                    project?.tabs?.[0]?.slug,
-                    project?.tabs?.[0]?.sections?.[0]?.slug
-                  );
-                }}
-              />
-            </li>
-
-            <AnimatePresence>
-              {opened_TABS?.length > 0 && (
-                <motion.li
-                  style={{ overflow: "hidden" }}
-                  initial={{ opacity: 0, translateX: "5rem" }}
-                  animate={{ opacity: 1, translateX: "0rem" }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                  exit={{ opacity: 0, translateX: "5rem" }}
-                  key={"collapse-all-button"}
-                  className="h-full"
-                >
-                  <Btn
-                    btnType="btn-square"
-                    className="px-[2rem]  justify-start text-start z-20 w-full h-full"
-                    extraAttributes={['data-light-left-border-color="true"']}
-                    right_ICON={<ICON_arrow direction="up" color="light" />}
-                    onClick={CLOSE_allTabs}
-                  />
-                </motion.li>
-              )}
-            </AnimatePresence>
-          </div>
+          <MobileProjectTopBtn_WRAP
+            project_NAME={project.name}
+            SHOW_collapseBtn={opened_TABS?.length > 0}
+            {...{ RESET_tabs, COLLAPSE_tabs }}
+          />
         }
       >
         <>
@@ -265,12 +198,13 @@ export default function ProjectPage_CONTENT() {
               SELECT_section={SELECT_section}
               open={opened_TABS.some((x) => x === _tab.slug)}
               toggle={() => TOGGLE_tab(_tab.slug)}
+              mobile
             />
           ))}
         </>
       </Mobile_MODAL>
 
-      {/* Desktop menu modal */}
+      {/* Desktop side menu modal */}
       <DesktopMenu_MODAL
         IS_open={IS_menuOpen}
         TOGGLE_open={() => SET_menuOpen(false)}
@@ -278,14 +212,8 @@ export default function ProjectPage_CONTENT() {
         <Menu_ITEMS SHOW_homeBtn />
       </DesktopMenu_MODAL>
 
-      <div
-        className="fixed top-0 right-0 bottom-0 left-0 h-full w-full bg-[#0000009f] z-50"
-        style={{
-          transition: "150ms ease-in",
-          opacity: IS_menuOpen ? 1 : 0,
-          pointerEvents: IS_menuOpen ? "auto" : "none",
-        }}
-      />
+      {/* Darkening for desktop side menu modal */}
+      <ModalMenu_UNDERLAY open={IS_menuOpen} />
     </>
   );
 }

@@ -2,13 +2,42 @@
 /*  */
 /*  */
 
-.ICON_dropDownArrow {
-  width: 1.6rem;
-  height: 1.6rem;
-  min-width: 1.6rem;
-  min-height: 1.6rem;
+@define-mixin small {
+  width: var(--icon-small);
+  height: var(--icon-small);
+  min-width: var(--icon-small);
+  min-height: var(--icon-small);
+}
+@define-mixin medium {
+  width: var(--icon-medium);
+  height: var(--icon-medium);
+  min-width: var(--icon-medium);
+  min-height: var(--icon-medium);
+}
+@define-mixin big {
+  width: var(--icon-big);
+  height: var(--icon-big);
+  min-width: var(--icon-big);
+  min-height: var(--icon-big);
+}
+@define-mixin default {
+  @mixin small;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  align-content: center;
+  transition: 100ms;
+  position: relative;
+
+  &[data-size="medium"] {
+    @mixin medium;
+  }
+  &[data-size="big"] {
+    @mixin big;
+  }
+}
+
+.ICON_dropDownArrow {
+  @mixin default;
   padding: 0.15rem 0.42rem 0 0.42rem;
 
   &[data-color="white"] {
@@ -24,15 +53,7 @@
 }
 
 .ICON_x {
-  width: 1.6rem;
-  height: 1.6rem;
-  min-width: 1.6rem;
-  min-height: 1.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 100ms;
-  position: relative;
+  @mixin default;
 
   &::before,
   &::after {
@@ -45,15 +66,10 @@
     border-radius: 5rem;
   }
 
-  &[data-big="true"] {
-    width: 2rem;
-    height: 2rem;
-    min-width: 2rem;
-    min-height: 2rem;
-
+  &[data-size="big"] {
     &::before,
     &::after {
-      width: 0.24rem;
+      width: 0.26rem;
     }
   }
 
@@ -79,11 +95,7 @@
   }
 }
 .ICON_arrow {
-  width: 2rem;
-  height: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @mixin default;
 
   & path {
     &[data-color="white"] {
@@ -92,10 +104,5 @@
     &[data-color="light"] {
       fill: var(--text-white-light);
     }
-  }
-
-  &[data-small="true"] {
-    width: 1.6rem;
-    height: 1.6rem;
   }
 }
