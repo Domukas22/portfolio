@@ -44,21 +44,19 @@
   --nav-height: 6rem;
   --tiny-nav-height: 4rem;
   --side-nav-width: 28rem;
+  --square-height: 32rem; /* square responsiveness (mob: 320/320, tablet: 320/320*2, desktop: 320/320*3 ) */
 
-  --mobile-padding: 4vmin;
   --btn-transition: 150ms;
 
   /* ------------------------------------------------------------------------------- */
   --test: 600px;
 
-  /* --max-width-mobile: 740px;
-  --max-width-tablet: 990px;
-  --min-width-desktop: 991px; */
   /* ------------------------------------------------------------------------------- */
 
   --border-transparent: 0.1rem solid transparent;
   --border-light: 0.1rem solid var(--white-10);
   --border-white: 0.1rem solid var(--white-95);
+  --border-bg: 0.1rem solid var(--fill-bg);
 
   --outline-hide: 0.2rem solid transparent;
   --outline-show: 0.2rem solid var(--text-white);
@@ -78,6 +76,14 @@
   /* ------------------------------------------------------------------------------- */
 
   --scrollbar-width: 17px;
+
+  /* ------------------------------------------------------------------------------- */
+
+  --max-conainer-width: 1400px;
+
+  --padding-desk: 4rem 6rem;
+  --padding-desk-small: 4rem 4rem;
+  --padding-tablet: 4vmin;
 
   /* ------------------------------------------------------------------------------- */
 }

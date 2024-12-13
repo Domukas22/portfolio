@@ -15,7 +15,7 @@ import USE_handleTabParams from "@/hooks/USE_handleTabParams";
 import USE_scrollSpy from "@/hooks/USE_scrollSpy";
 import USE_manageTabs from "@/hooks/USE_manageTab";
 import GET_tabAndSectionToNavigate from "@/utils/GET_tabAndSectionToNavigate";
-import { ProjectTab_SECTIONS } from "@/components/ProjectTab_SECTIONS";
+import ProjectTab_SECTIONS from "@/components/SECTIONS";
 import USE_openedTabs from "@/hooks/USE_openedTabs";
 import Mobile_MODAL from "@/components/Mobile_MODAL/Mobile_MODAL";
 import { Tab_DD } from "@/components/Tab_DD/Tab_DD";
@@ -142,7 +142,7 @@ export default function ProjectPage_CONTENT() {
       </SideNav>
 
       {/* Main content */}
-      <div className="flex-1 pb-[50rem]">
+      <div className="pb-[50rem]">
         <ProjectMobileNav
           project_NAME={project?.name}
           project_TABTITLE={current_TAB?.tab_NAME}
@@ -165,6 +165,7 @@ export default function ProjectPage_CONTENT() {
         <ProjectTab_SECTIONS
           {...{ current_TAB, sectionRefs }}
           hideContent={IS_changingTab || !loaded}
+          project_SLUG={project.slug}
         />
       </div>
 

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@custom-media --mobile (max-width: 767px);
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop-small (max-width: 1300px);
+@custom-media --desktop-big (min-width: 1301px);
+
 @font-face {
   font-family: "Nunito";
   src: url(../fonts/Nunito-Light.ttf);
@@ -37,6 +42,65 @@
   font-weight: 800;
 }
 
+html {
+  /* Set up for "1rem === 10px" */
+  font-size: 62.5%;
+  @media (--mobile) {
+    font-size: 67.5%;
+  }
+}
+body {
+  font-size: var(--user-font-size, 1.8rem); /* 18px base for desktop */
+  font-family: "Nunito" !important;
+  color: var(--text-white);
+  @media (--mobile) {
+    font-size: calc(var(--user-font-size, 1.6rem) + 0.2rem);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-weight: 700;
+    line-height: 130%;
+  }
+
+  h1 {
+    font-size: var(--h1-desk);
+  }
+  h2 {
+    font-size: var(--h2-desk);
+  }
+  h3 {
+    font-size: var(--h3-desk);
+  }
+  h4 {
+    font-size: var(--h4-desk);
+  }
+  h5 {
+    font-size: var(--h5-desk);
+  }
+
+  @media (--mobile) {
+    h1 {
+      font-size: var(--h1-mob);
+    }
+    h2 {
+      font-size: var(--h2-mob);
+    }
+    h3 {
+      font-size: var(--h3-mob);
+    }
+    h4 {
+      font-size: var(--h4-mob);
+    }
+    h5 {
+      font-size: var(--h5-mob);
+    }
+  }
+}
+
 .weight-700 {
   font-weight: 700;
 }
@@ -54,20 +118,20 @@
 }
 
 :root {
-  --h1-desk: 4rem;
-  --h1-mob: 3.4rem;
+  --h1-desk: 3.4rem;
+  --h1-mob: 3.2rem;
 
   --h2-desk: 3rem;
-  --h2-mob: 3rem;
+  --h2-mob: 2.8rem;
 
-  --h3-desk: 2.6rem;
-  --h3-mob: 2.6rem;
+  --h3-desk: 2.2rem;
+  --h3-mob: 2.2rem;
 
-  --h4-desk: 2.2rem;
-  --h4-mob: 2.2rem;
+  --h4-desk: 1.8rem;
+  --h4-mob: 1.8rem;
 
-  --h5-desk: 1.8rem;
-  --h5-mob: 1.8rem;
+  /* --h5-desk: 1.8rem;
+  --h5-mob: 1.8rem; */
 }
 
 /* ======================================================================== */
@@ -84,9 +148,9 @@
 .size-h4 {
   font-size: var(--h4-desk);
 }
-.size-h5 {
+/* .size-h5 {
   font-size: var(--h5-desk);
-}
+} */
 
 @media (max-width: 600px) {
   .size-h1 {
@@ -101,9 +165,9 @@
   .size-h4 {
     font-size: var(--h4-mob);
   }
-  .size-h5 {
+  /* .size-h5 {
     font-size: var(--h5-mob);
-  }
+  } */
 }
 /* ======================================================================== */
 

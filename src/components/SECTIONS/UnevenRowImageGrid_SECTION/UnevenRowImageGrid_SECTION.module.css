@@ -1,0 +1,39 @@
+/*  */
+/*  */
+/*  */
+
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop-small (max-width: 1300px);
+@custom-media --desktop-big (min-width: 1301px);
+
+.unevenRowImageGrid_CONTAINER {
+  --gap-desk: 1.2rem;
+  --gap-tablet: 1.2rem;
+
+  & [data-uneven-row-image-grid] {
+    margin-top: 2rem;
+    display: flex;
+    gap: var(--gap-desk);
+
+    & [data-img-col] {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: var(--gap-desk);
+
+      & img {
+        border-radius: 2rem;
+        object-fit: contain;
+        width: 100%;
+      }
+    }
+
+    @media (--tablet) {
+      flex-direction: column;
+      gap: var(--padding-tablet);
+      & [data-img-col] {
+        gap: var(--padding-tablet);
+      }
+    }
+  }
+}

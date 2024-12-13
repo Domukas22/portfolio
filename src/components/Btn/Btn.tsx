@@ -14,10 +14,16 @@ interface Btn_PROPS {
   className?: ClassValue;
   left_ICON?: React.ReactNode;
   right_ICON?: React.ReactNode;
-  btnType: "btn" | "btn-square" | "btn-square-light" | "btn-tiny-desk-round";
+  btnType:
+    | "btn"
+    | "btn-square"
+    | "btn-square-light"
+    | "btn-tiny-desk-round"
+    | "btn-pagination";
   children?: React.ReactNode;
   style?: CSSProperties;
   text_STYLES?: CSSProperties;
+  excludeFromTabOrder?: boolean;
 }
 
 export default function Btn({
@@ -28,7 +34,7 @@ export default function Btn({
   // FIRE_clickEvent,
   left_ICON,
   right_ICON,
-
+  excludeFromTabOrder,
   children,
   style,
   text_STYLES,
@@ -42,6 +48,7 @@ export default function Btn({
       }}
       {...props}
       {...style}
+      excludeFromTabOrder={excludeFromTabOrder}
     >
       {left_ICON}
       {text && <span style={text_STYLES}>{text}</span>}

@@ -1,0 +1,79 @@
+/*  */
+/*  */
+/*  */
+
+@custom-media --mobile (max-width: 767px);
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop-small (max-width: 1300px);
+@custom-media --desktop-big (min-width: 1301px);
+
+.logoProgression_GRID {
+  display: flex;
+  column-gap: 10rem;
+  row-gap: 1.8rem;
+
+  /* border-bottom: var(--border-light); */
+
+  --sticky-top: calc(var(--tiny-nav-height) + 10rem);
+
+  & [data-right] {
+    flex: 1;
+  }
+
+  & [data-text-wrap][data-sticky="true"] {
+    position: sticky;
+    top: var(--sticky-top);
+  }
+
+  & [data-img-wrap] {
+    &[data-sticky="true"] {
+      position: sticky;
+      top: var(--sticky-top);
+    }
+
+    & img {
+      object-fit: contain;
+      width: 100%;
+      border-radius: 2rem;
+    }
+
+    @media (--desktop-small) {
+      position: static;
+      max-width: 60rem;
+    }
+  }
+
+  & [data-text] {
+    max-width: 50rem;
+    width: 50rem;
+
+    &[data-title] {
+      margin-bottom: 1.6rem;
+    }
+    & p:not(:last-child) {
+      margin-bottom: 1.6rem;
+    }
+
+    @media (--desktop-small) {
+      max-width: 100%;
+      width: 100%;
+      &[data-title] {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &[data-desktop] {
+    @media (--desktop-small) {
+      display: none;
+    }
+  }
+  &[data-mobile] {
+    flex-direction: column;
+
+    display: none;
+    @media (--desktop-small) {
+      display: flex;
+    }
+  }
+}

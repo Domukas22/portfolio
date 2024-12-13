@@ -1,0 +1,21 @@
+/*  */
+/*  */
+/*  */
+
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop-small (max-width: 1300px);
+@custom-media --desktop-big (min-width: 1301px);
+
+.multiPointSection_CONTAINER {
+  & [data-content-wrap] {
+    max-width: 60rem;
+
+    & [data-top] {
+      margin-bottom: 3rem;
+    }
+
+    & [data-point] > [data-title] {
+      margin: 3rem 0 0.6rem 0;
+    }
+  }
+}

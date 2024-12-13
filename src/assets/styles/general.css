@@ -2,14 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@custom-media --mobile (max-width: 767px);
 @custom-media --tablet (max-width: 990px);
-@custom-media --desktop-small (min-width: 991px) and (max-width: 1300px);
+@custom-media --desktop-small (max-width: 1300px);
 @custom-media --desktop-big (min-width: 1301px);
 
 :root {
   background-color: var(--fill-bg);
-  color: var(--text-white);
-  font-weight: 300;
 }
 
 html {
@@ -17,103 +16,67 @@ html {
   @media (prefers-reduced-motion) {
     scroll-behavior: auto;
   }
-
-  /* Set up for "1rem === 10px" */
-  font-size: 62.5%;
-  @media (max-width: 740px) {
-    font-size: 67.5%;
-  }
 }
 
 body {
   overflow-x: hidden !important;
-  font-family: "Nunito" !important;
-  font-size: var(--user-font-size, 1.8rem); /* 18px base for desktop */
+
   min-height: 110vh;
 
-  @media (max-width: 740px) {
-    font-size: calc(var(--user-font-size, 1.6rem) + 0.2rem);
-  }
+  padding-left: var(--side-nav-width);
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    font-weight: 700;
-  }
-
-  h1 {
-    font-size: var(--h1-desk);
-  }
-  h2 {
-    font-size: var(--h2-desk);
-  }
-  h3 {
-    font-size: var(--h3-desk);
-  }
-  h4 {
-    font-size: var(--h4-desk);
-  }
-  h5 {
-    font-size: var(--h5-desk);
-  }
-
-  @media (max-width: 600px) {
-    h1 {
-      font-size: var(--h1-mob);
-    }
-    h2 {
-      font-size: var(--h2-mob);
-    }
-    h3 {
-      font-size: var(--h3-mob);
-    }
-    h4 {
-      font-size: var(--h4-mob);
-    }
-    h5 {
-      font-size: var(--h5-mob);
-    }
+  @media (--tablet) {
+    padding-left: 0;
   }
 }
 
 /* ------------------------------------------------------------------------------------------------ */
 
-section {
-  width: 100%;
-  padding: 4rem 8rem;
-
-  @media (--desktop-small) {
-    padding: 4rem 4rem;
-  }
-
-  @media (--desktop-big) {
-    padding: 4rem 6rem;
-  }
-
-  @media (--tablet) {
-    padding: 4vmin;
-  }
+section[data-last="true"] {
+  border-top: var(--border-light);
+  border-bottom: var(--border-light);
 }
 
 .container {
   width: 100%;
-  max-width: 1300px;
+  max-width: var(--max-conainer-width);
   margin: 0 auto;
-}
-
-div[data-project-section-container] {
   transition: 100ms;
 
-  &[data-hide="true"] {
-    opacity: 0;
-    pointer-events: none;
+  padding: var(--padding-desk);
+  margin-bottom: 3rem;
+
+  @media (--desktop-small) {
+    padding: var(--padding-desk-small);
+  }
+
+  @media (--tablet) {
+    padding: var(--padding-tablet);
   }
 }
+.container.hero {
+  margin-bottom: 0;
+  @media (--tablet) {
+    padding: 0;
+    margin-bottom: 3rema;
+  }
+}
+.container[data-hide="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+/* ------------------------------------------------------------------------------------------------ */
 
 p {
   text-wrap: auto;
+}
+
+p > span[data-hyperlink] {
+  text-decoration: underline;
+  transition: 100ms;
+}
+p > span[data-hyperlink]:hover {
+  color: var(--text-white) !important;
 }
 
 div[data-tiny-scrollbar-styles],

@@ -1,0 +1,19 @@
+/*  */
+/*  */
+/*  */
+
+@custom-media --mobile (max-width: 767px);
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop-small (max-width: 1300px);
+@custom-media --desktop-big (min-width: 1301px);
+
+.heroImg_WRAP {
+  width: 100%;
+  height: var(--square-height);
+  border-radius: 2rem;
+  overflow: hidden;
+
+  @media (--tablet) {
+    border-radius: 0;
+  }
+}

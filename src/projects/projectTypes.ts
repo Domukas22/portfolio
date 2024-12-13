@@ -40,3 +40,8 @@ export type ProjectTabs_TYPE = {
   tab_SLUG: string;
   sections: ProjectSection_TYPE[];
 };
+
+export type customBackgroundColors_TYPE = {
+  color: string;
+  index: number;
+};

@@ -2,8 +2,9 @@
 //
 //
 
-import { Localmore_TABS } from "./project-localmore";
 import { existingProject_SLUGS, ProjectIntro_TYPE } from "./projectTypes";
+
+import Localmore_TABS from "./localmore";
 
 export const Project_INTROS: Record<existingProject_SLUGS, ProjectIntro_TYPE> =
   {

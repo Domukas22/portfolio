@@ -9,6 +9,7 @@ import "@/assets/styles/roots.css";
 import "@/assets/styles/fonts.css";
 import "@/assets/styles/btn.css";
 import "@/assets/styles/general.css";
+import "swiper/css";
 
 export const metadata: Metadata = {
   title: "Domas Sirbike",
@@ -22,7 +23,7 @@ export default async function HomePage_LAYOUT({
 }) {
   return (
     <html lang="en">
-      <body className="flex">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

@@ -71,7 +71,6 @@
     }
   }
 }
-
 @define-mixin btn-square {
   @mixin BTN-DEFAULT;
   background: var(--dark);
@@ -203,6 +202,37 @@
     }
   }
 }
+@define-mixin btn-pagination {
+  @mixin BTN-DEFAULT;
+
+  border-radius: 9999px;
+  background: var(--dark-light);
+  opacity: 0.8;
+
+  @media (--desktop) {
+    &[data-hovered] {
+      opacity: 0.9;
+    }
+  }
+
+  &[data-pressed] {
+    opacity: 1;
+  }
+
+  @media (--desktop) {
+    &:focus-visible,
+    &[data-focus-visible] {
+      border: var(--border-white) !important;
+      outline: 0.3rem solid black !important;
+    }
+  }
+
+  /* In case the swiper is not looped and reaches the first/last slides */
+  &[data-disable="true"] {
+    pointer-events: none;
+    opacity: 0.25;
+  }
+}
 
 .btn {
   @mixin btn;
@@ -218,4 +248,7 @@
 }
 .native-link-nav {
   @mixin native-link-nav;
+}
+.btn-pagination {
+  @mixin btn-pagination;
 }
