@@ -2,22 +2,20 @@
 //
 //
 
-import { TitleParagraphImageSection_TYPE } from "@/projects/projectSection_TYPES";
 import Image from "next/image";
-import { MutableRefObject } from "react";
+
 import css from "./TitleParagraphImage_SECTION.module.css";
 import Project_SECTION from "@/components/Project_SECTION";
 import Container from "@/components/Container";
+import { TitleParagraphImageSection_TYPE } from "@/projects/types/sections";
 
 export function TitleParagraphImage_SECTION({
   section_CONTENT,
-  index,
-  sectionRefs,
+
   hideContent,
 }: {
   section_CONTENT: TitleParagraphImageSection_TYPE;
-  index: number;
-  sectionRefs: MutableRefObject<(HTMLElement | null)[]>;
+
   hideContent: boolean;
 }) {
   const {
@@ -32,8 +30,8 @@ export function TitleParagraphImage_SECTION({
   const img = <Image width={500} height={400} src={img_PATH} alt="" />;
 
   return (
-    <Project_SECTION {...{ section_SLUG, index, sectionRefs }}>
-      <Container {...{ hideContent }}>
+    <Project_SECTION {...{ section_SLUG, hideContent }}>
+      <Container>
         <div className={css.logoProgression_GRID} data-desktop>
           <div data-left>
             <div data-text-wrap data-sticky={sticky_TEXT}>
@@ -43,7 +41,7 @@ export function TitleParagraphImage_SECTION({
                 dangerouslySetInnerHTML={{ __html: title }}
               />
               <div data-text>
-                {parapgraphs?.map((p, i) => (
+                {parapgraphs?.map((p: string, i: number) => (
                   <p
                     key={`p/${section_SLUG}/${img_PATH}/${i}`}
                     dangerouslySetInnerHTML={{ __html: p }}
@@ -67,7 +65,7 @@ export function TitleParagraphImage_SECTION({
           />
           <div data-img-wrap>{img}</div>
           <div data-text>
-            {parapgraphs?.map((p, i) => (
+            {parapgraphs?.map((p: string, i: number) => (
               <p
                 key={`p/${section_SLUG}/${img_PATH}/${i}`}
                 dangerouslySetInnerHTML={{ __html: p }}

@@ -6,10 +6,10 @@ import Btn from "./Btn/Btn";
 
 export default function DesktopProjectSideNav_BTN({
   projet_NAME = "Project name",
-  RESET_tabs = () => {},
+  SELECT_veryFirstTab = () => {},
 }: {
   projet_NAME: string;
-  RESET_tabs: () => void;
+  SELECT_veryFirstTab: () => void;
 }) {
   return (
     <li>
@@ -22,7 +22,7 @@ export default function DesktopProjectSideNav_BTN({
         }}
         text={`Project: ${projet_NAME}`}
         data-light-bottom-border-color="true"
-        onClick={RESET_tabs}
+        onClick={SELECT_veryFirstTab}
       />
     </li>
   );

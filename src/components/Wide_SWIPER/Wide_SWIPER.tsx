@@ -10,8 +10,9 @@ import USE_swiperSliderRef from "@/hooks/USE_swiperSliderRef";
 import Btn from "../Btn/Btn";
 import { ICON_arrow } from "../Icons/Icons";
 import { useMemo } from "react";
-import { customBackgroundColors_TYPE } from "@/projects/projectTypes";
+
 import HeroImg_WRAP from "../HeroImg_WRAP/HeroImg_WRAP";
+import { customBackgroundColors_TYPE } from "@/projects/types/other";
 
 interface WideSwiper_TYPE {
   img_PATHS: string[];

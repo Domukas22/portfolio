@@ -11,13 +11,8 @@ export default function NextUp_SECTION({
   hideContent: boolean;
 }) {
   return (
-    <Project_SECTION
-      section_SLUG="next-up"
-      index={9999}
-      sectionRefs={{ current: [] }}
-      last
-    >
-      <Container {...{ hideContent }} hero>
+    <Project_SECTION section_SLUG="next-up" last {...{ hideContent }}>
+      <Container hero>
         <h2>Next up:</h2>
         <p>Hello</p>
       </Container>

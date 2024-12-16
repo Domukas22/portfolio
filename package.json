@@ -6,7 +6,8 @@
     "dev": "next dev -H 0.0.0.0",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint_next": "next lint",
+    "lint": "npx tsc --noEmit"
   },
   "dependencies": {
     "@types/swiper": "^5.4.3",

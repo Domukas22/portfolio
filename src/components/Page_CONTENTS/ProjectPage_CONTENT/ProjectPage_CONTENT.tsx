@@ -1,9 +1,7 @@
 "use client";
 
-import { Project_INTROS } from "@/projects/projectIntros";
 import { useParams } from "next/navigation";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useMemo, useRef } from "react";
 import SideNav from "../../SideNav/SideNav";
 import ProjectMobileNav from "../../Nav/ProjectMobileNav/ProjectMobileNav";
 import USE_Toggle from "@/hooks/USE_toggle";
@@ -11,10 +9,7 @@ import ProjectDesktop_NAV from "@/components/Nav/ProjectDesktop_NAV/ProjectDeskt
 import DesktopMenu_MODAL from "@/components/DesktopMenu_MODAL/DesktopMenu_MODAL";
 import Menu_ITEMS from "@/components/Nav/Menu/Menu_ITEMS";
 import USE_perserveStickyNavPosition from "@/utils/USE_perserveStickyNavPosition";
-import USE_handleTabParams from "@/hooks/USE_handleTabParams";
-import USE_scrollSpy from "@/hooks/USE_scrollSpy";
-import USE_manageTabs from "@/hooks/USE_manageTab";
-import GET_tabAndSectionToNavigate from "@/utils/GET_tabAndSectionToNavigate";
+import USE_handleTabChange from "@/hooks/USE_handleTabChange";
 import ProjectTab_SECTIONS from "@/components/SECTIONS";
 import USE_openedTabs from "@/hooks/USE_openedTabs";
 import Mobile_MODAL from "@/components/Mobile_MODAL/Mobile_MODAL";
@@ -23,22 +18,19 @@ import MobileProjectTopBtn_WRAP from "@/components/MobileProjectTopBtn_WRAP";
 import DesktopProjectSideNav_BTN from "@/components/DesktopProjectSideNav_BTN";
 import DesktopProjectSideNavCollapse_BTN from "@/components/DesktopProjectSideNavCollapse_BTN";
 import ModalMenu_UNDERLAY from "@/components/ModalMenu_UNDERLAY";
-import { existingProject_SLUGS } from "@/projects/projectTypes";
+import { existingProject_SLUGS } from "@/projects/types/project";
+import Projects from "@/projects";
 
 export default function ProjectPage_CONTENT() {
   const { slug }: { slug: existingProject_SLUGS } = useParams();
-  const params = useSearchParams();
-  const router = useRouter();
+
   const sideNav_REF = useRef<HTMLElement | null>(null);
   const tinyNavNav_REF = useRef<HTMLElement | null>(null);
-  const [loaded, SET_loaded] = useState(false);
+
   const { opened_TABS, TOGGLE_tab, COLLAPSE_tabs, OPEN_singleTab } =
     USE_openedTabs();
 
-  const project = useMemo(
-    () => ({ ...Project_INTROS[slug], tabs: Project_INTROS[slug]?.GET_tabs() }),
-    [slug]
-  );
+  const project = useMemo(() => Projects[slug], [slug]);
 
   const { state: IS_menuOpen, set: SET_menuOpen } = USE_Toggle(false);
   const { state: IS_mobileMenuOpen, set: SET_mobileMenuOpen } =
@@ -46,68 +38,24 @@ export default function ProjectPage_CONTENT() {
   const { state: IS_mobileProjectOpen, set: SET_mobileProjectMenuOpen } =
     USE_Toggle(false);
 
-  const { HANDLE_tabUrlParams } = USE_handleTabParams({
-    router,
-    params,
+  const {
+    CHANGE_tab,
+    IS_changingTab,
+    current_TAB,
+    current_SUBTAB,
+    SELECT_veryFirstTab,
+  } = USE_handleTabChange({
     project,
+    TOGGLE_tab,
+    CLOSE_mobileProjectMenu: () => SET_mobileProjectMenuOpen(false),
   });
-  const { current_TAB, IS_changingTab, CHANGE_tab } = USE_manageTabs({
-    project,
-  });
 
-  const { activeSectionIndex, sectionRefs } = USE_scrollSpy(current_TAB);
-
-  const SELECT_section = useCallback(
-    (
-      tab_SLUG?: string | null,
-      section_SLUG?: string | null,
-      dontToggleTab?: boolean
-    ) => {
-      const { tab, section } = GET_tabAndSectionToNavigate({
-        project,
-        tab_SLUG,
-        section_SLUG,
-      });
-      if (IS_mobileProjectOpen) {
-        SET_mobileProjectMenuOpen(false);
-      }
-      HANDLE_tabUrlParams({
-        tab_SLUG: tab?.tab_SLUG,
-        section_SLUG: section?.section_SLUG,
-      });
-      CHANGE_tab({ tab, section_SLUG: section?.section_SLUG });
-      TOGGLE_tab(tab?.tab_SLUG, dontToggleTab ? false : true);
-    },
-    [
-      CHANGE_tab,
-      HANDLE_tabUrlParams,
-      SET_mobileProjectMenuOpen,
-      IS_mobileProjectOpen,
-      TOGGLE_tab,
-      project,
-    ]
-  );
-
-  const RESET_tabs = useCallback(() => {
-    SELECT_section(
-      project?.tabs?.[0]?.tab_SLUG,
-      project?.tabs?.[0]?.sections?.[0]?.section_SLUG
-    );
-    OPEN_singleTab(project?.tabs?.[0]?.tab_SLUG);
-  }, [SELECT_section, project, OPEN_singleTab]);
+  /// removed url naviagiton. Simplify everything with a simple tag selection.
 
   USE_perserveStickyNavPosition({
     stickyEls: [sideNav_REF?.current, tinyNavNav_REF?.current],
     active: !IS_menuOpen,
   });
-
-  // initial tab selection
-  useEffect(() => {
-    if (!loaded) {
-      SELECT_section(params.get("tab"), params.get("section"));
-      SET_loaded(true);
-    }
-  }, [SELECT_section, SET_loaded, params, loaded]);
 
   return (
     <>
@@ -117,7 +65,7 @@ export default function ProjectPage_CONTENT() {
         extraElsAboveScrollable={
           <DesktopProjectSideNav_BTN
             projet_NAME={project?.name}
-            {...{ RESET_tabs }}
+            {...{ SELECT_veryFirstTab }}
           />
         }
         extraElsUnderScrollable={
@@ -131,12 +79,10 @@ export default function ProjectPage_CONTENT() {
           <Tab_DD
             key={_tab.tab_SLUG}
             tab={_tab}
-            current_TAB={current_TAB}
-            activeIndex={activeSectionIndex}
-            hideContent={IS_changingTab || !loaded}
-            SELECT_section={SELECT_section}
+            hideContent={false}
             open={opened_TABS.some((x) => x === _tab.tab_SLUG)}
-            toggle={() => TOGGLE_tab(_tab.tab_SLUG)}
+            TOGGLE_tab={() => TOGGLE_tab(_tab.tab_SLUG)}
+            {...{ current_TAB, current_SUBTAB, CHANGE_tab }}
           />
         ))}
       </SideNav>
@@ -145,26 +91,33 @@ export default function ProjectPage_CONTENT() {
       <div className="pb-[50rem]">
         <ProjectMobileNav
           project_NAME={project?.name}
-          project_TABTITLE={current_TAB?.tab_NAME}
+          project_TABTITLE={
+            current_SUBTAB ? current_SUBTAB?.tab_NAME : current_TAB?.tab_NAME
+          }
           OPEN_mobileMenu={() => SET_mobileMenuOpen(true)}
           OPEN_mobileProjectMenu={() => {
             SET_mobileProjectMenuOpen(true);
-            OPEN_singleTab(current_TAB.tab_SLUG);
+            OPEN_singleTab(current_TAB?.tab_SLUG);
           }}
         />
         <ProjectDesktop_NAV
           project_NAME={project?.name}
-          tab_TITLE={current_TAB?.tab_NAME}
           OPEN_menu={() => SET_menuOpen(true)}
           _ref={tinyNavNav_REF}
-          hideContent={IS_changingTab || !loaded}
-          RESET_tabs={RESET_tabs}
+          hideContent={IS_changingTab}
+          current_TAB={current_TAB}
+          current_SUBTAB={current_SUBTAB}
+          SELECT_veryFirstTab={SELECT_veryFirstTab}
+          CHANGE_tab={CHANGE_tab}
           IS_desktopMenuOpen={IS_menuOpen}
         />
 
+        {/* If tab.slug === introduction, insert introduction section */}
+
         <ProjectTab_SECTIONS
-          {...{ current_TAB, sectionRefs }}
-          hideContent={IS_changingTab || !loaded}
+          {...{ current_TAB }}
+          current_TAB={current_SUBTAB ? current_SUBTAB : current_TAB}
+          hideContent={IS_changingTab}
           project_SLUG={project.slug}
         />
       </div>
@@ -188,7 +141,7 @@ export default function ProjectPage_CONTENT() {
           <MobileProjectTopBtn_WRAP
             project_NAME={project.name}
             SHOW_collapseBtn={opened_TABS?.length > 0}
-            {...{ RESET_tabs, COLLAPSE_tabs }}
+            {...{ SELECT_veryFirstTab, COLLAPSE_tabs }}
           />
         }
       >
@@ -197,13 +150,11 @@ export default function ProjectPage_CONTENT() {
             <Tab_DD
               key={_tab.tab_SLUG}
               tab={_tab}
-              current_TAB={current_TAB}
-              activeIndex={activeSectionIndex}
-              hideContent={IS_changingTab || !loaded}
-              SELECT_section={SELECT_section}
+              hideContent={false}
               open={opened_TABS.some((x) => x === _tab.tab_SLUG)}
-              toggle={() => TOGGLE_tab(_tab.tab_SLUG)}
+              TOGGLE_tab={() => TOGGLE_tab(_tab.tab_SLUG)}
               mobile
+              {...{ current_TAB, current_SUBTAB, CHANGE_tab }}
             />
           ))}
         </>

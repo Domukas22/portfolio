@@ -11,7 +11,7 @@ import MobileMenu_BTN from "@/components/MobileMenu_BTN";
 
 interface ProjectMobileNav_PROPS {
   project_NAME: string;
-  project_TABTITLE: string;
+  project_TABTITLE: string | undefined;
   OPEN_mobileMenu: () => void;
   OPEN_mobileProjectMenu?: () => void;
 }

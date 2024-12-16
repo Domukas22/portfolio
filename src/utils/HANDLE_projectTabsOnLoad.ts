@@ -5,11 +5,12 @@
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 import SET_urlParams from "./SET_urlParams";
-import { ProjectIntro_TYPE, ProjectTabs_TYPE } from "@/projects/projectTypes";
+import { Project_TYPE } from "@/projects/types/project";
+import { ProjectTabs_TYPE } from "@/projects/types/tabs";
 
 interface HandleProjectTabsOnLoad_TYPE {
   tab: ProjectTabs_TYPE;
-  project: ProjectIntro_TYPE & { tabs: ProjectTabs_TYPE[] };
+  project: Project_TYPE;
   router: AppRouterInstance;
   params: URLSearchParams;
   CHANGE_tab: (tab: ProjectTabs_TYPE) => void;

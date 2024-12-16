@@ -2,9 +2,21 @@
 //
 //
 
-import { customBackgroundColors_TYPE, ProjectTag_TYPE } from "./projectTypes";
+import { customBackgroundColors_TYPE, ProjectTag_TYPE } from "./other";
+import { existingProject_SLUGS } from "./project";
 
-export type ProjectSectionType_TYPE = "hero";
+export type IntroductionHeroSection_TYPE = {
+  type: "introduction-hero";
+
+  section_SLUG: existingProject_SLUGS;
+  section_NAME: string;
+
+  headerImg_FILENAME: string;
+  headerImg_COLOR: string;
+
+  subtitle: string;
+  tags: ProjectTag_TYPE[];
+};
 
 export type HeroSection_TYPE = {
   type: "hero";
@@ -17,9 +29,8 @@ export type HeroSection_TYPE = {
   headerImg_FILENAME: string;
   headerImg_COLOR: string;
 
-  tags: ProjectTag_TYPE[];
+  //   tags: ProjectTag_TYPE[];
 };
-
 export type TitleParagraphImageSection_TYPE = {
   type: "title-parapgraph-image";
   section_SLUG: string;
@@ -31,7 +42,6 @@ export type TitleParagraphImageSection_TYPE = {
   sticky_TEXT?: boolean;
   sticky_IMG?: boolean;
 };
-
 export type TitleAndImageGridSection_TYPE = {
   type: "title-and-image-grid";
   section_SLUG: string;
@@ -74,8 +84,20 @@ export type MultiPointSection_TYPE = {
 };
 
 export type ProjectSection_TYPE =
+  | IntroductionHeroSection_TYPE
   | HeroSection_TYPE
   | TitleParagraphImageSection_TYPE
   | UnevenRowImageGridSection_TYPE
   | SwiperHeroSection_TYPE
   | MultiPointSection_TYPE;
+
+export const DummySection: HeroSection_TYPE = {
+  type: "hero",
+  section_SLUG: "dummy",
+  section_NAME: "Dummy section",
+  project_NAME: "Dummy project name",
+  project_SUBTITLE: "Dummy subtitile",
+
+  headerImg_FILENAME: "",
+  headerImg_COLOR: "purple",
+};

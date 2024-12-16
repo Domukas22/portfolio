@@ -37,6 +37,14 @@ section[data-last="true"] {
   border-bottom: var(--border-light);
 }
 
+section[data-hide] {
+  transition: 150ms;
+}
+section[data-hide="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .container {
   width: 100%;
   max-width: var(--max-conainer-width);
@@ -61,10 +69,7 @@ section[data-last="true"] {
     margin-bottom: 3rema;
   }
 }
-.container[data-hide="true"] {
-  opacity: 0;
-  pointer-events: none;
-}
+
 /* ------------------------------------------------------------------------------------------------ */
 
 p {

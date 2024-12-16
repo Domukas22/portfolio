@@ -1,3 +1,45 @@
+// {
+//   "compilerOptions": {
+//     "target": "ES2017",
+//     "lib": ["dom", "dom.iterable", "esnext"],
+//     "allowJs": false, // Disable JavaScript to ensure all files are TypeScript
+//     "skipLibCheck": false, // Check type definitions in node_modules
+//     "strict": true, // Enable all strict type-checking options
+//     "noEmit": true, // Don't emit compiled files
+//     "esModuleInterop": true, // Support CommonJS modules
+//     "module": "esnext",
+//     "moduleResolution": "bundler",
+//     "resolveJsonModule": true, // Allow importing JSON files
+//     "isolatedModules": true, // Ensure every file can be transpiled in isolation
+//     "jsx": "preserve", // Preserve JSX for framework-specific compilation
+//     "incremental": true, // Speed up incremental builds
+//     "forceConsistentCasingInFileNames": true, // Ensure file names are case-sensitive
+//     "exactOptionalPropertyTypes": true, // Check exact property types on optional properties
+//     "useUnknownInCatchVariables": true, // Require explicit typing of catch variables
+//     "noImplicitAny": true, // Prevent implicit "any" type
+//     "noImplicitThis": true, // Disallow `this` with an implicit "any" type
+//     "strictBindCallApply": true, // Ensure arguments match in function calls
+//     "alwaysStrict": true, // Parse in strict mode
+//     "strictNullChecks": true, // Ensure null and undefined are explicitly handled
+//     "strictFunctionTypes": true, // Check function type compatibility
+//     "strictPropertyInitialization": true, // Ensure class properties are initialized
+//     "noUnusedLocals": true, // Report unused local variables
+//     "noUnusedParameters": true, // Report unused function parameters
+//     "noImplicitReturns": true, // Ensure functions return explicitly
+//     "noFallthroughCasesInSwitch": true, // Ensure switch cases don’t fall through
+//     "checkJs": false, // Ensure no JavaScript type checking (use TS)
+//     "plugins": [
+//       {
+//         "name": "next"
+//       }
+//     ],
+//     "paths": {
+//       "@/*": ["./src/*"]
+//     }
+//   },
+//   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+//   "exclude": ["node_modules"]
+// }
 {
   "compilerOptions": {
     "target": "ES2017",

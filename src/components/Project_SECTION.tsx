@@ -2,29 +2,22 @@
 //
 //
 
-import React, { MutableRefObject } from "react";
+import React from "react";
 
 export default function Project_SECTION({
   children,
   section_SLUG,
-  index,
-  sectionRefs,
   last = false,
+  hideContent = false,
 }: {
   children: React.ReactNode;
   section_SLUG: string;
-  index: number;
-  sectionRefs: MutableRefObject<(HTMLElement | null)[]>;
+
   last?: boolean;
+  hideContent: boolean;
 }) {
   return (
-    <section
-      id={section_SLUG}
-      ref={(el) => {
-        sectionRefs.current[index] = el;
-      }}
-      data-last={last}
-    >
+    <section id={section_SLUG} data-last={last} data-hide={hideContent}>
       {children}
     </section>
   );

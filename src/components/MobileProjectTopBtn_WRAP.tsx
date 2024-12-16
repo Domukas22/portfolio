@@ -8,12 +8,12 @@ import MobileProjectMenuMain_BTN from "./MobileProjectMenuMain_BTN";
 export default function MobileProjectTopBtn_WRAP({
   project_NAME = "Project name",
   SHOW_collapseBtn = false,
-  RESET_tabs = () => {},
+  SELECT_veryFirstTab = () => {},
   COLLAPSE_tabs = () => {},
 }: {
   project_NAME: string;
   SHOW_collapseBtn: boolean;
-  RESET_tabs: () => void;
+  SELECT_veryFirstTab: () => void;
   COLLAPSE_tabs: () => void;
 }) {
   return (
@@ -25,7 +25,7 @@ export default function MobileProjectTopBtn_WRAP({
     >
       <MobileProjectMenuMain_BTN
         project_NAME={project_NAME}
-        onClick={RESET_tabs}
+        onClick={SELECT_veryFirstTab}
       />
 
       <MobileProjectMenuCollapseTabs_BTN

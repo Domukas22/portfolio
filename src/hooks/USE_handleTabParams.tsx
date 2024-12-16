@@ -2,15 +2,16 @@
 //
 //
 
-import { ProjectSection_TYPE } from "@/projects/projectSection_TYPES";
-import { ProjectIntro_TYPE, ProjectTabs_TYPE } from "@/projects/projectTypes";
+import { Project_TYPE } from "@/projects/types/project";
+import { ProjectSection_TYPE } from "@/projects/types/sections";
+import { ProjectTabs_TYPE } from "@/projects/types/tabs";
 import SET_urlParams from "@/utils/SET_urlParams";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 interface UseHandleTabParams_TYPE {
   router: AppRouterInstance;
   params: URLSearchParams;
-  project: ProjectIntro_TYPE & { tabs: ProjectTabs_TYPE[] };
+  project: Project_TYPE;
 }
 
 export interface HandleTabUrlParams_TYPE {
