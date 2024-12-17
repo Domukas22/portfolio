@@ -12,25 +12,25 @@
   --bg-localmore: #fff7f0;
 
   &[data-shrink="true"] {
-    & [data-group="OCAL"] {
+    & [data-group="OCA"] {
       opacity: 0;
     }
 
     & [data-group="LOCAL MORE>"] {
-      transform: translateX(58px);
+      transform: translateX(-8px);
+    }
+    & [data-group="LOCA"] {
+      transform: translateX(65.5px);
     }
     & [data-group="OCAL MORE>"] {
       transform: translateX(-65.5px);
     }
+
     & [data-group="ORE>"] [data-target-letter] {
       transform: translateX(-49px);
     }
     & [data-group="ORE"] {
       opacity: 0;
-    }
-
-    & [data-letter="L-2"] {
-      transform: translateX(-7.5px);
     }
   }
 
