@@ -39,7 +39,7 @@ export default function ProjectTab_SECTIONS({
                     }}
                   />
                 );
-              case "title-parapgraph-image":
+              case "title-paragraph-image":
                 return (
                   <TitleParagraphImage_SECTION
                     key={section_CONTENT.section_SLUG}

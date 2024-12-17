@@ -5,7 +5,7 @@
 import { ProjectTag_TYPE } from "./other";
 import { ProjectTabs_TYPE } from "./tabs";
 
-export type existingProject_SLUGS = "localmore";
+export type existingProject_SLUGS = "localmore" | "domas-swim-school";
 // | "sanfte-metzger"
 // | "domas-swim-school"
 // | "vocabs"

@@ -59,8 +59,8 @@
 
   & [data-pagination-wrap] {
     position: absolute;
-    left: 1rem;
-    bottom: 1rem;
+    left: 1.4rem;
+    bottom: 1.4rem;
     display: flex;
     gap: 0.4rem;
     z-index: 15;

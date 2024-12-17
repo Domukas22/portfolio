@@ -55,6 +55,7 @@
   border-radius: 1.2rem;
   background: var(--dark-light);
   box-shadow: var(--btn-shadow);
+  border: var(--border-light);
 
   &:active,
   &[data-pressed] {

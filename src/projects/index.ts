@@ -2,6 +2,7 @@
 //
 //
 
+import DomasSwimSchool_PROJECT from "./domas-swim-school";
 import Localmore_PROJECT from "./localmore";
 import { existingProject_SLUGS, Project_TYPE } from "./types/project";
 
@@ -10,6 +11,7 @@ import { existingProject_SLUGS, Project_TYPE } from "./types/project";
 
 const Projects: Record<existingProject_SLUGS, Project_TYPE> = {
   localmore: Localmore_PROJECT,
+  "domas-swim-school": DomasSwimSchool_PROJECT,
 };
 
 export default Projects;

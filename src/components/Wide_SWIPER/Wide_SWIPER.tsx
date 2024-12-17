@@ -4,6 +4,9 @@
 
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectFade } from "swiper/modules";
+
+import "swiper/css/effect-fade";
 
 import css from "./Wide_SWIPER.module.css";
 import USE_swiperSliderRef from "@/hooks/USE_swiperSliderRef";
@@ -53,7 +56,10 @@ export default function Wide_SWIPER({
         pagination={{
           clickable: true,
         }}
+        modules={[EffectFade]}
         navigation={true}
+        effect="fade"
+        fadeEffect={{ crossFade: true }}
         spaceBetween={0}
         loop={loop}
         className={css.wide_SWIPER}

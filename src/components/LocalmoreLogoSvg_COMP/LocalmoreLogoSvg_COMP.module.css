@@ -1,0 +1,55 @@
+/*  */
+/*  */
+/*  */
+
+.localmore_LOGO {
+  width: 100%;
+  position: relative;
+
+  --color-brand: #b84600;
+  --color-brand-dark: #383940;
+  --transition: 300ms ease-out;
+  --bg-localmore: #fff7f0;
+
+  &[data-shrink="true"] {
+    & [data-group="LOCAL"] [data-target-letter] {
+      transform: translateX(58px);
+    }
+    & [data-group="OCAL"] {
+      opacity: 0;
+    }
+    & [data-group="MORE>"] {
+      transform: translateX(-7.5px);
+    }
+    & [data-group="ORE>"] [data-target-letter] {
+      transform: translateX(-49px);
+    }
+    & [data-group="ORE"] {
+      opacity: 0;
+    }
+  }
+
+  /* transition: var(--transition); */
+  & * {
+    transition: var(--transition);
+  }
+
+  & [data-group="LOCAL"] {
+    fill: var(--color-brand-dark);
+  }
+  & [data-group="MORE>"] {
+    fill: var(--color-brand);
+  }
+
+  & [data-cover-rect],
+  & [data-local-cover] {
+    fill: white;
+  }
+
+  &[data-bg="lm-background"] {
+    & [data-cover-rect],
+    & [data-local-cover] {
+      fill: var(--bg-localmore);
+    }
+  }
+}

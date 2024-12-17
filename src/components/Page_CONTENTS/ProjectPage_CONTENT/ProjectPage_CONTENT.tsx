@@ -20,6 +20,7 @@ import DesktopProjectSideNavCollapse_BTN from "@/components/DesktopProjectSideNa
 import ModalMenu_UNDERLAY from "@/components/ModalMenu_UNDERLAY";
 import { existingProject_SLUGS } from "@/projects/types/project";
 import Projects from "@/projects";
+import LocalmoreLogoSvg_COMP from "../../LocalmoreLogoSvg_COMP/LocalmoreLogoSvg_COMP";
 
 export default function ProjectPage_CONTENT() {
   const { slug }: { slug: existingProject_SLUGS } = useParams();
@@ -114,6 +115,7 @@ export default function ProjectPage_CONTENT() {
 
         {/* If tab.slug === introduction, insert introduction section */}
 
+        <LocalmoreLogoSvg_COMP shrink={false} svg_STYLES={{ width: "20rem" }} />
         <ProjectTab_SECTIONS
           {...{ current_TAB }}
           current_TAB={current_SUBTAB ? current_SUBTAB : current_TAB}

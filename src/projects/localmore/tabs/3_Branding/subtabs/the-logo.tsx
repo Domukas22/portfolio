@@ -2,13 +2,20 @@
 //
 //
 
+import LocalmoreExpandable_LOGO from "@/components/LocalmoreExpandalbe_LOGO";
 import { SingleTab_TYPE } from "@/projects/types/tabs";
-
-const logoProgressionSection_TYPE = "title-parapgraph-image";
+import React from "react";
 
 const hypperlinks = {
   "localmore-branding": "/",
   "law-of-proximity": "https://www.nngroup.com/articles/gestalt-proximity/",
+};
+
+const imgWrap_STYLES: React.CSSProperties = {
+  padding: "6rem 1.6rem",
+};
+const img_STYLES: React.CSSProperties = {
+  maxWidth: "50rem",
 };
 
 const LocalmoreLogo_TAB: SingleTab_TYPE = {
@@ -61,7 +68,7 @@ const LocalmoreLogo_TAB: SingleTab_TYPE = {
       ],
     },
     {
-      type: "title-parapgraph-image",
+      type: "title-paragraph-image",
       section_SLUG: "typography",
       section_NAME: "Typography",
       title: "Choosing the typography",
@@ -73,18 +80,20 @@ const LocalmoreLogo_TAB: SingleTab_TYPE = {
       img_PATH: "/projects/localmore/logo/lm-typography-choice.png",
     },
     {
-      type: logoProgressionSection_TYPE,
+      type: "title-paragraph-image",
       section_SLUG: "the-first-step",
       section_NAME: "The first step",
       title: "The first step",
       parapgraphs: [
         "This is the starting out after writing out the word with the Quicksand type.",
       ],
-      img_PATH: "/projects/localmore/logo/progressions/1.png",
+      img_PATH: "/projects/localmore/logo/swiper-images/2.png",
+      imgWrap_STYLES,
+      img_STYLES,
     },
 
     {
-      type: logoProgressionSection_TYPE,
+      type: "title-paragraph-image",
       section_SLUG: "lets-cuddle",
       section_NAME: "Let's cuddle",
       title: "Let's cuddle 🤗",
@@ -92,10 +101,12 @@ const LocalmoreLogo_TAB: SingleTab_TYPE = {
         `Localmore aims to bring people together in local communities. We don't want to the letters to look like they are social distancing. Let's squeeze them a little. This adheres to the <span data-hyperlink><a href='${hypperlinks["law-of-proximity"]}' target='_blank'>Gestalt principle of proximity</a></span>, which states that objects positioned closer together are perceived as a unified group.`,
         "Speaking of connection, the two L's stick out a bit too much, creating a sense of hierarchy and superiority—quite the opposite of the balance and harmony we strive to embody.",
       ],
-      img_PATH: "/projects/localmore/logo/progressions/2.png",
+      img_PATH: "/projects/localmore/logo/swiper-images/3.png",
+      imgWrap_STYLES,
+      img_STYLES,
     },
     {
-      type: logoProgressionSection_TYPE,
+      type: "title-paragraph-image",
       section_SLUG: "nail-em-down",
       section_NAME: "Nail 'em down",
       title: "Nail 'em down",
@@ -103,10 +114,12 @@ const LocalmoreLogo_TAB: SingleTab_TYPE = {
         `Simply scaling down the first "L" worked brilliantly. Now, the capital letter is seamlessly integrated with the lowercase ones, all aligned at the same height.`,
         `Now, there's still this literal middle finger sticking out. Obviously, the top needs to be cut off, but how do you do so without making the letter look like an "i"?`,
       ],
-      img_PATH: "/projects/localmore/logo/progressions/3.png",
+      img_PATH: "/projects/localmore/logo/swiper-images/4.png",
+      imgWrap_STYLES,
+      img_STYLES,
     },
     {
-      type: logoProgressionSection_TYPE,
+      type: "title-paragraph-image",
       section_SLUG: "call-me-einstein",
       section_NAME: "Call me Einstein",
       title: "Call me Einstein 🧠",
@@ -114,10 +127,12 @@ const LocalmoreLogo_TAB: SingleTab_TYPE = {
         `I replaced the small "l" with a sized-down, capital "L" and made it cut into the small "m". The logo finally has a simple, yet unique touch to it. It also helps with the feeling of connetion, as if one is part of the other.`,
         `Localmore's slogan is "Explore and Connect". We now have the "connection" part down. Let's work on the "exploration".`,
       ],
-      img_PATH: "/projects/localmore/logo/progressions/4.png",
+      img_PATH: "/projects/localmore/logo/swiper-images/5.png",
+      imgWrap_STYLES,
+      img_STYLES,
     },
     {
-      type: logoProgressionSection_TYPE,
+      type: "title-paragraph-image",
       section_SLUG: "show-me-da-way",
       section_NAME: "Show me da way",
       title: "Show me da way",
@@ -125,10 +140,12 @@ const LocalmoreLogo_TAB: SingleTab_TYPE = {
         `An object most associated with exploration might just be the compass, which I though could be represented with a little arrow inside the first "O".`,
         `However, placing it inside like that might just achieve the opposite effect. It feels like it's trapped in there, waiting to break free.`,
       ],
-      img_PATH: "/projects/localmore/logo/progressions/5.png",
+      img_PATH: "/projects/localmore/logo/swiper-images/6.png",
+      imgWrap_STYLES,
+      img_STYLES,
     },
     {
-      type: logoProgressionSection_TYPE,
+      type: "title-paragraph-image",
       section_SLUG: "breaking-free",
       section_NAME: "Breaking free",
       title: "Breaking free",
@@ -138,10 +155,12 @@ const LocalmoreLogo_TAB: SingleTab_TYPE = {
         `When reading out the word, you may subconsciously pause at the position of the arrow. Kind of inconvenient.`,
         `Also, the the combination of the letters "L" and "O", together with the arrow on top, may be interpreted as camera.`,
       ],
-      img_PATH: "/projects/localmore/logo/progressions/6.png",
+      img_PATH: "/projects/localmore/logo/swiper-images/7.png",
+      imgWrap_STYLES,
+      img_STYLES: { ...img_STYLES, marginBottom: "1rem" },
     },
     {
-      type: logoProgressionSection_TYPE,
+      type: "title-paragraph-image",
       section_SLUG: "swaping-seats",
       section_NAME: "Swaping seats",
       title: "Swaping seats",
@@ -149,10 +168,12 @@ const LocalmoreLogo_TAB: SingleTab_TYPE = {
         `The arrow now makes it feel like the energy is flying out right at the end. I also squeezed it a little, making it look less like a corner of a box, and more like an actual arrow.`,
         `At this point I knew I had the foundation down. I could always come back and tweak something later. Let's move on to colors.`,
       ],
-      img_PATH: "/projects/localmore/logo/progressions/7.png",
+      img_PATH: "/projects/localmore/logo/swiper-images/8.png",
+      imgWrap_STYLES,
+      img_STYLES: { ...img_STYLES, marginBottom: "1rem" },
     },
     {
-      type: logoProgressionSection_TYPE,
+      type: "title-paragraph-image",
       section_SLUG: "why-so-cold",
       section_NAME: "Ice Ice Baby",
       title: "Ice Ice Baby 🥶",
@@ -160,20 +181,24 @@ const LocalmoreLogo_TAB: SingleTab_TYPE = {
         `My initial conviction was color blue due to the believe it would signal trust.`,
         `After showing this to a couple of people, I realized the logo lacked enthusiasm. Perhaps I could achieve that feeling of trust and stability indirectly, but focusing on warmth, joy and kindness.`,
       ],
-      img_PATH: "/projects/localmore/logo/progressions/8.png",
+      img_PATH: "/projects/localmore/logo/swiper-images/9.png",
+      imgWrap_STYLES,
+      img_STYLES: { ...img_STYLES, marginBottom: "1rem" },
     },
     {
-      type: logoProgressionSection_TYPE,
+      type: "title-paragraph-image",
       section_SLUG: "looking-good",
       section_NAME: "Looking good",
       title: "Looking good",
       parapgraphs: [
         `The colors now look warm and welcoming. Not too hot like a bright orange and not too cold like your ex. Just kidding 🫣.`,
       ],
-      img_PATH: "/projects/localmore/logo/progressions/9.png",
+      img_PATH: "/projects/localmore/logo/swiper-images/1.png",
+      imgWrap_STYLES: { ...imgWrap_STYLES, backgroundColor: "#FFF7F0" },
+      img_STYLES: { ...img_STYLES, marginBottom: "1rem" },
     },
     {
-      type: logoProgressionSection_TYPE,
+      type: "title-paragraph-image",
       section_SLUG: "end-result",
       section_NAME: "End result",
       title: "The end result",
@@ -182,6 +207,7 @@ const LocalmoreLogo_TAB: SingleTab_TYPE = {
         "We did it! Up top 🖐️",
       ],
       img_PATH: "/projects/localmore/logo/progressions/10.png",
+      customImg_EL: <LocalmoreExpandable_LOGO />,
     },
     {
       type: "uneven-row-image-grid",

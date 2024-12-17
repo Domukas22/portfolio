@@ -8,6 +8,7 @@ import css from "./TitleParagraphImage_SECTION.module.css";
 import Project_SECTION from "@/components/Project_SECTION";
 import Container from "@/components/Container";
 import { TitleParagraphImageSection_TYPE } from "@/projects/types/sections";
+import Custom_IMG from "@/components/Custom_IMG/Custom_IMG";
 
 export function TitleParagraphImage_SECTION({
   section_CONTENT,
@@ -25,9 +26,22 @@ export function TitleParagraphImage_SECTION({
     img_PATH,
     sticky_TEXT,
     sticky_IMG,
+    imgWrap_STYLES,
+    img_STYLES,
+    customImg_EL,
   } = section_CONTENT;
 
-  const img = <Image width={500} height={400} src={img_PATH} alt="" />;
+  // const img = <Image width={500} height={400} src={img_PATH} alt="" />;
+  const img = customImg_EL ? (
+    customImg_EL
+  ) : (
+    <Custom_IMG
+      img_PATH={img_PATH}
+      resolution={{ width: 700, height: 600 }}
+      imgWrap_STYLES={imgWrap_STYLES}
+      img_STYLES={img_STYLES}
+    />
+  );
 
   return (
     <Project_SECTION {...{ section_SLUG, hideContent }}>

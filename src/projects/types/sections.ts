@@ -2,6 +2,7 @@
 //
 //
 
+import React from "react";
 import { customBackgroundColors_TYPE, ProjectTag_TYPE } from "./other";
 import { existingProject_SLUGS } from "./project";
 
@@ -32,7 +33,7 @@ export type HeroSection_TYPE = {
   //   tags: ProjectTag_TYPE[];
 };
 export type TitleParagraphImageSection_TYPE = {
-  type: "title-parapgraph-image";
+  type: "title-paragraph-image";
   section_SLUG: string;
   section_NAME: string;
 
@@ -41,6 +42,10 @@ export type TitleParagraphImageSection_TYPE = {
   img_PATH: string;
   sticky_TEXT?: boolean;
   sticky_IMG?: boolean;
+
+  imgWrap_STYLES?: React.CSSProperties;
+  img_STYLES?: React.CSSProperties;
+  customImg_EL?: React.ReactNode;
 };
 export type TitleAndImageGridSection_TYPE = {
   type: "title-and-image-grid";
