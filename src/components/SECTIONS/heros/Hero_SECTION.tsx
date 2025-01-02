@@ -9,25 +9,30 @@ import HeroImg_WRAP from "@/components/HeroImg_WRAP/HeroImg_WRAP";
 import Container from "@/components/Container";
 import Project_SECTION from "@/components/Project_SECTION";
 import { HeroSection_TYPE } from "@/projects/types/sections";
+import { MutableRefObject } from "react";
+import ProjectTag_LIST from "@/components/ProjectTag_LIST/ProjectTag_LIST";
 
 export function Hero_SECTION({
   section_CONTENT,
-  index,
-
-  hideContent,
   project_SLUG,
+  sectionRefs,
+  index,
 }: {
-  section_CONTENT: HeroSection_TYPE;
+  sectionRefs: MutableRefObject<(HTMLElement | null)[]>;
   index: number;
-
-  hideContent: boolean;
+  section_CONTENT: HeroSection_TYPE;
   project_SLUG: string;
 }) {
-  const { headerImg_COLOR, project_NAME, project_SUBTITLE, section_SLUG } =
-    section_CONTENT;
+  const {
+    headerImg_COLOR,
+    project_NAME,
+    project_SUBTITLE,
+    section_SLUG,
+    tags,
+  } = section_CONTENT;
 
   return (
-    <Project_SECTION {...{ section_SLUG, index, hideContent }}>
+    <Project_SECTION {...{ section_SLUG, sectionRefs, index }}>
       <Container hero>
         <HeroImg_WRAP shadow_COLOR={headerImg_COLOR}>
           <Image
@@ -39,9 +44,9 @@ export function Hero_SECTION({
           />
         </HeroImg_WRAP>
         <HeroBottom_WRAP title={project_NAME} subtitle={project_SUBTITLE}>
-          {/* <div className="mt-[1.4rem]">
-            <ProjectTag_LIST {...{ tags }} />
-          </div> */}
+          {tags && tags?.length ? (
+            <ProjectTag_LIST tags={tags} styles={{ marginTop: "1rem" }} />
+          ) : null}
         </HeroBottom_WRAP>
       </Container>
     </Project_SECTION>

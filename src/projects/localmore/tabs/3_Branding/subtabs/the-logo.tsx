@@ -24,7 +24,7 @@ const LocalmoreLogo_TAB: SingleTab_TYPE = {
   tab_SLUG: "the-logo",
   sections: [
     {
-      type: "swiper-hero",
+      type: "logo-swiper",
       section_SLUG: "overview",
       section_NAME: "Overview",
       title: "Localmore logo",
@@ -52,18 +52,21 @@ const LocalmoreLogo_TAB: SingleTab_TYPE = {
       points: [
         {
           title: "Exploration, connection and simplicity",
-          paragraph: "The core aspects of Localmore should be portrayed.",
+          paragraphs: ["The core aspects of Localmore should be portrayed."],
         },
         {
           title: "A typographic logo",
-          paragraph:
+          paragraphs: [
             "The main use case will be at the top-left corner of the screen. A short/small symbol for the mobile navigation may suffice, but bigger screens offer room to display the logo in its entirety.",
+          ],
         },
         {
           title: "Warm, friendly, encouraging",
-          paragraph: `Although the word 'Localmore' itself does the heavy lifitng here, the correct shapes and colors can reinforce our intended communication if done correctly. If you want to learn about all of the communication goals that this logo need to adress, feel free to check out the <span data-hyperlink><a href='${
-            hypperlinks[`localmore-branding`]
-          }' target='_blank'>branding section</a></span>.`,
+          paragraphs: [
+            `Although the word 'Localmore' itself does the heavy lifitng here, the correct shapes and colors can reinforce our intended communication if done correctly. If you want to learn about all of the communication goals that this logo need to adress, feel free to check out the <span data-hyperlink><a href='${
+              hypperlinks[`localmore-branding`]
+            }' target='_blank'>branding section</a></span>.`,
+          ],
         },
       ],
     },
@@ -214,7 +217,7 @@ const LocalmoreLogo_TAB: SingleTab_TYPE = {
       section_SLUG: "example",
       section_NAME: "Examples",
       title: "Implementation examples",
-      subtitle: "This is a pretty test example",
+
       leftImages_PATHS: [
         "/projects/localmore/logo/uneven-row-images/left/lm-nav-menu-closed.png",
         "/projects/localmore/logo/uneven-row-images/left/lm-nav-menu-open.png",

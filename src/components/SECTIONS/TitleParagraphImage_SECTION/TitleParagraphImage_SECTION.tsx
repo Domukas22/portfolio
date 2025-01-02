@@ -2,22 +2,21 @@
 //
 //
 
-import Image from "next/image";
-
 import css from "./TitleParagraphImage_SECTION.module.css";
 import Project_SECTION from "@/components/Project_SECTION";
 import Container from "@/components/Container";
 import { TitleParagraphImageSection_TYPE } from "@/projects/types/sections";
 import Custom_IMG from "@/components/Custom_IMG/Custom_IMG";
+import { MutableRefObject } from "react";
 
 export function TitleParagraphImage_SECTION({
   section_CONTENT,
-
-  hideContent,
+  sectionRefs,
+  index,
 }: {
+  sectionRefs: MutableRefObject<(HTMLElement | null)[]>;
+  index: number;
   section_CONTENT: TitleParagraphImageSection_TYPE;
-
-  hideContent: boolean;
 }) {
   const {
     section_SLUG,
@@ -44,7 +43,7 @@ export function TitleParagraphImage_SECTION({
   );
 
   return (
-    <Project_SECTION {...{ section_SLUG, hideContent }}>
+    <Project_SECTION {...{ section_SLUG, sectionRefs, index }}>
       <Container>
         <div className={css.logoProgression_GRID} data-desktop>
           <div data-left>

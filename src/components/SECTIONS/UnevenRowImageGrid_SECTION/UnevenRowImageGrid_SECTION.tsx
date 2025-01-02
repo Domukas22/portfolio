@@ -7,23 +7,41 @@ import css from "./UnevenRowImageGrid_SECTION.module.css";
 import Project_SECTION from "@/components/Project_SECTION";
 import Container from "@/components/Container";
 import { UnevenRowImageGridSection_TYPE } from "@/projects/types/sections";
+import { MutableRefObject } from "react";
 
 export function UnevenRowImageGrid_SECTION({
   section_CONTENT,
-  hideContent,
+  sectionRefs,
+  index,
 }: {
-  section_CONTENT: UnevenRowImageGridSection_TYPE;
+  sectionRefs: MutableRefObject<(HTMLElement | null)[]>;
   index: number;
-  hideContent: boolean;
+  section_CONTENT: UnevenRowImageGridSection_TYPE;
 }) {
-  const { title, subtitle, section_SLUG, leftImages_PATHS, rightImages_PATHS } =
-    section_CONTENT;
+  const {
+    title,
+    subtitle,
+    section_SLUG,
+    leftImages_PATHS,
+    rightImages_PATHS,
+    firstWideImg_PATH,
+  } = section_CONTENT;
 
   return (
-    <Project_SECTION {...{ section_SLUG, hideContent }}>
+    <Project_SECTION {...{ section_SLUG, sectionRefs, index }}>
       <Container extraClass={css.unevenRowImageGrid_CONTAINER}>
-        <h2>{title}</h2>
+        {title && <h2>{title}</h2>}
         {subtitle && <p>{subtitle}</p>}
+        {firstWideImg_PATH && (
+          <Image
+            key={section_SLUG + firstWideImg_PATH}
+            width={2000}
+            height={700}
+            src={firstWideImg_PATH}
+            alt=""
+            className="w-full rounded-[1.6rem]"
+          />
+        )}
         <div data-uneven-row-image-grid>
           <div data-img-col data-left>
             {leftImages_PATHS?.map((img_PATH, index) => (

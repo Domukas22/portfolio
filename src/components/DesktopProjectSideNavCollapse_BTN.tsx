@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Btn from "./Btn/Btn";
 import { ICON_arrow } from "./Icons/Icons";
 
+// this will be used for daily notes navigation
 export default function DesktopProjectSideNavCollapse_BTN({
   show = false,
   COLLAPSE_tabs = () => {},

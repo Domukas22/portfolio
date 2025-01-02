@@ -4,6 +4,7 @@
 
 @custom-media --mobile (max-width: 767px);
 @custom-media --tablet (max-width: 990px);
+@custom-media --desktop (min-width: 991px);
 @custom-media --desktop-small (max-width: 1300px);
 @custom-media --desktop-big (min-width: 1301px);
 
@@ -37,14 +38,6 @@ section[data-last="true"] {
   border-bottom: var(--border-light);
 }
 
-section[data-hide] {
-  transition: 150ms;
-}
-section[data-hide="true"] {
-  opacity: 0;
-  pointer-events: none;
-}
-
 .container {
   width: 100%;
   max-width: var(--max-conainer-width);
@@ -66,7 +59,7 @@ section[data-hide="true"] {
   margin-bottom: 0;
   @media (--tablet) {
     padding: 0;
-    margin-bottom: 3rema;
+    margin-bottom: 3rem;
   }
 }
 
@@ -88,7 +81,7 @@ div[data-tiny-scrollbar-styles],
 ul[data-tiny-scrollbar-styles] {
   --sb-track-color: transparent;
   --sb-thumb-color: rgba(255, 255, 255, 0.356);
-  --sb-size: 0.2rem;
+  --sb-size: 0.4rem;
 
   &::-webkit-scrollbar {
     width: var(--sb-size);

@@ -64,6 +64,15 @@
     background: var(--dark-lightest) !important;
   }
 
+  &[data-active="true"] {
+    border: var(--border-active) !important;
+    background-color: var(--btn-active) !important;
+
+    & span {
+      color: var(--text-main);
+    }
+  }
+
   @media (--desktop) {
     &:hover,
     &[data-hovered] {
@@ -195,6 +204,7 @@
   }
 
   &[data-last] {
+    pointer-events: none;
     color: var(--text-white-light);
     & p,
     & span {

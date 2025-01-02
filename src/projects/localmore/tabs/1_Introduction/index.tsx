@@ -2,9 +2,8 @@
 //
 //
 
+import ProjectTag_LIST from "@/components/ProjectTag_LIST/ProjectTag_LIST";
 import { ProjectTabs_TYPE } from "@/projects/types/tabs";
-import { DummySection } from "@/projects/types/sections";
-import LocalmoreExpandable_LOGO from "@/components/LocalmoreExpandalbe_LOGO";
 
 const Introduction: ProjectTabs_TYPE = {
   type: "single-tab",
@@ -12,18 +11,23 @@ const Introduction: ProjectTabs_TYPE = {
   tab_SLUG: "introduction",
   sections: [
     {
-      type: "title-paragraph-image",
-      section_SLUG: "end-result",
-      section_NAME: "End result",
-      title: "The end result",
-      parapgraphs: [
-        `It just so happens that the first letter of the first word also marks the beginning of the most memorable part: the intersecting letters 'L' and 'M'. Paired with the arrow at the end, this forms the abbreviated version of the logo.`,
-        "We did it! Up top 🖐️",
-      ],
-      img_PATH: "/projects/localmore/logo/progressions/10.png",
-      customImg_EL: <LocalmoreExpandable_LOGO />,
+      type: "hero",
+      project_NAME: "Localmore",
+      headerImg_FILENAME: "header.png",
+
+      headerImg_COLOR: "#fff7f0",
+      project_SUBTITLE: "The project that kickstarted my interest in design",
+
+      section_NAME: "Localmore",
+      section_SLUG: "localmore",
+
+      children: (
+        <ProjectTag_LIST
+          tags={["website", "logo", "images", "coding", "in-progress"]}
+          styles={{ marginTop: "1rem" }}
+        />
+      ),
     },
-    DummySection,
   ],
 };
 

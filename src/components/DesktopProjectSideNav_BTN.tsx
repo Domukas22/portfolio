@@ -2,14 +2,13 @@
 //
 //
 
+import SCROLL_to from "@/utils/SCROLL_to";
 import Btn from "./Btn/Btn";
 
 export default function DesktopProjectSideNav_BTN({
   projet_NAME = "Project name",
-  SELECT_veryFirstTab = () => {},
 }: {
   projet_NAME: string;
-  SELECT_veryFirstTab: () => void;
 }) {
   return (
     <li>
@@ -22,7 +21,7 @@ export default function DesktopProjectSideNav_BTN({
         }}
         text={`Project: ${projet_NAME}`}
         data-light-bottom-border-color="true"
-        onClick={SELECT_veryFirstTab}
+        onClick={() => SCROLL_to({})}
       />
     </li>
   );

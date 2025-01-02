@@ -3,35 +3,34 @@
 import { useParams } from "next/navigation";
 import { useMemo, useRef } from "react";
 import SideNav from "../../SideNav/SideNav";
-import ProjectMobileNav from "../../Nav/ProjectMobileNav/ProjectMobileNav";
+import ProjectMob_NAV from "../../Nav/ProjectMob_NAV/ProjectMob_NAV";
 import USE_Toggle from "@/hooks/USE_toggle";
-import ProjectDesktop_NAV from "@/components/Nav/ProjectDesktop_NAV/ProjectDesktop_NAV";
+import ProjectDesk_NAV from "@/components/Nav/ProjectDesk_NAV/ProjectDesk_NAV";
 import DesktopMenu_MODAL from "@/components/DesktopMenu_MODAL/DesktopMenu_MODAL";
 import Menu_ITEMS from "@/components/Nav/Menu/Menu_ITEMS";
 import USE_perserveStickyNavPosition from "@/utils/USE_perserveStickyNavPosition";
-import USE_handleTabChange from "@/hooks/USE_handleTabChange";
-import ProjectTab_SECTIONS from "@/components/SECTIONS";
-import USE_openedTabs from "@/hooks/USE_openedTabs";
+
+import ProjectPage_SECTIONS from "@/components/SECTIONS";
+
 import Mobile_MODAL from "@/components/Mobile_MODAL/Mobile_MODAL";
-import { Tab_DD } from "@/components/Tab_DD/Tab_DD";
-import MobileProjectTopBtn_WRAP from "@/components/MobileProjectTopBtn_WRAP";
+import { ProjectSection_BTN } from "@/components/ProjectSection_BTN/ProjectSection_BTN";
 import DesktopProjectSideNav_BTN from "@/components/DesktopProjectSideNav_BTN";
 import DesktopProjectSideNavCollapse_BTN from "@/components/DesktopProjectSideNavCollapse_BTN";
 import ModalMenu_UNDERLAY from "@/components/ModalMenu_UNDERLAY";
 import { existingProject_SLUGS } from "@/projects/types/project";
 import Projects from "@/projects";
-import LocalmoreLogoSvg_COMP from "../../LocalmoreLogoSvg_COMP/LocalmoreLogoSvg_COMP";
+import MobProjectMenuProject_BTN from "@/components/MobProjectMenuProject_BTN";
+import USE_scrollSpy from "@/hooks/USE_scrollSpy";
+import SCROLL_to from "@/utils/SCROLL_to";
 
 export default function ProjectPage_CONTENT() {
   const { slug }: { slug: existingProject_SLUGS } = useParams();
-
   const sideNav_REF = useRef<HTMLElement | null>(null);
   const tinyNavNav_REF = useRef<HTMLElement | null>(null);
 
-  const { opened_TABS, TOGGLE_tab, COLLAPSE_tabs, OPEN_singleTab } =
-    USE_openedTabs();
-
   const project = useMemo(() => Projects[slug], [slug]);
+
+  const { activeSectionIndex, sectionRefs } = USE_scrollSpy(project?.sections);
 
   const { state: IS_menuOpen, set: SET_menuOpen } = USE_Toggle(false);
   const { state: IS_mobileMenuOpen, set: SET_mobileMenuOpen } =
@@ -39,22 +38,11 @@ export default function ProjectPage_CONTENT() {
   const { state: IS_mobileProjectOpen, set: SET_mobileProjectMenuOpen } =
     USE_Toggle(false);
 
-  const {
-    CHANGE_tab,
-    IS_changingTab,
-    current_TAB,
-    current_SUBTAB,
-    SELECT_veryFirstTab,
-  } = USE_handleTabChange({
-    project,
-    TOGGLE_tab,
-    CLOSE_mobileProjectMenu: () => SET_mobileProjectMenuOpen(false),
-  });
-
   /// removed url naviagiton. Simplify everything with a simple tag selection.
 
   USE_perserveStickyNavPosition({
-    stickyEls: [sideNav_REF?.current, tinyNavNav_REF?.current],
+    // TODO --> jsut make the tinyNavNav_REF element to position "fixed"
+    stickyEls: [tinyNavNav_REF?.current],
     active: !IS_menuOpen,
   });
 
@@ -64,63 +52,46 @@ export default function ProjectPage_CONTENT() {
       <SideNav
         _ref={sideNav_REF}
         extraElsAboveScrollable={
-          <DesktopProjectSideNav_BTN
-            projet_NAME={project?.name}
-            {...{ SELECT_veryFirstTab }}
-          />
+          <DesktopProjectSideNav_BTN projet_NAME={project?.name} />
         }
         extraElsUnderScrollable={
           <DesktopProjectSideNavCollapse_BTN
-            show={opened_TABS?.length > 0}
-            {...{ COLLAPSE_tabs }}
+            show={false}
+            {...{ COLLAPSE_tabs: () => {} }}
           />
         }
       >
-        {project?.tabs?.map((_tab) => (
-          <Tab_DD
-            key={_tab.tab_SLUG}
-            tab={_tab}
-            hideContent={false}
-            open={opened_TABS.some((x) => x === _tab.tab_SLUG)}
-            TOGGLE_tab={() => TOGGLE_tab(_tab.tab_SLUG)}
-            {...{ current_TAB, current_SUBTAB, CHANGE_tab }}
+        {project?.sections?.map((section, index) => (
+          <ProjectSection_BTN
+            key={section.section_SLUG}
+            text={section.section_NAME}
+            onClick={() => SCROLL_to({ target_ID: section.section_SLUG })}
+            active={activeSectionIndex === index}
           />
         ))}
       </SideNav>
 
       {/* Main content */}
       <div className="pb-[50rem]">
-        <ProjectMobileNav
+        <ProjectMob_NAV
           project_NAME={project?.name}
-          project_TABTITLE={
-            current_SUBTAB ? current_SUBTAB?.tab_NAME : current_TAB?.tab_NAME
-          }
           OPEN_mobileMenu={() => SET_mobileMenuOpen(true)}
           OPEN_mobileProjectMenu={() => {
             SET_mobileProjectMenuOpen(true);
-            OPEN_singleTab(current_TAB?.tab_SLUG);
+            // OPEN_singleTab(current_TAB?.tab_SLUG);
           }}
         />
-        <ProjectDesktop_NAV
+        <ProjectDesk_NAV
           project_NAME={project?.name}
           OPEN_menu={() => SET_menuOpen(true)}
           _ref={tinyNavNav_REF}
-          hideContent={IS_changingTab}
-          current_TAB={current_TAB}
-          current_SUBTAB={current_SUBTAB}
-          SELECT_veryFirstTab={SELECT_veryFirstTab}
-          CHANGE_tab={CHANGE_tab}
           IS_desktopMenuOpen={IS_menuOpen}
         />
 
-        {/* If tab.slug === introduction, insert introduction section */}
-
-        <LocalmoreLogoSvg_COMP shrink={false} svg_STYLES={{ width: "20rem" }} />
-        <ProjectTab_SECTIONS
-          {...{ current_TAB }}
-          current_TAB={current_SUBTAB ? current_SUBTAB : current_TAB}
-          hideContent={IS_changingTab}
-          project_SLUG={project.slug}
+        <ProjectPage_SECTIONS
+          sections={project?.sections}
+          project_SLUG={project?.slug}
+          sectionRefs={sectionRefs}
         />
       </div>
 
@@ -140,23 +111,22 @@ export default function ProjectPage_CONTENT() {
         IS_open={IS_mobileProjectOpen}
         CLOSE_modal={() => SET_mobileProjectMenuOpen(false)}
         extraElsAboveScrollable={
-          <MobileProjectTopBtn_WRAP
-            project_NAME={project.name}
-            SHOW_collapseBtn={opened_TABS?.length > 0}
-            {...{ SELECT_veryFirstTab, COLLAPSE_tabs }}
+          <MobProjectMenuProject_BTN
+            project_NAME={project?.name}
+            onClick={() => {}}
           />
         }
       >
         <>
-          {project?.tabs?.map((_tab) => (
-            <Tab_DD
-              key={_tab.tab_SLUG}
-              tab={_tab}
-              hideContent={false}
-              open={opened_TABS.some((x) => x === _tab.tab_SLUG)}
-              TOGGLE_tab={() => TOGGLE_tab(_tab.tab_SLUG)}
-              mobile
-              {...{ current_TAB, current_SUBTAB, CHANGE_tab }}
+          {project?.sections?.map((section, index) => (
+            <ProjectSection_BTN
+              key={section.section_SLUG}
+              text={section.section_NAME}
+              onClick={() => {
+                SCROLL_to({ target_ID: section.section_SLUG });
+                SET_mobileProjectMenuOpen(false);
+              }}
+              active={activeSectionIndex === index}
             />
           ))}
         </>

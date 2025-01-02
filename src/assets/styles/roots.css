@@ -57,6 +57,7 @@
   --border-light: 0.1rem solid var(--white-10);
   --border-white: 0.1rem solid var(--white-95);
   --border-bg: 0.1rem solid var(--fill-bg);
+  --border-active: 0.1rem solid var(--fill-main);
 
   --outline-hide: 0.2rem solid transparent;
   --outline-show: 0.2rem solid var(--text-white);
@@ -66,6 +67,7 @@
   --btn-shadow: 1px 2px 12px 3px rgba(255, 255, 255, 0.05098);
   --btn-shadow-hover: 1px 2px 18px 5px #ffffff0d;
   --btn-shadow-press: 1px 2px 18px 5px #ffffff26;
+  --btn-active: var(--bg-main);
 
   /* ------------------------------------------------------------------------------- */
 

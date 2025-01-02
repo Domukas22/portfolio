@@ -2,22 +2,8 @@
 //
 //
 
-import React from "react";
+import React, { CSSProperties } from "react";
 import { customBackgroundColors_TYPE, ProjectTag_TYPE } from "./other";
-import { existingProject_SLUGS } from "./project";
-
-export type IntroductionHeroSection_TYPE = {
-  type: "introduction-hero";
-
-  section_SLUG: existingProject_SLUGS;
-  section_NAME: string;
-
-  headerImg_FILENAME: string;
-  headerImg_COLOR: string;
-
-  subtitle: string;
-  tags: ProjectTag_TYPE[];
-};
 
 export type HeroSection_TYPE = {
   type: "hero";
@@ -29,8 +15,7 @@ export type HeroSection_TYPE = {
 
   headerImg_FILENAME: string;
   headerImg_COLOR: string;
-
-  //   tags: ProjectTag_TYPE[];
+  tags?: ProjectTag_TYPE[];
 };
 export type TitleParagraphImageSection_TYPE = {
   type: "title-paragraph-image";
@@ -60,13 +45,14 @@ export type UnevenRowImageGridSection_TYPE = {
   section_SLUG: string;
   section_NAME: string;
 
-  title: string;
+  title?: string;
   subtitle?: string;
+  firstWideImg_PATH?: string;
   leftImages_PATHS: string[];
   rightImages_PATHS: string[];
 };
 export type SwiperHeroSection_TYPE = {
-  type: "swiper-hero";
+  type: "logo-swiper";
   section_SLUG: string;
   section_NAME: string;
 
@@ -85,16 +71,42 @@ export type MultiPointSection_TYPE = {
 
   title: string;
   subtitle?: string;
-  points: { title: string; paragraph: string }[];
+  points: { title: string; paragraphs: string[] }[];
+};
+export type TextOnlySection_TYPE = {
+  type: "text-only-section";
+  section_SLUG: string;
+  section_NAME: string;
+
+  texts_ARR: {
+    type: "h1" | "h2" | "h3" | "h4" | "h5" | "p";
+    text: string;
+    style?: CSSProperties;
+  }[];
+};
+export type ExternalLinkGridSection_TYPE = {
+  type: "external-link-grid";
+  section_SLUG: string;
+  section_NAME: string;
+
+  title: string;
+  links: {
+    btnText: string;
+    href: string;
+  }[];
 };
 
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
 export type ProjectSection_TYPE =
-  | IntroductionHeroSection_TYPE
   | HeroSection_TYPE
   | TitleParagraphImageSection_TYPE
   | UnevenRowImageGridSection_TYPE
   | SwiperHeroSection_TYPE
-  | MultiPointSection_TYPE;
+  | MultiPointSection_TYPE
+  | TextOnlySection_TYPE
+  | ExternalLinkGridSection_TYPE;
 
 export const DummySection: HeroSection_TYPE = {
   type: "hero",

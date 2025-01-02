@@ -4,7 +4,10 @@
 
 import DomasSwimSchool_PROJECT from "./domas-swim-school";
 import Localmore_PROJECT from "./localmore";
+import SanfteMetzger_PROJECT from "./sanfte-metzger";
+import SwimActive_PROJECT from "./swim-active";
 import { existingProject_SLUGS, Project_TYPE } from "./types/project";
+import Vocabs_PROJECT from "./vocabs";
 
 // ====================================================================================================================================================
 // ====================================================================================================================================================
@@ -12,6 +15,9 @@ import { existingProject_SLUGS, Project_TYPE } from "./types/project";
 const Projects: Record<existingProject_SLUGS, Project_TYPE> = {
   localmore: Localmore_PROJECT,
   "domas-swim-school": DomasSwimSchool_PROJECT,
+  vocabs: Vocabs_PROJECT,
+  "swim-active": SwimActive_PROJECT,
+  "sanfte-metzger": SanfteMetzger_PROJECT,
 };
 
 export default Projects;

@@ -3,13 +3,14 @@
 //
 
 import { ProjectTag_TYPE } from "./other";
-import { ProjectTabs_TYPE } from "./tabs";
+import { ProjectSection_TYPE } from "./sections";
 
-export type existingProject_SLUGS = "localmore" | "domas-swim-school";
-// | "sanfte-metzger"
-// | "domas-swim-school"
-// | "vocabs"
-// | "swim-active";
+export type existingProject_SLUGS =
+  | "localmore"
+  | "domas-swim-school"
+  | "sanfte-metzger"
+  | "vocabs"
+  | "swim-active";
 
 export type Project_TYPE = {
   slug: existingProject_SLUGS;
@@ -20,5 +21,5 @@ export type Project_TYPE = {
   tags: ProjectTag_TYPE[];
 
   headerImg_COLOR: string;
-  tabs: ProjectTabs_TYPE[];
+  sections: ProjectSection_TYPE[];
 };
