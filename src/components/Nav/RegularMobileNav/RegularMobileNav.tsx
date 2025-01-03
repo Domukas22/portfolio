@@ -31,7 +31,7 @@ export default function RegularMobileNav({
           <span>My projects</span>
         </Link>
       </li>
-      <li data-btn-contact>
+      {/* <li data-btn-contact>
         <Link
           href="/"
           className="btn-square-light"
@@ -39,7 +39,7 @@ export default function RegularMobileNav({
         >
           <span>Contact</span>
         </Link>
-      </li>
+      </li> */}
       <MobileMenu_BTN {...{ OPEN_mobMenu }} />
     </StickyTopNav>
   );

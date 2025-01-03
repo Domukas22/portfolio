@@ -18,44 +18,15 @@ export function TextOnlySection_CONTENT({ texts_ARR }: TextOnly_SECTION_TYPE) {
   return (
     <Container>
       {texts_ARR?.map((text_OBJ, i) => {
-        switch (text_OBJ.type) {
-          case "h1":
-            return (
-              <h1 key={text_OBJ.text + i} style={{ ...text_OBJ.style }}>
-                {text_OBJ.text}
-              </h1>
-            );
-          case "h2":
-            return (
-              <h2 key={text_OBJ.text + i} style={{ ...text_OBJ.style }}>
-                {text_OBJ.text}
-              </h2>
-            );
-          case "h3":
-            return (
-              <h3 key={text_OBJ.text + i} style={{ ...text_OBJ.style }}>
-                {text_OBJ.text}
-              </h3>
-            );
-          case "h4":
-            return (
-              <h4 key={text_OBJ.text + i} style={{ ...text_OBJ.style }}>
-                {text_OBJ.text}
-              </h4>
-            );
-          case "h5":
-            return (
-              <h5 key={text_OBJ.text + i} style={{ ...text_OBJ.style }}>
-                {text_OBJ.text}
-              </h5>
-            );
-          default:
-            return (
-              <p key={text_OBJ.text + i} style={{ ...text_OBJ.style }}>
-                {text_OBJ.text}
-              </p>
-            );
-        }
+        const Tag = text_OBJ.type || "p"; // Use the specified type or default to <p>
+
+        return (
+          <Tag
+            key={text_OBJ.text + i}
+            style={{ ...text_OBJ.style }}
+            dangerouslySetInnerHTML={{ __html: text_OBJ.text }} // Insert HTML content
+          />
+        );
       })}
     </Container>
   );

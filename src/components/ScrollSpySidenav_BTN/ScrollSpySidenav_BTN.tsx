@@ -2,7 +2,6 @@
 //
 //
 
-import Link from "next/link";
 import Btn from "../Btn/Btn";
 
 import css from "./ScrollSpySidenav_BTN.module.css";

@@ -13,7 +13,7 @@ export default function MultiPageProject_SIDENAV({
   nested_PAGES = [],
   opened_DDs = [],
   currentPage_SLUG = "xxx",
-  CLOSE_mobProjectMenu = () => {},
+  // CLOSE_mobProjectMenu = () => {},
   TOGGLE_dd = () => {},
 }: {
   projet_NAME: string;
@@ -22,7 +22,7 @@ export default function MultiPageProject_SIDENAV({
   nested_PAGES: nestedPage_TYPE[];
   currentPage_SLUG: string;
   TOGGLE_dd: (slug: string | undefined, val?: boolean) => void;
-  CLOSE_mobProjectMenu: () => void;
+  // CLOSE_mobProjectMenu: () => void;
 }) {
   return (
     <SideNav
@@ -33,7 +33,7 @@ export default function MultiPageProject_SIDENAV({
       <MultiPageProjectNav_BTNS
         {...{ nested_PAGES, currentPage_SLUG, opened_DDs, TOGGLE_dd }}
         project_SLUG={project_SLUG}
-        CLOSE_mobProjectMenu={CLOSE_mobProjectMenu}
+        // CLOSE_mobProjectMenu={CLOSE_mobProjectMenu}
       />
     </SideNav>
   );

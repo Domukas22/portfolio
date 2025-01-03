@@ -10,7 +10,7 @@ export default function Project_SECTIONS({
   sectionRefs,
   Sections = [],
 }: {
-  sectionRefs: MutableRefObject<(HTMLElement | null)[]>;
+  sectionRefs?: MutableRefObject<(HTMLElement | null)[]>;
   Sections: ProjectSection_TYPE[];
 }) {
   return (

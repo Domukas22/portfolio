@@ -8,19 +8,11 @@ import Project_INTROS from "@/projects/intros";
 import SiglePage_CONTENT from "../_components/SinglePage_CONTENT";
 import { HeroSection_CONTENT } from "@/components/SECTIONS/heros/HeroSection_CONTENT";
 import { ProjectSection_TYPE } from "@/types";
-import { TitleParagraphImageSection_CONTENT } from "@/components/SECTIONS/TitleParagraphImageSection_CONTENT/TitleParagraphImageSection_CONTENT";
 import { MultiPointSection_CONTENT } from "@/components/SECTIONS/MultiPointSection_CONTENT/MultiPointSection_CONTENT";
 import { LogoSwiperSection_CONTENT } from "@/components/SECTIONS/heros/LogoSwiperSection_CONTENT";
-import { ExternalLinkGridSection_CONTENT } from "@/components/SECTIONS/ExternalLinkGridSection_CONTENT/ExternalLinkGridSection_CONTENT";
+import { PDFLinkGrid_CONTENT } from "@/components/SECTIONS/PDFLinkGrid_CONTENT/PDFLinkGrid_CONTENT";
 import { UnevenRowImageGridSection_CONTENT } from "@/components/SECTIONS/UnevenRowImageGrid_SECTION/UnevenRowImageGrid_SECTION";
-
-const imgWrap_STYLES: React.CSSProperties = {
-  padding: "6rem 1.6rem",
-};
-const img_STYLES: React.CSSProperties = {
-  maxHeight: "40rem",
-  height: "100%",
-};
+import { NextPageSection_CONTENT } from "@/components/SECTIONS/NextPageSection_CONTENT/NextPageSection_CONTENT";
 
 const Intro = Project_INTROS["sanfte-metzger"];
 const Sections: ProjectSection_TYPE[] = [
@@ -42,32 +34,24 @@ const Sections: ProjectSection_TYPE[] = [
     slug: "links",
     name: "Links",
     content: (
-      <ExternalLinkGridSection_CONTENT
+      <PDFLinkGrid_CONTENT
         title="Links:"
         links={[
           {
             btnText: "The finished project PDF",
             href: "/projects/sanfte-metzger/finished-project.pdf",
+            img_PATH: "/projects/sanfte-metzger/manual.png",
           },
           {
             btnText: "View the assigment PDF",
             href: "/projects/sanfte-metzger/task.pdf",
+            img_PATH: "/projects/sanfte-metzger/task.png",
           },
         ]}
       />
     ),
   },
-  {
-    slug: "srh",
-    name: "Srh",
-    content: (
-      <TitleParagraphImageSection_CONTENT
-        title="An SRH project"
-        parapgraphs={[]}
-        img_PATH="/projects/domas-swim-school/srh.png"
-      />
-    ),
-  },
+
   {
     slug: "task-sumamry",
     name: "Task sumamry",
@@ -159,112 +143,137 @@ const Sections: ProjectSection_TYPE[] = [
       />
     ),
   },
-  {
-    slug: "first-draft",
-    name: "First draft",
-    content: (
-      <TitleParagraphImageSection_CONTENT
-        title="The first draft"
-        parapgraphs={[]}
-        img_PATH="/projects/sanfte-metzger/logo/progressions/1.svg"
-        {...{ imgWrap_STYLES, img_STYLES }}
-      />
-    ),
-  },
-  {
-    slug: "finding-balance",
-    name: "Finding balance",
-    content: (
-      <TitleParagraphImageSection_CONTENT
-        title="Finding balance"
-        parapgraphs={[]}
-        img_PATH="/projects/sanfte-metzger/logo/progressions/2.svg"
-        {...{ imgWrap_STYLES, img_STYLES }}
-      />
-    ),
-  },
-  {
-    slug: "the-missing-piece",
-    name: "The missing piece",
-    content: (
-      <TitleParagraphImageSection_CONTENT
-        title="The missing piece"
-        parapgraphs={[]}
-        img_PATH="/projects/sanfte-metzger/logo/progressions/3.svg"
-        {...{ imgWrap_STYLES, img_STYLES }}
-      />
-    ),
-  },
-  {
-    slug: "an-experiment",
-    name: "An experiment",
-    content: (
-      <TitleParagraphImageSection_CONTENT
-        title="An experiment"
-        parapgraphs={[]}
-        img_PATH="/projects/sanfte-metzger/logo/progressions/4.svg"
-        {...{ imgWrap_STYLES, img_STYLES }}
-      />
-    ),
-  },
+  // {
+  //   slug: "first-draft",
+  //   name: "First draft",
+  //   content: (
+  //     <TitleParagraphImageSection_CONTENT
+  //       title="The first draft"
+  //       parapgraphs={[]}
+  //       img_PATH="/projects/sanfte-metzger/logo/progressions/1.svg"
+  //       {...{ imgWrap_STYLES, img_STYLES }}
+  //     />
+  //   ),
+  // },
+  // {
+  //   slug: "finding-balance",
+  //   name: "Finding balance",
+  //   content: (
+  //     <TitleParagraphImageSection_CONTENT
+  //       title="Finding balance"
+  //       parapgraphs={[]}
+  //       img_PATH="/projects/sanfte-metzger/logo/progressions/2.svg"
+  //       {...{ imgWrap_STYLES, img_STYLES }}
+  //     />
+  //   ),
+  // },
+  // {
+  //   slug: "the-missing-piece",
+  //   name: "The missing piece",
+  //   content: (
+  //     <TitleParagraphImageSection_CONTENT
+  //       title="The missing piece"
+  //       parapgraphs={[]}
+  //       img_PATH="/projects/sanfte-metzger/logo/progressions/3.svg"
+  //       {...{ imgWrap_STYLES, img_STYLES }}
+  //     />
+  //   ),
+  // },
+  // {
+  //   slug: "an-experiment",
+  //   name: "An experiment",
+  //   content: (
+  //     <TitleParagraphImageSection_CONTENT
+  //       title="An experiment"
+  //       parapgraphs={[]}
+  //       img_PATH="/projects/sanfte-metzger/logo/progressions/4.svg"
+  //       {...{ imgWrap_STYLES, img_STYLES }}
+  //     />
+  //   ),
+  // },
 
+  // {
+  //   slug: "the-circles",
+  //   name: "The circles",
+  //   content: (
+  //     <TitleParagraphImageSection_CONTENT
+  //       title="The circles"
+  //       parapgraphs={[]}
+  //       img_PATH="/projects/sanfte-metzger/logo/progressions/5.svg"
+  //       {...{ imgWrap_STYLES, img_STYLES }}
+  //     />
+  //   ),
+  // },
+  // {
+  //   slug: "building-a-snowman",
+  //   name: "Building a snowman ⛄",
+  //   content: (
+  //     <TitleParagraphImageSection_CONTENT
+  //       title="Building the shapes"
+  //       parapgraphs={[]}
+  //       img_PATH="/projects/sanfte-metzger/logo/progressions/6.svg"
+  //       {...{ imgWrap_STYLES, img_STYLES }}
+  //     />
+  //   ),
+  // },
+  // {
+  //   slug: "creating-shapes",
+  //   name: "Creating the shapes",
+  //   content: (
+  //     <TitleParagraphImageSection_CONTENT
+  //       title="Creating the shapes"
+  //       parapgraphs={[]}
+  //       img_PATH="/projects/sanfte-metzger/logo/progressions/7.svg"
+  //       {...{ imgWrap_STYLES, img_STYLES }}
+  //     />
+  //   ),
+  // },
+  // {
+  //   slug: "abstracting",
+  //   name: "Abstracting",
+  //   content: (
+  //     <TitleParagraphImageSection_CONTENT
+  //       title="Abstracting"
+  //       parapgraphs={[]}
+  //       img_PATH="/projects/sanfte-metzger/logo/progressions/8.svg"
+  //       {...{ imgWrap_STYLES, img_STYLES }}
+  //     />
+  //   ),
+  // },
+  // {
+  //   slug: "final-version",
+  //   name: "Final version",
+  //   content: (
+  //     <TitleParagraphImageSection_CONTENT
+  //       title="Final version"
+  //       parapgraphs={[]}
+  //       img_PATH="/projects/sanfte-metzger/logo/progressions/9.svg"
+  //       {...{ imgWrap_STYLES, img_STYLES }}
+  //     />
+  //   ),
+  // },
   {
-    slug: "the-circles",
-    name: "The circles",
+    slug: "progress",
+    name: "Progress",
     content: (
-      <TitleParagraphImageSection_CONTENT
-        title="The circles"
-        parapgraphs={[]}
-        img_PATH="/projects/sanfte-metzger/logo/progressions/5.svg"
-        {...{ imgWrap_STYLES, img_STYLES }}
-      />
-    ),
-  },
-  {
-    slug: "building-a-snowman",
-    name: "Building a snowman ⛄",
-    content: (
-      <TitleParagraphImageSection_CONTENT
-        title="Building the shapes"
-        parapgraphs={[]}
-        img_PATH="/projects/sanfte-metzger/logo/progressions/6.svg"
-        {...{ imgWrap_STYLES, img_STYLES }}
-      />
-    ),
-  },
-  {
-    slug: "creating-shapes",
-    name: "Creating the shapes",
-    content: (
-      <TitleParagraphImageSection_CONTENT
-        title="Creating the shapes"
-        parapgraphs={[]}
-        img_PATH="/projects/sanfte-metzger/logo/progressions/7.svg"
-        {...{ imgWrap_STYLES, img_STYLES }}
-      />
-    ),
-  },
-  {
-    slug: "abstracting",
-    name: "Abstracting",
-    content: (
-      <TitleParagraphImageSection_CONTENT
-        title="Abstracting"
-        parapgraphs={[]}
-        img_PATH="/projects/sanfte-metzger/logo/progressions/8.svg"
-        {...{ imgWrap_STYLES, img_STYLES }}
-      />
-    ),
-  },
-  {
-    slug: "final-version",
-    name: "Final version",
-    content: (
-      <TitleParagraphImageSection_CONTENT
-        title="Final version"
-        parapgraphs={[]}
-        img_PATH="/projects/sanfte-metzger/logo/progressions/9.svg"
-        {...{ imgWrap_STYLES, img_STYLES }}
+      <LogoSwiperSection_CONTENT
+        title="Progress"
+        swiperImg_PATHS={[
+          "/projects/sanfte-metzger/logo/progressions/1.svg",
+          "/projects/sanfte-metzger/logo/progressions/2.svg",
+          "/projects/sanfte-metzger/logo/progressions/3.svg",
+          "/projects/sanfte-metzger/logo/progressions/4.svg",
+          "/projects/sanfte-metzger/logo/progressions/5.svg",
+          "/projects/sanfte-metzger/logo/progressions/6.svg",
+          "/projects/sanfte-metzger/logo/progressions/7.svg",
+          "/projects/sanfte-metzger/logo/progressions/8.svg",
+          "/projects/sanfte-metzger/logo/progressions/9.svg",
+        ]}
+        customBackgroundColors={[
+          { color: "#FFFAF3", index: 7 },
+          { color: "#FFFAF3", index: 8 },
+        ]}
+        maxDesktopWidth={50}
       />
     ),
   },
@@ -285,28 +294,14 @@ const Sections: ProjectSection_TYPE[] = [
       />
     ),
   },
+
   {
-    slug: "progress-recap",
-    name: "Progress recap",
+    slug: "next-project",
+    name: "Next project",
     content: (
-      <LogoSwiperSection_CONTENT
-        title="Progress recap"
-        swiperImg_PATHS={[
-          "/projects/sanfte-metzger/logo/progressions/1.svg",
-          "/projects/sanfte-metzger/logo/progressions/2.svg",
-          "/projects/sanfte-metzger/logo/progressions/3.svg",
-          "/projects/sanfte-metzger/logo/progressions/4.svg",
-          "/projects/sanfte-metzger/logo/progressions/5.svg",
-          "/projects/sanfte-metzger/logo/progressions/6.svg",
-          "/projects/sanfte-metzger/logo/progressions/7.svg",
-          "/projects/sanfte-metzger/logo/progressions/8.svg",
-          "/projects/sanfte-metzger/logo/progressions/9.svg",
-        ]}
-        customBackgroundColors={[
-          { color: "#FFFAF3", index: 7 },
-          { color: "#FFFAF3", index: 8 },
-        ]}
-        maxDesktopWidth={50}
+      <NextPageSection_CONTENT
+        text="Domas Swim School: Logo design project"
+        href="/projects/domas-swim-school-logo"
       />
     ),
   },

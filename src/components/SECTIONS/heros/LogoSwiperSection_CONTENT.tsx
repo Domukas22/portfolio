@@ -3,11 +3,7 @@
 //
 
 import Wide_SWIPER from "@/components/Wide_SWIPER/Wide_SWIPER";
-import HeroBottom_WRAP from "@/components/HeroBottom_WRAP/HeroBottom_WRAP";
 import Container from "@/components/Container";
-import Project_SECTION from "@/components/Project_SECTION";
-import { SwiperHeroSection_TYPE } from "@/projects/types/sections";
-import { MutableRefObject } from "react";
 import { customBackgroundColors_TYPE } from "@/projects/types/other";
 
 type SwiperHeroSection_TYPE = {

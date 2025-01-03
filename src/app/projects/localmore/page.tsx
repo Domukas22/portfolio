@@ -8,7 +8,6 @@ import Project_INTROS from "@/projects/intros";
 import SiglePage_CONTENT from "../_components/SinglePage_CONTENT";
 import { HeroSection_CONTENT } from "@/components/SECTIONS/heros/HeroSection_CONTENT";
 import { TextOnlySection_CONTENT } from "@/components/SECTIONS/TextOnlySection_CONTENT/TextOnlySection_CONTENT";
-import { UnevenRowImageGridSection_CONTENT } from "@/components/SECTIONS/UnevenRowImageGrid_SECTION/UnevenRowImageGrid_SECTION";
 import { ProjectSection_TYPE } from "@/types";
 import { TitleParagraphImageSection_CONTENT } from "@/components/SECTIONS/TitleParagraphImageSection_CONTENT/TitleParagraphImageSection_CONTENT";
 import { BigImageGrid_SECTION } from "@/components/SECTIONS/BigImageGrid_SECTION/BigImageGrid_SECTION";
@@ -45,6 +44,11 @@ const Sections: ProjectSection_TYPE[] = [
           {
             type: "h3",
             text: "Its goal is to help people explore their local area in the most fun and efficient way possible, while meeting new people along the way.",
+            style: { maxWidth: "80rem", marginBottom: "2rem" },
+          },
+          {
+            type: "h3",
+            text: "You can check out the demo <a href='https://localmore.vercel.app' target='_blank'><u><b>here</b></u></a>.",
             style: { maxWidth: "80rem" },
           },
         ]}

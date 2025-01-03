@@ -1,0 +1,53 @@
+/*  */
+/*  */
+/*  */
+
+@custom-media --mobile (max-width: 767px);
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop-small (max-width: 1300px);
+@custom-media --desktop-big (min-width: 1301px);
+
+.externalLinkGrid_CONTAINER {
+  & [data-link-grid] {
+    margin-top: 2rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.8rem;
+
+    & [data-text-wrap] {
+      width: 100%;
+      padding: 0.8rem 1.2rem;
+
+      & [data-arrow] > svg {
+        margin-left: auto;
+      }
+
+      & span {
+        font-size: 2rem;
+        font-weight: 600;
+      }
+    }
+
+    & [data-image] {
+      width: 100%;
+      height: clamp(25rem, 25vw, 50rem);
+      object-fit: cover;
+    }
+
+    @media (--tablet) {
+      grid-template-columns: 1fr 1fr;
+
+      & [data-image] {
+        height: clamp(40rem, 40vw, 80rem);
+      }
+    }
+    @media (--mobile) {
+      grid-template-columns: 1fr;
+
+      & [data-image] {
+        height: 90vw;
+      }
+    }
+  }
+}

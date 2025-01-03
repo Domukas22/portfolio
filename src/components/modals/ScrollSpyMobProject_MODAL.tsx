@@ -6,6 +6,7 @@ import { ProjectSection_TYPE } from "@/types";
 import Mobile_MODAL from "../Mobile_MODAL/Mobile_MODAL";
 import MobProjectMenuProject_BTN from "../MobProjectMenuProject_BTN";
 import SinglePageProjectNav_BTNS from "../SinglePageProjectNav_BTNS";
+import SCROLL_to from "@/utils/SCROLL_to";
 
 export default function ScrollSpyMobProject_MODAL({
   Sections = [],
@@ -28,7 +29,10 @@ export default function ScrollSpyMobProject_MODAL({
       extraElsAboveScrollable={
         <MobProjectMenuProject_BTN
           project_NAME={project_NAME}
-          onClick={() => {}}
+          onClick={() => {
+            CLOSE_modal();
+            SCROLL_to({});
+          }}
         />
       }
     >

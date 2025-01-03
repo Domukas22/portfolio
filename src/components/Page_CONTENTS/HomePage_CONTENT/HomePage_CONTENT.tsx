@@ -10,6 +10,7 @@ import { useState } from "react";
 import RegularMobileNav from "@/components/Nav/RegularMobileNav/RegularMobileNav";
 import SideNav from "@/components/SideNav/SideNav";
 import Mobile_MODAL from "@/components/Mobile_MODAL/Mobile_MODAL";
+import Image from "next/image";
 
 export default function HomePage_CONTENT() {
   const [IS_mobileMenuOpen, SET_mobileMenuOpen] = useState(false);
@@ -17,13 +18,34 @@ export default function HomePage_CONTENT() {
   return (
     <>
       <SideNav>
-        <Menu_ITEMS />
+        <Menu_ITEMS SHOW_homeBtn={false} />
       </SideNav>
 
       <div className="flex-1">
         <RegularMobileNav
           OPEN_mobMenu={() => SET_mobileMenuOpen(!IS_mobileMenuOpen)}
         />
+
+        <section style={{ borderBottom: "var(--border-light)" }}>
+          <div className="container flex items-center gap-[4rem]  tablet:flex-col">
+            <div className="flex flex-col mr-auto">
+              <h1 style={{ fontSize: "4rem" }}>Hi, I&apos;m Domas 👋</h1>
+              <p className="size-h3">An aspiring creator</p>
+            </div>
+            <Image
+              width={500}
+              height={500}
+              src={"/domas.jpg"}
+              alt={"Domas Sirbike, Website designer"}
+              className="rounded-full h-[24rem] w-[24rem] object-cover ml-auto"
+              style={{
+                boxShadow: "0px 2px 17px 4px rgba(138, 138, 138, 0.2)",
+                transform: "scaleX(-1)",
+              }}
+            />
+          </div>
+        </section>
+
         <Project_LIST />
       </div>
 
@@ -34,7 +56,7 @@ export default function HomePage_CONTENT() {
         animate_LI
         title="Menu"
       >
-        <Menu_ITEMS SHOW_homeBtn />
+        <Menu_ITEMS SHOW_homeBtn={false} />
       </Mobile_MODAL>
     </>
   );

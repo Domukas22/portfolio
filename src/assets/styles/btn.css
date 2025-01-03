@@ -33,7 +33,7 @@
   outline: var(--outline-hide);
 
   & * {
-    font-weight: 400;
+    /* font-weight: 400; */
     color: var(--text-white);
   }
 

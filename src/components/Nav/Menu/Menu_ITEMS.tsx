@@ -18,16 +18,16 @@ export default function Menu_ITEMS({ SHOW_homeBtn = false }) {
           <Menu_BTN title="Home" link="/" />
         </li>
       )}
-      <li>
+      {/* <li>
         <Menu_BTN title="Reach out to me" link="/" />
-      </li>
-      <li>
+      </li> */}
+      {/* <li>
         <Menu_BTN
           title="See my projects"
           subtitle={`${Object.keys(Project_INTROS)?.length} projects total`}
           link="/"
         />
-      </li>
+      </li> */}
 
       {Object.entries(Project_INTROS).map(([slug, intro]) => (
         <li key={slug + intro.name}>

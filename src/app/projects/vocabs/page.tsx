@@ -8,11 +8,8 @@ import Project_INTROS from "@/projects/intros";
 import SiglePage_CONTENT from "../_components/SinglePage_CONTENT";
 import { HeroSection_CONTENT } from "@/components/SECTIONS/heros/HeroSection_CONTENT";
 import { TextOnlySection_CONTENT } from "@/components/SECTIONS/TextOnlySection_CONTENT/TextOnlySection_CONTENT";
-import { UnevenRowImageGridSection_CONTENT } from "@/components/SECTIONS/UnevenRowImageGrid_SECTION/UnevenRowImageGrid_SECTION";
 import { ProjectSection_TYPE } from "@/types";
 import { TitleParagraphImageSection_CONTENT } from "@/components/SECTIONS/TitleParagraphImageSection_CONTENT/TitleParagraphImageSection_CONTENT";
-import { BigImageGrid_SECTION } from "@/components/SECTIONS/BigImageGrid_SECTION/BigImageGrid_SECTION";
-import { LogoSwiperSection_CONTENT } from "@/components/SECTIONS/heros/LogoSwiperSection_CONTENT";
 import { NextPageSection_CONTENT } from "@/components/SECTIONS/NextPageSection_CONTENT/NextPageSection_CONTENT";
 
 const Intro = Project_INTROS["vocabs"];
@@ -207,6 +204,16 @@ const Sections: ProjectSection_TYPE[] = [
         ]}
         img_PATH="/projects/vocabs/features/index-page.png"
         sticky_TEXT
+      />
+    ),
+  },
+  {
+    slug: "next-project",
+    name: "Next project",
+    content: (
+      <NextPageSection_CONTENT
+        text="Swim Active: Website for a swimming club"
+        href="/projects/swim-active"
       />
     ),
   },

@@ -9,15 +9,13 @@ import TabDD_ICON from "../TabDD_ICON";
 import css from "./Sidenav_DD.module.css";
 import { useMemo, useState } from "react";
 import { pageChild_TYPE } from "@/projects/intros";
-import { ScrollSpySidenav_BTN } from "../ScrollSpySidenav_BTN/ScrollSpySidenav_BTN";
 import MultipageProjectSidenav_LINK from "../MultipageProjectSidenav_LINK/MultipageProjectSidenav_LINK";
 import MultipageNestedProjectSidenav_BTN from "../MultipageNestedProjectSidenav_BTN/MultipageNestedProjectSidenav_BTN";
 
 interface NestedSidenav_BTN_PROPS {
   open: boolean;
   toggle: () => void;
-  mobile?: boolean;
-  active: boolean;
+
   children_PAGES: pageChild_TYPE[];
   text: string;
   project_SLUG: string;
@@ -29,14 +27,13 @@ export function SideNav_DD({
   text = "xxx",
   open = false,
   toggle = () => {},
-  mobile = false,
-  active = false,
+
   children_PAGES = [],
   project_SLUG = "xxx",
   page_SLUG = "xxx",
   currentPage_SLUG = "xxx",
 }: NestedSidenav_BTN_PROPS) {
-  const [initialRender, SET_initialRender] = useState(true);
+  const [initialRender] = useState(true);
   const [animating, SET_animating] = useState(false);
 
   const firstChild_PAGE = useMemo(() => children_PAGES?.[0], [children_PAGES]);

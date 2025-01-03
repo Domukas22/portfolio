@@ -115,13 +115,13 @@ const Project_INTROS: ProjectIntros = {
     emoji: "✍️",
     headerImg_PATH: `/projects/vocabs/header.png`,
     headerImg_COLOR: "#716d68",
-    nestedPages: [
-      {
-        type: "no-children",
-        slug: "introduction",
-        name: "Introduction",
-      },
-    ],
+    // nestedPages: [
+    //   {
+    //     type: "no-children",
+    //     slug: "introduction",
+    //     name: "Introduction",
+    //   },
+    // ],
   },
   "swim-active": {
     slug: "swim-active",

@@ -10,6 +10,7 @@ import { HeroSection_CONTENT } from "@/components/SECTIONS/heros/HeroSection_CON
 import { TextOnlySection_CONTENT } from "@/components/SECTIONS/TextOnlySection_CONTENT/TextOnlySection_CONTENT";
 import { UnevenRowImageGridSection_CONTENT } from "@/components/SECTIONS/UnevenRowImageGrid_SECTION/UnevenRowImageGrid_SECTION";
 import { ProjectSection_TYPE } from "@/types";
+import { NextPageSection_CONTENT } from "@/components/SECTIONS/NextPageSection_CONTENT/NextPageSection_CONTENT";
 
 const Intro = Project_INTROS["swim-active"];
 const Sections: ProjectSection_TYPE[] = [
@@ -68,6 +69,16 @@ const Sections: ProjectSection_TYPE[] = [
           "/projects/swim-active/sneak-peak/2.jpg",
           "/projects/swim-active/sneak-peak/3.jpg",
         ]}
+      />
+    ),
+  },
+  {
+    slug: "next-project",
+    name: "Next project",
+    content: (
+      <NextPageSection_CONTENT
+        text="Sanfte Metzger: Logo design project"
+        href="/projects/sanfte-metzger"
       />
     ),
   },

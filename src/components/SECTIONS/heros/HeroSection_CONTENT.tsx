@@ -34,7 +34,7 @@ export function HeroSection_CONTENT({
             height={400}
             src={publicImg_PATH}
             alt=""
-            className="h-full object-cover"
+            className="h-full object-cover w-full"
           />
         </HeroImg_WRAP>
       ) : null}

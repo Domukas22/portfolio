@@ -3,18 +3,14 @@
 //
 
 import Menu_MODALS from "@/components/modals/Menu_MODALS/Menu_MODALS";
-import ScrollSpyMobProject_MODAL from "@/components/modals/ScrollSpyMobProject_MODAL";
 import MultiPageProject_SIDENAV from "@/components/Nav/MultiPageProject_SIDENAV";
 import Project_NAVS from "@/components/Nav/Project_NAVS";
-import ScrollSpyProject_SIDENAV from "@/components/Nav/ScrollSpyProject_SIDENAV";
 import Project_SECTIONS from "@/components/Project_SECTIONS";
 import TopNav_ADJUSTMENT from "@/components/TopNav_ADJUSTMENT";
 import USE_openedDropdowns from "@/hooks/USE_openedDropdowns";
 import USE_projectMenuStates from "@/hooks/USE_projectMenuStates";
-import USE_scrollSpy from "@/hooks/USE_scrollSpy";
 import { ProjectIntro_TYPE } from "@/projects/intros";
 import { ProjectSection_TYPE } from "@/types";
-import { MutableRefObject } from "react";
 
 export default function MultiPage_CONTENT({
   Sections = [],
@@ -28,14 +24,13 @@ export default function MultiPage_CONTENT({
   const {
     IS_deskMenuOpen,
     IS_mobMenuOpen,
-    IS_mobProjectOpen,
+
     SET_deskMenuOpen,
     SET_mobMenuOpen,
     SET_mobProjectMenuOpen,
   } = USE_projectMenuStates();
 
-  const { opened_DDs, TOGGLE_dd, COLLAPSE_dropdowns, OPEN_singleDD } =
-    USE_openedDropdowns();
+  const { opened_DDs, TOGGLE_dd } = USE_openedDropdowns();
 
   return (
     <>
@@ -60,7 +55,7 @@ export default function MultiPage_CONTENT({
         nested_PAGES={Intro?.nestedPages || []}
         currentPage_SLUG={currentPage_SLUG}
         project_SLUG={Intro.slug}
-        CLOSE_mobProjectMenu={() => SET_mobProjectMenuOpen(false)}
+        // CLOSE_mobProjectMenu={() => SET_mobProjectMenuOpen(false)}
       />
 
       {/* ------------------------ MODALS -------------------------------- */}

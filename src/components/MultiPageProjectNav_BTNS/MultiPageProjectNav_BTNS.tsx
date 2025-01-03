@@ -12,7 +12,7 @@ export default function MultiPageProjectNav_BTNS({
   opened_DDs = [],
   currentPage_SLUG = "xxx",
   project_SLUG = "xxx",
-  CLOSE_mobProjectMenu = () => {},
+
   TOGGLE_dd = () => {},
 }: {
   nested_PAGES: nestedPage_TYPE[];
@@ -20,7 +20,6 @@ export default function MultiPageProjectNav_BTNS({
   opened_DDs: string[];
   project_SLUG: string;
   TOGGLE_dd: (slug: string | undefined, val?: boolean) => void;
-  CLOSE_mobProjectMenu: () => void;
 }) {
   // open dd if child page is selected
   useEffect(() => {
@@ -35,7 +34,7 @@ export default function MultiPageProjectNav_BTNS({
         }
       });
     });
-  }, []);
+  }, [TOGGLE_dd, currentPage_SLUG, nested_PAGES]);
 
   return nested_PAGES && nested_PAGES?.length
     ? nested_PAGES.map((page, index) => {
@@ -44,10 +43,6 @@ export default function MultiPageProjectNav_BTNS({
             <SideNav_DD
               text={page.name}
               key={index + page.slug}
-              active={page.children?.some(
-                (child) => child.slug === currentPage_SLUG
-              )}
-              // active={page.slug === currentPage_SLUG}
               open={opened_DDs?.some((slug) => slug === page.slug)}
               toggle={() => TOGGLE_dd(page.slug)}
               {...{ TOGGLE_dd }}

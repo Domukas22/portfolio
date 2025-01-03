@@ -14,7 +14,7 @@ export default function Project_SECTION({
   children: React.ReactNode;
   section_SLUG: string;
   index: number;
-  sectionRefs: MutableRefObject<(HTMLElement | null)[]>;
+  sectionRefs?: MutableRefObject<(HTMLElement | null)[]>;
   last?: boolean;
 }) {
   return (

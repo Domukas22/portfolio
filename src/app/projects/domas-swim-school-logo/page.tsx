@@ -11,6 +11,7 @@ import { ProjectSection_TYPE } from "@/types";
 import { TitleParagraphImageSection_CONTENT } from "@/components/SECTIONS/TitleParagraphImageSection_CONTENT/TitleParagraphImageSection_CONTENT";
 import { MultiPointSection_CONTENT } from "@/components/SECTIONS/MultiPointSection_CONTENT/MultiPointSection_CONTENT";
 import { LogoSwiperSection_CONTENT } from "@/components/SECTIONS/heros/LogoSwiperSection_CONTENT";
+import { NextPageSection_CONTENT } from "@/components/SECTIONS/NextPageSection_CONTENT/NextPageSection_CONTENT";
 
 const imgWrap_STYLES: React.CSSProperties = {
   padding: "6rem 1.6rem",
@@ -252,6 +253,16 @@ const Sections: ProjectSection_TYPE[] = [
         ]}
         customBackgroundColors={[{ color: "#f6f7ff", index: 9 }]}
         maxDesktopWidth={50}
+      />
+    ),
+  },
+  {
+    slug: "next-project",
+    name: "Next project",
+    content: (
+      <NextPageSection_CONTENT
+        text="Localmore: My dream project"
+        href="/projects/localmore"
       />
     ),
   },
