@@ -41,6 +41,7 @@ const DomasSwimSchool_PROJECT: Project_TYPE = {
       type: "title-paragraph-image",
       section_SLUG: "srh",
       section_NAME: "Srh",
+
       title: "A simple project",
       parapgraphs: [
         "While I was studying at the SRH, we were given a simple, 2-day assignment of creating any kind of logo, using pohtoshop or illustrator, while also taking the theory we learned into consideration.",

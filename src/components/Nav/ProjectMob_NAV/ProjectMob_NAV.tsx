@@ -12,20 +12,20 @@ import MobileMenu_BTN from "@/components/MobileMenu_BTN";
 interface ProjectMob_NAV_PROPS {
   project_NAME: string;
 
-  OPEN_mobileMenu: () => void;
-  OPEN_mobileProjectMenu?: () => void;
+  OPEN_mobMenu: () => void;
+  OPEN_mobProjectMenu?: () => void;
 }
 
 export default function ProjectMob_NAV({
   project_NAME = "Project name",
-  OPEN_mobileMenu = () => {},
-  OPEN_mobileProjectMenu,
+  OPEN_mobMenu = () => {},
+  OPEN_mobProjectMenu,
 }: ProjectMob_NAV_PROPS) {
   return (
     <StickyTopNav targetClass={css.projectMobileNav}>
-      <ProjectMenu_BTN {...{ project_NAME, OPEN_mobileProjectMenu }} />
+      <ProjectMenu_BTN {...{ project_NAME, OPEN_mobProjectMenu }} />
 
-      <MobileMenu_BTN {...{ OPEN_mobileMenu }} />
+      <MobileMenu_BTN {...{ OPEN_mobMenu }} />
     </StickyTopNav>
   );
 }

@@ -2,15 +2,14 @@
 //
 //
 
-import { Hero_SECTION } from "./heros/Hero_SECTION";
-import { TitleParagraphImage_SECTION } from "./TitleParagraphImage_SECTION/TitleParagraphImage_SECTION";
-import { UnevenRowImageGrid_SECTION } from "./UnevenRowImageGrid_SECTION/UnevenRowImageGrid_SECTION";
-import { MultiPoint_SECTION } from "./MultiPoint_SECTION/MultiPoint_SECTION";
-import { LogoSwiper_SECTION } from "./heros/LogoSwiper_SECTION";
-import NextUp_SECTION from "../NextUp_SECTION";
+import { Hero_SECTION } from "./heros/HeroSection_CONTENT";
+import { TitleParagraphImageSection_CONTENT } from "./TitleParagraphImage_SECTION/TitleParagraphImage_SECTION";
+import { UnevenRowImageGridSection_CONTENT } from "./UnevenRowImageGrid_SECTION/UnevenRowImageGrid_SECTION";
+import { MultiPointSection_CONTENT } from "./MultiPointSection_CONTENT/MultiPointSection_CONTENT";
+import { LogoSwiperSection_CONTENT } from "./heros/LogoSwiperSection_CONTENT";
 import { ProjectSection_TYPE } from "@/projects/types/sections";
-import { TextOnly_SECTION } from "./TextOnly_SECTION/TextOnly_SECTION";
-import { ExternalLinkGrid_SECTION } from "./ExternalLinkGrid_SECTION/ExternalLinkGrid_SECTION";
+import { TextOnlySection_CONTENT } from "./TextOnlySection_CONTENT/TextOnlySection_CONTENT";
+import { ExternalLinkGridSection_CONTENT } from "./ExternalLinkGridSection_CONTENT/ExternalLinkGridSection_CONTENT";
 import { MutableRefObject } from "react";
 
 export default function ProjectPage_SECTIONS({
@@ -42,7 +41,7 @@ export default function ProjectPage_SECTIONS({
               );
             case "title-paragraph-image":
               return (
-                <TitleParagraphImage_SECTION
+                <TitleParagraphImageSection_CONTENT
                   key={sections.section_SLUG}
                   {...{
                     section_CONTENT: sections,
@@ -54,7 +53,7 @@ export default function ProjectPage_SECTIONS({
               );
             case "uneven-row-image-grid":
               return (
-                <UnevenRowImageGrid_SECTION
+                <UnevenRowImageGridSection_CONTENT
                   key={sections.section_SLUG}
                   {...{
                     section_CONTENT: sections,
@@ -66,7 +65,7 @@ export default function ProjectPage_SECTIONS({
               );
             case "logo-swiper":
               return (
-                <LogoSwiper_SECTION
+                <LogoSwiperSection_CONTENT
                   key={sections.section_SLUG}
                   {...{
                     section_CONTENT: sections,
@@ -78,7 +77,7 @@ export default function ProjectPage_SECTIONS({
               );
             case "multi-point-section":
               return (
-                <MultiPoint_SECTION
+                <MultiPointSection_CONTENT
                   key={sections.section_SLUG}
                   {...{
                     section_CONTENT: sections,
@@ -90,14 +89,14 @@ export default function ProjectPage_SECTIONS({
               );
             case "text-only-section":
               return (
-                <TextOnly_SECTION
+                <TextOnlySection_CONTENT
                   key={sections.section_SLUG}
                   {...{ section_CONTENT: sections, sectionRefs, index }}
                 />
               );
             case "external-link-grid":
               return (
-                <ExternalLinkGrid_SECTION
+                <ExternalLinkGridSection_CONTENT
                   key={sections.section_SLUG}
                   {...{ section_CONTENT: sections, sectionRefs, index }}
                 />

@@ -4,7 +4,7 @@
 
 "use client";
 
-import Projects from "@/projects";
+import Project_INTROS from "@/projects/intros";
 import { Menu_BTN } from "./components/Menu_BTN";
 
 export default function Menu_ITEMS({ SHOW_homeBtn = false }) {
@@ -24,17 +24,21 @@ export default function Menu_ITEMS({ SHOW_homeBtn = false }) {
       <li>
         <Menu_BTN
           title="See my projects"
-          subtitle={`${Object.keys(Projects).length} projects total`}
+          subtitle={`${Object.keys(Project_INTROS)?.length} projects total`}
           link="/"
         />
       </li>
 
-      {Object.entries(Projects).map(([slug, project]) => (
-        <li key={slug + project.name}>
+      {Object.entries(Project_INTROS).map(([slug, intro]) => (
+        <li key={slug + intro.name}>
           <Menu_BTN
-            title={`${project.emoji} ${project.name}`}
-            subtitle={project.shortSubtitle}
-            link={`/projects/${slug}`}
+            title={`${intro.emoji} ${intro.name}`}
+            subtitle={intro.shortSubtitle}
+            link={
+              intro?.nestedPages?.length
+                ? `/projects/${slug}/${intro?.nestedPages?.[0]?.slug}`
+                : `/projects/${slug}`
+            }
           />
         </li>
       ))}

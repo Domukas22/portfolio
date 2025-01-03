@@ -3,6 +3,7 @@
 /*  */
 
 @custom-media --tablet (max-width: 990px);
+@custom-media --desktop (min-width: 991px);
 @custom-media --desktop-small (max-width: 1300px);
 @custom-media --desktop-big (min-width: 1301px);
 
@@ -26,6 +27,10 @@
         object-fit: contain;
         width: 100%;
       }
+
+      &[data-mobile] {
+        display: none;
+      }
     }
 
     @media (--tablet) {
@@ -33,6 +38,18 @@
       gap: var(--padding-tablet);
       & [data-img-col] {
         gap: var(--padding-tablet);
+      }
+    }
+  }
+
+  &[data-has-mob-images="true"] {
+    @media (--tablet) {
+      & [data-left],
+      & [data-left] {
+        display: none;
+      }
+      & [data-mobile] {
+        display: flex;
       }
     }
   }

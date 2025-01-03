@@ -12,11 +12,11 @@ import css from "./RegularMobileNav.module.css";
 import MobileMenu_BTN from "@/components/MobileMenu_BTN";
 
 interface RegularMobileNav_PROPS {
-  OPEN_mobileMenu: () => void;
+  OPEN_mobMenu: () => void;
 }
 
 export default function RegularMobileNav({
-  OPEN_mobileMenu = () => {},
+  OPEN_mobMenu = () => {},
 }: RegularMobileNav_PROPS) {
   return (
     <StickyTopNav targetClass={css.regularMobileNav}>
@@ -40,7 +40,7 @@ export default function RegularMobileNav({
           <span>Contact</span>
         </Link>
       </li>
-      <MobileMenu_BTN {...{ OPEN_mobileMenu }} />
+      <MobileMenu_BTN {...{ OPEN_mobMenu }} />
     </StickyTopNav>
   );
 }

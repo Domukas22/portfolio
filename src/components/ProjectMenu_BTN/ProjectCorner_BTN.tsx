@@ -9,13 +9,13 @@ import css from "./ProjectMenu_BTN.module.css";
 interface LogoBtn_PROPS {
   project_NAME: string;
 
-  OPEN_mobileProjectMenu?: () => void;
+  OPEN_mobProjectMenu?: () => void;
 }
 
 export default function ProjectMenu_BTN({
   project_NAME = "Project name",
 
-  OPEN_mobileProjectMenu,
+  OPEN_mobProjectMenu,
 }: LogoBtn_PROPS) {
   return (
     <li
@@ -29,7 +29,7 @@ export default function ProjectMenu_BTN({
       <Btn
         btnType={"btn-square-light"}
         className={css.projectCorner_BTN}
-        onClick={OPEN_mobileProjectMenu}
+        onClick={OPEN_mobProjectMenu}
       >
         <div data-text-wrap>
           <p data-project-name>Project</p>

@@ -2,16 +2,11 @@
 //
 //
 
-import { ProjectSection_TYPE } from "@/projects/types/sections";
-
 import { useMemo, useRef, useState, useEffect } from "react";
 
-export default function USE_scrollSpy(sections: ProjectSection_TYPE[]) {
+export default function USE_scrollSpy(slugs: string[]) {
   // Create an array of section IDs for the observer
-  const sectionIds = useMemo(
-    () => sections?.map((section) => section.section_SLUG),
-    [sections]
-  );
+  const sectionIds = useMemo(() => slugs, [slugs]);
   const sectionRefs = useRef<(HTMLElement | null)[]>([]); // Explicitly declare the type
 
   const [activeSectionIndex, setActiveSectionIndex] = useState(0);

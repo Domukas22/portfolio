@@ -13,19 +13,18 @@ import SCROLL_to from "@/utils/SCROLL_to";
 
 interface ProjectDesktopNav_PROPS {
   project_NAME: string;
-  IS_desktopMenuOpen: boolean;
-  _ref?: React.RefObject<HTMLElement>;
-  OPEN_menu: () => void;
+  IS_deskMenuOpen: boolean;
+  OPEN_deskMenu: () => void;
 }
 
 export default function ProjectDesk_NAV({
   project_NAME = "Project name",
-  _ref,
-  IS_desktopMenuOpen = false,
-  OPEN_menu = () => {},
+
+  IS_deskMenuOpen = false,
+  OPEN_deskMenu = () => {},
 }: ProjectDesktopNav_PROPS) {
   return (
-    <StickyTopNav targetClass={css.projectDesktopNav} tiny _ref={_ref}>
+    <StickyTopNav targetClass={css.projectDesktopNav} tiny>
       <li>
         <Link className="btn-tiny-desk-round" href="/">
           Home
@@ -52,7 +51,7 @@ export default function ProjectDesk_NAV({
         className="fixed top-0  !h-[var(--tiny-nav-height)]"
         style={{
           padding: 0,
-          right: IS_desktopMenuOpen ? "var(--scrollbar-width)" : "0px",
+          right: IS_deskMenuOpen ? "var(--scrollbar-width)" : "0px",
         }}
       >
         <Btn
@@ -60,7 +59,7 @@ export default function ProjectDesk_NAV({
           text="Menu"
           right_ICON={<ICON_arrow direction="right" />}
           data-light-left-border-color="true"
-          onClick={OPEN_menu}
+          onClick={OPEN_deskMenu}
         />
       </li>
     </StickyTopNav>

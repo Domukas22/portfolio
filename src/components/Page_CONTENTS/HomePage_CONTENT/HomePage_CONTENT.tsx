@@ -22,7 +22,7 @@ export default function HomePage_CONTENT() {
 
       <div className="flex-1">
         <RegularMobileNav
-          OPEN_mobileMenu={() => SET_mobileMenuOpen(!IS_mobileMenuOpen)}
+          OPEN_mobMenu={() => SET_mobileMenuOpen(!IS_mobileMenuOpen)}
         />
         <Project_LIST />
       </div>

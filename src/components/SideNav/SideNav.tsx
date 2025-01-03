@@ -8,17 +8,16 @@ import LogoCorner_BTN from "../LogoCorner_BTN/LogoCorner_BTN";
 
 export default function SideNav({
   children,
-  _ref,
+
   extraElsAboveScrollable,
   extraElsUnderScrollable,
 }: {
   children: React.ReactNode;
   extraElsAboveScrollable?: React.ReactNode;
   extraElsUnderScrollable?: React.ReactNode;
-  _ref?: React.RefObject<HTMLElement>;
 }) {
   return (
-    <nav className={css.sidenav} ref={_ref}>
+    <nav className={css.sidenav}>
       <ul className="h-full flex flex-col">
         <LogoCorner_BTN />
         {extraElsAboveScrollable}

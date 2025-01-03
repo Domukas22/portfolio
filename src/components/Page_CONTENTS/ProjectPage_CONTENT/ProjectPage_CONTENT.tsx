@@ -6,14 +6,14 @@ import SideNav from "../../SideNav/SideNav";
 import ProjectMob_NAV from "../../Nav/ProjectMob_NAV/ProjectMob_NAV";
 import USE_Toggle from "@/hooks/USE_toggle";
 import ProjectDesk_NAV from "@/components/Nav/ProjectDesk_NAV/ProjectDesk_NAV";
-import DesktopMenu_MODAL from "@/components/DesktopMenu_MODAL/DesktopMenu_MODAL";
+import DesktopMenu_MODAL from "@/components/modals/Menu_MODALS/components/DesktopMenu_MODAL/DesktopMenu_MODAL";
 import Menu_ITEMS from "@/components/Nav/Menu/Menu_ITEMS";
 import USE_perserveStickyNavPosition from "@/utils/USE_perserveStickyNavPosition";
 
 import ProjectPage_SECTIONS from "@/components/SECTIONS";
 
 import Mobile_MODAL from "@/components/Mobile_MODAL/Mobile_MODAL";
-import { ProjectSection_BTN } from "@/components/ProjectSection_BTN/ProjectSection_BTN";
+import { ScrollSpySidenav_BTN } from "@/components/ScrollSpySidenav_BTN/ScrollSpySidenav_BTN";
 import DesktopProjectSideNav_BTN from "@/components/DesktopProjectSideNav_BTN";
 import DesktopProjectSideNavCollapse_BTN from "@/components/DesktopProjectSideNavCollapse_BTN";
 import ModalMenu_UNDERLAY from "@/components/ModalMenu_UNDERLAY";
@@ -62,7 +62,7 @@ export default function ProjectPage_CONTENT() {
         }
       >
         {project?.sections?.map((section, index) => (
-          <ProjectSection_BTN
+          <ScrollSpySidenav_BTN
             key={section.section_SLUG}
             text={section.section_NAME}
             onClick={() => SCROLL_to({ target_ID: section.section_SLUG })}
@@ -75,17 +75,17 @@ export default function ProjectPage_CONTENT() {
       <div className="pb-[50rem]">
         <ProjectMob_NAV
           project_NAME={project?.name}
-          OPEN_mobileMenu={() => SET_mobileMenuOpen(true)}
-          OPEN_mobileProjectMenu={() => {
+          OPEN_mobMenu={() => SET_mobileMenuOpen(true)}
+          OPEN_mobProjectMenu={() => {
             SET_mobileProjectMenuOpen(true);
             // OPEN_singleTab(current_TAB?.tab_SLUG);
           }}
         />
         <ProjectDesk_NAV
           project_NAME={project?.name}
-          OPEN_menu={() => SET_menuOpen(true)}
+          OPEN_deskMenu={() => SET_menuOpen(true)}
           _ref={tinyNavNav_REF}
-          IS_desktopMenuOpen={IS_menuOpen}
+          IS_deskMenuOpen={IS_menuOpen}
         />
 
         <ProjectPage_SECTIONS
@@ -119,7 +119,7 @@ export default function ProjectPage_CONTENT() {
       >
         <>
           {project?.sections?.map((section, index) => (
-            <ProjectSection_BTN
+            <ScrollSpySidenav_BTN
               key={section.section_SLUG}
               text={section.section_NAME}
               onClick={() => {
