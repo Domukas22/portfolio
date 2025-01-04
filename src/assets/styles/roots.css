@@ -9,6 +9,7 @@
 
   --brown-text: #e2ccab;
   --brown-bg: #413c36;
+
   /* ------------------------------------------------------------------------------- */
   /* ------------------------------------------------------------------------------- */
   /* ------------------------------------------------------------------------------- */
@@ -16,8 +17,10 @@
   --fill-bg: #141414;
   --text-white: var(--white-95);
   --text-white-light: var(--white-75);
+  --error: rgb(255, 115, 115);
 
   --text-main: #fe8c5f;
+  --text-error: var(--error);
   --fill-main: #fe8c5f;
   --bg-main: rgb(32 28 26);
 
@@ -39,6 +42,8 @@
   --in-progress-tag-bg: #3b392a;
   --in-progress-tag-text: #ffd900;
 
+  --modal-overlay-bg: #0000009f;
+
   /* ------------------------------------------------------------------------------- */
   /* Sizing */
   --nav-height: 6rem;
@@ -57,6 +62,7 @@
   --border-light: 0.1rem solid var(--white-10);
   --border-white: 0.1rem solid var(--white-95);
   --border-bg: 0.1rem solid var(--fill-bg);
+  --border-error: 0.1rem solid var(--error);
   --border-active: 0.1rem solid var(--fill-main);
 
   --outline-hide: 0.2rem solid transparent;

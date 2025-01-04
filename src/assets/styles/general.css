@@ -24,13 +24,14 @@ body {
 
   min-height: 110vh;
 
-  padding-left: var(--side-nav-width);
-
   @media (--tablet) {
     padding-left: 0;
   }
 }
 
+div[data-sidenav-padding] {
+  padding-left: var(--side-nav-width);
+}
 /* ------------------------------------------------------------------------------------------------ */
 
 section[data-last="true"] {

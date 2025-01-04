@@ -1,0 +1,38 @@
+/*  */
+/*  */
+/*  */
+
+.textfield {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 2rem;
+
+  & label {
+    color: var(--text-white-light);
+    font-weight: 600;
+  }
+
+  & input,
+  & textarea {
+    background-color: var(--dark-light);
+    height: 5rem;
+
+    padding: 1.2rem 1.6rem;
+    color: white;
+
+    border-radius: 1.2rem;
+    border: var(--border-light);
+
+    &[data-invalid] {
+      border: var(--border-error);
+    }
+  }
+  & textarea {
+    height: 15rem;
+  }
+
+  & [data-error-text] {
+    color: var(--text-error);
+  }
+}

@@ -1,0 +1,76 @@
+/*  */
+/*  */
+/*  */
+
+& .RadioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  & label {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.2rem;
+
+    transition: 100ms;
+    border-radius: 1.2rem;
+    border: var(--border-transparent);
+    font-weight: 400;
+    outline: var(--outline-hide);
+
+    &::before {
+      content: "";
+      display: inline-block;
+      background-color: transparent;
+      transition: 100ms;
+      width: 2rem;
+      height: 2rem;
+      border: var(--border-light);
+      border-radius: 50%;
+      margin: 0 0.8rem 0.2rem 0;
+      cursor: pointer;
+    }
+
+    /* -------- Hover -------- */
+    &[data-hovered] {
+      background-color: var(--dark-lightest);
+    }
+
+    /* -------- Mouse focus -------- */
+    &[data-focused] {
+      background-color: var(--dark-lightest);
+      border: var(--border-white);
+    }
+
+    /* -------- Tab focus -------- */
+    &[data-focus-visible],
+    &:focus-visible {
+      outline: var(--outline-show);
+      outline-offset: 2px;
+    }
+
+    /* -------- Selected -------- */
+    &[data-selected="true"] {
+      background-color: var(--main-bg);
+      border: var(--border-active);
+      color: var(--text-main);
+
+      &::before {
+        background-color: var(--brand);
+        background-image: radial-gradient(
+          circle,
+          var(--dark-light) 30%,
+          var(--fill-main) 34%
+        );
+      }
+
+      /* -------- Selected + Mouse focus -------- */
+      /* &[data-focus-visible],
+    &:focus-visible {
+        outline: 2px solid var(--brand);
+        outline-offset: 2px;
+    } */
+    }
+  }
+}

@@ -1,0 +1,22 @@
+/*  */
+/*  */
+/*  */
+
+@custom-media --mobile (max-width: 767px);
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop (min-width: 991px);
+@custom-media --desktop-small (max-width: 1300px);
+@custom-media --desktop-big (min-width: 1301px);
+
+.MyUxCard_GRID {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(300px, 1fr)
+  ); /* 300px minimum width for items */
+  gap: 1.6rem;
+
+  @media (max-width: 400px) {
+    grid-template-columns: 1fr; /* fixes a sizing issue at 330px width */
+  }
+}

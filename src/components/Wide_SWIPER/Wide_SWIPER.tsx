@@ -45,9 +45,6 @@ export default function Wide_SWIPER({
     [loop, currentRealIndex, img_PATHS]
   );
 
-  console.log(currentRealIndex);
-  console.log(img_PATHS?.length - 1);
-
   return (
     <HeroImg_WRAP shadow_COLOR="rgba(255, 247, 240, 0.5)">
       <Swiper

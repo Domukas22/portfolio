@@ -32,14 +32,14 @@ export default function RegularMobileNav({
         </Link>
       </li>
       {/* <li data-btn-contact>
-        <Link
-          href="/"
-          className="btn-square-light"
-          data-light-left-border-color="true"
-        >
-          <span>Contact</span>
-        </Link>
-      </li> */}
+          <Link
+            href="/"
+            className="btn-square-light"
+            data-light-left-border-color="true"
+          >
+            <span>Contact</span>
+          </Link>
+        </li> */}
       <MobileMenu_BTN {...{ OPEN_mobMenu }} />
     </StickyTopNav>
   );

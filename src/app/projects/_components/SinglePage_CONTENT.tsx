@@ -34,7 +34,7 @@ export default function SiglePage_CONTENT({
   );
 
   return (
-    <>
+    <div data-sidenav-padding>
       <TopNav_ADJUSTMENT />
       <Project_NAVS
         {...{ IS_deskMenuOpen }}
@@ -70,6 +70,6 @@ export default function SiglePage_CONTENT({
         project_NAME={Intro?.name}
         IS_mobProjectOpen={IS_mobProjectOpen}
       />
-    </>
+    </div>
   );
 }

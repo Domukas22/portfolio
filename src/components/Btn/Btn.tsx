@@ -24,6 +24,7 @@ interface Btn_PROPS {
   style?: CSSProperties;
   text_STYLES?: CSSProperties;
   excludeFromTabOrder?: boolean;
+  type?: "button" | "reset" | "submit";
 }
 
 export default function Btn({
@@ -38,6 +39,7 @@ export default function Btn({
   children,
   style,
   text_STYLES,
+  type,
   ...props
 }: Btn_PROPS) {
   return (
@@ -49,6 +51,7 @@ export default function Btn({
       {...props}
       {...style}
       excludeFromTabOrder={excludeFromTabOrder}
+      type={type || "button"}
     >
       {left_ICON}
       {text && <span style={text_STYLES}>{text}</span>}

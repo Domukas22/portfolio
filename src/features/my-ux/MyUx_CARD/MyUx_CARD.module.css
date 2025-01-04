@@ -1,0 +1,34 @@
+/*  */
+/*  */
+/*  */
+
+.MyUx_CARD {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+  aspect-ratio: 1 / 1.1;
+
+  & img {
+    width: 100%;
+    height: 30px; /* fixes a height issue, idk how this works */
+
+    flex: 1;
+    object-fit: cover;
+  }
+
+  & [data-text-wrap] {
+    padding: 1rem 1.2rem;
+    width: 100%;
+    border-top: var(--border-light);
+
+    & p,
+    & h4 {
+      text-align: left;
+    }
+
+    & p {
+      color: var(--text-white-light);
+    }
+  }
+}
