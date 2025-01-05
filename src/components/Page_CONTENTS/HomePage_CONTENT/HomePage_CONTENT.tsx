@@ -16,7 +16,7 @@ export default function HomePage_CONTENT() {
   const [IS_mobileMenuOpen, SET_mobileMenuOpen] = useState(false);
 
   return (
-    <>
+    <div data-sidenav-padding>
       <SideNav>
         <Menu_ITEMS SHOW_homeBtn={false} />
       </SideNav>
@@ -58,6 +58,6 @@ export default function HomePage_CONTENT() {
       >
         <Menu_ITEMS SHOW_homeBtn={false} />
       </Mobile_MODAL>
-    </>
+    </div>
   );
 }

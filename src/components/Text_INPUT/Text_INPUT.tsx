@@ -21,7 +21,7 @@ export default function Text_INPUT({
   onChange,
   IS_textArea = false,
 }: {
-  label: string;
+  label?: string;
   name: string;
   type: string;
   isRequired: boolean;

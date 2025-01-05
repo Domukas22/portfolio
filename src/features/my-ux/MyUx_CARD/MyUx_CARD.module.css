@@ -31,4 +31,8 @@
       color: var(--text-white-light);
     }
   }
+
+  &[data-current="true"] {
+    border: var(--border-active);
+  }
 }

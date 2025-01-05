@@ -23,7 +23,7 @@ export default function USE_myUxs({
 
   const { FETCH_new, FETCH_more, IS_loading, IS_loadingMore } = USE_pagination({
     // paginateBy: LIST_PAGINATION || 20,
-    paginateBy: 2,
+    paginateBy: 10,
     fetch,
   });
 

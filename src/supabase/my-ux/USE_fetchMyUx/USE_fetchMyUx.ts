@@ -58,8 +58,6 @@ export default function USE_fetchMyUx({
           return;
         }
 
-        // console.log("HERE: ", error);
-
         if (error) {
           if (error.error_TYPE === "abort") {
             return;
