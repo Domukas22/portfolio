@@ -11,7 +11,7 @@ import USE_debounceSearch from "@/hooks/USE_debounceSearch/USE_debounceSearch";
 import USE_Toggle from "@/hooks/USE_toggle";
 import { MyUx_TYPE, MyUxFilter_TYPE } from "@/supabase/my-ux/FETCH_myUx/types";
 import USE_myUxs from "@/supabase/my-ux/USE_myUxs/USE_myUxs";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 export default function MyUx_PAGE() {
   const {
@@ -34,14 +34,6 @@ export default function MyUx_PAGE() {
     console.log(error);
   }
 
-  const OPEN_ux = useCallback(
-    (myUX: MyUx_TYPE) => {
-      SET_uxModal(true);
-      SET_targetUX(myUX);
-    },
-    [SET_uxModal]
-  );
-
   return (
     <section>
       <div className="container">
@@ -52,7 +44,13 @@ export default function MyUx_PAGE() {
           className="hidden"
         />
 
-        <MyUxCard_GRID myUXs={myUXs} OPEN_ux={OPEN_ux} />
+        <MyUxCard_GRID
+          myUXs={myUXs}
+          OPEN_ux={(myUX: MyUx_TYPE) => {
+            SET_uxModal(true);
+            SET_targetUX(myUX);
+          }}
+        />
       </div>
       <MyUx_MODAL
         IS_open={IS_uxModalOpen}

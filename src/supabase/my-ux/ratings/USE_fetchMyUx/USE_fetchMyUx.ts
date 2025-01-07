@@ -6,8 +6,8 @@ import {
   FETCH_myUx_ERRROS,
   MyUx_TYPE,
   MyUxFilter_TYPE,
-} from "../FETCH_myUx/types";
-import FETCH_myUx from "../FETCH_myUx/FETCH_myUx";
+} from "../../FETCH_myUx/types";
+import FETCH_myUx from "../../FETCH_myUx/FETCH_myUx";
 import HANDLE_userError from "@/utils/HANDLE_userError";
 
 const function_NAME = "USE_fetchMyUx";
@@ -81,7 +81,7 @@ export default function USE_fetchMyUx({
         );
       }
     },
-    [search, filter, abortControllerRef, startNewRequest]
+    [search, filter, abortControllerRef]
   );
 
   return {

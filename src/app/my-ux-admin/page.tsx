@@ -4,8 +4,8 @@
 
 "use client";
 
+import MyUxAdmin_SIDE from "@/components/MyUxAdmin_SIDE/MyUxAdmin_SIDE";
 import Text_INPUT from "@/components/Text_INPUT/Text_INPUT";
-import MyUx_FORM from "@/features/my-ux/MyUx_FORM/MyUx_FORM";
 import MyUxCard_GRID from "@/features/my-ux/MyUxCard_GRID/MyUxCard_GRID";
 import USE_debounceSearch from "@/hooks/USE_debounceSearch/USE_debounceSearch";
 import { supabase } from "@/supabase";
@@ -62,20 +62,10 @@ export default function MyUx_PAGE() {
           </div>
         </div>
       </section>
-      <div
-        className="fixed right-0 top-0 w-[40rem] mobile:w-full h-[100dvh] flex flex-col "
-        style={{ borderLeft: "var(--border-light)" }}
-      >
-        <div
-          className="h-[4rem] flex items-center px-[1rem] bg-[var(--dark-light)]"
-          style={{ borderBottom: "var(--border-light)" }}
-        >
-          <h4 className="w-full whitespace-nowrap overflow-hidden text-ellipsis">
-            {target_UX?.title || "No ux selected"}
-          </h4>
-        </div>
-        <MyUx_FORM ux={target_UX} />
-      </div>
+      <MyUxAdmin_SIDE
+        ux={target_UX}
+        UNSELECT_ux={() => SET_targetUX(undefined)}
+      />
     </>
   ) : null;
 }

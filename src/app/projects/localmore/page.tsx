@@ -210,7 +210,7 @@ const Sections: ProjectSection_TYPE[] = [
       <TitleParagraphImageSection_CONTENT
         title="Coding"
         parapgraphs={[
-          "This project is the sole reason I learned to write software. I went for a no-sql database because of the frequent database adjustments, and next-js vercel because it's very simple to deploy.",
+          "This project is the sole reason I learned to write software. I went for a no-sql database because of the frequent database adjustments, and Next.js vercel because it's very simple to deploy.",
           "What also surprised me was the difficulty of building a proper admin managing tool for a more complex website, which I have done using retool.",
         ]}
         img_PATH="/projects/localmore/introduction/coding.png"

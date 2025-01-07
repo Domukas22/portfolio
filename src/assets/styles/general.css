@@ -31,6 +31,10 @@ body {
 
 div[data-sidenav-padding] {
   padding-left: var(--side-nav-width);
+
+  @media (--tablet) {
+    padding-left: 0;
+  }
 }
 /* ------------------------------------------------------------------------------------------------ */
 

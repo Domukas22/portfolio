@@ -19,6 +19,10 @@
   --text-white-light: var(--white-75);
   --error: rgb(255, 115, 115);
 
+  --red: #d10c13;
+  --red-bg: #fff0f1;
+  --red-hover: #ffdde0;
+
   --text-main: #fe8c5f;
   --text-error: var(--error);
   --fill-main: #fe8c5f;
@@ -62,7 +66,7 @@
   --border-light: 0.1rem solid var(--white-10);
   --border-white: 0.1rem solid var(--white-95);
   --border-bg: 0.1rem solid var(--fill-bg);
-  --border-error: 0.1rem solid var(--error);
+  --border-error: 0.1rem solid var(--red);
   --border-active: 0.1rem solid var(--fill-main);
 
   --outline-hide: 0.2rem solid transparent;
