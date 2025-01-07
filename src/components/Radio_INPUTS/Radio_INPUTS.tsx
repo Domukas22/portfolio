@@ -4,6 +4,7 @@
 
 import { Label, Radio, RadioGroup } from "react-aria-components";
 import css from "./Radio_INPUTS.module.css";
+import React from "react";
 
 export default function Radio_INPUTS({
   label = "Radio label",
@@ -14,6 +15,7 @@ export default function Radio_INPUTS({
   label: string;
   radios: { value: string; displayText: string }[];
   value: string;
+  SET_value: React.Dispatch<React.SetStateAction<string>>;
 }) {
   return (
     <RadioGroup

@@ -8,8 +8,6 @@ import {
   FETCH_myUx_ERRPROPS,
   FETCH_myUx_ERRROS,
   FETCH_myUx_RESPONSETYPE,
-  MyUx_TYPE,
-  MyUxRating_TYPE,
   RawMyUx_TYPE,
 } from "./types";
 import IS_abortError from "@/utils/IS_abortError";

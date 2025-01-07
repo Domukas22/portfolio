@@ -34,7 +34,7 @@ export default function MultiPageProjectNav_BTNS({
         }
       });
     });
-  }, [TOGGLE_dd, currentPage_SLUG, nested_PAGES]);
+  }, [TOGGLE_dd, currentPage_SLUG, nested_PAGES, opened_DDs]);
 
   return nested_PAGES && nested_PAGES?.length
     ? nested_PAGES.map((page, index) => {

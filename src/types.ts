@@ -29,7 +29,7 @@ export type Error_PROPS<validInput_NAMES extends string = string> =
       internal_MSG: string;
       function_NAME: string;
 
-      error_DETAILS?: Object; // optional
+      error_DETAILS?: object; // optional
       falsyForm_INPUTS?: never; // --
     }
   | {
@@ -49,7 +49,7 @@ export type Error_PROPS<validInput_NAMES extends string = string> =
       user_MSG: string;
       function_NAME: string;
       internal_MSG: string; // --
-      error_DETAILS: Object; // --
+      error_DETAILS: object; // --
 
       falsyForm_INPUTS: never;
     };

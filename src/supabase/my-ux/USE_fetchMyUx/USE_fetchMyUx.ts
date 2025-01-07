@@ -81,7 +81,7 @@ export default function USE_fetchMyUx({
         );
       }
     },
-    [search, filter, abortControllerRef]
+    [search, filter, abortControllerRef, startNewRequest]
   );
 
   return {

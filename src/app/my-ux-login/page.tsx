@@ -8,7 +8,7 @@ import Text_INPUT from "@/components/Text_INPUT/Text_INPUT";
 export default function Login() {
   const email = "domassirbike@gmail.com";
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<any>(null);
   const router = useRouter(); // Initialize useRouter
 
   const handleLogin = async (e) => {
@@ -34,7 +34,7 @@ export default function Login() {
         setError("Unauthorized: You are not the admin.");
         console.log("Unauthorized login attempt:", data?.user?.email);
       }
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message);
     }
   };

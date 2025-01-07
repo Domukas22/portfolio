@@ -5,7 +5,7 @@
 import Btn from "@/components/Btn/Btn";
 import Text_INPUT from "@/components/Text_INPUT/Text_INPUT";
 import { MyUx_TYPE } from "@/supabase/my-ux/FETCH_myUx/types";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { supabase } from "@/supabase";
 import Radio_INPUTS from "@/components/Radio_INPUTS/Radio_INPUTS";
@@ -15,13 +15,13 @@ import { ICON_arrow, ICON_x } from "@/components/Icons/Icons";
 export default function MyUx_FORM({ ux }: { ux: MyUx_TYPE | undefined }) {
   const [title, SET_title] = useState(ux?.title || "");
   const [paragraphs, SET_paragraphs] = useState<string[]>(ux?.paragraphs || []);
-  const inputRefs = useRef<(HTMLInputElement | null)[]>([]); // Create a ref for each input
+  // const inputRefs = useRef<(HTMLInputElement | null)[]>([]); // Create a ref for each input
   const [images, setImages] = useState<File[]>([]); // State for storing image files
   const [rating, SET_rating] = useState(ux?.rating || "");
 
   const [img_URLs, SET_imgUrls] = useState<string[]>([]);
 
-  const [possibleRatings, SET_possbileRatings] = useState();
+  const [possibleRatings, SET_possbileRatings] = useState<any>();
   useEffect(() => {
     (async () => {
       const ratings = await FETCH_uxRatings();
@@ -205,9 +205,7 @@ export default function MyUx_FORM({ ux }: { ux: MyUx_TYPE | undefined }) {
         />
         <Title_INPUT {...{ title, SET_title }} />
         <Rating_INPUTS {...{ rating, SET_rating, possibleRatings }} />
-        <Paragraph_INPUTS
-          {...{ paragraphs, REMOVE_parag, inputRefs, SET_paragraphs }}
-        />
+        <Paragraph_INPUTS {...{ paragraphs, REMOVE_parag, SET_paragraphs }} />
 
         <Btn btnType="btn" text="Add parag" onClick={() => ADD_parag()} />
       </div>
@@ -250,12 +248,7 @@ function Title_INPUT({ title, SET_title }) {
     />
   );
 }
-function Paragraph_INPUTS({
-  paragraphs,
-  REMOVE_parag,
-  inputRefs,
-  SET_paragraphs,
-}) {
+function Paragraph_INPUTS({ paragraphs, REMOVE_parag, SET_paragraphs }) {
   return (
     paragraphs.length > 0 &&
     paragraphs.map((p, index) => (
@@ -274,7 +267,7 @@ function Paragraph_INPUTS({
             });
           }}
           value={p}
-          ref={(el) => (inputRefs.current[index] = el)} // Assign the ref for each input
+          // ref={(el) => (inputRefs.current[index] = el)} // Assign the ref for each input
           IS_textArea
         />
         <Btn
