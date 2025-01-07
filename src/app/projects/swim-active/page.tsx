@@ -41,12 +41,12 @@ const Sections: ProjectSection_TYPE[] = [
           },
           {
             type: "h3",
-            text: "The club owner was happy to let me re-design the side, as well as take some images and videos. The project will be released very soon.",
+            text: "The club owner was happy to let me re-design the site, as well as take some images and videos. The project will be released very soon.",
             style: { maxWidth: "80rem", marginTop: "2rem" },
           },
           {
             type: "h3",
-            text: "Here is a little sneak peak:",
+            text: "Here is a little sneak peek:",
             style: { maxWidth: "80rem", marginTop: "2rem" },
           },
         ]}

@@ -200,7 +200,7 @@ const Sections: ProjectSection_TYPE[] = [
         title="Current project status"
         parapgraphs={[
           "The app is still in development, but is not far away from being finished. ",
-          "I plan on releasing it to the App Store and the Google Play Store in a few motnhs time.",
+          "I plan on releasing it to the App Store and the Google Play Store in a few months time.",
         ]}
         img_PATH="/projects/vocabs/features/index-page.png"
         sticky_TEXT

@@ -76,7 +76,7 @@ const Sections: ProjectSection_TYPE[] = [
       <TitleParagraphImageSection_CONTENT
         title="The cause"
         parapgraphs={[
-          "<u>Most companies target the globe</u>. But there is a drawback. The details get lost. There is only so much information you can gather by trying to describe thousands of different places simultaneoussly. ",
+          "<u>Most companies target the globe</u>. But there is a drawback. The details get lost. There is only so much information you can gather by trying to describe thousands of different places  simultaneously. ",
           "Niche platforms have their advantages, but they usually come at a cost of distraction and uncertainty for someone trying to navigate their daily, urban life.",
         ]}
         img_PATH="/projects/localmore/how-it-works/the-problem/globe.png"
@@ -108,7 +108,7 @@ const Sections: ProjectSection_TYPE[] = [
           "In order to attract users, we need content. So how about we start with content that is unlikely to be changed, and that will not be uploaded by the users anyways?",
           "We start with very simple, static things, such as playgrounds, sports fields and chill spots. While this may not sound that exciting, the initial 300 items would serve as a starting point.",
           "From there, we could strategically expand to other areas, building on top of the already existing content.",
-          "As soon as we collect enough content for the average user to explore, the averaeg user count will start growing.",
+          "As soon as we collect enough content for the average user to explore, the average user count will start growing.",
           "As the user count grows, so do our opportunities to create new features for the connection aspect.",
         ]}
         img_PATH="/projects/localmore/how-it-works/implementation/transition.png"
@@ -153,9 +153,9 @@ const Sections: ProjectSection_TYPE[] = [
       <TitleParagraphImageSection_CONTENT
         title="Advantages"
         parapgraphs={[
-          "1. The thousands of tags will make it fun to combine random tags and find the best mathcing results.",
+          "1. The thousands of tags will make it fun to combine random tags and find the best matching results.",
           "2. By simply switching the category and tags with a single click, users will save dozens of clicks when searching for something locally.",
-          "3. Each pre-defined tag can be applied to any type of profile. Meaning, if you go tot he homepage and select the tag 'Volleyball', you'll get results for people with 'Volleyball' selected as their hobby, volleybal sports clubs, volleyball competitions/events, places with a volleyball court nearby etc.",
+          "3. Each pre-defined tag can be applied to any type of profile. Meaning, if you go to the homepage and select the tag 'Volleyball', you'll get results for people with 'Volleyball' selected as their hobby, volleyball sports clubs, volleyball competitions/events, places with a volleyball court nearby etc.",
         ]}
         img_PATH="/projects/localmore/how-it-works/advantages.png"
         sticky_TEXT
@@ -210,7 +210,7 @@ const Sections: ProjectSection_TYPE[] = [
       <TitleParagraphImageSection_CONTENT
         title="Coding"
         parapgraphs={[
-          "This project is the sole reason I learned to write software. I went for a no-sql database because of the frequent database adjustemnts, and next-js vercel beacause it's very simple to deploy.",
+          "This project is the sole reason I learned to write software. I went for a no-sql database because of the frequent database adjustments, and next-js vercel because it's very simple to deploy.",
           "What also surprised me was the difficulty of building a proper admin managing tool for a more complex website, which I have done using retool.",
         ]}
         img_PATH="/projects/localmore/introduction/coding.png"

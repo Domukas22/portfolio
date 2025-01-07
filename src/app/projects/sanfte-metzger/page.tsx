@@ -63,7 +63,7 @@ const Sections: ProjectSection_TYPE[] = [
             title: "Company background (hypothetical)",
             paragraphs: [
               "The number of people choosing healthy and fairly traded foods over cheap, mass-produced products from multinational corporations is growing noticeably every year. Consumers want meat from humane and ethical farming practices, as well as fair-trade coffee and chocolate. Ethical and moral values have become important considerations in our diet, taking up a significant part of public discussions.",
-              `Additionally, there is a trend toward preferring regional products due to shorter transport routes. These changing consumer values now reflect a lifestyle that combines enjoyment with social responsibility.."`,
+              `Additionally, there is a trend toward preferring regional products due to shorter transport routes. These changing consumer values now reflect a lifestyle that combines enjoyment with social responsibility."`,
               `This shift inspired a startup to create a chain of butcher shops focused on treating meat as a high-quality product and ensuring respect for the animals. This philosophy forms the core of their brand. The brand name, Sanfte Metzger (“Gentle Butchers”), has already been chosen, and the slogan is: "Experts in responsible meat enjoyment."`,
             ],
           },
