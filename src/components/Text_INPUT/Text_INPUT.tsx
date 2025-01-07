@@ -29,7 +29,9 @@ export default function Text_INPUT({
   onChange: React.Dispatch<React.SetStateAction<string>>;
   IS_textArea?: boolean;
 }) {
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     onChange(event.target.value);
   };
 

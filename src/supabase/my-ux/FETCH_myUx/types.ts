@@ -48,7 +48,7 @@ export type MyUx_TYPE = {
   title: string;
   paragraphs: string[];
   rating: MyUxRating_TYPE;
-  images: string;
+  images: string[];
   created_at: string;
   order: number;
 };
@@ -59,7 +59,7 @@ export type RawMyUx_TYPE = {
   rating: {
     rating: MyUxRating_TYPE;
   };
-  images: string;
+  images: string[];
   created_at: string;
   order: number;
 };

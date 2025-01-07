@@ -3,13 +3,10 @@
 
 import css from "./MyUx_MODAL.module.css";
 import { Dialog, Modal } from "react-aria-components";
-import React, { useMemo } from "react";
 import Modal_HEADER from "@/components/Modal_HEADER/Modal_HEADER";
 import { MyUx_TYPE } from "@/supabase/my-ux/FETCH_myUx/types";
 import USE_swiperSliderRef from "@/hooks/USE_swiperSliderRef";
 import Image from "next/image";
-import Btn from "@/components/Btn/Btn";
-import { ICON_arrow } from "@/components/Icons/Icons";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade } from "swiper/modules";
 
@@ -27,18 +24,19 @@ export default function MyUx_MODAL({
   IS_open,
   MyUX,
 }: props) {
-  const { sliderRef, slide, currentRealIndex } = USE_swiperSliderRef();
+  // const { sliderRef, slide, currentRealIndex } = USE_swiperSliderRef();
+  const { sliderRef } = USE_swiperSliderRef();
 
-  const IS_leftArrowDisabled = useMemo(
-    () => currentRealIndex === 0,
-    [currentRealIndex]
-  );
-  const IS_rightArrowDisabled = useMemo(
-    () =>
-      MyUX?.paragraphs?.length &&
-      currentRealIndex === MyUX?.paragraphs?.length - 1,
-    [currentRealIndex, MyUX?.paragraphs?.length]
-  );
+  // const IS_leftArrowDisabled = useMemo(
+  //   () => currentRealIndex === 0,
+  //   [currentRealIndex]
+  // );
+  // const IS_rightArrowDisabled = useMemo(
+  //   () =>
+  //     MyUX?.paragraphs?.length &&
+  //     currentRealIndex === MyUX?.paragraphs?.length - 1,
+  //   [currentRealIndex, MyUX?.paragraphs?.length]
+  // );
 
   const prefix =
     supabase.storage.from("my-ux-images").getPublicUrl(MyUX?.id || "").data

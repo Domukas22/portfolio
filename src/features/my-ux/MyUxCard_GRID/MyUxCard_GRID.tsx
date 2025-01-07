@@ -13,7 +13,7 @@ export default function MyUxCard_GRID({
 }: {
   myUXs: MyUx_TYPE[];
   OPEN_ux: (myUX: MyUx_TYPE) => void;
-  current_ID: string | undefined;
+  current_ID?: string | undefined;
 }) {
   return (
     <div className={css.MyUxCard_GRID}>

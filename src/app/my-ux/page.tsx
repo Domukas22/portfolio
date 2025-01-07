@@ -4,6 +4,7 @@
 
 "use client";
 
+import Btn from "@/components/Btn/Btn";
 import MyUx_MODAL from "@/features/my-ux/MyUx_MODAL/MyUx_MODAL";
 import MyUxCard_GRID from "@/features/my-ux/MyUxCard_GRID/MyUxCard_GRID";
 import USE_debounceSearch from "@/hooks/USE_debounceSearch/USE_debounceSearch";
@@ -20,20 +21,12 @@ export default function MyUx_PAGE() {
   } = USE_Toggle();
   const [target_UX, SET_targetUX] = useState<MyUx_TYPE | undefined>();
 
-  const { search, debouncedSearch, IS_debouncing, SET_search } =
-    USE_debounceSearch();
+  const { debouncedSearch } = USE_debounceSearch();
 
   const [filter, SET_filter] = useState<MyUxFilter_TYPE>("All");
 
-  const {
-    myUXs,
-    unpaginated_COUNT,
-    IS_loading,
-    IS_loadingMore,
-    LOAD_more,
-    error,
-  } = USE_myUxs({
-    search,
+  const { myUXs, error } = USE_myUxs({
+    search: debouncedSearch,
     filter,
   });
 
@@ -52,6 +45,13 @@ export default function MyUx_PAGE() {
   return (
     <section>
       <div className="container">
+        <Btn
+          text="Filter all"
+          btnType="btn"
+          onClick={() => SET_filter("All")}
+          className="hidden"
+        />
+
         <MyUxCard_GRID myUXs={myUXs} OPEN_ux={OPEN_ux} />
       </div>
       <MyUx_MODAL

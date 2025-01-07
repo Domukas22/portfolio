@@ -9,9 +9,9 @@ export default function ResetPassword() {
   const router = useRouter();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState(null);
-  const [message, setMessage] = useState(null);
-  const [accessToken, setAccessToken] = useState(null);
+  const [error, setError] = useState<any>(null);
+  const [message, setMessage] = useState<string | null>(null);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
 
   // Extract the token from the URL hash fragment
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function ResetPassword() {
       setTimeout(() => {
         router.push("/my-ux-admin"); // Redirect to login page after successful reset
       }, 2000); // Wait 2 seconds before redirecting
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message);
     }
   };
