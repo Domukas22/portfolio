@@ -5,7 +5,7 @@
 import Btn from "@/components/Btn/Btn";
 import { myUx_EMOJIS } from "@/globals";
 import { supabase } from "@/supabase";
-import { MyUx_TYPE } from "@/supabase/my-ux/FETCH_myUx/types";
+import { MyUx_TYPE } from "@/features/my-ux/ux/fetch/FETCH_myUx/types";
 import Image from "next/image";
 import css from "./MyUx_CARD.module.css";
 

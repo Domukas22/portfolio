@@ -7,14 +7,14 @@
   padding: 1.4rem 1.8rem 1.8rem;
   border-radius: 1rem; /* Tailwind's 'rounded-2xl' is typically 1rem, adjust if needed */
 
-  background-color: var(--red-bg);
+  background-color: var(--red-error-text-bg);
   border: var(--border-error);
 
-  color: var(--red);
+  color: var(--red-error-text);
 
   & span,
   & p {
-    color: var(--red);
+    color: var(--red-error-text);
   }
 
   font-weight: 600;

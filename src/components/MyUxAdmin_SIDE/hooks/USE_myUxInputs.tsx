@@ -2,7 +2,7 @@
 //
 //
 
-import { MyUx_TYPE } from "@/supabase/my-ux/FETCH_myUx/types";
+import { MyUx_TYPE } from "@/features/my-ux/ux/fetch/FETCH_myUx/types";
 import { useEffect, useState } from "react";
 
 export default function USE_myUxInputs({ ux }: { ux: MyUx_TYPE | undefined }) {

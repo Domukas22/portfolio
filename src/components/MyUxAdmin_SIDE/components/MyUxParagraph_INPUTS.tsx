@@ -37,11 +37,16 @@ export default function MyUxParagraph_INPUTS({
               btnType="btn"
               text="Remove"
               onClick={() => REMOVE_parag(index)}
-              className="absolute right-0 top-0 p-0"
+              className="absolute right-0 top-0 p-0 "
             />
           </div>
         ))}
-      <Btn btnType="btn" text="Add parag" onClick={() => ADD_parag()} />
+      <Btn
+        btnType="btn"
+        text="Add parag"
+        onClick={() => ADD_parag()}
+        className="mb-[2rem]"
+      />
     </>
   );
 }

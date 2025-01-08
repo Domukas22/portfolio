@@ -9,7 +9,7 @@ import { myUx_EMOJIS } from "@/globals";
 import {
   FETCH_myUxRatings_ERRPROPS,
   UxRating_TYPE,
-} from "@/supabase/my-ux/FETCH_myUxRatings/types";
+} from "@/features/my-ux/ux-ratings/FETCH_myUxRatings/types";
 import React from "react";
 
 export default function MyUxRating_INPUTS({

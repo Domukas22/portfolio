@@ -6,11 +6,11 @@
 
 import MyUxAdmin_SIDE from "@/components/MyUxAdmin_SIDE/MyUxAdmin_SIDE";
 import Text_INPUT from "@/components/Text_INPUT/Text_INPUT";
-import MyUxCard_GRID from "@/features/my-ux/MyUxCard_GRID/MyUxCard_GRID";
+import MyUxCard_GRID from "@/features/my-ux/components/MyUxCard_GRID/MyUxCard_GRID";
 import USE_debounceSearch from "@/hooks/USE_debounceSearch/USE_debounceSearch";
 import { supabase } from "@/supabase";
-import { MyUx_TYPE } from "@/supabase/my-ux/FETCH_myUx/types";
-import USE_myUxs from "@/supabase/my-ux/USE_myUxs/USE_myUxs";
+import { MyUx_TYPE } from "@/features/my-ux/ux/fetch/FETCH_myUx/types";
+import USE_myUxs from "@/features/my-ux/ux/fetch/USE_myUxs/USE_myUxs";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
@@ -21,7 +21,7 @@ export default function MyUx_PAGE() {
 
   const { search, debouncedSearch, SET_search } = USE_debounceSearch();
 
-  const { myUXs, error } = USE_myUxs({
+  const { myUXs, error, UPDATE_displayedUx } = USE_myUxs({
     search: debouncedSearch,
     filter: "All",
   });
@@ -40,6 +40,17 @@ export default function MyUx_PAGE() {
     })();
   });
 
+  const EDIT_displayedUx = useCallback(
+    (ux: MyUx_TYPE) => {
+      if (target_UX?.id === ux?.id) {
+        SET_targetUX(ux);
+      }
+      console.log(ux);
+      UPDATE_displayedUx(ux);
+    },
+    [UPDATE_displayedUx, target_UX]
+  );
+
   return !loading ? (
     <>
       <section className="pr-[40rem]">
@@ -52,6 +63,8 @@ export default function MyUx_PAGE() {
               isRequired={false}
               onChange={SET_search}
               value={search}
+              label="Search uxs"
+              hideLabel
             />
 
             <MyUxCard_GRID
@@ -65,6 +78,7 @@ export default function MyUx_PAGE() {
       <MyUxAdmin_SIDE
         ux={target_UX}
         UNSELECT_ux={() => SET_targetUX(undefined)}
+        EDIT_displayedUx={EDIT_displayedUx}
       />
     </>
   ) : null;

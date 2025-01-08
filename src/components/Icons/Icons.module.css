@@ -93,6 +93,12 @@
       background-color: var(--text-main);
     }
   }
+  &[data-color="red"] {
+    &::before,
+    &::after {
+      background-color: var(--red);
+    }
+  }
 }
 .ICON_arrow {
   @mixin default;
@@ -110,6 +116,6 @@
   @mixin default;
 
   & .path_FILL {
-    fill: var(--error);
+    fill: var(--red);
   }
 }

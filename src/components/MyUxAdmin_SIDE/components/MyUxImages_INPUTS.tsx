@@ -14,37 +14,51 @@ export default function MyUxImages_INPUTS({
   UPLOAD_images,
 }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+        marginBottom: "2rem",
+      }}
+    >
+      <p>Images</p>
       {images.length > 0 &&
         images.map((image, index) => (
-          <div key={index + image.name} className="relative flex">
+          <div
+            key={index + image.name}
+            className="relative flex rounded-[1.2rem] overflow-hidden"
+          >
             {img_URLs[index] && (
-              <div style={{ width: "12rem", height: "12rem" }}>
+              <div style={{ width: "14rem", height: "14rem" }}>
                 <Image
                   src={img_URLs[index]} // Check if img_URLs[index] exists
                   alt={`Image ${index}`}
-                  width={500}
-                  height={500}
-                  className="w-full h-full object-cover rounded-[1.2rem]"
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-cover "
                   style={{ border: "var(--border-light)" }}
                 />
               </div>
             )}
-            <div className="flex gap-2">
+            <div className="flex flex-1">
               <Btn
                 btnType="btn"
-                left_ICON={<ICON_arrow direction="up" />}
+                left_ICON={<ICON_arrow direction="up" size="big" />}
                 onClick={() => MOVE_image("prev")}
+                className="flex-1 justify-center rounded-none"
               />
               <Btn
                 btnType="btn"
-                left_ICON={<ICON_arrow direction="down" />}
+                left_ICON={<ICON_arrow direction="down" size="big" />}
                 onClick={() => MOVE_image("next")}
+                className="flex-1 justify-center rounded-none"
               />
               <Btn
                 btnType="btn"
-                left_ICON={<ICON_x color="white" />}
+                left_ICON={<ICON_x color="red" size="big" />}
                 onClick={() => DELETE_images(index)}
+                className="flex-1 justify-center rounded-none"
               />
             </div>
           </div>

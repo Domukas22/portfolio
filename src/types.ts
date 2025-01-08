@@ -53,3 +53,12 @@ export type Error_PROPS<validInput_NAMES extends string = string> =
 
       falsyForm_INPUTS: never;
     };
+
+export type FileObject = {
+  name: string;
+  id?: string;
+  metadata?: Record<string, any>;
+  last_accessed_at: string;
+  created_at: string;
+  updated_at: string;
+};

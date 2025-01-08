@@ -2,7 +2,7 @@
 //
 //
 
-import { MyUx_TYPE } from "@/supabase/my-ux/FETCH_myUx/types";
+import { MyUx_TYPE } from "@/features/my-ux/ux/fetch/FETCH_myUx/types";
 import MyUx_CARD from "../MyUx_CARD/MyUx_CARD";
 import css from "./MyUxCard_GRID.module.css";
 

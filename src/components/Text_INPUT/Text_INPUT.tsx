@@ -20,6 +20,7 @@ export default function Text_INPUT({
   isRequired,
   onChange,
   IS_textArea = false,
+  hideLabel = false,
 }: {
   label?: string;
   name: string;
@@ -28,6 +29,7 @@ export default function Text_INPUT({
   value: string;
   onChange: React.Dispatch<React.SetStateAction<string>>;
   IS_textArea?: boolean;
+  hideLabel?: boolean;
 }) {
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -41,8 +43,9 @@ export default function Text_INPUT({
       name={name}
       type={type}
       isRequired={isRequired}
+      aria-label={hideLabel && label ? label : ""}
     >
-      {label && <Label>{label}</Label>}
+      {label && !hideLabel && <Label>{label}</Label>}
       <Input onChange={handleChange} value={value} />
       <FieldError data-error-text />
     </TextField>

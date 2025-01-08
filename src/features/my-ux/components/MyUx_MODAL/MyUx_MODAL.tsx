@@ -4,7 +4,7 @@
 import css from "./MyUx_MODAL.module.css";
 import { Dialog, Modal } from "react-aria-components";
 import Modal_HEADER from "@/components/Modal_HEADER/Modal_HEADER";
-import { MyUx_TYPE } from "@/supabase/my-ux/FETCH_myUx/types";
+import { MyUx_TYPE } from "@/features/my-ux/ux/fetch/FETCH_myUx/types";
 import USE_swiperSliderRef from "@/hooks/USE_swiperSliderRef";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";

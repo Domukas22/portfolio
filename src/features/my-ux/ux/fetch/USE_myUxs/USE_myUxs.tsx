@@ -3,8 +3,8 @@
 //
 
 import { useEffect } from "react";
-import { MyUxFilter_TYPE } from "../../../features/my-ux/ux/fetch/FETCH_myUx/types";
-import USE_fetchMyUx from "../ratings/USE_fetchMyUx/USE_fetchMyUx";
+import { MyUxFilter_TYPE } from "../FETCH_myUx/types";
+import USE_fetchMyUx from "../USE_fetchMyUx/USE_fetchMyUx";
 import USE_pagination from "@/hooks/USE_pagination/USE_pagination";
 
 export default function USE_myUxs({
@@ -14,12 +14,17 @@ export default function USE_myUxs({
   search: string;
   filter: MyUxFilter_TYPE;
 }) {
-  const { myUXs, unpaginated_COUNT, EMPTY_myUxs, fetch, error } = USE_fetchMyUx(
-    {
-      search,
-      filter,
-    }
-  );
+  const {
+    myUXs,
+    unpaginated_COUNT,
+    EMPTY_myUxs,
+    fetch,
+    error,
+    UPDATE_displayedUx,
+  } = USE_fetchMyUx({
+    search,
+    filter,
+  });
 
   const { FETCH_new, FETCH_more, IS_loading, IS_loadingMore } = USE_pagination({
     // paginateBy: LIST_PAGINATION || 20,
@@ -45,5 +50,6 @@ export default function USE_myUxs({
     IS_loadingMore,
     unpaginated_COUNT,
     LOAD_more: FETCH_more,
+    UPDATE_displayedUx,
   };
 }

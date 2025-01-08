@@ -3,11 +3,11 @@
 //
 
 import { supabase } from "@/supabase";
-import { MyUx_TYPE } from "@/supabase/my-ux/FETCH_myUx/types";
+import { MyUx_TYPE } from "@/features/my-ux/ux/fetch/FETCH_myUx/types";
 import { useState, useCallback, useEffect } from "react";
 
 export default function USE_myUxImages({ ux }: { ux: MyUx_TYPE | undefined }) {
-  const [images, SET_images] = useState<File[]>([]);
+  const [image_FILES, SET_imageFiles] = useState<File[]>([]);
   const [img_URLs, SET_imgUrls] = useState<string[]>([]);
 
   const UPLOAD_images = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,22 +16,22 @@ export default function USE_myUxImages({ ux }: { ux: MyUx_TYPE | undefined }) {
       const newImageUrls = selectedFiles.map((file) =>
         URL.createObjectURL(file)
       );
-      SET_images((prevImages) => [...prevImages, ...selectedFiles]); // Add selected images to state
+      SET_imageFiles((prevImages) => [...prevImages, ...selectedFiles]); // Add selected images to state
       SET_imgUrls((prevUrls) => [...prevUrls, ...newImageUrls]); // Add URLs for preview
     }
   };
 
   const DELETE_images = useCallback(
     (index: number) => {
-      SET_images((prevImages) => prevImages.filter((_, i) => i !== index)); // Remove image at index
+      SET_imageFiles((prevImages) => prevImages.filter((_, i) => i !== index)); // Remove image at index
       SET_imgUrls((prevUrls) => prevUrls.filter((_, i) => i !== index)); // Remove corresponding URL
     },
-    [SET_images]
+    [SET_imageFiles]
   );
 
   const MOVE_image = useCallback(
     (index: number, direction: "prev" | "next") => {
-      SET_images((prevImages) => {
+      SET_imageFiles((prevImages) => {
         const updatedImages = [...prevImages];
         if (direction === "prev" && index > 0) {
           [updatedImages[index - 1], updatedImages[index]] = [
@@ -90,27 +90,27 @@ export default function USE_myUxImages({ ux }: { ux: MyUx_TYPE | undefined }) {
         }
 
         // Update the images state with the fetched File objects
-        SET_images(fetchedImages);
+        SET_imageFiles(fetchedImages);
         SET_imgUrls(fetchedImages?.map((img) => URL.createObjectURL(img)));
       };
 
       fetchImages();
     } else {
-      SET_images([]);
+      SET_imageFiles([]);
       SET_imgUrls([]);
     }
-  }, [ux, SET_images, SET_imgUrls]);
+  }, [ux, SET_imageFiles, SET_imgUrls]);
 
   useEffect(() => {
-    SET_imgUrls(images.map((img) => URL.createObjectURL(img)));
-  }, [images]);
+    SET_imgUrls(image_FILES.map((img) => URL.createObjectURL(img)));
+  }, [image_FILES]);
 
   useEffect(() => {
     PLACE_images();
-  }, [ux, SET_images, SET_imgUrls, PLACE_images]);
+  }, [ux, SET_imageFiles, SET_imgUrls, PLACE_images]);
 
   return {
-    images,
+    image_FILES,
     img_URLs,
     UPLOAD_images,
     DELETE_images,

@@ -12,6 +12,7 @@ import {
 import HANDLE_userError from "@/utils/HANDLE_userError";
 
 const function_NAME = "FETCH_myUxRatings";
+const err = FETCH_myUxRatings_ERRROS;
 
 export default async function FETCH_myUxRatings(): Promise<FETCH_myUx_RESPONSETYPE> {
   try {
@@ -43,8 +44,7 @@ export default async function FETCH_myUxRatings(): Promise<FETCH_myUx_RESPONSETY
       error: HANDLE_userError({
         error,
         function_NAME,
-        internalErrorUser_MSG:
-          FETCH_myUxRatings_ERRROS.user.defaultInternal_MSG,
+        internalErrorUser_MSG: err.user.defaultInternal_MSG,
       }),
     };
   }
@@ -56,8 +56,8 @@ function GENERATE_internalError(
 ) {
   return {
     error_TYPE: "internal",
-    internal_MSG: FETCH_myUxRatings_ERRROS.internal[type],
-    user_MSG: FETCH_myUxRatings_ERRROS.user.defaultInternal_MSG,
+    internal_MSG: err.internal[type],
+    user_MSG: err.user.defaultInternal_MSG,
     function_NAME,
     error_DETAILS: details,
   } as FETCH_myUxRatings_ERRPROPS;

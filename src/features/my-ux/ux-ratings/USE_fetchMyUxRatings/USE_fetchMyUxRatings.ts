@@ -8,10 +8,11 @@ import {
   FETCH_myUxRatings_ERRPROPS,
   FETCH_myUxRatings_ERRROS,
   UxRating_TYPE,
-} from "../../FETCH_myUxRatings/types";
-import FETCH_myUxRatings from "../../FETCH_myUxRatings/FETCH_myUxRatings";
+} from "../FETCH_myUxRatings/types";
+import FETCH_myUxRatings from "../FETCH_myUxRatings/FETCH_myUxRatings";
 
 const function_NAME = "USE_fetchMyUxRatings";
+const err = FETCH_myUxRatings_ERRROS;
 
 export default function USE_fetchMyUxRatings() {
   const [result, SET_result] = useState({
@@ -36,8 +37,7 @@ export default function USE_fetchMyUxRatings() {
         HANDLE_userError({
           error,
           function_NAME,
-          internalErrorUser_MSG:
-            FETCH_myUxRatings_ERRROS.user.defaultInternal_MSG,
+          internalErrorUser_MSG: err.user.defaultInternal_MSG,
         })
       );
     }

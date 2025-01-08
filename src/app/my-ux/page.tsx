@@ -5,12 +5,15 @@
 "use client";
 
 import Btn from "@/components/Btn/Btn";
-import MyUx_MODAL from "@/features/my-ux/MyUx_MODAL/MyUx_MODAL";
-import MyUxCard_GRID from "@/features/my-ux/MyUxCard_GRID/MyUxCard_GRID";
+import MyUx_MODAL from "@/features/my-ux/components/MyUx_MODAL/MyUx_MODAL";
+import MyUxCard_GRID from "@/features/my-ux/components/MyUxCard_GRID/MyUxCard_GRID";
 import USE_debounceSearch from "@/hooks/USE_debounceSearch/USE_debounceSearch";
 import USE_Toggle from "@/hooks/USE_toggle";
-import { MyUx_TYPE, MyUxFilter_TYPE } from "@/supabase/my-ux/FETCH_myUx/types";
-import USE_myUxs from "@/supabase/my-ux/USE_myUxs/USE_myUxs";
+import {
+  MyUx_TYPE,
+  MyUxFilter_TYPE,
+} from "@/features/my-ux/ux/fetch/FETCH_myUx/types";
+import USE_myUxs from "@/features/my-ux/ux/fetch/USE_myUxs/USE_myUxs";
 import { useState } from "react";
 
 export default function MyUx_PAGE() {

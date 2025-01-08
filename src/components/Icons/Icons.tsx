@@ -40,7 +40,7 @@ export function ICON_x({
   size = "small",
   ...props
 }: {
-  color?: "white" | "main";
+  color?: "white" | "main" | "red";
   size?: size;
 } & React.HTMLAttributes<HTMLDivElement>) {
   return (
