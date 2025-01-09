@@ -13,11 +13,13 @@ import { MyUx_TYPE } from "@/features/my-ux/ux/fetch/FETCH_myUx/types";
 import USE_myUxs from "@/features/my-ux/ux/fetch/USE_myUxs/USE_myUxs";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import Mobile_MODAL from "@/components/Mobile_MODAL/Mobile_MODAL";
 
 export default function MyUx_PAGE() {
   const router = useRouter();
   const [target_UX, SET_targetUX] = useState<MyUx_TYPE | undefined>();
   const [loading, SET_loading] = useState(true);
+  const [IS_mobileModalOpen, SET_mobileModalOpen] = useState(false);
 
   const { search, debouncedSearch, SET_search } = USE_debounceSearch();
 
@@ -53,33 +55,55 @@ export default function MyUx_PAGE() {
 
   return !loading ? (
     <>
-      <section className="pr-[40rem]">
+      <section className="pr-[40rem] mobile:pr-0">
         <div className="container !max-w-[200rem] flex gap-[2rem]">
           <div className="flex-1">
-            <h2 className="mb-2 ">My Ux Admin</h2>
-            <Text_INPUT
-              name="search"
-              type="text"
-              isRequired={false}
-              onChange={SET_search}
-              value={search}
-              label="Search uxs"
-              hideLabel
-            />
+            <h2 className="mb-[1.2rem] ">My Ux Admin</h2>
+            <div className="mb-[2rem]">
+              <Text_INPUT
+                name="search"
+                type="text"
+                isRequired={false}
+                onChange={SET_search}
+                value={search}
+                label="Search uxs"
+                hideLabel
+                placeholder="Search UX experiences..."
+              />
+            </div>
 
             <MyUxCard_GRID
               myUXs={myUXs}
               OPEN_ux={SELECT_ux}
+              OPEN_uxMobModal={(ux: MyUx_TYPE) => {
+                SET_mobileModalOpen(true);
+                SELECT_ux(ux);
+              }}
               current_ID={target_UX?.id}
             />
           </div>
         </div>
       </section>
-      <MyUxAdmin_SIDE
-        ux={target_UX}
-        UNSELECT_ux={() => SET_targetUX(undefined)}
-        EDIT_displayedUx={EDIT_displayedUx}
-      />
+      {!IS_mobileModalOpen && ( // prevent img uploading issues on mobile
+        <MyUxAdmin_SIDE
+          ux={target_UX}
+          UNSELECT_ux={() => SET_targetUX(undefined)}
+          EDIT_displayedUx={EDIT_displayedUx}
+        />
+      )}
+      <Mobile_MODAL
+        IS_open={IS_mobileModalOpen}
+        CLOSE_modal={() => SET_mobileModalOpen(false)}
+        title="UX experience"
+        noScroll
+      >
+        <MyUxAdmin_SIDE
+          ux={target_UX}
+          UNSELECT_ux={() => SET_targetUX(undefined)}
+          EDIT_displayedUx={EDIT_displayedUx}
+          mobile
+        />
+      </Mobile_MODAL>
     </>
   ) : null;
 }

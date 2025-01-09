@@ -7,8 +7,8 @@ import { ICON_arrow, ICON_x } from "@/components/Icons/Icons";
 import Image from "next/image";
 
 export default function MyUxImages_INPUTS({
-  images,
-  img_URLs,
+  image_FILES,
+
   DELETE_images,
   MOVE_image,
   UPLOAD_images,
@@ -23,16 +23,16 @@ export default function MyUxImages_INPUTS({
       }}
     >
       <p>Images</p>
-      {images.length > 0 &&
-        images.map((image, index) => (
+      {image_FILES.length > 0 &&
+        image_FILES.map((image, index) => (
           <div
             key={index + image.name}
             className="relative flex rounded-[1.2rem] overflow-hidden"
           >
-            {img_URLs[index] && (
+            {image_FILES[index] && (
               <div style={{ width: "14rem", height: "14rem" }}>
                 <Image
-                  src={img_URLs[index]} // Check if img_URLs[index] exists
+                  src={URL.createObjectURL(image_FILES[index])} // Check if img_URLs[index] exists
                   alt={`Image ${index}`}
                   width={400}
                   height={400}
@@ -45,13 +45,13 @@ export default function MyUxImages_INPUTS({
               <Btn
                 btnType="btn"
                 left_ICON={<ICON_arrow direction="up" size="big" />}
-                onClick={() => MOVE_image("prev")}
+                onClick={() => MOVE_image(index, "prev")}
                 className="flex-1 justify-center rounded-none"
               />
               <Btn
                 btnType="btn"
                 left_ICON={<ICON_arrow direction="down" size="big" />}
-                onClick={() => MOVE_image("next")}
+                onClick={() => MOVE_image(index, "next")}
                 className="flex-1 justify-center rounded-none"
               />
               <Btn
@@ -74,7 +74,7 @@ export default function MyUxImages_INPUTS({
         id="file-upload"
         type="file"
         accept="image/*"
-        multiple
+        // multiple
         onChange={UPLOAD_images}
         style={{ display: "none" }} // Hide the default input
       />

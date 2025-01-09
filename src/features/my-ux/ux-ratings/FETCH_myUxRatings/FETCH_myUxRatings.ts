@@ -18,7 +18,7 @@ export default async function FETCH_myUxRatings(): Promise<FETCH_myUx_RESPONSETY
   try {
     const query = supabase
       .from("ux-ratings")
-      .select("*")
+      .select("id, text")
       .order("order", { ascending: true });
 
     const {

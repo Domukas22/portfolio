@@ -5,11 +5,12 @@
 import Error_BOX from "@/components/Error_BOX/Error_BOX";
 import Radio_INPUTS from "@/components/Radio_INPUTS/Radio_INPUTS";
 import { Grey_SPINNER } from "@/components/Spinners";
-import { myUx_EMOJIS } from "@/globals";
+
 import {
   FETCH_myUxRatings_ERRPROPS,
   UxRating_TYPE,
 } from "@/features/my-ux/ux-ratings/FETCH_myUxRatings/types";
+
 import React from "react";
 
 export default function MyUxRating_INPUTS({
@@ -20,8 +21,8 @@ export default function MyUxRating_INPUTS({
   ratings_ERROR,
 }: {
   ratings: UxRating_TYPE[] | undefined;
-  rating: string;
-  SET_rating: React.Dispatch<React.SetStateAction<string>>;
+  rating: UxRating_TYPE | undefined;
+  SET_rating: (id: string) => void;
   ARE_ratingsLoading: boolean;
   ratings_ERROR: FETCH_myUxRatings_ERRPROPS | undefined;
 }) {
@@ -30,11 +31,11 @@ export default function MyUxRating_INPUTS({
   ) : ratings && ratings?.length ? (
     <Radio_INPUTS
       label="Rating"
-      radios={ratings?.map((x) => ({
-        value: x.id,
-        displayText: myUx_EMOJIS[x.rating] + " " + x.rating,
+      radios={ratings?.map((rating) => ({
+        value: rating.id,
+        displayText: rating.text,
       }))}
-      value={rating}
+      value={rating?.id || ""}
       SET_value={SET_rating}
     />
   ) : ratings_ERROR ? (

@@ -53,6 +53,7 @@ export default function MyUx_PAGE() {
             SET_uxModal(true);
             SET_targetUX(myUX);
           }}
+          OPEN_uxMobModal={() => {}}
         />
       </div>
       <MyUx_MODAL

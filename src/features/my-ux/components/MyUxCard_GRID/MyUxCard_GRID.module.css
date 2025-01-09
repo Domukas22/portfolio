@@ -19,4 +19,15 @@
   @media (max-width: 400px) {
     grid-template-columns: 1fr; /* fixes a sizing issue at 330px width */
   }
+
+  &[data-mobile] {
+    display: none;
+  }
+  @media (--mobile) {
+    display: none;
+
+    &[data-mobile] {
+      display: grid;
+    }
+  }
 }

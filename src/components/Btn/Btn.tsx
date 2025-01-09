@@ -21,7 +21,7 @@ interface Btn_PROPS {
     | "btn-tiny-desk-round"
     | "btn-pagination";
   children?: React.ReactNode;
-  style?: CSSProperties;
+  styles?: CSSProperties;
   text_STYLES?: CSSProperties;
   excludeFromTabOrder?: boolean;
   type?: "button" | "reset" | "submit";
@@ -37,7 +37,7 @@ export default function Btn({
   right_ICON,
   excludeFromTabOrder,
   children,
-  style,
+  styles,
   text_STYLES,
   type,
   ...props
@@ -49,7 +49,7 @@ export default function Btn({
         if (onClick) onClick(e);
       }}
       {...props}
-      {...style}
+      style={styles}
       excludeFromTabOrder={excludeFromTabOrder}
       type={type || "button"}
     >

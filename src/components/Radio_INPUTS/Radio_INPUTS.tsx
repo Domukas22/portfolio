@@ -15,14 +15,11 @@ export default function Radio_INPUTS({
   label: string;
   radios: { value: string; displayText: string }[];
   value: string;
-  SET_value: React.Dispatch<React.SetStateAction<string>>;
+
+  SET_value: React.Dispatch<React.SetStateAction<any>>;
 }) {
   return (
-    <RadioGroup
-      className={css.RadioGroup}
-      value={value}
-      onChange={(selectedValue) => SET_value(selectedValue)}
-    >
+    <RadioGroup className={css.RadioGroup} value={value} onChange={SET_value}>
       <Label>{label}</Label>
       {radios &&
         radios?.length &&

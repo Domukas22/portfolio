@@ -15,6 +15,7 @@
   width: 40rem;
   height: 100vh; /* Use 100dvh if supported for dynamic view height */
   border-left: var(--border-light);
+  background-color: var(--fill-bg);
 
   display: flex;
   flex-direction: column;
@@ -71,7 +72,15 @@
     }
   }
 
-  @media (--mobile) {
+  &[data-desk="false"] {
+    position: relative;
+    height: 100%;
     width: 100%;
+  }
+
+  @media (--mobile) {
+    &[data-desk="true"] {
+      display: none;
+    }
   }
 }

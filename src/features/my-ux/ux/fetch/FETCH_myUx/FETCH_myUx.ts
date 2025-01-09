@@ -8,7 +8,7 @@ import {
   FETCH_myUx_ERRPROPS,
   FETCH_myUx_ERRROS,
   FETCH_myUx_RESPONSETYPE,
-  RawMyUx_TYPE,
+  MyUx_TYPE,
 } from "./types";
 import IS_abortError from "@/utils/IS_abortError";
 import HANDLE_userError from "@/utils/HANDLE_userError";
@@ -24,7 +24,7 @@ export default async function FETCH_myUx(
     VALITATE_args(args);
     const query = supabase
       .from("my-ux")
-      .select(`*, rating:ux-ratings(rating)`, { count: "exact" });
+      .select(`*, rating:ux-ratings(id, text)`, { count: "exact" });
     VALIDATE_query(query);
 
     const extended_QUERY = APPLY_filters({ ...args, query });
@@ -33,16 +33,18 @@ export default async function FETCH_myUx(
       error,
       count,
     }: {
-      data: RawMyUx_TYPE[];
+      data: MyUx_TYPE[];
       error: any;
       count: number;
     } = await extended_QUERY.abortSignal(signal);
+
+    console.log(my_UXs);
 
     if (error) throw GENERATE_internalError("failed_supabase_fetch", error);
 
     return {
       data: {
-        my_UXs: FLATTEN_myUxRating(my_UXs),
+        my_UXs,
         count: count || 0,
       },
     };
@@ -166,8 +168,4 @@ function GENERATE_internalError(
     function_NAME,
     error_DETAILS: details,
   } as FETCH_myUx_ERRPROPS;
-}
-
-function FLATTEN_myUxRating(myUXs: RawMyUx_TYPE[]) {
-  return myUXs?.map((ux) => ({ ...ux, rating: ux.rating?.rating }));
 }

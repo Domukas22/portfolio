@@ -18,9 +18,7 @@ export const FETCH_myUxRatings_ERRROS = {
 
 export type UxRating_TYPE = {
   id: string;
-  rating: string;
-  order: number;
-  created_at: string;
+  text: string;
 };
 
 export type FETCH_myUxRatings_DATATYPE = {

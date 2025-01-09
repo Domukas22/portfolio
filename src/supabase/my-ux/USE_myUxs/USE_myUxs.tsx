@@ -4,8 +4,9 @@
 
 import { useEffect } from "react";
 import { MyUxFilter_TYPE } from "../../../features/my-ux/ux/fetch/FETCH_myUx/types";
-import USE_fetchMyUx from "../ratings/USE_fetchMyUx/USE_fetchMyUx";
+
 import USE_pagination from "@/hooks/USE_pagination/USE_pagination";
+import USE_fetchMyUx from "@/features/my-ux/ux/fetch/USE_fetchMyUx/USE_fetchMyUx";
 
 export default function USE_myUxs({
   search,

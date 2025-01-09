@@ -14,6 +14,7 @@ interface props {
   extraElsAboveScrollable?: React.ReactNode;
   CLOSE_modal?: () => void;
   animate_LI?: boolean;
+  noScroll?: boolean;
 }
 
 export default function Mobile_MODAL({
@@ -24,6 +25,7 @@ export default function Mobile_MODAL({
   extraElsAboveScrollable,
   CLOSE_modal = () => {},
   animate_LI = false,
+  noScroll = false,
 }: props) {
   return (
     <Modal
@@ -42,7 +44,9 @@ export default function Mobile_MODAL({
 
           <div
             // data-tiny-scrollbar-styles
-            className="overflow-y-auto flex-1 pb-[12rem] relative "
+            className={`overflow-y-auto flex-1 pb-${
+              noScroll ? "0" : "[12rem]"
+            } relative `}
           >
             {children}
           </div>

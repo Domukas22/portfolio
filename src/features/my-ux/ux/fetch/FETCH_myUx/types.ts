@@ -2,6 +2,7 @@
 //
 //
 
+import { UxRating_TYPE } from "@/features/my-ux/ux-ratings/FETCH_myUxRatings/types";
 import { Error_PROPS } from "@/types";
 import CREATE_internalErrorMsg from "@/utils/CREATE_internalErrorMsg";
 
@@ -32,7 +33,6 @@ export const FETCH_myUx_ERRROS = {
   },
 };
 
-export type MyUxRating_TYPE = "Excellent" | "Good" | "Bad" | "Terrible";
 export type MyUxFilter_TYPE = "All" | "Excellent" | "Good" | "Bad" | "Terrible";
 
 export interface FETCH_myUx_ARGTYPES {
@@ -47,18 +47,7 @@ export type MyUx_TYPE = {
   id: string;
   title: string;
   paragraphs: string[];
-  rating: MyUxRating_TYPE;
-  images: string[];
-  created_at: string;
-  order: number;
-};
-export type RawMyUx_TYPE = {
-  id: string;
-  title: string;
-  paragraphs: string[];
-  rating: {
-    rating: MyUxRating_TYPE;
-  };
+  rating: UxRating_TYPE;
   images: string[];
   created_at: string;
   order: number;
