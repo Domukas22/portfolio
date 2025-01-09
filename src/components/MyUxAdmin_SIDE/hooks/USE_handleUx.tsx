@@ -11,7 +11,6 @@ import {
   SetStateAction,
 } from "react";
 
-import UPDATE_myUx from "../utils/UPDATE_myUx";
 import USE_handleUxImages from "./USE_handleUxImages";
 import USE_handleUxParagraphs from "./USE_handleUxParagraphs";
 import { UxRating_TYPE } from "@/features/my-ux/ux-ratings/FETCH_myUxRatings/types";
@@ -29,18 +28,13 @@ export type USE_handleUx_RETURNTYPE = {
   SET_paragraphs: Dispatch<SetStateAction<string[]>>;
   REMOVE_parag: (index: number) => void;
   ADD_parag: () => void;
-  status: string;
-  UPDATE_ux: () => void;
   POPULATE_form: () => void;
 };
 
 export default function USE_handleUx({
   ux,
-  EDIT_displayedUx = () => {},
 }: {
   ux: MyUx_TYPE | undefined;
-  EDIT_displayedUx: (ux: MyUx_TYPE) => void;
-  IS_mobileModalOpen?: boolean;
 }): USE_handleUx_RETURNTYPE {
   const [title, SET_title] = useState<string | undefined>(ux?.title || "");
   const [paragraphs, SET_paragraphs] = useState<string[]>(ux?.paragraphs || []);
@@ -48,7 +42,6 @@ export default function USE_handleUx({
     ux?.rating || undefined
   );
   const [image_FILES, SET_imageFiles] = useState<File[]>([]);
-  const [status, SET_status] = useState("");
 
   const { ADD_parag, REMOVE_parag } = USE_handleUxParagraphs({
     SET_paragraphs,
@@ -60,24 +53,6 @@ export default function USE_handleUx({
   useEffect(() => {
     PLACE_images();
   }, [ux, SET_imageFiles, PLACE_images]);
-
-  const UPDATE_ux = () => {
-    UPDATE_myUx({
-      ux: {
-        id: ux?.id,
-        image_FILES,
-        paragraphs,
-        rating,
-        title,
-      },
-      SET_status,
-      EDIT_displayedUx: (ux: MyUx_TYPE) => {
-        EDIT_displayedUx({
-          ...ux,
-        });
-      },
-    });
-  };
 
   const POPULATE_form = useCallback(() => {
     SET_title(ux?.title || undefined);
@@ -103,8 +78,6 @@ export default function USE_handleUx({
     SET_paragraphs,
     REMOVE_parag,
     ADD_parag,
-    status,
-    UPDATE_ux,
     POPULATE_form,
   };
 }

@@ -96,6 +96,13 @@ export default function USE_fetchMyUx({
     [search, filter, abortControllerRef]
   );
 
+  const ADD_toDisplayed = (ux: MyUx_TYPE) => {
+    SET_result((prev) => ({
+      unpaginated_COUNT: prev.unpaginated_COUNT,
+      myUXs: [ux, ...prev.myUXs],
+    }));
+  };
+
   return {
     myUXs: result.myUXs,
     unpaginated_COUNT: result.unpaginated_COUNT,
@@ -103,5 +110,6 @@ export default function USE_fetchMyUx({
     fetch,
     EMPTY_myUxs,
     UPDATE_displayedUx,
+    ADD_toDisplayed,
   };
 }

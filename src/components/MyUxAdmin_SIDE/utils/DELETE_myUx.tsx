@@ -4,24 +4,21 @@
 
 import DELETE_myUxImages from "@/features/my-ux/ux-images/delete/DELETE_myUxImages/DELETE_myUxImages";
 import FETCH_myUxImages from "@/features/my-ux/ux-images/fetch/FETCH_myUxImages/FETCH_myUxImages";
-import UPLOAD_myUxImages from "@/features/my-ux/ux-images/upload/UPLOAD_myUxImages/UPLOAD_myUxImages";
-import { MyUx_TYPE } from "@/features/my-ux/ux/fetch/FETCH_myUx/types";
-import { submittableUx_TYPE } from "@/globals";
 import { supabase } from "@/supabase";
 
 interface USE_updateMyUx_PROPS {
-  ux: submittableUx_TYPE;
+  id: string;
   SET_status: React.Dispatch<React.SetStateAction<string>>;
-  EDIT_displayedUx: (ux: MyUx_TYPE) => void;
+  REMOVE_displayedUx: (id: string) => void;
+  ADD_hiddenId: (id: string) => void;
 }
 
-export default async function UPDATE_myUx({
-  ux,
+export default async function DELETE_myUx({
+  id,
   SET_status,
-  EDIT_displayedUx,
+  REMOVE_displayedUx,
+  ADD_hiddenId,
 }: USE_updateMyUx_PROPS) {
-  const { id, image_FILES, paragraphs, rating, title } = ux;
-
   SET_status("Fetching old images...");
   const { data: { images } = {}, error: img_ERR } = await FETCH_myUxImages({
     id,
@@ -49,39 +46,18 @@ export default async function UPDATE_myUx({
     );
   }
 
-  SET_status("Uploading new images...");
-  const { error: upload_ERR } = await UPLOAD_myUxImages({
-    id,
-    image_FILES,
-  });
+  SET_status("Deleting ux...");
 
-  if (upload_ERR) {
-    return SET_status(
-      upload_ERR.internal_MSG ||
-        "Something went wrong with uploading new ux images"
-    );
-  }
-
-  SET_status("Updating ux...");
-
-  const { data: updated_UX, error } = await supabase
-    .from("my-ux")
-    .update({
-      title,
-      rating: rating?.id,
-      paragraphs,
-      images: image_FILES?.map((file) => file?.name) || [],
-    })
-    .eq("id", id)
-    .select(`*, rating:ux-ratings(id, text)`);
+  const { error } = await supabase.from("my-ux").delete().eq("id", id);
 
   if (error) {
     console.error(error);
     return SET_status("Error updating ux");
   }
-  SET_status("Updated ✅");
+  SET_status("Deleted ✅");
 
-  EDIT_displayedUx(updated_UX?.[0] as any);
+  REMOVE_displayedUx(id || "");
+  ADD_hiddenId(id || "");
 
   setTimeout(() => {
     SET_status("");

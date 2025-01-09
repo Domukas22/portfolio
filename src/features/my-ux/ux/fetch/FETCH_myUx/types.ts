@@ -47,10 +47,9 @@ export type MyUx_TYPE = {
   id: string;
   title: string;
   paragraphs: string[];
-  rating: UxRating_TYPE;
+  rating: UxRating_TYPE | undefined;
   images: string[];
   created_at: string;
-  order: number;
 };
 
 export type FETCH_myUx_ERRPROPS = Error_PROPS;

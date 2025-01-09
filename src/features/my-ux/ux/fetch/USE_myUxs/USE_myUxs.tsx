@@ -21,6 +21,7 @@ export default function USE_myUxs({
     fetch,
     error,
     UPDATE_displayedUx,
+    ADD_toDisplayed,
   } = USE_fetchMyUx({
     search,
     filter,
@@ -51,5 +52,6 @@ export default function USE_myUxs({
     unpaginated_COUNT,
     LOAD_more: FETCH_more,
     UPDATE_displayedUx,
+    ADD_toDisplayed,
   };
 }

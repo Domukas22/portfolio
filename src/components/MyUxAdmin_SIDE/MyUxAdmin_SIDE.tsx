@@ -9,25 +9,34 @@ import MyUxFromTitle_INPUT from "@/components/MyUxAdmin_SIDE/components/MyUxTitl
 import { MyUx_TYPE } from "@/features/my-ux/ux/fetch/FETCH_myUx/types";
 
 import css from "./MyUxAdmin_SIDE.module.css";
-import USE_handleUx, { USE_handleUx_RETURNTYPE } from "./hooks/USE_handleUx";
+import USE_handleUx from "./hooks/USE_handleUx";
 import USE_uxRatings from "@/features/my-ux/ux-ratings/USE_uxRatings/USE_uxRatings";
 import MyUxBottom_BTNS from "./components/MyUxBottom_BTNS";
 
 import USE_isBrowserToolbarClosed from "@/hooks/USE_isBrowserToolbarClosed";
+import { useMemo } from "react";
+import { submittableUx_TYPE } from "@/globals";
 
 export default function MyUxAdmin_SIDE({
   target_UX,
   UNSELECT_ux = () => {},
-  EDIT_displayedUx = () => {},
+  OPEN_deleteModal = () => {},
+  status,
   mobile = false,
   id,
+  action,
 }: {
   target_UX: MyUx_TYPE | undefined;
   UNSELECT_ux: () => void;
+  OPEN_deleteModal: () => void;
+  action: {
+    fn: (edited_UX: submittableUx_TYPE) => void;
+    type: "Update" | "Create";
+  };
   mobile?: boolean;
-  handleUx_ACTIONS: USE_handleUx_RETURNTYPE;
+  status: string;
+
   id: string; // we need the id for the file input. It's created without react aria comps, so we need a native id
-  EDIT_displayedUx: (ux: MyUx_TYPE) => void;
 }) {
   const {
     title,
@@ -42,10 +51,8 @@ export default function MyUxAdmin_SIDE({
     SET_paragraphs,
     ADD_parag,
     REMOVE_parag,
-    status,
-    UPDATE_ux,
     POPULATE_form,
-  } = USE_handleUx({ ux: target_UX, EDIT_displayedUx });
+  } = USE_handleUx({ ux: target_UX });
 
   const {
     ratings,
@@ -54,6 +61,16 @@ export default function MyUxAdmin_SIDE({
   } = USE_uxRatings();
 
   const IS_mobibeBrowserToolbarClosed = USE_isBrowserToolbarClosed();
+  const submittable_UX = useMemo(
+    (): submittableUx_TYPE => ({
+      id: target_UX?.id || "",
+      image_FILES,
+      paragraphs,
+      rating,
+      title,
+    }),
+    [target_UX, image_FILES, paragraphs, rating, title]
+  );
 
   return (
     <div
@@ -94,7 +111,8 @@ export default function MyUxAdmin_SIDE({
       </div>
 
       <MyUxBottom_BTNS
-        {...{ submit: () => UPDATE_ux(), UNSELECT_ux, POPULATE_form, status }}
+        {...{ action, UNSELECT_ux, POPULATE_form, status, OPEN_deleteModal }}
+        action={{ type: action?.type, fn: () => action?.fn(submittable_UX) }}
         paddingBottom={IS_mobibeBrowserToolbarClosed}
       />
       <p data-no-ux-selected-text>No UX selected</p>

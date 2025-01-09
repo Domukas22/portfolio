@@ -13,7 +13,7 @@ import "swiper/css";
 
 export const metadata: Metadata = {
   title: "Domas Sirbike",
-  description: "This is the home page",
+  description: "An aspiring creator",
 };
 
 export default async function HomePage_LAYOUT({

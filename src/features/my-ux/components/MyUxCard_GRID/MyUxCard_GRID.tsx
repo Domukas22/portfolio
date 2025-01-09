@@ -11,11 +11,13 @@ export default function MyUxCard_GRID({
   OPEN_ux,
   OPEN_uxMobModal,
   current_ID,
+  hidden_IDs = [],
 }: {
   myUXs: MyUx_TYPE[];
   OPEN_ux: (myUX: MyUx_TYPE) => void;
   OPEN_uxMobModal: (myUX: MyUx_TYPE) => void;
   current_ID?: string | undefined;
+  hidden_IDs?: string[];
 }) {
   return (
     <>
@@ -26,6 +28,7 @@ export default function MyUxCard_GRID({
             content={ux}
             OPEN_ux={OPEN_ux}
             current={current_ID === ux?.id}
+            hidden={hidden_IDs?.includes(ux?.id)}
           />
         ))}
       </div>
@@ -36,6 +39,7 @@ export default function MyUxCard_GRID({
             content={ux}
             OPEN_ux={OPEN_uxMobModal}
             current={current_ID === ux?.id}
+            hidden={hidden_IDs?.includes(ux?.id)}
           />
         ))}
       </div>

@@ -13,10 +13,12 @@ export default function MyUx_CARD({
   content,
   OPEN_ux,
   current = false,
+  hidden = false,
 }: {
   content: MyUx_TYPE;
   OPEN_ux: (myUX: MyUx_TYPE) => void;
   current: boolean;
+  hidden?: boolean;
 }) {
   const frontImage_PATH =
     supabase.storage.from("my-ux-images").getPublicUrl(content.id).data
@@ -26,7 +28,7 @@ export default function MyUx_CARD({
 
   const rating =
     typeof content?.rating?.text === "string"
-      ? content.rating.text
+      ? content.rating?.text
       : "-- INVALID RATING";
 
   const formattedRating = wrapEmojis(rating);
@@ -37,6 +39,7 @@ export default function MyUx_CARD({
       className={css.MyUx_CARD}
       onClick={() => OPEN_ux(content)}
       data-current={current}
+      data-hidden={hidden}
     >
       <Image width={1000} height={1000} src={frontImage_PATH} alt="" />
       <div data-text-wrap>

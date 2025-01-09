@@ -108,3 +108,7 @@ ul[data-tiny-scrollbar-styles] {
     scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   }
 }
+
+.nextjs-toast.nextjs-static-indicator-toast-wrapper {
+  opacity: 0;
+}

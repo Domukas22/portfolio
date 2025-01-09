@@ -35,4 +35,8 @@
   &[data-current="true"] {
     border: var(--border-active);
   }
+  &[data-hidden="true"] {
+    opacity: 0.3 !important;
+    pointer-events: none !important;
+  }
 }

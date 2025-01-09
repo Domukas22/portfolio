@@ -14,17 +14,38 @@ import USE_myUxs from "@/features/my-ux/ux/fetch/USE_myUxs/USE_myUxs";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import Mobile_MODAL from "@/components/Mobile_MODAL/Mobile_MODAL";
-import USE_handleUx from "@/components/MyUxAdmin_SIDE/hooks/USE_handleUx";
+import UPDATE_myUx from "@/components/MyUxAdmin_SIDE/utils/UPDATE_myUx";
+import { submittableUx_TYPE } from "@/globals";
+import Btn from "@/components/Btn/Btn";
+import CREATE_myUx from "@/components/MyUxAdmin_SIDE/utils/CREATE_myUx";
+import DELETE_myUx from "@/components/MyUxAdmin_SIDE/utils/DELETE_myUx";
+import Simple_MODAL from "@/components/Simple_MODAL/Simple_MODAL";
 
 export default function MyUx_PAGE() {
   const router = useRouter();
   const [target_UX, SET_targetUX] = useState<MyUx_TYPE | undefined>();
   const [loading, SET_loading] = useState(true);
   const [IS_mobileModalOpen, SET_mobileModalOpen] = useState(false);
+  const [IS_createModalOpen, SET_createModalOpen] = useState(false);
+  const [IS_deleteModalOpen, SET_deleteModalOpen] = useState(false);
+
+  const [status, SET_status] = useState("");
+  const [creation_STATUS, SET_creationStatus] = useState("");
 
   const { search, debouncedSearch, SET_search } = USE_debounceSearch();
 
-  const { myUXs, error, UPDATE_displayedUx } = USE_myUxs({
+  const [hidden_IDs, SET_hiddenIds] = useState<string[]>([]);
+
+  const ADD_hiddenId = useCallback(
+    (id: string) => {
+      if (!hidden_IDs.includes(id)) {
+        SET_hiddenIds((prev) => [...prev, id]);
+      }
+    },
+    [hidden_IDs]
+  );
+
+  const { myUXs, error, UPDATE_displayedUx, ADD_toDisplayed } = USE_myUxs({
     search: debouncedSearch,
     filter: "All",
   });
@@ -54,8 +75,6 @@ export default function MyUx_PAGE() {
     [UPDATE_displayedUx, target_UX]
   );
 
-  const handleUx_ACTIONS = USE_handleUx({ ux: target_UX, EDIT_displayedUx });
-
   return !loading ? (
     <>
       <section className="pr-[40rem] mobile:pr-0">
@@ -73,6 +92,11 @@ export default function MyUx_PAGE() {
                 hideLabel
                 placeholder="Search UX experiences..."
               />
+              <Btn
+                btnType="btn"
+                text="Create new"
+                onClick={() => SET_createModalOpen(true)}
+              />
             </div>
 
             <MyUxCard_GRID
@@ -83,6 +107,7 @@ export default function MyUx_PAGE() {
                 SELECT_ux(ux);
               }}
               current_ID={target_UX?.id}
+              hidden_IDs={hidden_IDs}
             />
           </div>
         </div>
@@ -91,9 +116,14 @@ export default function MyUx_PAGE() {
         <MyUxAdmin_SIDE
           target_UX={target_UX}
           UNSELECT_ux={() => SET_targetUX(undefined)}
-          handleUx_ACTIONS={handleUx_ACTIONS}
-          EDIT_displayedUx={EDIT_displayedUx}
           id={"1"}
+          action={{
+            type: "Update",
+            fn: (ux: submittableUx_TYPE) =>
+              UPDATE_myUx({ ux, EDIT_displayedUx, SET_status }),
+          }}
+          OPEN_deleteModal={() => SET_deleteModalOpen(true)}
+          {...{ status }}
         />
       </div>
 
@@ -107,11 +137,60 @@ export default function MyUx_PAGE() {
           target_UX={target_UX}
           UNSELECT_ux={() => SET_targetUX(undefined)}
           mobile
-          handleUx_ACTIONS={handleUx_ACTIONS}
-          EDIT_displayedUx={EDIT_displayedUx}
           id={"2"}
+          action={{
+            type: "Update",
+            fn: (ux: submittableUx_TYPE) =>
+              UPDATE_myUx({ ux, EDIT_displayedUx, SET_status }),
+          }}
+          OPEN_deleteModal={() => SET_deleteModalOpen(true)}
+          {...{ status }}
         />
       </Mobile_MODAL>
+      <Mobile_MODAL
+        IS_open={IS_createModalOpen}
+        CLOSE_modal={() => SET_createModalOpen(false)}
+        title="Create ux"
+        noScroll
+      >
+        <MyUxAdmin_SIDE
+          target_UX={starter_UX}
+          UNSELECT_ux={() => {}}
+          mobile
+          id={"3"}
+          action={{
+            type: "Create",
+            fn: (ux: submittableUx_TYPE) =>
+              CREATE_myUx({
+                ux,
+                INSERT_newUx: (item) => ADD_toDisplayed(item),
+                SET_status: SET_creationStatus,
+              }),
+          }}
+          OPEN_deleteModal={() => SET_deleteModalOpen(true)}
+          status={creation_STATUS}
+        />
+      </Mobile_MODAL>
+      <Simple_MODAL
+        IS_open={IS_deleteModalOpen}
+        CLOSE_modal={() => SET_deleteModalOpen(false)}
+        title="Delete this ux?"
+        noScroll
+      >
+        <Btn
+          btnType="btn"
+          text="Yes, delete"
+          onClick={() => {
+            SET_deleteModalOpen(false);
+            DELETE_myUx({
+              id: target_UX?.id || "",
+              REMOVE_displayedUx: () => {},
+              SET_status,
+              ADD_hiddenId,
+            });
+          }}
+        />
+      </Simple_MODAL>
     </>
   ) : null;
 }
@@ -127,4 +206,13 @@ const CHECK_auth = async (router, SHOW_content) => {
     // If logged in, proceed with setting loading state to false
     SHOW_content();
   }
+};
+
+const starter_UX: MyUx_TYPE = {
+  created_at: "",
+  id: "new",
+  images: [],
+  paragraphs: [],
+  rating: undefined,
+  title: "",
 };
