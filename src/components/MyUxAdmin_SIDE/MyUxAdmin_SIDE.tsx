@@ -9,36 +9,33 @@ import MyUxFromTitle_INPUT from "@/components/MyUxAdmin_SIDE/components/MyUxTitl
 import { MyUx_TYPE } from "@/features/my-ux/ux/fetch/FETCH_myUx/types";
 
 import css from "./MyUxAdmin_SIDE.module.css";
-import USE_handleUx from "./hooks/USE_handleUx";
+import USE_handleUx, { USE_handleUx_RETURNTYPE } from "./hooks/USE_handleUx";
 import USE_uxRatings from "@/features/my-ux/ux-ratings/USE_uxRatings/USE_uxRatings";
 import MyUxBottom_BTNS from "./components/MyUxBottom_BTNS";
 
 import USE_isBrowserToolbarClosed from "@/hooks/USE_isBrowserToolbarClosed";
 
 export default function MyUxAdmin_SIDE({
-  ux,
+  target_UX,
   UNSELECT_ux = () => {},
   EDIT_displayedUx = () => {},
   mobile = false,
+  id,
 }: {
-  ux: MyUx_TYPE | undefined;
+  target_UX: MyUx_TYPE | undefined;
   UNSELECT_ux: () => void;
-  EDIT_displayedUx: (ux: MyUx_TYPE) => void;
   mobile?: boolean;
+  handleUx_ACTIONS: USE_handleUx_RETURNTYPE;
+  id: string; // we need the id for the file input. It's created without react aria comps, so we need a native id
+  EDIT_displayedUx: (ux: MyUx_TYPE) => void;
 }) {
-  const {
-    ratings,
-    IS_loading: ARE_ratingsLoading,
-    error: ratings_ERROR,
-  } = USE_uxRatings();
-
   const {
     title,
     rating,
     paragraphs,
     image_FILES,
     MOVE_image,
-    DELETE_images,
+    DELETE_image,
     UPLOAD_images,
     SET_title,
     SET_rating,
@@ -48,13 +45,24 @@ export default function MyUxAdmin_SIDE({
     status,
     UPDATE_ux,
     POPULATE_form,
-  } = USE_handleUx({ ux, EDIT_displayedUx });
+  } = USE_handleUx({ ux: target_UX, EDIT_displayedUx });
+
+  const {
+    ratings,
+    IS_loading: ARE_ratingsLoading,
+    error: ratings_ERROR,
+  } = USE_uxRatings();
 
   const IS_mobibeBrowserToolbarClosed = USE_isBrowserToolbarClosed();
 
   return (
-    <div className={css.MyUxAdmin_SIDE} data-hide={!ux?.id} data-desk={!mobile}>
-      {!status ? <h4 data-title>{ux?.title}</h4> : null}
+    <div
+      className={css.MyUxAdmin_SIDE}
+      data-hide={!target_UX?.id}
+      data-desk={!mobile}
+      key={id + "side"}
+    >
+      {!status ? <h4 data-title>{target_UX?.title}</h4> : null}
 
       {status ? <p data-title>{status}</p> : null}
 
@@ -63,10 +71,10 @@ export default function MyUxAdmin_SIDE({
         <MyUxImages_INPUTS
           {...{
             image_FILES,
-
-            DELETE_images,
+            DELETE_image,
             MOVE_image,
             UPLOAD_images,
+            id,
           }}
         />
         <MyUxRating_INPUTS
@@ -89,7 +97,7 @@ export default function MyUxAdmin_SIDE({
         {...{ submit: () => UPDATE_ux(), UNSELECT_ux, POPULATE_form, status }}
         paddingBottom={IS_mobibeBrowserToolbarClosed}
       />
-      <p data-no-ux-selected>No UX selected</p>
+      <p data-no-ux-selected-text>No UX selected</p>
     </div>
   );
 }

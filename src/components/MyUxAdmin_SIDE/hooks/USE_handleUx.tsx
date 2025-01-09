@@ -3,12 +3,36 @@
 //
 
 import { MyUx_TYPE } from "@/features/my-ux/ux/fetch/FETCH_myUx/types";
-import { useState, useCallback, useEffect } from "react";
+import {
+  useState,
+  useCallback,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
 import UPDATE_myUx from "../utils/UPDATE_myUx";
 import USE_handleUxImages from "./USE_handleUxImages";
 import USE_handleUxParagraphs from "./USE_handleUxParagraphs";
 import { UxRating_TYPE } from "@/features/my-ux/ux-ratings/FETCH_myUxRatings/types";
+
+export type USE_handleUx_RETURNTYPE = {
+  title: string | undefined;
+  rating: UxRating_TYPE | undefined;
+  paragraphs: string[] | undefined;
+  image_FILES: File[] | undefined;
+  UPLOAD_images: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  DELETE_image: (index: number) => void;
+  MOVE_image: (index: number, direction: "prev" | "next") => void;
+  SET_title: Dispatch<SetStateAction<string | undefined>>;
+  SET_rating: Dispatch<SetStateAction<UxRating_TYPE | undefined>>;
+  SET_paragraphs: Dispatch<SetStateAction<string[]>>;
+  REMOVE_parag: (index: number) => void;
+  ADD_parag: () => void;
+  status: string;
+  UPDATE_ux: () => void;
+  POPULATE_form: () => void;
+};
 
 export default function USE_handleUx({
   ux,
@@ -17,7 +41,7 @@ export default function USE_handleUx({
   ux: MyUx_TYPE | undefined;
   EDIT_displayedUx: (ux: MyUx_TYPE) => void;
   IS_mobileModalOpen?: boolean;
-}) {
+}): USE_handleUx_RETURNTYPE {
   const [title, SET_title] = useState<string | undefined>(ux?.title || "");
   const [paragraphs, SET_paragraphs] = useState<string[]>(ux?.paragraphs || []);
   const [rating, SET_rating] = useState<UxRating_TYPE | undefined>(
@@ -30,7 +54,7 @@ export default function USE_handleUx({
     SET_paragraphs,
   });
 
-  const { DELETE_images, MOVE_image, PLACE_images, UPLOAD_images } =
+  const { DELETE_image, MOVE_image, PLACE_images, UPLOAD_images } =
     USE_handleUxImages({ ux, SET_imageFiles });
 
   useEffect(() => {
@@ -72,7 +96,7 @@ export default function USE_handleUx({
     paragraphs,
     image_FILES,
     UPLOAD_images,
-    DELETE_images,
+    DELETE_image,
     MOVE_image,
     SET_title,
     SET_rating,

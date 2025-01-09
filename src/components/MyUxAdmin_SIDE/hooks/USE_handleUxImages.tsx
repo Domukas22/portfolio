@@ -14,7 +14,7 @@ export default function USE_handleUxImages({
   ux: MyUx_TYPE | undefined;
   SET_imageFiles: React.Dispatch<React.SetStateAction<File[]>>;
 }) {
-  const DELETE_images = useCallback(
+  const DELETE_image = useCallback(
     (index: number) => {
       SET_imageFiles((prevImages) => prevImages.filter((_, i) => i !== index)); // Remove image at index
       // SET_imgUrls((prevUrls) => prevUrls.filter((_, i) => i !== index)); // Remove corresponding URL
@@ -59,7 +59,7 @@ export default function USE_handleUxImages({
   }, [ux, SET_imageFiles]);
 
   return {
-    DELETE_images,
+    DELETE_image,
     MOVE_image,
     UPLOAD_images,
     PLACE_images,

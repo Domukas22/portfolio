@@ -14,6 +14,7 @@ import USE_myUxs from "@/features/my-ux/ux/fetch/USE_myUxs/USE_myUxs";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import Mobile_MODAL from "@/components/Mobile_MODAL/Mobile_MODAL";
+import USE_handleUx from "@/components/MyUxAdmin_SIDE/hooks/USE_handleUx";
 
 export default function MyUx_PAGE() {
   const router = useRouter();
@@ -53,6 +54,8 @@ export default function MyUx_PAGE() {
     [UPDATE_displayedUx, target_UX]
   );
 
+  const handleUx_ACTIONS = USE_handleUx({ ux: target_UX, EDIT_displayedUx });
+
   return !loading ? (
     <>
       <section className="pr-[40rem] mobile:pr-0">
@@ -84,13 +87,16 @@ export default function MyUx_PAGE() {
           </div>
         </div>
       </section>
-      {!IS_mobileModalOpen && ( // prevent img uploading issues on mobile
+      <div className="fixed top-0 right-0 w-[40rem] h-[100dvh] mobile:hidden">
         <MyUxAdmin_SIDE
-          ux={target_UX}
+          target_UX={target_UX}
           UNSELECT_ux={() => SET_targetUX(undefined)}
+          handleUx_ACTIONS={handleUx_ACTIONS}
           EDIT_displayedUx={EDIT_displayedUx}
+          id={"1"}
         />
-      )}
+      </div>
+
       <Mobile_MODAL
         IS_open={IS_mobileModalOpen}
         CLOSE_modal={() => SET_mobileModalOpen(false)}
@@ -98,10 +104,12 @@ export default function MyUx_PAGE() {
         noScroll
       >
         <MyUxAdmin_SIDE
-          ux={target_UX}
+          target_UX={target_UX}
           UNSELECT_ux={() => SET_targetUX(undefined)}
-          EDIT_displayedUx={EDIT_displayedUx}
           mobile
+          handleUx_ACTIONS={handleUx_ACTIONS}
+          EDIT_displayedUx={EDIT_displayedUx}
+          id={"2"}
         />
       </Mobile_MODAL>
     </>

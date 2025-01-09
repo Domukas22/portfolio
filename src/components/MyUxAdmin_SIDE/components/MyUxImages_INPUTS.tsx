@@ -8,8 +8,8 @@ import Image from "next/image";
 
 export default function MyUxImages_INPUTS({
   image_FILES,
-
-  DELETE_images,
+  id,
+  DELETE_image,
   MOVE_image,
   UPLOAD_images,
 }) {
@@ -57,21 +57,21 @@ export default function MyUxImages_INPUTS({
               <Btn
                 btnType="btn"
                 left_ICON={<ICON_x color="red" size="big" />}
-                onClick={() => DELETE_images(index)}
+                onClick={() => DELETE_image(index)}
                 className="flex-1 justify-center rounded-none"
               />
             </div>
           </div>
         ))}
       <label
-        htmlFor="file-upload"
+        htmlFor={"file-upload" + id}
         className="btn"
         style={{ justifyContent: "center" }}
       >
         Upload Images
       </label>
       <input
-        id="file-upload"
+        id={"file-upload" + id}
         type="file"
         accept="image/*"
         // multiple

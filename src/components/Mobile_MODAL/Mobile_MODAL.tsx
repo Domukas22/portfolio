@@ -44,9 +44,8 @@ export default function Mobile_MODAL({
 
           <div
             // data-tiny-scrollbar-styles
-            className={`overflow-y-auto flex-1 pb-${
-              noScroll ? "0" : "[12rem]"
-            } relative `}
+            className={`overflow-y-auto flex-1 pb-[12rem] relative `}
+            style={noScroll ? { overflowY: "hidden", paddingBottom: "0" } : {}}
           >
             {children}
           </div>

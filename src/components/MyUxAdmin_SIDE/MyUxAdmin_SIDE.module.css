@@ -9,11 +9,8 @@
 @custom-media --desktop-big (min-width: 1301px);
 
 .MyUxAdmin_SIDE {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 40rem;
-  height: 100vh; /* Use 100dvh if supported for dynamic view height */
+  width: 100%;
+  height: 100%;
   border-left: var(--border-light);
   background-color: var(--fill-bg);
 
@@ -39,7 +36,7 @@
   & [data-content-wrap] {
     width: 100%;
     flex: 1;
-    height: 10px; /* if this isn't included, the content wrap will push the btn wrap under it out of the view */
+    /*height: 10px;  if this isn't included, the content wrap will push the btn wrap under it out of the view */
 
     display: flex;
     flex-direction: column;
@@ -54,12 +51,11 @@
     }
   }
 
-  & [data-no-ux-selected] {
+  & [data-no-ux-selected-text] {
     width: 100%;
     text-align: center;
     border-bottom: var(--border-light);
     padding: 1.4rem 0;
-
     display: none;
   }
 
@@ -67,20 +63,8 @@
     * {
       display: none;
     }
-    & [data-no-ux-selected] {
+    & [data-no-ux-selected-text] {
       display: inline;
-    }
-  }
-
-  &[data-desk="false"] {
-    position: relative;
-    height: 100%;
-    width: 100%;
-  }
-
-  @media (--mobile) {
-    &[data-desk="true"] {
-      display: none;
     }
   }
 }
