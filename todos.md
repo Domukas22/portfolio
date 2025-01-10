@@ -1,5 +1,5 @@
 #### TODOS
 
-# After initial release:
-
-- You dont need to manage the tab/subtab state. Just create a separate page for each project, and then just create the [tab]/[subtab] paths. Simple as that.
+- Create a "scroll up" button for the my-ux page
+- Adjust the my-ux modal pop-up
+- Fix logo slider padding on mobile

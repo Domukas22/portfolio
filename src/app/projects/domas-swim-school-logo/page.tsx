@@ -47,7 +47,7 @@ const Sections: ProjectSection_TYPE[] = [
           "While I was studying at the SRH, we were given a simple, 2-day assignment of creating any kind of logo, using pohtoshop or illustrator, while also taking the theory we learned into consideration.",
           "In order to finance my studies, each weekend I would give private swimming lessons to children and adults. I though I'd use this time to create a logo for my own swim school in case I ever have one in the future.",
         ]}
-        img_PATH="/projects/domas-swim-school/srh.png"
+        img_PATH="/projects/domas-swim-school-logo/srh.png"
       />
     ),
   },
