@@ -1,0 +1,45 @@
+/*  */
+/*  */
+
+.modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  max-height: 100dvh;
+  height: 40rem;
+
+  width: 100%;
+
+  z-index: 60;
+
+  & .dialog {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+
+    background-color: var(--fill-bg);
+    box-shadow: 0 0.6rem 1.2rem rgba(0, 0, 0, 0.8);
+    transition: all 3s ease-in;
+  }
+
+  &[data-entering] {
+    animation: fade 200ms ease-in-out;
+  }
+
+  &[data-exiting] {
+    animation: fade 150ms reverse ease-in;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+}

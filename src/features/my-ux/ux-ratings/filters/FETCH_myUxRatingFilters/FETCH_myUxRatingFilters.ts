@@ -77,7 +77,7 @@ type _FETCH_ratingsWithCount_RESPONSETYPE = {
 async function _FETCH_ratingsWithCount(): Promise<_FETCH_ratingsWithCount_RESPONSETYPE> {
   const { data: rawUx_RATINGS, error: rawUxRatings_ERR } = await supabase
     .from("ux-ratings")
-    .select("id, text, count:my-ux(count)")
+    .select("id, text, emoji, count:my-ux(count)")
     .order("order", { ascending: true });
 
   return { rawUx_RATINGS, rawUxRatings_ERR };

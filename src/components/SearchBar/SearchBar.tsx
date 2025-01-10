@@ -11,15 +11,17 @@ import Btn from "../Btn/Btn";
 import { ICON_search, ICON_x } from "../Icons/Icons";
 
 export default function SearchBar({
-  label,
+  label = "label",
   value,
   placeholder,
   onChange,
+  hideLabel = false,
   ...props
 }: {
   label: string;
   value: string;
   placeholder?: string;
+  hideLabel?: boolean;
   onChange: React.Dispatch<React.SetStateAction<string>>;
 }) {
   return (
@@ -28,8 +30,9 @@ export default function SearchBar({
       className={css.searchBar}
       onChange={onChange}
       value={value}
+      aria-label={label}
     >
-      <Input_LABEL label={label} />
+      {!hideLabel ? <Input_LABEL label={label} /> : hideLabel}
       <div data-input-wrap>
         <ICON_search data-search-icon />
         <Text_INPUT placeholder={placeholder} data-input />

@@ -107,15 +107,15 @@ function VALITATE_args(args: FETCH_myUx_ARGTYPES) {
     if (typeof rating_ID !== "string") {
       throw GENERATE_internalError("filter_isnt_string");
     }
-    if (
-      rating_ID !== "All" &&
-      rating_ID !== "Excellent" &&
-      rating_ID !== "Good" &&
-      rating_ID !== "Bad" &&
-      rating_ID !== "Terrible"
-    ) {
-      throw GENERATE_internalError("invalid_filter_type");
-    }
+    // if (
+    //   rating_ID !== "All" &&
+    //   rating_ID !== "Excellent" &&
+    //   rating_ID !== "Good" &&
+    //   rating_ID !== "Bad" &&
+    //   rating_ID !== "Terrible"
+    // ) {
+    //   throw GENERATE_internalError("invalid_filter_type");
+    // }
   }
 
   if (typeof start !== "number")

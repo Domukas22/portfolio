@@ -16,11 +16,13 @@ export default function MyUxFilter_RADIOS({
   select,
   loading,
   error,
+  hideLabel = false,
 }: {
   options: UxFilter_TYPE[] | undefined;
   current: UxFilter_TYPE | undefined;
   select: (id: string) => void;
   loading: boolean;
+  hideLabel?: boolean;
   error: FETCH_myUxRatingFilters_ERRPROPS | undefined;
 }) {
   if (error)
@@ -37,6 +39,7 @@ export default function MyUxFilter_RADIOS({
         }))}
         value={current?.id || ""}
         SET_value={select}
+        hideLabel={hideLabel}
       />
     );
 

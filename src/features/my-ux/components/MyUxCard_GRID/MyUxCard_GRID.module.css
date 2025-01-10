@@ -10,24 +10,25 @@
 
 .MyUxCard_GRID {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(300px, 1fr)
-  ); /* 300px minimum width for items */
   gap: 1.6rem;
-
-  @media (max-width: 400px) {
-    grid-template-columns: 1fr; /* fixes a sizing issue at 330px width */
-  }
-
+  grid-template-columns: 1fr 1fr 1fr;
   &[data-mobile] {
     display: none;
+  }
+
+  @media (max-width: 1500px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (--desktop-small) {
+    grid-template-columns: 1fr 1fr;
   }
   @media (--mobile) {
     display: none;
 
     &[data-mobile] {
       display: grid;
+      grid-template-columns: 1fr;
     }
   }
 }

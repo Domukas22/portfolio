@@ -30,6 +30,7 @@ import SearchBar from "@/components/SearchBar/SearchBar";
 import Spinner from "@/components/Spinners";
 import MobileMenu_BTN from "@/components/MobileMenu_BTN";
 import SCROLL_to from "@/utils/SCROLL_to";
+import MobileFilter_MODAL from "@/components/MobileFilter_MODAL/MobileFilter_MODAL";
 
 export default function MyUx_PAGE() {
   const {
@@ -40,6 +41,7 @@ export default function MyUx_PAGE() {
   const [target_UX, SET_targetUX] = useState<MyUx_TYPE | undefined>();
   const [IS_deskMenuOpen, SET_deskMenuOpen] = useState<boolean>(false);
   const [IS_mobileMenuOpen, SET_mobileMenuOpen] = useState<boolean>(false);
+  const [IS_mobilefilterMenuOpen, SET_mobileFilterMenuOpen] = useState(true);
 
   const [filter, SET_filter] = useState<string>("All");
 
@@ -51,6 +53,8 @@ export default function MyUx_PAGE() {
     rating_ID: filter,
   });
   const { filters, IS_fetchingFilters, fetchFitlers_ERR } = USE_myUxFilters();
+
+  console.log(filters?.find((r) => r.id === filter)?.emoji, filters);
 
   return (
     <section className="pl-[var(--side-nav-width)] tablet:pl-0">
@@ -92,7 +96,7 @@ export default function MyUx_PAGE() {
           btnType="btn-square-light"
           text="My user experiences"
           className="flex-1"
-          text_STYLES={{ fontWeight: 600 }}
+          text_STYLES={{ fontWeight: 600, textAlign: "left" }}
           onClick={() => SCROLL_to({})}
         />
         {/* <div className="flex-1 flex items-center pl-[1.6rem]">
@@ -129,7 +133,7 @@ export default function MyUx_PAGE() {
           style={{ borderBottom: "var(--border-light)" }}
         >
           <h1>My user experiences</h1>
-          <p>Here are some of my encounters with products and services</p>
+          <p>Explore my various encounters with products and services</p>
         </div>
 
         <div className="hidden tablet:flex gap-[1rem] mb-[2rem] 400:flex-col">
@@ -138,12 +142,14 @@ export default function MyUx_PAGE() {
             onChange={SET_search}
             value={search}
             placeholder="Enter a title..."
+            hideLabel
           />
           <Btn
             btnType="btn"
             text={filters?.find((r) => r.id === filter)?.emoji}
             right_ICON={<ICON_dropDownArrow />}
             className="h-[5rem] self-end 400:w-full justify-between"
+            onClick={() => SET_mobileFilterMenuOpen(true)}
           />
         </div>
         {/* <div className="hidden tablet:flex gap-[0.8rem] flex-wrap mb-[2rem]">
@@ -209,8 +215,29 @@ export default function MyUx_PAGE() {
         SHOW_homeBtn={true}
       />
 
-      {/* Darkening for desktop side menu modal */}
+      <MobileFilter_MODAL
+        IS_open={IS_mobilefilterMenuOpen}
+        CLOSE_modal={() => SET_mobileFilterMenuOpen(false)}
+        animate_LI
+        title="Filter by rating"
+      >
+        <div className="p-[1.6rem]">
+          <MyUxFilter_RADIOS
+            options={filters}
+            current={filters?.find((r) => r.id === filter)}
+            select={(id: string) => {
+              SET_filter(id);
+              SET_mobileFilterMenuOpen(false);
+            }}
+            loading={IS_fetchingFilters}
+            error={fetchFitlers_ERR}
+            hideLabel
+          />
+        </div>
+      </MobileFilter_MODAL>
+
       <ModalMenu_UNDERLAY open={IS_deskMenuOpen} />
+      <ModalMenu_UNDERLAY open={IS_mobilefilterMenuOpen} />
     </section>
   );
 }
