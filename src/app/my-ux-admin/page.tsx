@@ -111,6 +111,7 @@ export default function MyUx_PAGE() {
               error={undefined}
               loading={false}
               search=""
+              FILTER_byAll={() => {}}
             />
           </div>
         </div>

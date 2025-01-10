@@ -7,9 +7,11 @@ import { useState, useCallback } from "react";
 export default function USE_pagination({
   paginateBy = 10,
   fetch,
+  unpaginated_COUNT = 9999,
 }: {
   paginateBy: number;
   fetch: (start: number, end: number) => Promise<void>;
+  unpaginated_COUNT: number;
 }) {
   const [start, SET_start] = useState(0);
   const [end, SET_end] = useState(paginateBy);
@@ -17,6 +19,11 @@ export default function USE_pagination({
   const [IS_loadingMore, SET_isLoadingMore] = useState(false);
 
   const FETCH_more = useCallback(async () => {
+    if (start + paginateBy >= unpaginated_COUNT) {
+      console.warn("No more items to load.");
+      return; // Prevent fetching if there are no more items
+    }
+
     SET_isLoadingMore(true);
     try {
       const newStart = start + paginateBy;
@@ -29,7 +36,7 @@ export default function USE_pagination({
     } finally {
       SET_isLoadingMore(false);
     }
-  }, [start, end, paginateBy, fetch]);
+  }, [start, end, paginateBy, fetch, unpaginated_COUNT]);
 
   const FETCH_new = useCallback(async () => {
     SET_isLoading(true);

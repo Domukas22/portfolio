@@ -21,6 +21,7 @@ export default function MyUxCard_GRID({
   loading = false,
   error,
   CLEAR_search = () => {},
+  FILTER_byAll = () => {},
   search,
 }: {
   myUXs: MyUx_TYPE[];
@@ -32,6 +33,7 @@ export default function MyUxCard_GRID({
   loading: boolean;
   search: string;
   CLEAR_search: () => void;
+  FILTER_byAll: () => void;
 }) {
   if (error) {
     return (
@@ -49,11 +51,22 @@ export default function MyUxCard_GRID({
 
   if (!loading && !error && myUXs?.length === 0) {
     return (
-      <Btn
-        btnType="btn"
-        text={`Remove the search '${search}'`}
-        onClick={CLEAR_search}
-      />
+      <div className="flex gap-[0.8rem]">
+        {search ? (
+          <Btn
+            btnType="btn"
+            text={`Remove the search '${search}'`}
+            onClick={CLEAR_search}
+          />
+        ) : null}
+        {current_ID !== "All" ? (
+          <Btn
+            btnType="btn"
+            text={`Filter by 'All'`}
+            onClick={() => FILTER_byAll()}
+          />
+        ) : null}
+      </div>
     );
   }
 

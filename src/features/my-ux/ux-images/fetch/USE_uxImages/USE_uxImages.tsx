@@ -15,6 +15,7 @@ export default function USE_uxImages({ id }: { id: string | undefined }) {
   const { FETCH_new, IS_loading } = USE_pagination({
     paginateBy: 9999,
     fetch: memoizedFetch, // Include `start` and `end` if required by design
+    unpaginated_COUNT: 9999,
   });
 
   useEffect(() => {

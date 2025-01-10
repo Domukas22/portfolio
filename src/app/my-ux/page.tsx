@@ -41,20 +41,25 @@ export default function MyUx_PAGE() {
   const [target_UX, SET_targetUX] = useState<MyUx_TYPE | undefined>();
   const [IS_deskMenuOpen, SET_deskMenuOpen] = useState<boolean>(false);
   const [IS_mobileMenuOpen, SET_mobileMenuOpen] = useState<boolean>(false);
-  const [IS_mobilefilterMenuOpen, SET_mobileFilterMenuOpen] = useState(true);
+  const [IS_mobilefilterMenuOpen, SET_mobileFilterMenuOpen] = useState(false);
 
   const [filter, SET_filter] = useState<string>("All");
 
   const { debouncedSearch, search, SET_search, IS_debouncing } =
     USE_debounceSearch();
 
-  const { myUXs, error, IS_loading, unpaginated_COUNT } = USE_myUxs({
+  const {
+    myUXs,
+    error,
+    IS_loading,
+    unpaginated_COUNT,
+    LOAD_more,
+    IS_loadingMore,
+  } = USE_myUxs({
     search: debouncedSearch,
     rating_ID: filter,
   });
   const { filters, IS_fetchingFilters, fetchFitlers_ERR } = USE_myUxFilters();
-
-  console.log(filters?.find((r) => r.id === filter)?.emoji, filters);
 
   return (
     <section className="pl-[var(--side-nav-width)] tablet:pl-0">
@@ -152,21 +157,6 @@ export default function MyUx_PAGE() {
             onClick={() => SET_mobileFilterMenuOpen(true)}
           />
         </div>
-        {/* <div className="hidden tablet:flex gap-[0.8rem] flex-wrap mb-[2rem]">
-          {filters.map((r) => (
-            <Btn
-              key={r.id}
-              btnType="btn"
-              text={r?.text}
-              onClick={() => {
-                if (filter !== r.id) {
-                  SET_filter(r.id);
-                }
-              }}
-              data-active={filter === r.id}
-            />
-          ))}
-        </div> */}
 
         <h3
           className="flex mb-[1rem]"
@@ -193,6 +183,22 @@ export default function MyUx_PAGE() {
           OPEN_uxMobModal={() => {}}
           search={search}
           CLEAR_search={() => SET_search("")}
+          FILTER_byAll={() => SET_filter("All")}
+          current_ID={filter}
+        />
+
+        <Btn
+          btnType="btn"
+          text={!IS_loadingMore ? "Load more" : ""}
+          left_ICON={IS_loadingMore ? <Spinner /> : null}
+          onClick={() => LOAD_more()}
+          className="w-full justify-center mt-[3rem]"
+          text_STYLES={{
+            fontSize: "2rem",
+          }}
+          styles={{
+            display: unpaginated_COUNT === myUXs?.length ? "none" : "flex",
+          }}
         />
       </div>
       <MyUx_MODAL

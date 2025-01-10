@@ -12,6 +12,7 @@ export default function USE_uxRatings() {
   const { FETCH_new, IS_loading } = USE_pagination({
     paginateBy: 9999,
     fetch,
+    unpaginated_COUNT: 9999,
   });
 
   useEffect(() => {
