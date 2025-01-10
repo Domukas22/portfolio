@@ -96,7 +96,7 @@ const Sections: ProjectSection_TYPE[] = [
           `A fairly simple idea. The letter "D" represents me in the water, seamlessly adapting to the wave.`,
           `I later realized this is likely to be interpreted as a boat crashing down a waterfall. Talk about balance 😀.`,
         ]}
-        img_PATH="/projects/domas-swim-school/logo/progressions/1.png"
+        img_PATH="/projects/domas-swim-school-logo/logo/progressions/1.png"
         {...{ imgWrap_STYLES, img_STYLES }}
       />
     ),
@@ -111,7 +111,7 @@ const Sections: ProjectSection_TYPE[] = [
           `This looks a lot more serene and safe. Perhaps a little too safe, because all I can see now is an anti-virus shield.`,
           `My deliberation here was whether to keep adjusting the few existing elements to create a different perception or add a new element.`,
         ]}
-        img_PATH="/projects/domas-swim-school/logo/progressions/2.png"
+        img_PATH="/projects/domas-swim-school-logo/logo/progressions/2.png"
         {...{ imgWrap_STYLES, img_STYLES }}
       />
     ),
@@ -126,7 +126,7 @@ const Sections: ProjectSection_TYPE[] = [
           `I managed to some degree solve the previous problem by looking a step ahead. Adding a human-like figure was an attemt to 1. convey the message that I do private lessons with a single person at a time and 2. create a sense of security, as if the outer edges of the boat protect the human figure from the water, which would in this case be me.`,
           `I was faily happy with this idea, but I wanted to somehow make it proportional.`,
         ]}
-        img_PATH="/projects/domas-swim-school/logo/progressions/3.png"
+        img_PATH="/projects/domas-swim-school-logo/logo/progressions/3.png"
         {...{ imgWrap_STYLES, img_STYLES }}
       />
     ),
@@ -141,7 +141,7 @@ const Sections: ProjectSection_TYPE[] = [
           `Earlier that week, before being assigned this exercise, I was introduced to the golden ratio for the first time, and I found it truly mind-blowing.`,
           "I decided to design this logo as proportionally perfect as I could, following the golden ratio.",
         ]}
-        img_PATH="/projects/domas-swim-school/logo/progressions/4.png"
+        img_PATH="/projects/domas-swim-school-logo/logo/progressions/4.png"
         {...{ imgWrap_STYLES, img_STYLES }}
       />
     ),
@@ -156,7 +156,7 @@ const Sections: ProjectSection_TYPE[] = [
         parapgraphs={[
           `Here we see the proportionally sized circles I will be implementing.`,
         ]}
-        img_PATH="/projects/domas-swim-school/logo/progressions/5.png"
+        img_PATH="/projects/domas-swim-school-logo/logo/progressions/5.png"
         {...{ imgWrap_STYLES, img_STYLES }}
       />
     ),
@@ -170,7 +170,7 @@ const Sections: ProjectSection_TYPE[] = [
         parapgraphs={[
           `After playing around for a while I managed to position the circles in a way where they serve as outlines for the shapes of the logo.`,
         ]}
-        img_PATH="/projects/domas-swim-school/logo/progressions/6.png"
+        img_PATH="/projects/domas-swim-school-logo/logo/progressions/6.png"
         {...{ imgWrap_STYLES, img_STYLES }}
       />
     ),
@@ -184,7 +184,7 @@ const Sections: ProjectSection_TYPE[] = [
         parapgraphs={[
           "I adjusted the thicknes both of the board/letter D, as well as the outlined circle.",
         ]}
-        img_PATH="/projects/domas-swim-school/logo/progressions/7.png"
+        img_PATH="/projects/domas-swim-school-logo/logo/progressions/7.png"
         {...{ imgWrap_STYLES, img_STYLES }}
       />
     ),
@@ -196,7 +196,7 @@ const Sections: ProjectSection_TYPE[] = [
       <TitleParagraphImageSection_CONTENT
         title="Abstracting"
         parapgraphs={["A simplified version of the previous step."]}
-        img_PATH="/projects/domas-swim-school/logo/progressions/8.png"
+        img_PATH="/projects/domas-swim-school-logo/logo/progressions/8.png"
         {...{ imgWrap_STYLES, img_STYLES }}
       />
     ),
@@ -211,7 +211,7 @@ const Sections: ProjectSection_TYPE[] = [
           "Tadaaa... we now have a simple and very sexy icon.",
           "Let's round out those corners of the boat and add some color.",
         ]}
-        img_PATH="/projects/domas-swim-school/logo/progressions/9.png"
+        img_PATH="/projects/domas-swim-school-logo/logo/progressions/9.png"
         {...{ imgWrap_STYLES, img_STYLES }}
       />
     ),
@@ -225,7 +225,7 @@ const Sections: ProjectSection_TYPE[] = [
         parapgraphs={[
           "Of course I went for blue. I did have to play around a bit with the tone of the color, but eventually settled for a darker, less energetic one.",
         ]}
-        img_PATH="/projects/domas-swim-school/logo/progressions/10.png"
+        img_PATH="/projects/domas-swim-school-logo/logo/progressions/10.png"
         {...{
           img_STYLES,
           imgWrap_STYLES: { ...imgWrap_STYLES, backgroundColor: "#f6f7ff" },
@@ -240,16 +240,16 @@ const Sections: ProjectSection_TYPE[] = [
       <LogoSwiperSection_CONTENT
         title="Progress recap"
         swiperImg_PATHS={[
-          "/projects/domas-swim-school/logo/progressions/1.png",
-          "/projects/domas-swim-school/logo/progressions/2.png",
-          "/projects/domas-swim-school/logo/progressions/3.png",
-          "/projects/domas-swim-school/logo/progressions/4.png",
-          "/projects/domas-swim-school/logo/progressions/5.png",
-          "/projects/domas-swim-school/logo/progressions/6.png",
-          "/projects/domas-swim-school/logo/progressions/7.png",
-          "/projects/domas-swim-school/logo/progressions/8.png",
-          "/projects/domas-swim-school/logo/progressions/9.png",
-          "/projects/domas-swim-school/logo/progressions/10.png",
+          "/projects/domas-swim-school-logo/logo/progressions/1.png",
+          "/projects/domas-swim-school-logo/logo/progressions/2.png",
+          "/projects/domas-swim-school-logo/logo/progressions/3.png",
+          "/projects/domas-swim-school-logo/logo/progressions/4.png",
+          "/projects/domas-swim-school-logo/logo/progressions/5.png",
+          "/projects/domas-swim-school-logo/logo/progressions/6.png",
+          "/projects/domas-swim-school-logo/logo/progressions/7.png",
+          "/projects/domas-swim-school-logo/logo/progressions/8.png",
+          "/projects/domas-swim-school-logo/logo/progressions/9.png",
+          "/projects/domas-swim-school-logo/logo/progressions/10.png",
         ]}
         customBackgroundColors={[{ color: "#f6f7ff", index: 9 }]}
         maxDesktopWidth={50}
