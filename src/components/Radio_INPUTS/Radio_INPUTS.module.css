@@ -19,6 +19,8 @@
     font-weight: 400;
     outline: var(--outline-hide);
 
+    cursor: pointer;
+
     &::before {
       content: "";
       display: inline-block;
@@ -30,6 +32,10 @@
       border-radius: 50%;
       margin: 0 0.8rem 0.2rem 0;
       cursor: pointer;
+    }
+
+    & [data-radio-count-text] {
+      margin-left: auto;
     }
 
     /* -------- Hover -------- */
@@ -52,9 +58,13 @@
 
     /* -------- Selected -------- */
     &[data-selected="true"] {
-      background-color: var(--main-bg);
+      background-color: var(--btn-active);
       border: var(--border-active);
       color: var(--text-main);
+
+      & [data-radio-count-text] {
+        color: var(--text-main);
+      }
 
       &::before {
         background-color: var(--brand);

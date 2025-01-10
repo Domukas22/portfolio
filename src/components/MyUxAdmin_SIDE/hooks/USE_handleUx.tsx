@@ -13,7 +13,7 @@ import {
 
 import USE_handleUxImages from "./USE_handleUxImages";
 import USE_handleUxParagraphs from "./USE_handleUxParagraphs";
-import { UxRating_TYPE } from "@/features/my-ux/ux-ratings/FETCH_myUxRatings/types";
+import { UxRating_TYPE } from "@/features/my-ux/ux-ratings/radioOptions/FETCH_myUxRatings/types";
 
 export type USE_handleUx_RETURNTYPE = {
   title: string | undefined;

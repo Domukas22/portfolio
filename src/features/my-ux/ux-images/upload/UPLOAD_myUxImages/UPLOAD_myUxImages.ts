@@ -30,7 +30,6 @@ export default async function UPLOAD_myUxImages(
         .remove([`${args.id}/${image_NAME}`]);
       if (error)
         throw GENERATE_internalError("failed_supabase_image_upload", error);
-      console.log(`File ${image_NAME} deleted successfully.`);
     }
 
     const uploadedImageNames: string[] = [];

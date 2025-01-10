@@ -119,3 +119,10 @@
     fill: var(--red);
   }
 }
+.ICON_search {
+  @mixin default;
+
+  & path {
+    fill: var(--text-white-light);
+  }
+}

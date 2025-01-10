@@ -33,18 +33,6 @@
   min-height: calc(var(--tiny-nav-height) + 0.1rem);
   flex: 1;
 
-  & [data-logo-img] {
-    width: calc(var(--nav-height) - 3rem);
-    height: calc(var(--nav-height) - 3rem);
-    border-radius: 10rem;
-
-    box-shadow: var(--btn-shadow);
-
-    border: var(--border-light);
-    background: center no-repeat url("/domas.jpg");
-    background-size: cover;
-  }
-
   & span[data-logo-text] {
     font-weight: 600;
     margin-right: auto;

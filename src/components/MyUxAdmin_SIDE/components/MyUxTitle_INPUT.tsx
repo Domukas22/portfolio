@@ -2,11 +2,11 @@
 //
 //
 
-import Text_INPUT from "@/components/Text_INPUT/Text_INPUT";
+import Text_FIELD from "@/components/Text_FIELD/Text_FIELD";
 
 export default function MyUxFromTitle_INPUT({ title, SET_title }) {
   return (
-    <Text_INPUT
+    <Text_FIELD
       label="Title"
       name="title"
       type="text"

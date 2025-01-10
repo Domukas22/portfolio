@@ -3,6 +3,7 @@
 //
 
 import DesktopProjectSideNav_BTN from "../DesktopProjectSideNav_BTN";
+import LogoCorner_BTN from "../LogoCorner_BTN/LogoCorner_BTN";
 import MultiPageProjectNav_BTNS from "../MultiPageProjectNav_BTNS/MultiPageProjectNav_BTNS";
 import SideNav from "../SideNav/SideNav";
 import { nestedPage_TYPE } from "@/projects/intros";
@@ -27,7 +28,10 @@ export default function MultiPageProject_SIDENAV({
   return (
     <SideNav
       extraElsAboveScrollable={
-        <DesktopProjectSideNav_BTN projet_NAME={projet_NAME} />
+        <>
+          <LogoCorner_BTN />
+          <DesktopProjectSideNav_BTN projet_NAME={projet_NAME} />
+        </>
       }
     >
       <MultiPageProjectNav_BTNS

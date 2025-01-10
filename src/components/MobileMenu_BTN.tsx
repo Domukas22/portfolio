@@ -16,6 +16,7 @@ export default function MobileMenu_BTN({
         text="Menu"
         onClick={OPEN_mobMenu}
         btnType="btn-square-light"
+        text_STYLES={{ fontWeight: 600 }}
         data-light-left-border-color="true"
         right_ICON={<ICON_dropDownArrow />}
         className="font-bold"

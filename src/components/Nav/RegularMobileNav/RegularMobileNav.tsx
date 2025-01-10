@@ -7,7 +7,7 @@
 import Link from "next/link";
 
 import LogoCorner_BTN from "@/components/LogoCorner_BTN/LogoCorner_BTN";
-import StickyTopNav from "../StickyTopNav/StickyTopNav";
+import Nav from "../Nav/Nav";
 import css from "./RegularMobileNav.module.css";
 import MobileMenu_BTN from "@/components/MobileMenu_BTN";
 
@@ -19,7 +19,7 @@ export default function RegularMobileNav({
   OPEN_mobMenu = () => {},
 }: RegularMobileNav_PROPS) {
   return (
-    <StickyTopNav targetClass={css.regularMobileNav}>
+    <Nav targetClass={css.regularMobileNav}>
       <LogoCorner_BTN flex={1} SHOW_bottomBorder={false} />
 
       <li data-btn-projects>
@@ -41,6 +41,6 @@ export default function RegularMobileNav({
           </Link>
         </li> */}
       <MobileMenu_BTN {...{ OPEN_mobMenu }} />
-    </StickyTopNav>
+    </Nav>
   );
 }

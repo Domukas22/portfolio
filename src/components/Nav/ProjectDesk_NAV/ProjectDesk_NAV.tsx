@@ -4,7 +4,7 @@
 
 "use client";
 
-import StickyTopNav from "../StickyTopNav/StickyTopNav";
+import Nav from "../Nav/Nav";
 import css from "./ProjectDesk_NAV.module.css";
 import Btn from "@/components/Btn/Btn";
 import Link from "next/link";
@@ -24,7 +24,12 @@ export default function ProjectDesk_NAV({
   OPEN_deskMenu = () => {},
 }: ProjectDesktopNav_PROPS) {
   return (
-    <StickyTopNav targetClass={css.projectDesktopNav} tiny>
+    <Nav
+      targetClass={css.projectDesktopNav}
+      data-tiny
+      data-next-to-sidenav
+      data-hide-on-tablet
+    >
       <li>
         <Link className="btn-tiny-desk-round" href="/">
           Home
@@ -62,10 +67,10 @@ export default function ProjectDesk_NAV({
           onClick={OPEN_deskMenu}
         />
       </li>
-    </StickyTopNav>
+    </Nav>
   );
 }
 
-function TinyDeskNav_SEPARATOR() {
+export function TinyDeskNav_SEPARATOR() {
   return <span className="h-full content-center duration-100">{">"}</span>;
 }

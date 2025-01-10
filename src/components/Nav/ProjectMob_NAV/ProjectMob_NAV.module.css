@@ -9,7 +9,4 @@
   @media (--desktop) {
     display: none !important;
   }
-  position: fixed !important;
-  left: 0;
-  right: 0;
 }

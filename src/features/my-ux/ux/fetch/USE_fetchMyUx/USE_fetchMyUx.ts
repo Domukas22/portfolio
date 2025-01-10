@@ -5,7 +5,6 @@ import {
   FETCH_myUx_ERRPROPS,
   FETCH_myUx_ERRROS,
   MyUx_TYPE,
-  MyUxFilter_TYPE,
 } from "../FETCH_myUx/types";
 import FETCH_myUx from "../FETCH_myUx/FETCH_myUx";
 import HANDLE_userError from "@/utils/HANDLE_userError";
@@ -14,10 +13,10 @@ const function_NAME = "USE_fetchMyUx";
 
 export default function USE_fetchMyUx({
   search,
-  filter = "All",
+  rating_ID = "All",
 }: {
   search: string;
-  filter: MyUxFilter_TYPE;
+  rating_ID: string;
 }) {
   const { abortControllerRef, startNewRequest } = USE_abortController();
 
@@ -59,7 +58,7 @@ export default function USE_fetchMyUx({
 
         const { data: { my_UXs, count } = {}, error } = await FETCH_myUx({
           search,
-          filter,
+          rating_ID,
           start,
           end,
           signal: abortControllerRef.current?.signal,
@@ -93,7 +92,7 @@ export default function USE_fetchMyUx({
         );
       }
     },
-    [search, filter, abortControllerRef]
+    [search, rating_ID, abortControllerRef]
   );
 
   const ADD_toDisplayed = (ux: MyUx_TYPE) => {

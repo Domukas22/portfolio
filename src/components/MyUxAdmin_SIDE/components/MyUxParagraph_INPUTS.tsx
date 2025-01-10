@@ -3,7 +3,7 @@
 //
 
 import Btn from "@/components/Btn/Btn";
-import Text_INPUT from "@/components/Text_INPUT/Text_INPUT";
+import Text_FIELD from "@/components/Text_FIELD/Text_FIELD";
 
 export default function MyUxParagraph_INPUTS({
   paragraphs,
@@ -16,7 +16,7 @@ export default function MyUxParagraph_INPUTS({
       {paragraphs.length > 0 &&
         paragraphs.map((p, index) => (
           <div key={index} className="relative">
-            <Text_INPUT
+            <Text_FIELD
               label={`Paragraph ${index + 1}`}
               name={`paragraph-${index}`}
               type="text"

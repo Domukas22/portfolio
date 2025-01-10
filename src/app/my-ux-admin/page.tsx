@@ -5,7 +5,7 @@
 "use client";
 
 import MyUxAdmin_SIDE from "@/components/MyUxAdmin_SIDE/MyUxAdmin_SIDE";
-import Text_INPUT from "@/components/Text_INPUT/Text_INPUT";
+import Text_FIELD from "@/components/Text_FIELD/Text_FIELD";
 import MyUxCard_GRID from "@/features/my-ux/components/MyUxCard_GRID/MyUxCard_GRID";
 import USE_debounceSearch from "@/hooks/USE_debounceSearch/USE_debounceSearch";
 import { supabase } from "@/supabase";
@@ -47,11 +47,11 @@ export default function MyUx_PAGE() {
 
   const { myUXs, error, UPDATE_displayedUx, ADD_toDisplayed } = USE_myUxs({
     search: debouncedSearch,
-    filter: "All",
+    rating_ID: "All",
   });
 
   if (error) {
-    console.log(error);
+    console.error(error);
   }
 
   const SELECT_ux = useCallback((myUX: MyUx_TYPE) => {
@@ -69,7 +69,7 @@ export default function MyUx_PAGE() {
       if (target_UX?.id === ux?.id) {
         SET_targetUX(ux);
       }
-      console.log(ux);
+
       UPDATE_displayedUx(ux);
     },
     [UPDATE_displayedUx, target_UX]
@@ -82,14 +82,13 @@ export default function MyUx_PAGE() {
           <div className="flex-1">
             <h2 className="mb-[1.2rem] ">My Ux Admin</h2>
             <div className="mb-[2rem]">
-              <Text_INPUT
+              <Text_FIELD
                 name="search"
                 type="text"
                 isRequired={false}
                 onChange={SET_search}
                 value={search}
                 label="Search uxs"
-                hideLabel
                 placeholder="Search UX experiences..."
               />
               <Btn
@@ -108,6 +107,10 @@ export default function MyUx_PAGE() {
               }}
               current_ID={target_UX?.id}
               hidden_IDs={hidden_IDs}
+              CLEAR_search={() => {}}
+              error={undefined}
+              loading={false}
+              search=""
             />
           </div>
         </div>

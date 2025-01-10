@@ -1,0 +1,26 @@
+/*  */
+/*  */
+/*  */
+
+.skeleton {
+  width: 100%;
+  min-width: 100%;
+  min-height: 5rem;
+
+  background-color: var(--dark);
+  border: var(--border-light);
+  border-radius: 1.2rem;
+  animation: fade 1.5s infinite;
+}
+
+@keyframes fade {
+  0% {
+    background-color: var(--dark);
+  }
+  50% {
+    background-color: var(--dark-light);
+  }
+  100% {
+    background-color: var(--dark);
+  }
+}

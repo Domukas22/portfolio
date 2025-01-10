@@ -4,7 +4,7 @@
 
 "use client";
 
-import StickyTopNav from "../StickyTopNav/StickyTopNav";
+import Nav from "../Nav/Nav";
 import css from "./ProjectMob_NAV.module.css";
 import ProjectMenu_BTN from "@/components/ProjectMenu_BTN/ProjectCorner_BTN";
 import MobileMenu_BTN from "@/components/MobileMenu_BTN";
@@ -22,10 +22,10 @@ export default function ProjectMob_NAV({
   OPEN_mobProjectMenu,
 }: ProjectMob_NAV_PROPS) {
   return (
-    <StickyTopNav targetClass={css.projectMobileNav}>
+    <Nav targetClass={css.projectMobileNav}>
       <ProjectMenu_BTN {...{ project_NAME, OPEN_mobProjectMenu }} />
 
       <MobileMenu_BTN {...{ OPEN_mobMenu }} />
-    </StickyTopNav>
+    </Nav>
   );
 }

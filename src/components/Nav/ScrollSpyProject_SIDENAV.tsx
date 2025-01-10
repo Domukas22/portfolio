@@ -6,6 +6,7 @@ import { ProjectSection_TYPE } from "@/types";
 import DesktopProjectSideNav_BTN from "../DesktopProjectSideNav_BTN";
 import SideNav from "../SideNav/SideNav";
 import SinglePageProjectNav_BTNS from "../SinglePageProjectNav_BTNS";
+import LogoCorner_BTN from "../LogoCorner_BTN/LogoCorner_BTN";
 
 export default function ScrollSpyProject_SIDENAV({
   projet_NAME = "Project name",
@@ -21,7 +22,10 @@ export default function ScrollSpyProject_SIDENAV({
   return (
     <SideNav
       extraElsAboveScrollable={
-        <DesktopProjectSideNav_BTN projet_NAME={projet_NAME} />
+        <>
+          <LogoCorner_BTN />
+          <DesktopProjectSideNav_BTN projet_NAME={projet_NAME} />
+        </>
       }
     >
       <SinglePageProjectNav_BTNS

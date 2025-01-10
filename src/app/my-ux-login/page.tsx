@@ -3,10 +3,10 @@
 import { useRouter } from "next/navigation"; // Import useRouter
 import { supabase } from "@/supabase"; // Assuming you've set up Supabase
 import React, { useState } from "react";
-import Text_INPUT from "@/components/Text_INPUT/Text_INPUT";
+import Text_FIELD from "@/components/Text_FIELD/Text_FIELD";
 
 export default function Login() {
-  const email = "domassirbike@gmail.com";
+  const [email, SET_email] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<any>(null);
   const router = useRouter(); // Initialize useRouter
@@ -28,11 +28,9 @@ export default function Login() {
 
       // Check if the logged-in user is the admin
       if (data?.user?.email === email) {
-        console.log("Logged in as admin:", data?.user);
         router.push("/my-ux-admin"); // Redirect to admin page
       } else {
         setError("Unauthorized: You are not the admin.");
-        console.log("Unauthorized login attempt:", data?.user?.email);
       }
     } catch (err: any) {
       setError(err.message);
@@ -44,7 +42,15 @@ export default function Login() {
       <h2 className="mb-[4rem]">Admin login</h2>
       {error && <p>{error}</p>}
       <form onSubmit={handleLogin}>
-        <Text_INPUT
+        <Text_FIELD
+          label="Email"
+          name="email"
+          type="email"
+          isRequired={true}
+          value={email}
+          onChange={SET_email}
+        />
+        <Text_FIELD
           label="Password"
           name="password"
           type="password"

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/supabase"; // Assuming you've set up Supabase
 import { useRouter } from "next/navigation";
-import Text_INPUT from "@/components/Text_INPUT/Text_INPUT";
+import Text_FIELD from "@/components/Text_FIELD/Text_FIELD";
 
 export default function ResetPassword() {
   const router = useRouter();
@@ -66,7 +66,7 @@ export default function ResetPassword() {
       {error && <p className="text-red-600">{error}</p>}
       {message && <p className="text-green-600">{message}</p>}
       <form onSubmit={handleResetPassword}>
-        <Text_INPUT
+        <Text_FIELD
           label="New Password"
           name="password"
           type="password"
@@ -74,7 +74,7 @@ export default function ResetPassword() {
           value={password}
           onChange={setPassword}
         />
-        <Text_INPUT
+        <Text_FIELD
           label="Confirm Password"
           name="confirmPassword"
           type="password"

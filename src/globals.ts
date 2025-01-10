@@ -2,7 +2,7 @@
 //
 //
 
-import { UxRating_TYPE } from "./features/my-ux/ux-ratings/FETCH_myUxRatings/types";
+import { UxRating_TYPE } from "./features/my-ux/ux-ratings/radioOptions/FETCH_myUxRatings/types";
 
 export type submittableUx_TYPE = {
   id: string | undefined;

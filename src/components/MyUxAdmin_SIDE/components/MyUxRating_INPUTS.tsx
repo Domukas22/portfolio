@@ -9,7 +9,7 @@ import { Grey_SPINNER } from "@/components/Spinners";
 import {
   FETCH_myUxRatings_ERRPROPS,
   UxRating_TYPE,
-} from "@/features/my-ux/ux-ratings/FETCH_myUxRatings/types";
+} from "@/features/my-ux/ux-ratings/radioOptions/FETCH_myUxRatings/types";
 
 import React from "react";
 

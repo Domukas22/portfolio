@@ -74,7 +74,7 @@ export default function MyUxImages_INPUTS({
         id={"file-upload" + id}
         type="file"
         accept="image/*"
-        // multiple
+        multiple
         onChange={UPLOAD_images}
         style={{ display: "none" }} // Hide the default input
       />

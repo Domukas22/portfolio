@@ -7,6 +7,6 @@ export default function CREATE_internalErrorMsg(process?: string) {
     ? `Something went wrong when ${process}.`
     : "Something went wrong.";
   const second_SENTENCE =
-    " Please reload the app and try again. This problem has been recorded and will be reviewed by developers as soon as possible. If the problem persists, please contact support. We apologize for the inconvenience.";
+    " Please reload the site and try again. If the problem persists, contact me and let me know. Sorry for the troubles!";
   return first_SENTENCE + second_SENTENCE;
 }

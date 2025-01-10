@@ -2,7 +2,7 @@
 //
 //
 
-import { UxRating_TYPE } from "@/features/my-ux/ux-ratings/FETCH_myUxRatings/types";
+import { UxRating_TYPE } from "@/features/my-ux/ux-ratings/radioOptions/FETCH_myUxRatings/types";
 import { Error_PROPS } from "@/types";
 import CREATE_internalErrorMsg from "@/utils/CREATE_internalErrorMsg";
 
@@ -37,7 +37,7 @@ export type MyUxFilter_TYPE = "All" | "Excellent" | "Good" | "Bad" | "Terrible";
 
 export interface FETCH_myUx_ARGTYPES {
   search?: string;
-  filter: MyUxFilter_TYPE;
+  rating_ID: string;
   start: number;
   end: number;
   signal: AbortSignal | undefined;

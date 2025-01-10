@@ -3,16 +3,15 @@
 //
 
 import { useEffect } from "react";
-import { MyUxFilter_TYPE } from "../FETCH_myUx/types";
 import USE_fetchMyUx from "../USE_fetchMyUx/USE_fetchMyUx";
 import USE_pagination from "@/hooks/USE_pagination/USE_pagination";
 
 export default function USE_myUxs({
   search,
-  filter,
+  rating_ID,
 }: {
   search: string;
-  filter: MyUxFilter_TYPE;
+  rating_ID: string;
 }) {
   const {
     myUXs,
@@ -24,7 +23,7 @@ export default function USE_myUxs({
     ADD_toDisplayed,
   } = USE_fetchMyUx({
     search,
-    filter,
+    rating_ID,
   });
 
   const { FETCH_new, FETCH_more, IS_loading, IS_loadingMore } = USE_pagination({
@@ -36,7 +35,7 @@ export default function USE_myUxs({
   useEffect(() => {
     EMPTY_myUxs();
     FETCH_new();
-  }, [search, filter, EMPTY_myUxs, FETCH_new]);
+  }, [search, rating_ID, EMPTY_myUxs, FETCH_new]);
 
   // useEffect(() => {
   //   // build this if you want create a new error row on suapabse

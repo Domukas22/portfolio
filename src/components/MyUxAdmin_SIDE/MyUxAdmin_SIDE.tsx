@@ -10,7 +10,7 @@ import { MyUx_TYPE } from "@/features/my-ux/ux/fetch/FETCH_myUx/types";
 
 import css from "./MyUxAdmin_SIDE.module.css";
 import USE_handleUx from "./hooks/USE_handleUx";
-import USE_uxRatings from "@/features/my-ux/ux-ratings/USE_uxRatings/USE_uxRatings";
+import USE_uxRatings from "@/features/my-ux/ux-ratings/radioOptions/USE_uxRatings/USE_uxRatings";
 import MyUxBottom_BTNS from "./components/MyUxBottom_BTNS";
 
 import USE_isBrowserToolbarClosed from "@/hooks/USE_isBrowserToolbarClosed";

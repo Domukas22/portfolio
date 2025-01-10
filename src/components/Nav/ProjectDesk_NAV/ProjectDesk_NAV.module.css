@@ -14,11 +14,4 @@
   & li:first-child {
     margin-left: 0.8rem;
   }
-
-  @media (--tablet) {
-    display: none !important;
-  }
-  position: fixed !important;
-  left: var(--side-nav-width);
-  right: 0;
 }

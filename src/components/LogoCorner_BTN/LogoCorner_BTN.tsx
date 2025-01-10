@@ -7,6 +7,7 @@ import Btn from "../Btn/Btn";
 import css from "./LogoCorner_BTN.module.css";
 import { usePathname } from "next/navigation";
 import React from "react";
+import NavDomas_IMG from "../NavDomas_IMG/NavDomas_IMG";
 
 export default function LogoCorner_BTN({
   SHOW_bottomBorder = true,
@@ -25,7 +26,7 @@ export default function LogoCorner_BTN({
       }}
     >
       <Clickable IS_home={pathname === "/"} {...{ SHOW_bottomBorder }}>
-        <div data-logo-img className={css.logo_IMG} />
+        <NavDomas_IMG />
         <span data-logo-text data-logo-text-long>
           Domas Sirbike
         </span>

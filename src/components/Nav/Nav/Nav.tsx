@@ -3,25 +3,21 @@
 //
 
 import React from "react";
-import css from "./StickyTopNav.module.css";
+import css from "./Nav.module.css";
 
-export default function StickyTopNav({
+export default function Nav({
   children,
   targetClass,
-  tiny = false,
   _ref,
+  ...props
 }: {
   children: React.ReactNode;
   targetClass?: string;
-  tiny?: boolean;
+
   _ref?: React.RefObject<HTMLElement>;
 }) {
   return (
-    <nav
-      className={`${css.stickyNav} ${targetClass}`}
-      data-tiny={tiny}
-      ref={_ref}
-    >
+    <nav className={`${css.Nav} ${targetClass}`} ref={_ref} {...props}>
       <ul>{children}</ul>
     </nav>
   );

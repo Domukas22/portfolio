@@ -1,0 +1,15 @@
+/*  */
+/*  */
+/*  */
+
+@custom-media --mobile (max-width: 767px);
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop (min-width: 991px);
+@custom-media --desktop-small (max-width: 1300px);
+@custom-media --desktop-big (min-width: 1301px);
+
+.label {
+  color: var(--text-white-light);
+
+  margin-bottom: 0.4rem;
+}

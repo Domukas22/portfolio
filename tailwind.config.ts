@@ -19,6 +19,7 @@ export default {
       screens: {
         small_deskop: { min: "991px", max: "1200px" },
 
+        400: { max: "400px" },
         mobile: { max: "767px" },
         tablet: { max: "990px" },
         desktop: { min: "991px" },

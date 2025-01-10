@@ -5,11 +5,13 @@
 .Error_BOX {
   display: flex;
   padding: 1.4rem 1.8rem 1.8rem;
-  border-radius: 1rem; /* Tailwind's 'rounded-2xl' is typically 1rem, adjust if needed */
+  gap: 1.25rem;
 
-  background-color: var(--red-error-text-bg);
   border: var(--border-error);
+  border-radius: 1.2rem;
+  background-color: var(--red-error-text-bg);
 
+  font-weight: 500;
   color: var(--red-error-text);
 
   & span,
@@ -17,6 +19,17 @@
     color: var(--red-error-text);
   }
 
-  font-weight: 600;
-  gap: 1.25rem;
+  &[data-light] {
+    border: var(--border-light);
+    background-color: transparent;
+    color: var(--text-white-light);
+
+    & path {
+      fill: var(--text-white-light);
+    }
+  }
+
+  &[data-icon-position="top"] {
+    flex-direction: column;
+  }
 }

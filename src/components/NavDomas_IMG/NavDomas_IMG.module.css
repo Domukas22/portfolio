@@ -1,0 +1,15 @@
+/*  */
+/*  */
+/*  */
+
+.domasImg {
+  width: calc(var(--nav-height) - 3rem);
+  height: calc(var(--nav-height) - 3rem);
+  border-radius: 10rem;
+
+  box-shadow: var(--btn-shadow);
+
+  border: var(--border-light);
+  background: center no-repeat url("/domas.jpg");
+  background-size: cover;
+}

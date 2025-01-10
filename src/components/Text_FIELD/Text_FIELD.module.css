@@ -1,0 +1,19 @@
+/*  */
+/*  */
+/*  */
+
+@custom-media --mobile (max-width: 767px);
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop (min-width: 991px);
+@custom-media --desktop-small (max-width: 1300px);
+@custom-media --desktop-big (min-width: 1301px);
+
+.textfield {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  & [data-error-text] {
+    color: var(--text-error);
+  }
+}

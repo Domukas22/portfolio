@@ -24,7 +24,9 @@ export default async function FETCH_myUx(
     VALITATE_args(args);
     const query = supabase
       .from("my-ux")
-      .select(`*, rating:ux-ratings(id, text)`, { count: "exact" });
+      .select(`*, rating:ux-ratings(id, text)`, {
+        count: "exact",
+      });
     VALIDATE_query(query);
 
     const extended_QUERY = APPLY_filters({ ...args, query });
@@ -38,9 +40,13 @@ export default async function FETCH_myUx(
       count: number;
     } = await extended_QUERY.abortSignal(signal);
 
-    console.log(my_UXs);
-
-    if (error) throw GENERATE_internalError("failed_supabase_fetch", error);
+    // throw GENERATE_internalError("failed_supabase_fetch", {
+    //   message: "Test error",
+    // });
+    if (error) {
+      console.error(error);
+      throw GENERATE_internalError("failed_supabase_fetch", error);
+    }
 
     return {
       data: {
@@ -49,6 +55,7 @@ export default async function FETCH_myUx(
       },
     };
   } catch (error: any) {
+    console.error(error);
     return {
       data: {
         my_UXs: [],
@@ -64,19 +71,14 @@ export default async function FETCH_myUx(
 }
 
 function APPLY_filters(args: FETCH_myUx_ARGTYPES & { query: any }) {
-  const { search, filter, start, end, query } = args;
+  const { search, rating_ID, start, end, query } = args;
 
   let new_QUERY = query;
 
   // filter by list ids if shared
   // ignore the "All" filter
-  if (
-    filter === "Excellent" ||
-    filter === "Good" ||
-    filter === "Terrible" ||
-    filter === "Bad"
-  ) {
-    new_QUERY = new_QUERY.in("rating", filter);
+  if (rating_ID && rating_ID !== "All") {
+    new_QUERY = new_QUERY.in("rating", [rating_ID]);
   }
 
   // filter by search
@@ -96,21 +98,21 @@ function APPLY_filters(args: FETCH_myUx_ARGTYPES & { query: any }) {
 }
 
 function VALITATE_args(args: FETCH_myUx_ARGTYPES) {
-  const { search, filter, start, end } = args;
+  const { search, rating_ID, start, end } = args;
 
   if (search && typeof search !== "string")
     throw GENERATE_internalError("search_value_isnt_string");
 
-  if (filter) {
-    if (typeof filter !== "string") {
+  if (rating_ID) {
+    if (typeof rating_ID !== "string") {
       throw GENERATE_internalError("filter_isnt_string");
     }
     if (
-      filter !== "All" &&
-      filter !== "Excellent" &&
-      filter !== "Good" &&
-      filter !== "Bad" &&
-      filter !== "Terrible"
+      rating_ID !== "All" &&
+      rating_ID !== "Excellent" &&
+      rating_ID !== "Good" &&
+      rating_ID !== "Bad" &&
+      rating_ID !== "Terrible"
     ) {
       throw GENERATE_internalError("invalid_filter_type");
     }

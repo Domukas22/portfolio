@@ -30,7 +30,6 @@ export default async function DELETE_myUxImages(
         .remove([`${args.id}/${image_NAME}`]);
       if (error)
         throw GENERATE_internalError("failed_supabase_deletion", error);
-      console.log(`File ${image_NAME} deleted successfully.`);
     }
 
     return {
