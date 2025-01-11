@@ -19,6 +19,7 @@ export const FETCH_myUxRatings_ERRROS = {
 export type UxRating_TYPE = {
   id: string;
   text: string;
+  emoji: string;
 };
 
 export type FETCH_myUxRatings_DATATYPE = {

@@ -31,6 +31,8 @@ import Spinner from "@/components/Spinners";
 import MobileMenu_BTN from "@/components/MobileMenu_BTN";
 import SCROLL_to from "@/utils/SCROLL_to";
 import MobileFilter_MODAL from "@/components/MobileFilter_MODAL/MobileFilter_MODAL";
+import ScrollUp_BTN from "@/components/ScrollUp_BTN/ScrollUp_BTN";
+import Footer from "@/components/Footer/Footer";
 
 export default function MyUx_PAGE() {
   const {
@@ -62,7 +64,7 @@ export default function MyUx_PAGE() {
   const { filters, IS_fetchingFilters, fetchFitlers_ERR } = USE_myUxFilters();
 
   return (
-    <section className="pl-[var(--side-nav-width)] tablet:pl-0">
+    <>
       <Nav data-tiny data-next-to-sidenav data-hide-on-tablet>
         <li data-tiny-desk-nav-li>
           <Link className="btn-tiny-desk-round" href="/">
@@ -130,77 +132,79 @@ export default function MyUx_PAGE() {
           />
         </div>
       </SideNav>
+      <section className="pl-[var(--side-nav-width)] tablet:pl-0">
+        <TopNav_ADJUSTMENT />
+        <div className="container">
+          <div
+            className="mb-[1.4rem] pb-[1rem]"
+            style={{ borderBottom: "var(--border-light)" }}
+          >
+            <h1>My user experiences</h1>
+            <p>Explore my various encounters with products and services</p>
+          </div>
 
-      <TopNav_ADJUSTMENT />
-      <div className="container">
-        <div
-          className="mb-[1.4rem] pb-[1rem]"
-          style={{ borderBottom: "var(--border-light)" }}
-        >
-          <h1>My user experiences</h1>
-          <p>Explore my various encounters with products and services</p>
-        </div>
+          <div className="hidden tablet:flex gap-[1rem] mb-[2rem] 400:flex-col">
+            <SearchBar
+              label="Search experiences"
+              onChange={SET_search}
+              value={search}
+              placeholder="Enter a title..."
+              hideLabel
+            />
+            <Btn
+              btnType="btn"
+              text={filters?.find((r) => r.id === filter)?.emoji}
+              right_ICON={<ICON_dropDownArrow />}
+              className="h-[5rem] self-end 400:w-full justify-between"
+              onClick={() => SET_mobileFilterMenuOpen(true)}
+            />
+          </div>
 
-        <div className="hidden tablet:flex gap-[1rem] mb-[2rem] 400:flex-col">
-          <SearchBar
-            label="Search experiences"
-            onChange={SET_search}
-            value={search}
-            placeholder="Enter a title..."
-            hideLabel
+          <h3
+            className="flex mb-[1rem]"
+            style={{ color: "var(--text-white-light)" }}
+          >
+            {IS_debouncing ? <Spinner className="mr-[1rem]" /> : null}
+            {IS_debouncing
+              ? "Searching..."
+              : search
+              ? `${unpaginated_COUNT} search results for '${search}'`
+              : error
+              ? "Uh oh..."
+              : `Showing ${unpaginated_COUNT} results`}
+          </h3>
+
+          <MyUxCard_GRID
+            myUXs={myUXs}
+            OPEN_ux={(myUX: MyUx_TYPE) => {
+              SET_uxModal(true);
+              SET_targetUX(myUX);
+            }}
+            loading={IS_loading || IS_debouncing}
+            error={error}
+            search={search}
+            CLEAR_search={() => SET_search("")}
+            FILTER_byAll={() => SET_filter("All")}
+            current_ID={filter}
           />
+
           <Btn
             btnType="btn"
-            text={filters?.find((r) => r.id === filter)?.emoji}
-            right_ICON={<ICON_dropDownArrow />}
-            className="h-[5rem] self-end 400:w-full justify-between"
-            onClick={() => SET_mobileFilterMenuOpen(true)}
+            text={!IS_loadingMore ? "Load more" : ""}
+            left_ICON={IS_loadingMore ? <Spinner /> : null}
+            onClick={() => LOAD_more()}
+            className="w-full justify-center mt-[3rem]"
+            text_STYLES={{
+              fontSize: "2rem",
+            }}
+            styles={{
+              display: unpaginated_COUNT === myUXs?.length ? "none" : "flex",
+            }}
           />
         </div>
+        <Footer />
+      </section>
 
-        <h3
-          className="flex mb-[1rem]"
-          style={{ color: "var(--text-white-light)" }}
-        >
-          {IS_debouncing ? <Spinner className="mr-[1rem]" /> : null}
-          {IS_debouncing
-            ? "Searching..."
-            : search
-            ? `${unpaginated_COUNT} search results for '${search}'`
-            : error
-            ? "Uh oh..."
-            : `Showing ${unpaginated_COUNT} results`}
-        </h3>
-
-        <MyUxCard_GRID
-          myUXs={myUXs}
-          OPEN_ux={(myUX: MyUx_TYPE) => {
-            SET_uxModal(true);
-            SET_targetUX(myUX);
-          }}
-          loading={IS_loading || IS_debouncing}
-          error={error}
-          OPEN_uxMobModal={() => {}}
-          search={search}
-          CLEAR_search={() => SET_search("")}
-          FILTER_byAll={() => SET_filter("All")}
-          current_ID={filter}
-        />
-
-        <Btn
-          btnType="btn"
-          text={!IS_loadingMore ? "Load more" : ""}
-          left_ICON={IS_loadingMore ? <Spinner /> : null}
-          onClick={() => LOAD_more()}
-          className="w-full justify-center mt-[3rem]"
-          text_STYLES={{
-            fontSize: "2rem",
-          }}
-          styles={{
-            display: unpaginated_COUNT === myUXs?.length ? "none" : "flex",
-          }}
-        />
-      </div>
       <MyUx_MODAL
         IS_open={IS_uxModalOpen}
         TOGGLE_open={TOGGLE_uxModal}
@@ -213,7 +217,7 @@ export default function MyUx_PAGE() {
         animate_LI
         title="Menu"
       >
-        <Menu_ITEMS SHOW_homeBtn={false} />
+        <Menu_ITEMS SHOW_homeBtn={true} />
       </Mobile_MODAL>
       <DesktopMenu_MODAL
         IS_open={IS_deskMenuOpen}
@@ -241,9 +245,10 @@ export default function MyUx_PAGE() {
           />
         </div>
       </MobileFilter_MODAL>
+      <ScrollUp_BTN />
 
       <ModalMenu_UNDERLAY open={IS_deskMenuOpen} />
       <ModalMenu_UNDERLAY open={IS_mobilefilterMenuOpen} />
-    </section>
+    </>
   );
 }

@@ -1,0 +1,32 @@
+/*  */
+/*  */
+/*  */
+
+@custom-media --mobile (max-width: 767px);
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop-small (max-width: 1300px);
+@custom-media --desktop-big (min-width: 1301px);
+
+.SwiperSlideBtn_WRAP {
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.6rem;
+
+  display: flex;
+  gap: 0.6rem;
+  z-index: 10;
+
+  & button {
+    border-radius: 9999px;
+    height: 4rem;
+  }
+
+  @media (--mobile) {
+    display: none;
+  }
+
+  &[data-hide="true"] {
+    opacity: 0;
+    pointer-events: none;
+  }
+}

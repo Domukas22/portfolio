@@ -2,6 +2,7 @@
 //
 //
 
+import Footer from "@/components/Footer/Footer";
 import Menu_MODALS from "@/components/modals/Menu_MODALS/Menu_MODALS";
 import ScrollSpyMobProject_MODAL from "@/components/modals/ScrollSpyMobProject_MODAL";
 import Project_NAVS from "@/components/Nav/Project_NAVS";
@@ -70,6 +71,7 @@ export default function SiglePage_CONTENT({
         project_NAME={Intro?.name}
         IS_mobProjectOpen={IS_mobProjectOpen}
       />
+      <Footer />
     </div>
   );
 }

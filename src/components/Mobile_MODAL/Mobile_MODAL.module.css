@@ -70,23 +70,23 @@
     }
   }
 
-  &[data-entering] {
+  /* &[data-entering] {
     animation: fade 200ms ease-in-out;
   }
 
   &[data-exiting] {
     animation: fade 150ms reverse ease-in;
-  }
+  } */
 }
 
-@keyframes fade {
+/* @keyframes fade {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
   }
-}
+} */
 @keyframes grow {
   from {
     height: 0%;

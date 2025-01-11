@@ -1,0 +1,45 @@
+/*  */
+/*  */
+/*  */
+
+@custom-media --mobile (max-width: 767px);
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop-small (max-width: 1300px);
+@custom-media --desktop-big (min-width: 1301px);
+
+.Styled_SWIPER {
+  width: 100%;
+  height: 100%;
+
+  & .swiper {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    position: relative;
+
+    & [data-single-image-wrap] {
+      width: 100%;
+      height: 100%;
+      padding: 3.2rem 2rem;
+
+      @media (--mobile) {
+        padding: 3.2rem 1.2rem;
+      }
+
+      & img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        margin: 0 auto;
+      }
+
+      &[data-full="true"] {
+        padding: 0;
+
+        & img {
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}

@@ -22,8 +22,9 @@ export function LogoSwiperSection_CONTENT({
   maxDesktopWidth,
 }: SwiperHeroSection_TYPE) {
   return (
-    <Container hero>
+    <Container>
       <h2 className="mb-[2rem]">{title}</h2>
+
       <Wide_SWIPER
         img_PATHS={swiperImg_PATHS}
         loop

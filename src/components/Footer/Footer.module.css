@@ -1,0 +1,28 @@
+/*  */
+/*  */
+/*  */
+
+@custom-media --mobile (max-width: 767px);
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop (min-width: 991px);
+@custom-media --desktop-small (max-width: 1300px);
+@custom-media --desktop-big (min-width: 1301px);
+
+.footer {
+  padding-bottom: 4rem;
+
+  & [data-container] {
+    flex-direction: column;
+
+    & [data-grid] {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 0.8rem;
+      row-gap: 4rem;
+
+      @media (--mobile) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

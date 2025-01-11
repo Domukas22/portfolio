@@ -33,6 +33,7 @@ export default function Mobile_MODAL({
       className={css.modal}
       isOpen={IS_open}
       onOpenChange={CLOSE_modal}
+      data-simple-modal-fade
     >
       <Dialog className={css.dialog} aria-label={ariaLabel}>
         <ul

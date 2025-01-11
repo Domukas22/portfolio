@@ -6,8 +6,11 @@
 
 import Project_INTROS from "@/projects/intros";
 import { Menu_BTN } from "./components/Menu_BTN";
+import { usePathname } from "next/navigation";
 
-export default function Menu_ITEMS({ SHOW_homeBtn = false }) {
+export default function Menu_ITEMS({ SHOW_homeBtn = true }) {
+  const pathname = usePathname();
+
   return (
     <div
       data-tiny-scrollbar-styles
@@ -15,9 +18,16 @@ export default function Menu_ITEMS({ SHOW_homeBtn = false }) {
     >
       {SHOW_homeBtn && (
         <li>
-          <Menu_BTN title="Home" link="/" />
+          <Menu_BTN title="🏠 Home" link="/" active={pathname === "/"} />
         </li>
       )}
+      <li>
+        <Menu_BTN
+          title="📞 Contact"
+          link="/contact"
+          active={pathname === "/contact"}
+        />
+      </li>
       {/* <li>
         <Menu_BTN title="Reach out to me" link="/" />
       </li> */}
@@ -39,6 +49,7 @@ export default function Menu_ITEMS({ SHOW_homeBtn = false }) {
                 ? `/projects/${slug}/${intro?.nestedPages?.[0]?.slug}`
                 : `/projects/${slug}`
             }
+            active={pathname === `/projects/${slug}`}
           />
         </li>
       ))}

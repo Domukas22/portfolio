@@ -24,7 +24,7 @@ export default async function FETCH_myUx(
     VALITATE_args(args);
     const query = supabase
       .from("my-ux")
-      .select(`*, rating:ux-ratings(id, text)`, {
+      .select(`*, rating:ux-ratings(id, text, emoji)`, {
         count: "exact",
       });
     VALIDATE_query(query);

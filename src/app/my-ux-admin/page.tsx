@@ -101,10 +101,6 @@ export default function MyUx_PAGE() {
             <MyUxCard_GRID
               myUXs={myUXs}
               OPEN_ux={SELECT_ux}
-              OPEN_uxMobModal={(ux: MyUx_TYPE) => {
-                SET_mobileModalOpen(true);
-                SELECT_ux(ux);
-              }}
               current_ID={target_UX?.id}
               hidden_IDs={hidden_IDs}
               CLEAR_search={() => {}}

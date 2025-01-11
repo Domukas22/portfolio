@@ -1,0 +1,39 @@
+/*  */
+/*  */
+/*  */
+
+@custom-media --mobile (max-width: 767px);
+@custom-media --tablet (max-width: 990px);
+@custom-media --desktop (min-width: 991px);
+@custom-media --desktop-small (max-width: 1300px);
+@custom-media --desktop-big (min-width: 1301px);
+
+.ScrollUp_BTN {
+  position: fixed;
+  right: var(--padding-desk);
+  bottom: var(--padding-desk);
+  padding: 1.2rem;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 150ms;
+
+  &[data-show="true"] {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (--desktop-small) {
+    right: var(--padding-desk-small);
+    bottom: var(--padding-desk-small);
+  }
+
+  @media (--tablet) {
+    right: var(--padding-tablet);
+    bottom: calc(var(--padding-tablet) + 6rem);
+
+    &[data-lower="true"] {
+      bottom: calc(var(--padding-tablet) + 2rem);
+    }
+  }
+}

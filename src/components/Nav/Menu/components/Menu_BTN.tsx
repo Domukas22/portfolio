@@ -9,13 +9,15 @@ export function Menu_BTN({
   title = "Btn title",
   subtitle,
   link = "/",
+  active = false,
 }: {
   title: string;
   subtitle?: string;
   link: string;
+  active: boolean;
 }) {
   return (
-    <Link href={link || "/"} className="native-link-nav">
+    <Link href={link || "/"} className="native-link-nav" data-active={active}>
       <div data-text-wrap>
         <span data-title>{title}</span>
         {subtitle && <span data-subtitle>{subtitle}</span>}

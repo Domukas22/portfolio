@@ -14,7 +14,7 @@ interface Btn_PROPS {
   className?: ClassValue;
   left_ICON?: React.ReactNode;
   right_ICON?: React.ReactNode;
-  btnType:
+  btnType?:
     | "btn"
     | "btn-square"
     | "btn-square-light"
@@ -29,7 +29,7 @@ interface Btn_PROPS {
 
 export default function Btn({
   text,
-  btnType,
+  btnType = "btn",
   className,
   onClick,
   // FIRE_clickEvent,

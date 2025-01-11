@@ -13,6 +13,7 @@ import Mobile_MODAL from "@/components/Mobile_MODAL/Mobile_MODAL";
 import Image from "next/image";
 import LogoCorner_BTN from "@/components/LogoCorner_BTN/LogoCorner_BTN";
 import TopNav_ADJUSTMENT from "@/components/TopNav_ADJUSTMENT";
+import Footer from "@/components/Footer/Footer";
 
 export default function HomePage_CONTENT() {
   const [IS_mobileMenuOpen, SET_mobileMenuOpen] = useState(false);
@@ -61,6 +62,7 @@ export default function HomePage_CONTENT() {
       >
         <Menu_ITEMS SHOW_homeBtn={false} />
       </Mobile_MODAL>
+      <Footer />
     </div>
   );
 }

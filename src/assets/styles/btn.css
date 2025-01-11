@@ -130,6 +130,7 @@
   padding: 1.6rem 2.2rem 1.6rem 1.2rem;
   gap: 1.2rem;
 
+  border: var(--border-transparent);
   border-bottom: var(--border-light);
   outline: var(--outline-hide);
 
@@ -182,6 +183,33 @@
     }
   }
 
+  &[data-active="true"] {
+    background-color: var(--bg-main) !important;
+    pointer-events: none !important;
+    position: relative;
+    border: var(--border-active);
+
+    & span[data-title],
+    & span[data-subtitle] {
+      color: var(--text-main) !important;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      right: 2rem;
+      top: calc(50% - 0.7rem);
+      width: 1.4rem;
+      height: 1.4rem;
+      background-color: var(--text-main);
+      border-radius: 50%;
+    }
+
+    & [data-arrow] {
+      display: none;
+    }
+  }
+
   @mixin outline;
 }
 @define-mixin btn-tiny-desk-round {
@@ -218,7 +246,8 @@
 
   border-radius: 9999px;
   background: var(--dark-light);
-  opacity: 0.8;
+  opacity: 1;
+  border: var(--border-light);
 
   @media (--desktop) {
     &[data-hovered] {
@@ -228,6 +257,7 @@
 
   &[data-pressed] {
     opacity: 1;
+    border: var(--border-white);
   }
 
   @media (--desktop) {

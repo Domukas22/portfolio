@@ -8,24 +8,23 @@ import { EffectFade } from "swiper/modules";
 
 import "swiper/css/effect-fade";
 
-import css from "./Wide_SWIPER.module.css";
+import css from "./Styled_SWIPER.module.css";
 import USE_swiperControls from "@/hooks/USE_swiperControls";
-import HeroImg_WRAP from "../HeroImg_WRAP/HeroImg_WRAP";
 import { customBackgroundColors_TYPE } from "@/projects/types/other";
 import SwiperPagination_DOTS from "../SwiperPagination_DOTS/SwiperPagination_DOTS";
 import SwiperSlidePagination_BTNS from "../SwiperSlidePagination_BTNS/SwiperSlidePagination_BTNS";
 
-interface WideSwiper_TYPE {
+interface Styled_SWIPER_TYPE {
   img_PATHS: string[];
   slidesPerView?: number;
   loop?: boolean;
   ARE_imagesFull?: boolean;
+  complexImages?: boolean;
   maxDeskImgWidth?: number;
   customBackgroundColors?: customBackgroundColors_TYPE[];
-  complexImages?: boolean;
 }
 
-export default function Wide_SWIPER({
+export default function Styled_SWIPER({
   img_PATHS,
   slidesPerView = 1,
   loop = false,
@@ -33,7 +32,8 @@ export default function Wide_SWIPER({
   maxDeskImgWidth = undefined,
   customBackgroundColors,
   complexImages = false,
-}: WideSwiper_TYPE) {
+  ...props
+}: Styled_SWIPER_TYPE) {
   const {
     slide,
     sliderRef,
@@ -43,7 +43,7 @@ export default function Wide_SWIPER({
   } = USE_swiperControls({ loop, img_COUNT: img_PATHS?.length });
 
   return (
-    <HeroImg_WRAP shadow_COLOR="rgba(255, 247, 240, 0.5)">
+    <div className={css.Styled_SWIPER} {...props}>
       <Swiper
         ref={sliderRef}
         slidesPerView={slidesPerView}
@@ -53,15 +53,16 @@ export default function Wide_SWIPER({
         fadeEffect={{ crossFade: true }}
         spaceBetween={0}
         loop={loop}
-        className={css.wide_SWIPER}
+        className={css.swiper}
       >
         <SwiperSlidePagination_BTNS
+          hide={img_PATHS?.length < 2}
           {...{ IS_leftArrowDisabled, IS_rightArrowDisabled, slide }}
         />
 
         <SwiperPagination_DOTS
           count={img_PATHS?.length}
-          current={currentRealIndex || 0}
+          current={currentRealIndex}
           complexImages={complexImages}
         />
 
@@ -72,10 +73,8 @@ export default function Wide_SWIPER({
               data-full={ARE_imagesFull}
               style={{
                 backgroundColor:
-                  customBackgroundColors &&
-                  customBackgroundColors.some((c) => c.index === i)
-                    ? customBackgroundColors.find((c) => c.index === i)?.color
-                    : "white",
+                  customBackgroundColors?.find((c) => c.index === i)?.color ??
+                  "white",
               }}
             >
               <Image
@@ -92,6 +91,6 @@ export default function Wide_SWIPER({
           </SwiperSlide>
         ))}
       </Swiper>
-    </HeroImg_WRAP>
+    </div>
   );
 }

@@ -121,3 +121,29 @@ li[data-tiny-desk-nav-li] {
 li[data-tiny-desk-nav-li]:first-child {
   margin-left: 0.8rem;
 }
+
+/* ------------------------------------ */
+div[data-simple-modal-fade] {
+  &[data-entering] {
+    animation: fade 200ms ease-in-out;
+  }
+
+  &[data-exiting] {
+    animation: fade 150ms reverse ease-in;
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* ------------------------------------ */
+section[role="dialog"]:focus-visible,
+section[role="dialog"]:focus {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-focus-ring-color: transparent;
+}
