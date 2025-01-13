@@ -4,7 +4,7 @@
 
 - Adjust project header images on mobile
 - Properly handle all alt texts and aria labels
-- Properly handle page descriptions, website tabbar icon, SEO for google search0
+- Properly handle page descriptions, website tabbar icon, SEO for google search
 
 # Later
 

@@ -3,7 +3,8 @@
 //
 
 import Btn from "@/components/Btn/Btn";
-import Text_FIELD from "@/components/Text_FIELD/Text_FIELD";
+import Input_LABEL from "@/components/Input_LABEL/Input_LABEL";
+import Text_INPUT from "@/components/Text_INPUT/Text_INPUT";
 
 export default function MyUxParagraph_INPUTS({
   paragraphs,
@@ -15,8 +16,8 @@ export default function MyUxParagraph_INPUTS({
     <>
       {paragraphs.length > 0 &&
         paragraphs.map((p, index) => (
-          <div key={index} className="relative">
-            <Text_FIELD
+          <div key={index} className="relative flex flex-col">
+            {/* <Text_FIELD
               label={`Paragraph ${index + 1}`}
               name={`paragraph-${index}`}
               type="text"
@@ -32,6 +33,19 @@ export default function MyUxParagraph_INPUTS({
               value={p}
               // ref={(el) => (inputRefs.current[index] = el)} // Assign the ref for each input
               IS_textArea
+            /> */}
+            <Input_LABEL label={`Paragraph ${index + 1}`} />
+            <Text_INPUT
+              value={p}
+              IS_textArea
+              onChange={(val) => {
+                // Update the paragraph at the specific index
+                SET_paragraphs((prev) => {
+                  const updatedParagraphs = [...prev];
+                  updatedParagraphs[index] = val;
+                  return updatedParagraphs;
+                });
+              }}
             />
             <Btn
               btnType="btn"

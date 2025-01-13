@@ -50,5 +50,6 @@
 
   &[data-text-area] {
     height: 15rem;
+    min-height: 15rem;
   }
 }

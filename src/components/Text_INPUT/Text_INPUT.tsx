@@ -36,6 +36,12 @@ export default function Text_INPUT({
       {...props}
     />
   ) : (
-    <TextArea onChange={handleChange} value={value} data-text-area />
+    <TextArea
+      onChange={handleChange}
+      value={value}
+      data-text-area
+      className={css.input}
+      {...props}
+    />
   );
 }

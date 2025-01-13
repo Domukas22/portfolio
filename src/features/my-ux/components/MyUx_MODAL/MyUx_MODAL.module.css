@@ -48,6 +48,8 @@
       & [data-text-wrap] {
         padding: 2rem;
         flex: 1;
+        height: 100%;
+        overflow-y: auto;
 
         display: flex;
         flex-direction: column;
