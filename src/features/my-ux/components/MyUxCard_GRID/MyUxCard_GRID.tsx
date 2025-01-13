@@ -14,7 +14,8 @@ import Error_BOX from "@/components/Error_BOX/Error_BOX";
 
 export default function MyUxCard_GRID({
   myUXs,
-  OPEN_ux,
+  SELECT_ux = () => {},
+  SELECT_mobileUx = () => {},
   current_ID,
   hidden_IDs = [],
   loading = false,
@@ -24,7 +25,8 @@ export default function MyUxCard_GRID({
   search,
 }: {
   myUXs: MyUx_TYPE[];
-  OPEN_ux: (myUX: MyUx_TYPE) => void;
+  SELECT_ux: (myUX: MyUx_TYPE) => void;
+  SELECT_mobileUx: (myUX: MyUx_TYPE) => void;
   current_ID?: string | undefined;
   hidden_IDs?: string[];
   error: FETCH_myUx_ERRPROPS | undefined;
@@ -96,7 +98,7 @@ export default function MyUxCard_GRID({
           <MyUx_CARD
             key={ux.id}
             content={ux}
-            OPEN_ux={OPEN_ux}
+            OPEN_ux={SELECT_ux}
             current={current_ID === ux?.id}
             hidden={hidden_IDs?.includes(ux?.id)}
           />
@@ -107,7 +109,7 @@ export default function MyUxCard_GRID({
           <MyUx_CARD
             key={ux.id}
             content={ux}
-            OPEN_ux={OPEN_ux}
+            OPEN_ux={SELECT_mobileUx}
             current={current_ID === ux?.id}
             hidden={hidden_IDs?.includes(ux?.id)}
           />

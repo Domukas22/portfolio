@@ -7,7 +7,6 @@
 import Btn from "@/components/Btn/Btn";
 import MyUx_MODAL from "@/features/my-ux/components/MyUx_MODAL/MyUx_MODAL";
 import MyUxCard_GRID from "@/features/my-ux/components/MyUxCard_GRID/MyUxCard_GRID";
-import USE_debounceSearch from "@/hooks/USE_debounceSearch/USE_debounceSearch";
 import USE_Toggle from "@/hooks/USE_toggle";
 import { MyUx_TYPE } from "@/features/my-ux/ux/fetch/FETCH_myUx/types";
 import USE_myUxs from "@/features/my-ux/ux/fetch/USE_myUxs/USE_myUxs";
@@ -33,6 +32,7 @@ import SCROLL_to from "@/utils/SCROLL_to";
 import MobileFilter_MODAL from "@/components/MobileFilter_MODAL/MobileFilter_MODAL";
 import ScrollUp_BTN from "@/components/ScrollUp_BTN/ScrollUp_BTN";
 import Footer from "@/components/Footer/Footer";
+import USE_debounceSearch from "@/hooks/USE_debounceSearch/USE_debounceSearch";
 
 export default function MyUx_PAGE() {
   const {
@@ -176,10 +176,11 @@ export default function MyUx_PAGE() {
 
           <MyUxCard_GRID
             myUXs={myUXs}
-            OPEN_ux={(myUX: MyUx_TYPE) => {
+            SELECT_ux={(myUX: MyUx_TYPE) => {
               SET_uxModal(true);
               SET_targetUX(myUX);
             }}
+            SELECT_mobileUx={() => {}}
             loading={IS_loading || IS_debouncing}
             error={error}
             search={search}

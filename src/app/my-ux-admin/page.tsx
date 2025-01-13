@@ -75,6 +75,7 @@ export default function MyUx_PAGE() {
     [UPDATE_displayedUx, target_UX]
   );
 
+  console.log(IS_mobileModalOpen);
   return !loading ? (
     <>
       <section className="pr-[40rem] mobile:pr-0">
@@ -100,7 +101,11 @@ export default function MyUx_PAGE() {
 
             <MyUxCard_GRID
               myUXs={myUXs}
-              OPEN_ux={SELECT_ux}
+              SELECT_ux={SELECT_ux}
+              SELECT_mobileUx={(myUx: MyUx_TYPE) => {
+                SET_targetUX(myUx);
+                SET_mobileModalOpen(true);
+              }}
               current_ID={target_UX?.id}
               hidden_IDs={hidden_IDs}
               CLEAR_search={() => {}}
