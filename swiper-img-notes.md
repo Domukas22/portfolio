@@ -4,8 +4,6 @@
 
 # Desktop
 
--
-
 On mobile, the main element in the image should fit inside a 320px / 320px box
 
 - On desktop, the object shoud fit inside of 3 mobile boxes right next to each other.

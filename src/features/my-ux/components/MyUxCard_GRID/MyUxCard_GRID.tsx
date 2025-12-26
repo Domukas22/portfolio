@@ -104,7 +104,7 @@ export default function MyUxCard_GRID({
           />
         ))}
       </div>
-      <div className={css.MyUxCard_GRID} data-mobile>
+      {/* <div className={css.MyUxCard_GRID} data-mobile>
         {myUXs?.map((ux) => (
           <MyUx_CARD
             key={ux.id}
@@ -114,7 +114,7 @@ export default function MyUxCard_GRID({
             hidden={hidden_IDs?.includes(ux?.id)}
           />
         ))}
-      </div>
+      </div> */}
     </>
   );
 }

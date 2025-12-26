@@ -180,7 +180,10 @@ export default function MyUx_PAGE() {
               SET_uxModal(true);
               SET_targetUX(myUX);
             }}
-            SELECT_mobileUx={() => {}}
+            SELECT_mobileUx={(myUX: MyUx_TYPE) => {
+              SET_uxModal(true);
+              SET_targetUX(myUX);
+            }}
             loading={IS_loading || IS_debouncing}
             error={error}
             search={search}

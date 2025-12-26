@@ -143,7 +143,6 @@ const Project_INTROS: ProjectIntros = {
     headerImg_PATH: "/projects/sanfte-metzger/header.png",
     headerImg_COLOR: "#FFFAF3",
   },
-
   "domas-swim-school-logo": {
     slug: "domas-swim-school-logo",
     name: "Domas Swim School",
